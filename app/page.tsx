@@ -88,6 +88,11 @@ const content = {
       "Tell us what you’re envisioning. We handle everything on the ground — from arrival to final sunset.",
     supportLine:
       "Private transfers, vetted stays, and support while you’re in-country — handled.",
+    trustGrid: [
+      { title: "Local concierge team", desc: "Based in Sri Lanka, on the ground." },
+      { title: "End-to-end handled", desc: "Stays, transfers, and coordination." },
+      { title: "Reply in 24–48h", desc: "A tailored proposal, not a template." },
+    ],
     reassurance: "Reviewed by our Sri Lanka concierge team • First reply in 24–48 hours",
     timeframeOptions: [
       { value: "next-3-months", label: "Next 3 months" },
@@ -120,8 +125,8 @@ const content = {
       
     ],
     secondaryStrip: {
-      label: "We also design",
-      items: ["Minimoons", "Baby-moons", "Anniversary escapes", ],
+      label: "Occasions we design for:",
+      items: ["Mini-moons", "Baby-moons", "Anniversary escapes"],
     },
   },
   partners: {
@@ -372,8 +377,8 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-10 px-4 py-14 md:grid-cols-2 md:gap-10 md:px-6 md:py-20">
-        <div className="space-y-6 md:max-w-xl md:pt-4">
+      <section className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-10 px-4 py-14 md:grid-cols-12 md:gap-10 md:px-6 md:py-16">
+        <div className="space-y-6 md:col-span-5 md:max-w-xl md:pt-4">
           <Badge variant="secondary" className="bg-[var(--brand-tint-1)] text-foreground">
             <Sparkles className="mr-1 h-3.5 w-3.5" />
             {content.hero.kicker}
@@ -393,19 +398,25 @@ export default function HomePage() {
             </Button>
           </div>
 
-          <div className="text-sm text-muted-foreground">
-            <span className="mr-2 font-medium text-foreground/90">{content.hero.secondaryStrip.label}</span>
-            <span>{content.hero.secondaryStrip.items[0]}</span>
-            <span className="mx-2">•</span>
-            <span>{content.hero.secondaryStrip.items[1]}</span>
-            <span className="mx-2">•</span>
-            <span>{content.hero.secondaryStrip.items[2]}</span>
+          <div className="grid gap-3 pt-2 sm:grid-cols-3">
+            {content.hero.trustGrid.map((item) => (
+              <div key={item.title} className="rounded-md border border-border bg-background/60 p-3">
+                <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="pt-4 text-xs text-muted-foreground">
+            <span className="font-medium text-foreground/80">{content.hero.secondaryStrip.label}</span>{" "}
+            {content.hero.secondaryStrip.items[0]} · {content.hero.secondaryStrip.items[1]} ·{" "}
+            {content.hero.secondaryStrip.items[2]}
           </div>
         </div>
 
         <Card
           id="brief-card"
-          className="overflow-hidden border-border bg-card shadow-md shadow-primary/10 md:sticky md:top-24 md:max-w-[540px] md:justify-self-end"
+          className="overflow-hidden border-border bg-card shadow-md shadow-primary/10 md:col-span-7 md:sticky md:top-24 md:max-w-[620px] md:justify-self-end"
         >
           <div className="h-1.5 w-full bg-gradient-to-r from-primary via-[var(--brand-tint-1)] to-[var(--brand-tint-2)]" />
           <CardHeader className="space-y-2 px-6 pt-6">
