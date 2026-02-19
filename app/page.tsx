@@ -82,8 +82,8 @@ const content = {
     ],
   },
   hero: {
-    kicker: "Sri Lanka Honeymoon Concierge",
-    heading: "Your Sri Lanka honeymoon, handled end-to-end.",
+    kicker: "Sri Lanka Romantic Travel Concierge",
+    heading: "Your Sri Lanka romantic escape, handled end-to-end",
     subcopy:
       "Tell us what you’re envisioning. We handle everything on the ground — from arrival to final sunset.",
     trustGrid: [
@@ -123,7 +123,7 @@ const content = {
       
     ],
     secondaryStrip: {
-      label: "Also planning:",
+      label: "Occasions we design for",
       items: ["Mini-moons", "Anniversary escapes", "Baby-moons"],
     },
   },
@@ -396,23 +396,32 @@ export default function HomePage() {
             </Button>
           </div>
 
-          <div className="mt-6 grid gap-4 text-sm sm:grid-cols-3">
-            {content.hero.trustGrid.map((item, index) => (
-              <div
-                key={item.title}
-                className={`space-y-1 ${index > 0 ? "sm:border-l sm:border-border sm:pl-4" : ""}`}
-              >
-                <p className="font-medium text-foreground">{item.title}</p>
-                <p className="text-xs leading-relaxed text-muted-foreground">{item.desc}</p>
-              </div>
-            ))}
+          <div className="mt-8 grid gap-x-8 gap-y-6 text-sm sm:grid-cols-2">
+            <div className="space-y-5">
+              {content.hero.trustGrid.slice(0, 2).map((item) => (
+                <div key={item.title} className="space-y-1.5">
+                  <p className="font-semibold text-foreground">{item.title}</p>
+                  <p className="text-xs leading-relaxed text-muted-foreground">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="space-y-1.5">
+              <p className="font-semibold text-foreground">{content.hero.trustGrid[2].title}</p>
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                {content.hero.trustGrid[2].desc}
+              </p>
+            </div>
           </div>
 
-          <p className="mt-5 text-sm text-muted-foreground">
-            <span className="font-medium text-foreground/80">{content.hero.secondaryStrip.label}</span>{" "}
-            {content.hero.secondaryStrip.items[0]} · {content.hero.secondaryStrip.items[1]} ·{" "}
-            {content.hero.secondaryStrip.items[2]}
-          </p>
+          <div className="mt-12 border-t border-border/60 pt-6">
+            <p className="text-sm">
+              <span className="font-medium text-foreground">{content.hero.secondaryStrip.label}</span>
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {content.hero.secondaryStrip.items[0]} · {content.hero.secondaryStrip.items[1]} ·{" "}
+              {content.hero.secondaryStrip.items[2]}
+            </p>
+          </div>
         </div>
 
         <Card
