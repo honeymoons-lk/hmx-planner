@@ -84,8 +84,8 @@ const content = {
   hero: {
     kicker: "Sri Lanka Romantic Travel Concierge",
     heading: "Your Sri Lanka romantic escape, handled end-to-end",
-    subcopy:
-      "Tell us what you’re envisioning. We handle everything on the ground — from arrival to final sunset.",
+    subcopy: "Designed around you. Managed by us.",
+    subcopySecondary: "From arrival to final sunset.",
     trustGrid: [
       { title: "Local concierge team", desc: "Based in Sri Lanka" },
       { title: "End-to-end handled", desc: "Stays, transfers, coordination" },
@@ -388,6 +388,9 @@ export default function HomePage() {
 
           <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
             {content.hero.subcopy}
+            <span className="mt-1 block text-sm text-muted-foreground/90 md:text-base">
+              {content.hero.subcopySecondary}
+            </span>
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row">
