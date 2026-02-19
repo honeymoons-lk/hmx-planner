@@ -87,7 +87,7 @@ const content = {
     subcopy: "Designed around you. Managed by us.",
     subcopySecondary: "From arrival to final sunset.",
     trustGrid: [
-      { title: "Local concierge team", desc: "Based in Sri Lanka" },
+      { title: "Local concierge team", desc: "On the ground in Sri Lanka" },
       { title: "End-to-end handled", desc: "Stays, transfers, coordination" },
       { title: "Reply in 24–48h", desc: "Tailored proposal, not a template" },
     ],
@@ -388,7 +388,7 @@ export default function HomePage() {
 
           <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
             {content.hero.subcopy}
-            <span className="mt-1 block text-sm text-muted-foreground/90 md:text-base">
+            <span className="mt-1 block text-xs text-muted-foreground/80 md:text-sm">
               {content.hero.subcopySecondary}
             </span>
           </p>
@@ -418,7 +418,7 @@ export default function HomePage() {
 
           <div className="mt-12 border-t border-border/60 pt-6">
             <p className="text-sm">
-              <span className="font-medium text-foreground">{content.hero.secondaryStrip.label}</span>
+              <span className="font-semibold text-foreground">{content.hero.secondaryStrip.label}</span>
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
               {content.hero.secondaryStrip.items[0]} · {content.hero.secondaryStrip.items[1]} ·{" "}
