@@ -123,7 +123,7 @@ const content = {
       
     ],
     secondaryStrip: {
-      label: "Occasions we design for",
+      label: "Also designing romantic escapes for",
       items: ["Mini-moons", "Anniversary escapes", "Baby-moons"],
     },
   },
@@ -416,8 +416,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mt-12 border-t border-border/60 pt-6">
-            <p className="text-sm">
+          <div className="mt-14">
+            <p className="text-base">
               <span className="font-semibold text-foreground">{content.hero.secondaryStrip.label}</span>
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
