@@ -23,6 +23,13 @@ import { Label } from "@/components/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -33,7 +40,6 @@ import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import {
-  ArrowRight,
   CalendarDays,
   CalendarCheck2,
   Compass,
@@ -123,6 +129,22 @@ const content = {
     "Personal itinerary + WhatsApp support",
     "Plans built around your budget range",
   ],
+  partners: {
+    heading: "Partners we trust",
+    subcopy: "Trusted Sri Lankan brands we love working with.",
+    logos: [
+      "Jetwing",
+      "Cinnamon",
+      "Aitken Spence",
+      "Shangri-La",
+      "Anantara",
+      "Uga",
+      "Resplendent Ceylon",
+      "Teardrop Hotels",
+      "Dilmah",
+      "SriLankan Airlines",
+    ],
+  },
   howItWorks: {
     heading: "How It Works",
     subcopy:
@@ -187,19 +209,19 @@ const content = {
       {
         title: "Private Cliffside Dinner",
         description: "A candlelit setup with ocean views and custom menu planning.",
-        href: "/plan/start?experience=private-dinner",
+        href: "/plan/start?wow=private-dinner",
       },
       {
         title: "Scenic Train + Tea Estate Day",
         description:
           "Reserved seats, private transfers, and a photo-ready tea country journey.",
-        href: "/plan/start?experience=scenic-train",
+        href: "/plan/start?wow=scenic-train",
       },
       {
         title: "Sunrise Wildlife Safari",
         description:
           "Early access safari with an expert tracker and curated picnic stop.",
-        href: "/plan/start?experience=safari",
+        href: "/plan/start?wow=safari",
       },
     ],
   },
@@ -303,12 +325,12 @@ export default function HomePage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-rose-50/40 text-stone-900">
-      <header className="sticky top-0 z-50 border-b border-stone-200/70 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70">
+    <main className="min-h-screen bg-gradient-to-b from-[var(--brand-tint-2)]/35 via-background to-[var(--brand-tint-1)]/35 text-foreground">
+      <header className="sticky top-0 z-50 border-b bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 md:px-6">
           <Link
             href="/"
-            className="text-base font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
+            className="text-base font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {content.header.brand}
           </Link>
@@ -318,7 +340,7 @@ export default function HomePage() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-stone-700 transition-colors hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {link.label}
               </Link>
@@ -348,7 +370,7 @@ export default function HomePage() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="rounded-sm text-base text-stone-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
+                    className="rounded-sm text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {link.label}
                   </Link>
@@ -365,38 +387,39 @@ export default function HomePage() {
 
       <section className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-10 px-4 py-14 md:grid-cols-2 md:gap-12 md:px-6 md:py-20">
         <div className="space-y-6 md:pt-4">
-          <Badge variant="secondary" className="bg-rose-100 text-rose-800">
+          <Badge variant="secondary" className="bg-[var(--brand-tint-1)] text-foreground">
             <Sparkles className="mr-1 h-3.5 w-3.5" />
             {content.hero.kicker}
           </Badge>
           <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
             {content.hero.heading}
           </h1>
-          <p className="max-w-xl text-base leading-relaxed text-stone-600 md:text-lg">
+          <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
             {content.hero.subcopy}
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" className="gap-2">
-              <Link href="/plan/start">
-                Start Planning <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="#how-it-works">See How It Works</Link>
             </Button>
           </div>
+          <Link
+            href="#mini-planner"
+            className="inline-flex text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
+          >
+            Ready now? Start on the right →
+          </Link>
         </div>
 
-        <Card className="overflow-hidden border-stone-200 bg-white shadow-lg shadow-stone-300/30 md:sticky md:top-24 md:min-h-[660px]">
-          <div className="h-2 w-full bg-gradient-to-r from-rose-300 via-amber-300 to-sky-300" />
+        <Card id="mini-planner" className="overflow-hidden border-border bg-card shadow-md shadow-primary/10 md:sticky md:top-24">
+          <div className="h-1.5 w-full bg-gradient-to-r from-primary via-[var(--brand-tint-1)] to-[var(--brand-tint-2)]" />
           <CardHeader className="space-y-2 px-6 pt-6">
             <CardTitle className="text-2xl">Start your plan</CardTitle>
-            <CardDescription className="text-base text-stone-600">
+            <CardDescription className="text-base text-muted-foreground">
               4 quick questions. We&apos;ll tailor your first draft.
             </CardDescription>
           </CardHeader>
-          <CardContent className="flex h-full flex-col gap-6 px-6 pb-6">
-            <div className="grid gap-5">
+          <CardContent className="space-y-4 px-6 pb-6">
+            <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="timeframe">When?</Label>
                 <Select value={timeframe} onValueChange={setTimeframe}>
@@ -413,31 +436,6 @@ export default function HomePage() {
                 </Select>
               </div>
 
-              {timeframe === "pick-dates" ? (
-                <div className="space-y-2">
-                  <Label>Travel dates</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        className="w-full justify-start text-left font-normal"
-                      >
-                        <CalendarDays className="mr-2 h-4 w-4" />
-                        {dateRange?.from && dateRange?.to
-                          ? `${formatDateLabel(dateRange.from)} – ${formatDateLabel(dateRange.to)}`
-                          : dateRange?.from
-                            ? "Select return date"
-                            : "Select travel dates"}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-full min-w-[280px] p-3" align="start">
-                      <Calendar mode="range" selected={dateRange} onSelect={setDateRange} />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-              ) : null}
-
               <div className="space-y-2">
                 <Label htmlFor="nights">Nights</Label>
                 <Select value={nights} onValueChange={setNights}>
@@ -453,7 +451,34 @@ export default function HomePage() {
                   </SelectContent>
                 </Select>
               </div>
+            </div>
 
+            {timeframe === "pick-dates" ? (
+              <div className="space-y-2">
+                <Label>Travel dates</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full justify-start border-input text-left font-normal"
+                    >
+                      <CalendarDays className="mr-2 h-4 w-4" />
+                      {dateRange?.from && dateRange?.to
+                        ? `${formatDateLabel(dateRange.from)} – ${formatDateLabel(dateRange.to)}`
+                        : dateRange?.from
+                          ? "Select return date"
+                          : "Select travel dates"}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-full min-w-[280px] border-border bg-popover p-3" align="start">
+                    <Calendar mode="range" selected={dateRange} onSelect={setDateRange} />
+                  </PopoverContent>
+                </Popover>
+              </div>
+            ) : null}
+
+            <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-3">
                 <Label>Style</Label>
                 <ToggleGroup
@@ -466,7 +491,7 @@ export default function HomePage() {
                     <ToggleGroupItem
                       key={option.value}
                       value={option.value}
-                      className="w-full border border-stone-200"
+                      className="w-full border border-border"
                       aria-label={option.label}
                     >
                       {option.label}
@@ -490,105 +515,119 @@ export default function HomePage() {
                   </SelectContent>
                 </Select>
               </div>
-
-              <Accordion type="single" collapsible className="rounded-md border border-stone-200 px-3">
-                <AccordionItem value="optional">
-                  <AccordionTrigger>Optional preferences</AccordionTrigger>
-                  <AccordionContent>
-                    <div className="grid gap-5">
-                      <div className="space-y-3">
-                        <Label>Budget comfort</Label>
-                        <RadioGroup
-                          value={budget}
-                          onValueChange={setBudget}
-                          className="grid gap-2 sm:grid-cols-3"
-                        >
-                          {content.hero.budgetOptions.map((option) => (
-                            <Label
-                              key={option.value}
-                              htmlFor={`budget-${option.value}`}
-                              className="border-input hover:bg-stone-50 focus-within:border-ring focus-within:ring-ring/40 flex cursor-pointer items-center gap-3 rounded-md border px-3 py-2 focus-within:ring-2"
-                            >
-                              <RadioGroupItem id={`budget-${option.value}`} value={option.value} />
-                              {option.label}
-                            </Label>
-                          ))}
-                        </RadioGroup>
-                      </div>
-
-                      <div className="space-y-3">
-                        <Label>Pace</Label>
-                        <ToggleGroup
-                          type="single"
-                          value={pace}
-                          onValueChange={(value) => setPace(value || "")}
-                          className="grid w-full grid-cols-3 gap-2"
-                        >
-                          {content.hero.paceOptions.map((option) => (
-                            <ToggleGroupItem
-                              key={option.value}
-                              value={option.value}
-                              className="w-full border border-stone-200"
-                              aria-label={option.label}
-                            >
-                              {option.label}
-                            </ToggleGroupItem>
-                          ))}
-                        </ToggleGroup>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
             </div>
 
-            <div className="mt-auto space-y-4">
+            <Accordion type="single" collapsible className="rounded-md border border-border px-3">
+              <AccordionItem value="optional">
+                <AccordionTrigger>Optional preferences</AccordionTrigger>
+                <AccordionContent>
+                  <div className="grid gap-4">
+                    <div className="space-y-3">
+                      <Label>Budget comfort</Label>
+                      <RadioGroup
+                        value={budget}
+                        onValueChange={setBudget}
+                        className="grid gap-2 sm:grid-cols-3"
+                      >
+                        {content.hero.budgetOptions.map((option) => (
+                          <Label
+                            key={option.value}
+                            htmlFor={`budget-${option.value}`}
+                            className="border-input hover:bg-muted focus-within:border-ring focus-within:ring-ring/40 flex cursor-pointer items-center gap-3 rounded-md border px-3 py-2 focus-within:ring-2"
+                          >
+                            <RadioGroupItem id={`budget-${option.value}`} value={option.value} />
+                            {option.label}
+                          </Label>
+                        ))}
+                      </RadioGroup>
+                    </div>
+
+                    <div className="space-y-3">
+                      <Label>Pace</Label>
+                      <ToggleGroup
+                        type="single"
+                        value={pace}
+                        onValueChange={(value) => setPace(value || "")}
+                        className="grid w-full grid-cols-3 gap-2"
+                      >
+                        {content.hero.paceOptions.map((option) => (
+                          <ToggleGroupItem
+                            key={option.value}
+                            value={option.value}
+                            className="w-full border border-border"
+                            aria-label={option.label}
+                          >
+                            {option.label}
+                          </ToggleGroupItem>
+                        ))}
+                      </ToggleGroup>
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+
+            <div className="space-y-2">
               <Button
                 type="button"
                 size="lg"
-                className="w-full"
+                className="w-full disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={!canCreateDraft}
                 onClick={handleCreateDraft}
               >
-                Create my draft plan
+                Get my draft itinerary
               </Button>
-              <div className="space-y-1 text-center text-xs text-stone-600">
-                <p>A real planner reviews every request — no auto-packages.</p>
-                <p>First response within 24–48 hours.</p>
-              </div>
-
-              <p className="text-center text-sm text-stone-600">
-                Prefer to talk first?{" "}
+              <p className="text-center text-xs text-muted-foreground">
+                Reviewed by a real planner • First reply within 24–48h
+              </p>
+              <p className="text-center text-xs text-muted-foreground">
+                Need to talk first?{" "}
                 <Link
                   href="/plan/consultation"
-                  className="font-medium text-stone-900 underline underline-offset-4"
+                  className="font-medium text-foreground underline underline-offset-4"
                 >
                   Book a call
                 </Link>
               </p>
-
-              <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
-                <p className="text-sm font-medium text-stone-900">What you&apos;ll get</p>
-                <ul className="mt-2 space-y-1.5 text-sm text-stone-600">
-                  {content.hero.outcomes.map((item) => (
-                    <li key={item}>• {item}</li>
-                  ))}
-                </ul>
-              </div>
             </div>
           </CardContent>
         </Card>
       </section>
 
-      <section aria-label="Proof bar" className="border-y border-stone-200 bg-white/70">
-        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 px-4 py-5 text-sm text-stone-700 md:grid-cols-3 md:px-6">
+      <section aria-label="Proof bar" className="border-y border-border bg-background/80">
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 px-4 py-5 text-sm text-muted-foreground md:grid-cols-3 md:px-6">
           {content.proof.map((item) => (
             <div key={item} className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-rose-500" aria-hidden="true" />
+              <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
               <p>{item}</p>
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6">
+        <div className="mb-8 max-w-2xl space-y-3">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+            {content.partners.heading}
+          </h2>
+          <p className="text-muted-foreground">{content.partners.subcopy}</p>
+        </div>
+        <Carousel className="mx-10 md:mx-12">
+          <CarouselContent>
+            {content.partners.logos.map((partner) => (
+              <CarouselItem
+                key={partner}
+                className="basis-[48%] md:basis-[31%] lg:basis-[22%] xl:basis-[17%]"
+              >
+                <div className="flex h-20 items-center justify-center rounded-lg border border-border bg-[var(--brand-tint-2)] px-4 text-center text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+                  {partner}
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:inline-flex" />
+          <CarouselNext className="hidden md:inline-flex" />
+        </Carousel>
       </section>
 
       <section id="how-it-works" className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
@@ -596,21 +635,21 @@ export default function HomePage() {
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
             {content.howItWorks.heading}
           </h2>
-          <p className="text-stone-600">{content.howItWorks.subcopy}</p>
+          <p className="text-muted-foreground">{content.howItWorks.subcopy}</p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {content.howItWorks.steps.map((step) => {
             const Icon = step.icon
             return (
-              <Card key={step.title} className="h-full border-stone-200">
+              <Card key={step.title} className="h-full border-border">
                 <CardHeader>
-                  <div className="mb-3 w-fit rounded-md bg-rose-100 p-2 text-rose-700">
+                  <div className="mb-3 w-fit rounded-md bg-[var(--brand-tint-1)] p-2 text-primary">
                     <Icon className="h-5 w-5" />
                   </div>
                   <CardTitle className="text-lg">{step.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm leading-relaxed text-stone-600">{step.description}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{step.description}</p>
                 </CardContent>
               </Card>
             )
@@ -623,16 +662,16 @@ export default function HomePage() {
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
             {content.styles.heading}
           </h2>
-          <p className="text-stone-600">{content.styles.subcopy}</p>
+          <p className="text-muted-foreground">{content.styles.subcopy}</p>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {content.styles.items.map((style, index) => (
-            <Card key={style.title} className="overflow-hidden border-stone-200">
+            <Card key={style.title} className="overflow-hidden border-border">
               <div
                 className={`h-2 ${
                   index % 2 === 0
-                    ? "bg-gradient-to-r from-rose-300 to-amber-300"
-                    : "bg-gradient-to-r from-sky-300 to-emerald-300"
+                    ? "bg-gradient-to-r from-primary to-[var(--brand-tint-1)]"
+                    : "bg-gradient-to-r from-[var(--brand-tint-1)] to-[var(--brand-tint-2)]"
                 }`}
               />
               <CardHeader>
@@ -641,11 +680,16 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <Button asChild variant="outline">
-                  <Link href={style.href}>Start Planning</Link>
+                  <Link href={style.href}>Start this style</Link>
                 </Button>
               </CardContent>
             </Card>
           ))}
+        </div>
+        <div className="mt-6 flex justify-start">
+          <Button asChild size="lg">
+            <Link href="/plan/start">Get my draft itinerary</Link>
+          </Button>
         </div>
       </section>
 
@@ -654,18 +698,18 @@ export default function HomePage() {
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
             {content.experiences.heading}
           </h2>
-          <p className="text-stone-600">{content.experiences.subcopy}</p>
+          <p className="text-muted-foreground">{content.experiences.subcopy}</p>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {content.experiences.items.map((experience) => (
-            <Card key={experience.title} className="border-stone-200">
+            <Card key={experience.title} className="border-border">
               <CardHeader>
                 <CardTitle>{experience.title}</CardTitle>
                 <CardDescription>{experience.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button asChild variant="outline">
-                  <Link href={experience.href}>Start Planning</Link>
+                  <Link href={experience.href}>Include this in my plan</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -678,11 +722,11 @@ export default function HomePage() {
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
             {content.stories.heading}
           </h2>
-          <p className="text-stone-600">{content.stories.subcopy}</p>
+          <p className="text-muted-foreground">{content.stories.subcopy}</p>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {content.stories.caseStudies.map((story) => (
-            <Card key={story.couple} className="border-stone-200">
+            <Card key={story.couple} className="border-border">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between gap-4 text-lg">
                   <span>{story.couple}</span>
@@ -691,7 +735,10 @@ export default function HomePage() {
                 <CardDescription>{story.route}</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm leading-relaxed text-stone-600">{story.summary}</p>
+                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{story.summary}</p>
+                <Button asChild variant="outline">
+                  <Link href="/real-honeymoons">See this itinerary</Link>
+                </Button>
               </CardContent>
             </Card>
           ))}
@@ -703,15 +750,15 @@ export default function HomePage() {
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
             {content.whyUs.heading}
           </h2>
-          <p className="text-stone-600">{content.whyUs.subcopy}</p>
+          <p className="text-muted-foreground">{content.whyUs.subcopy}</p>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {content.whyUs.points.map((point) => {
             const Icon = point.icon
             return (
-              <Card key={point.title} className="border-stone-200">
+              <Card key={point.title} className="border-border">
                 <CardHeader>
-                  <div className="mb-3 w-fit rounded-md bg-stone-100 p-2 text-stone-700">
+                  <div className="mb-3 w-fit rounded-md bg-muted p-2 text-foreground">
                     <Icon className="h-5 w-5" />
                   </div>
                   <CardTitle>{point.title}</CardTitle>
@@ -724,17 +771,17 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-14 md:px-6 md:pb-20">
-        <Card className="border-rose-200 bg-gradient-to-r from-rose-50 to-amber-50">
+        <Card className="border-border bg-gradient-to-r from-[var(--brand-tint-2)] to-[var(--brand-tint-1)]">
           <CardContent className="flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between">
             <div className="max-w-2xl space-y-2">
               <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
                 {content.finalCta.heading}
               </h2>
-              <p className="text-stone-600">{content.finalCta.subcopy}</p>
+              <p className="text-muted-foreground">{content.finalCta.subcopy}</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
-                <Link href="/plan/start">Start Planning</Link>
+                <Link href="/plan/start">Get my draft itinerary</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link href="#how-it-works">See How It Works</Link>
@@ -744,8 +791,8 @@ export default function HomePage() {
         </Card>
       </section>
 
-      <footer className="border-t border-stone-200 bg-white/80">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-stone-600 md:flex-row md:items-center md:justify-between md:px-6">
+      <footer className="border-t border-border bg-background/90">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:px-6">
           <p>{content.footer.note}</p>
           <p>{content.footer.copyright}</p>
         </div>

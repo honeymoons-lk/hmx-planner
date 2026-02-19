@@ -27,7 +27,7 @@ export default function PlanStartPage({
   const params = searchParams
 
   return (
-    <main className="min-h-screen bg-stone-50 px-4 py-10 md:px-6">
+    <main className="min-h-screen bg-background px-4 py-10 md:px-6">
       <div className="mx-auto w-full max-w-3xl">
         <Card>
           <CardHeader>
@@ -38,37 +38,37 @@ export default function PlanStartPage({
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 gap-3 text-sm md:grid-cols-2">
-              <div className="rounded-md border border-stone-200 bg-white p-3">
-                <p className="text-stone-500">Timeframe</p>
-                <p className="font-medium text-stone-900">{params.timeframe || "Not selected"}</p>
+              <div className="rounded-md border border-border bg-card p-3">
+                <p className="text-muted-foreground">Timeframe</p>
+                <p className="font-medium text-foreground">{params.timeframe || "Not selected"}</p>
               </div>
-              <div className="rounded-md border border-stone-200 bg-white p-3">
-                <p className="text-stone-500">Start date</p>
-                <p className="font-medium text-stone-900">{params.start || "Not selected"}</p>
+              <div className="rounded-md border border-border bg-card p-3">
+                <p className="text-muted-foreground">Start date</p>
+                <p className="font-medium text-foreground">{params.start || "Not selected"}</p>
               </div>
-              <div className="rounded-md border border-stone-200 bg-white p-3">
-                <p className="text-stone-500">End date</p>
-                <p className="font-medium text-stone-900">{params.end || "Not selected"}</p>
+              <div className="rounded-md border border-border bg-card p-3">
+                <p className="text-muted-foreground">End date</p>
+                <p className="font-medium text-foreground">{params.end || "Not selected"}</p>
               </div>
-              <div className="rounded-md border border-stone-200 bg-white p-3">
-                <p className="text-stone-500">Nights</p>
-                <p className="font-medium text-stone-900">{params.nights || "Not selected"}</p>
+              <div className="rounded-md border border-border bg-card p-3">
+                <p className="text-muted-foreground">Nights</p>
+                <p className="font-medium text-foreground">{params.nights || "Not selected"}</p>
               </div>
-              <div className="rounded-md border border-stone-200 bg-white p-3">
-                <p className="text-stone-500">Style</p>
-                <p className="font-medium text-stone-900">{params.style || "Not selected"}</p>
+              <div className="rounded-md border border-border bg-card p-3">
+                <p className="text-muted-foreground">Style</p>
+                <p className="font-medium text-foreground">{params.style || "Not selected"}</p>
               </div>
-              <div className="rounded-md border border-stone-200 bg-white p-3">
-                <p className="text-stone-500">Top wow moment</p>
-                <p className="font-medium text-stone-900">{params.wow || "Not selected"}</p>
+              <div className="rounded-md border border-border bg-card p-3">
+                <p className="text-muted-foreground">Top wow moment</p>
+                <p className="font-medium text-foreground">{params.wow || "Not selected"}</p>
               </div>
-              <div className="rounded-md border border-stone-200 bg-white p-3">
-                <p className="text-stone-500">Budget comfort</p>
-                <p className="font-medium text-stone-900">{params.budget || "Not selected"}</p>
+              <div className="rounded-md border border-border bg-card p-3">
+                <p className="text-muted-foreground">Budget comfort</p>
+                <p className="font-medium text-foreground">{params.budget || "Not selected"}</p>
               </div>
-              <div className="rounded-md border border-stone-200 bg-white p-3">
-                <p className="text-stone-500">Pace</p>
-                <p className="font-medium text-stone-900">{params.pace || "Not selected"}</p>
+              <div className="rounded-md border border-border bg-card p-3">
+                <p className="text-muted-foreground">Pace</p>
+                <p className="font-medium text-foreground">{params.pace || "Not selected"}</p>
               </div>
             </div>
 

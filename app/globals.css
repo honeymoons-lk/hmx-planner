@@ -4,21 +4,93 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --radius: 0.75rem;
+
+  --background: 0 0% 100%;
+  --foreground: 0 0% 16%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 16%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 16%;
+
+  --primary: 356 57% 48%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 354 100% 96%;
+  --secondary-foreground: 0 0% 16%;
+
+  --muted: 0 0% 94%;
+  --muted-foreground: 0 0% 43%;
+
+  --accent: 352 100% 89%;
+  --accent-foreground: 0 0% 16%;
+
+  --border: 0 0% 72%;
+  --input: 0 0% 72%;
+  --ring: 356 57% 48%;
+
+  --brand-tint-1: #ffc9cd;
+  --brand-tint-2: #ffeaeb;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
+  --background: 0 0% 8%;
+  --foreground: 0 0% 96%;
+
+  --card: 0 0% 10%;
+  --card-foreground: 0 0% 96%;
+
+  --popover: 0 0% 10%;
+  --popover-foreground: 0 0% 96%;
+
+  --primary: 356 57% 56%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 0 0% 16%;
+  --secondary-foreground: 0 0% 96%;
+
+  --muted: 0 0% 16%;
+  --muted-foreground: 0 0% 70%;
+
+  --accent: 356 35% 28%;
+  --accent-foreground: 0 0% 96%;
+
+  --border: 0 0% 28%;
+  --input: 0 0% 28%;
+  --ring: 356 57% 56%;
 }
 
 @layer base {
+  * {
+    @apply border-border;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
