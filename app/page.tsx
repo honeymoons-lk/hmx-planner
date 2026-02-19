@@ -86,12 +86,10 @@ const content = {
     heading: "Your Sri Lanka honeymoon, handled end-to-end.",
     subcopy:
       "Tell us what you’re envisioning. We handle everything on the ground — from arrival to final sunset.",
-    supportLine:
-      "Private transfers, vetted stays, and support while you’re in-country — handled.",
     trustGrid: [
-      { title: "Local concierge team", desc: "Based in Sri Lanka, on the ground." },
-      { title: "End-to-end handled", desc: "Stays, transfers, and coordination." },
-      { title: "Reply in 24–48h", desc: "A tailored proposal, not a template." },
+      { title: "Local concierge team", desc: "Based in Sri Lanka" },
+      { title: "End-to-end handled", desc: "Stays, transfers, coordination" },
+      { title: "Reply in 24–48h", desc: "Tailored proposal, not a template" },
     ],
     reassurance: "Reviewed by our Sri Lanka concierge team • First reply in 24–48 hours",
     timeframeOptions: [
@@ -125,8 +123,8 @@ const content = {
       
     ],
     secondaryStrip: {
-      label: "Occasions we design for:",
-      items: ["Mini-moons", "Baby-moons", "Anniversary escapes"],
+      label: "Also planning:",
+      items: ["Mini-moons", "Anniversary escapes", "Baby-moons"],
     },
   },
   partners: {
@@ -398,20 +396,23 @@ export default function HomePage() {
             </Button>
           </div>
 
-          <div className="grid gap-3 pt-2 sm:grid-cols-3">
-            {content.hero.trustGrid.map((item) => (
-              <div key={item.title} className="rounded-md border border-border bg-background/60 p-3">
-                <p className="text-sm font-semibold text-foreground">{item.title}</p>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{item.desc}</p>
+          <div className="mt-6 grid gap-4 text-sm sm:grid-cols-3">
+            {content.hero.trustGrid.map((item, index) => (
+              <div
+                key={item.title}
+                className={`space-y-1 ${index > 0 ? "sm:border-l sm:border-border sm:pl-4" : ""}`}
+              >
+                <p className="font-medium text-foreground">{item.title}</p>
+                <p className="text-xs leading-relaxed text-muted-foreground">{item.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="pt-4 text-xs text-muted-foreground">
+          <p className="mt-5 text-sm text-muted-foreground">
             <span className="font-medium text-foreground/80">{content.hero.secondaryStrip.label}</span>{" "}
             {content.hero.secondaryStrip.items[0]} · {content.hero.secondaryStrip.items[1]} ·{" "}
             {content.hero.secondaryStrip.items[2]}
-          </div>
+          </p>
         </div>
 
         <Card
