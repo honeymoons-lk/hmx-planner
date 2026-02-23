@@ -82,11 +82,11 @@ const content = {
   header: {
     brand: "Honeymoons.lk",
     links: [
-      { label: "How It Works", href: "#how-it-works" },
-      { label: "Stays", href: "#stays" },
-      { label: "Partners", href: "#partners" },
-      { label: "Stories", href: "#stories" },
+      { label: "Honeymoons in Sri Lanka", href: "#stays" },
+      { label: "Our Approach", href: "#how-it-works" },
+      { label: "Real Honeymoonsz", href: "#real-honeymoons" },
     ],
+    cta: { label: "Start Planning", href: "#brief-card" },
   },
   hero: {
     kicker: "Sri Lanka Romantic Travel Concierge",
@@ -279,6 +279,13 @@ const content = {
   },
   footer: {
     note: "Concierge-crafted Sri Lanka honeymoons for modern couples.",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "FAQs", href: "/faqs" },
+      { label: "Contact", href: "/contact" },
+      { label: "Partner With Us", href: "/partner-with-us" },
+      { label: "Privacy", href: "/privacy" },
+    ],
     copyright: "© 2026 Honeymoons.lk",
   },
 } as const;
@@ -381,7 +388,7 @@ export default function HomePage() {
 
           <div className="hidden md:block">
             <Button asChild>
-              <Link href="#brief-card">Start my brief</Link>
+              <Link href={content.header.cta.href}>{content.header.cta.label}</Link>
             </Button>
           </div>
 
@@ -404,7 +411,7 @@ export default function HomePage() {
                 ))}
                 <Separator className="my-2" />
                 <Button asChild>
-                  <Link href="#brief-card">Start my brief</Link>
+                  <Link href={content.header.cta.href}>{content.header.cta.label}</Link>
                 </Button>
               </nav>
             </SheetContent>
@@ -431,11 +438,7 @@ export default function HomePage() {
             {content.hero.emotionTagline}
           </p>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button asChild variant="outline" size="lg">
-              <Link href={`#${content.howItWorks.id}`}>See how it works</Link>
-            </Button>
-          </div>
+          
 
           <div className="mt-8 max-w-[520px]">
             <Carousel setApi={setTestimonialApi} className="rounded-xl bg-[var(--brand-tint-2)]/40 p-5">
@@ -606,7 +609,7 @@ export default function HomePage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="wow">What kind of highlight would you love to include?</Label>
+              <Label htmlFor="wow">What would make this honeymoon unforgettable for you?</Label>
               <Select value={wow} onValueChange={setWow}>
                 <SelectTrigger id="wow" className="w-full">
                   <SelectValue placeholder="Choose a highlight" />
@@ -814,9 +817,22 @@ export default function HomePage() {
       </section>
 
       <footer className="border-t border-border bg-background/90">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:px-6">
-          <p>{content.footer.note}</p>
-          <p>{content.footer.copyright}</p>
+        <div className="mx-auto w-full max-w-6xl px-4 py-8 md:px-6">
+          <div className="flex flex-col gap-4 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+            <p>{content.footer.note}</p>
+            <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              {content.footer.links.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">{content.footer.copyright}</p>
         </div>
       </footer>
     </main>
