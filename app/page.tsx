@@ -72,23 +72,31 @@ const content = {
     panels: [
       {
         title: "PRIVATE BEACH DINNERS",
+        label: "Beach dinner",
         body: "Sunset. Candlelight. Just the two of you, with the ocean doing the rest.",
-        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        image:
+          "https://images.unsplash.com/photo-1578922746465-3a80a228f223?auto=format&fit=crop&w=2200&q=80",
       },
       {
         title: "TEA COUNTRY SLOW MORNINGS",
-        body: "Misty hills, estate breakfasts, and mornings that aren’t rushed.",
-        image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+        label: "Tea country",
+        body: "Misty hills, estate breakfasts, and mornings you don’t feel the need to hurry.",
+        image:
+          "https://images.unsplash.com/photo-1593693411515-c20261bcad6e?auto=format&fit=crop&w=2200&q=80",
       },
       {
         title: "SAFARI SUNDOWNERS",
+        label: "Safari",
         body: "Private jeeps, golden light, and champagne in the wild.",
-        image: "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+        image:
+          "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=2200&q=80",
       },
       {
         title: "HERITAGE EVENINGS",
+        label: "Heritage",
         body: "Old forts, quiet courtyards, and stories in stone.",
-        image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+        image:
+          "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=2200&q=80",
       },
     ],
   },
@@ -523,24 +531,28 @@ export default function HomePage() {
               );
             })}
 
-            <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+            <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-black/25 p-1 backdrop-blur-md md:gap-2">
               {content.moments.panels.map((panel, index) => (
                 <button
                   key={`${panel.title}-dot`}
                   type="button"
-                  aria-label={`Go to moment ${index + 1}`}
-                  className={`h-2.5 w-2.5 rounded-full transition-colors ${
-                    index === activeMomentIndex ? "bg-white" : "bg-white/45 hover:bg-white/70"
+                  aria-label={`Show ${panel.label}`}
+                  className={`rounded-full px-2 py-1 text-[10px] font-medium uppercase tracking-[0.8px] transition-colors md:px-2.5 md:text-[11px] ${
+                    index === activeMomentIndex
+                      ? "bg-white text-foreground"
+                      : "text-white/90 hover:bg-white/15"
                   }`}
                   onClick={() => handleMomentNavigate(index)}
-                />
+                >
+                  {panel.label}
+                </button>
               ))}
             </div>
 
             <button
               type="button"
               aria-label="Previous moment"
-              className="absolute left-4 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-black/25 p-2 text-white/85 transition-colors hover:bg-black/40 lg:block"
+              className="absolute left-4 top-1/2 z-20 hidden -translate-y-1/2 p-2 text-white/70 transition-colors hover:text-white lg:block"
               onClick={() => handleMomentNavigate(activeMomentIndex - 1)}
             >
               <ChevronLeft className="h-5 w-5" />
@@ -548,7 +560,7 @@ export default function HomePage() {
             <button
               type="button"
               aria-label="Next moment"
-              className="absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-black/25 p-2 text-white/85 transition-colors hover:bg-black/40 lg:block"
+              className="absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 p-2 text-white/70 transition-colors hover:text-white lg:block"
               onClick={() => handleMomentNavigate(activeMomentIndex + 1)}
             >
               <ChevronRight className="h-5 w-5" />
