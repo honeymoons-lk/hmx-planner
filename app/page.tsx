@@ -148,8 +148,8 @@ const content = {
       
     ],
     secondaryStrip: {
-      label: "Also designing romantic escapes for",
-      items: ["Mini-moons", "Anniversary escapes", "Baby-moons"],
+      label: "Occasions we design for",
+      items: ["Minimoons", "Babymoons",  "Anniversary escapes" ],
     },
   },
   partners: {
@@ -287,8 +287,6 @@ export default function HomePage() {
   const router = useRouter();
   const marqueeLogos = [...content.partners.logos, ...content.partners.logos];
   const [testimonialApi, setTestimonialApi] = useState<CarouselApi | null>(null);
-  const [pauseTestimonialAuto, setPauseTestimonialAuto] = useState(false);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const [timeframe, setTimeframe] = useState("");
   const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
@@ -325,7 +323,7 @@ export default function HomePage() {
   }, [styleSearch]);
 
   useEffect(() => {
-    if (!testimonialApi || pauseTestimonialAuto) return;
+    if (!testimonialApi) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const intervalId = window.setInterval(() => {
@@ -333,41 +331,6 @@ export default function HomePage() {
     }, 6000);
 
     return () => window.clearInterval(intervalId);
-  }, [pauseTestimonialAuto, testimonialApi]);
-
-  useEffect(() => {
-    if (!pauseTestimonialAuto) return;
-    const timeoutId = window.setTimeout(() => setPauseTestimonialAuto(false), 12000);
-    return () => window.clearTimeout(timeoutId);
-  }, [pauseTestimonialAuto]);
-
-  useEffect(() => {
-    if (!testimonialApi) return;
-    const viewport = testimonialApi.getViewport();
-    if (!viewport) return;
-
-    const updateActiveFromScroll = () => {
-      const slides = Array.from(viewport.children) as HTMLElement[];
-      if (slides.length === 0) return;
-
-      let closestIndex = 0;
-      let closestDistance = Number.POSITIVE_INFINITY;
-      const left = viewport.scrollLeft;
-
-      slides.forEach((slide, index) => {
-        const distance = Math.abs(slide.offsetLeft - left);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
-        }
-      });
-
-      setActiveTestimonial(closestIndex);
-    };
-
-    updateActiveFromScroll();
-    viewport.addEventListener("scroll", updateActiveFromScroll, { passive: true });
-    return () => viewport.removeEventListener("scroll", updateActiveFromScroll);
   }, [testimonialApi]);
 
   const toggleStyle = (value: string) => {
@@ -461,12 +424,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
-            {content.hero.emotionLines.map((line, index) => (
-              <span key={line}>
-                {line}
-                {index < content.hero.emotionLines.length - 1 ? <br /> : null}
-              </span>
-            ))}
+            {content.hero.emotionLines.join(" ")}
           </p>
 
           <p className="text-base leading-relaxed text-foreground/85 md:text-lg">
@@ -493,28 +451,6 @@ export default function HomePage() {
                 ))}
               </CarouselContent>
             </Carousel>
-
-            <div className="mt-4 flex items-center justify-center gap-2">
-              {content.hero.testimonials.map((item, index) => {
-                const isActive = index === activeTestimonial;
-                return (
-                  <button
-                    key={`${item.name}-dot`}
-                    type="button"
-                    aria-label={`Go to testimonial ${index + 1}`}
-                    aria-current={isActive ? "true" : undefined}
-                    className={`h-2.5 w-2.5 rounded-full transition-colors ${
-                      isActive ? "bg-primary" : "bg-foreground/20 hover:bg-foreground/35"
-                    }`}
-                    onClick={() => {
-                      setPauseTestimonialAuto(true);
-                      setActiveTestimonial(index);
-                      testimonialApi?.scrollTo(index);
-                    }}
-                  />
-                );
-              })}
-            </div>
           </div>
 
           <div className="mt-14">
