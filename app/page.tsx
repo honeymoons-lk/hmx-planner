@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type KeyboardEventHandler, useEffect, useState } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { BriefIntakeCard } from "@/components/brief-intake-card";
-import { Compass, HeartHandshake, MapPinned, Menu, MessageSquareHeart, Quote, ShieldCheck, Sparkles, Wallet } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Compass,
+  HeartHandshake,
+  MapPinned,
+  Menu,
+  MessageSquareHeart,
+  Quote,
+  ShieldCheck,
+  Sparkles,
+  Wallet,
+} from "lucide-react";
 
 const content = {
   header: {
@@ -250,10 +262,11 @@ const content = {
 
 export default function HomePage() {
   const [testimonialApi, setTestimonialApi] = useState<CarouselApi | null>(null);
-  const [visiblePanels, setVisiblePanels] = useState<boolean[]>(
-    () => content.moments.panels.map(() => false),
-  );
-  const panelRefs = useRef<Array<HTMLElement | null>>([]);
+  const [activeMomentIndex, setActiveMomentIndex] = useState(0);
+  const [isMomentPaused, setIsMomentPaused] = useState(false);
+  const [momentUserInteracted, setMomentUserInteracted] = useState(false);
+  const [isPageVisible, setIsPageVisible] = useState(true);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const marqueeLogos = [...content.partners.logos, ...content.partners.logos];
 
   useEffect(() => {
@@ -268,31 +281,59 @@ export default function HomePage() {
   }, [testimonialApi]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const index = Number((entry.target as HTMLElement).dataset.panelIndex ?? "-1");
-          if (Number.isNaN(index) || index < 0) return;
-
-          setVisiblePanels((prev) => {
-            if (prev[index]) return prev;
-            const next = [...prev];
-            next[index] = true;
-            return next;
-          });
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.2 },
-    );
-
-    panelRefs.current.forEach((panel) => {
-      if (panel) observer.observe(panel);
-    });
-
-    return () => observer.disconnect();
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleMotionChange = () => setPrefersReducedMotion(mediaQuery.matches);
+    handleMotionChange();
+    mediaQuery.addEventListener("change", handleMotionChange);
+    return () => mediaQuery.removeEventListener("change", handleMotionChange);
   }, []);
+
+  useEffect(() => {
+    const handleVisibility = () => {
+      const visible = document.visibilityState === "visible";
+      setIsPageVisible(visible);
+      if (!visible) {
+        setIsMomentPaused(true);
+      } else if (!momentUserInteracted && !prefersReducedMotion) {
+        setIsMomentPaused(false);
+      }
+    };
+
+    handleVisibility();
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, [momentUserInteracted, prefersReducedMotion]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    if (isMomentPaused) return;
+    if (!isPageVisible) return;
+
+    const intervalId = window.setInterval(() => {
+      setActiveMomentIndex((prev) => (prev + 1) % content.moments.panels.length);
+    }, 5000);
+
+    return () => window.clearInterval(intervalId);
+  }, [isMomentPaused, isPageVisible, prefersReducedMotion]);
+
+  const handleMomentNavigate = (nextIndex: number) => {
+    const total = content.moments.panels.length;
+    const normalized = ((nextIndex % total) + total) % total;
+    setActiveMomentIndex(normalized);
+    setMomentUserInteracted(true);
+    setIsMomentPaused(true);
+  };
+
+  const handleMomentKeyDown: KeyboardEventHandler<HTMLElement> = (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      handleMomentNavigate(activeMomentIndex - 1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      handleMomentNavigate(activeMomentIndex + 1);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[var(--brand-tint-2)]/35 via-background to-[var(--brand-tint-1)]/35 text-foreground">
@@ -403,7 +444,7 @@ export default function HomePage() {
       </section>
 
       <section id={content.moments.id} className="moments-section w-full py-20 md:py-28">
-        <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
+        <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
           <p className="text-xs font-semibold uppercase tracking-[1.5px] text-muted-foreground">
             {content.moments.eyebrow}
           </p>
@@ -415,45 +456,90 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="mt-12 space-y-6 md:mt-16 md:space-y-8">
-          {content.moments.panels.map((panel, index) => (
-            <article
-              key={panel.title}
-              ref={(element) => {
-                panelRefs.current[index] = element;
-              }}
-              data-panel-index={index}
-              className={`relative w-full overflow-hidden opacity-0 translate-y-10 transition-all duration-[800ms] ease-out ${
-                visiblePanels[index] ? "opacity-100 translate-y-0" : ""
-              }`}
-            >
-              <div className="group relative flex h-[60vh] items-end md:h-[65vh] lg:h-[75vh]">
+        <div className="mt-12 md:mt-16">
+          <div
+            className="group relative h-[48vh] min-h-[360px] w-full overflow-hidden md:h-[55vh] lg:h-[60vh] lg:min-h-[520px] lg:max-h-[720px]"
+            tabIndex={0}
+            onKeyDown={handleMomentKeyDown}
+            onMouseEnter={() => {
+              if (window.matchMedia("(min-width: 1024px)").matches) setIsMomentPaused(true);
+            }}
+            onMouseLeave={() => {
+              if (!momentUserInteracted && !prefersReducedMotion && isPageVisible) {
+                setIsMomentPaused(false);
+              }
+            }}
+          >
+            {content.moments.panels.map((panel, index) => {
+              const isActive = index === activeMomentIndex;
+              return (
                 <div
-                  className="absolute inset-0 transition-transform duration-[600ms] ease-out md:group-hover:scale-105"
-                  style={{
-                    backgroundImage: `url(${panel.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.15) 70%, rgba(0,0,0,0.05) 100%)",
-                  }}
-                />
-                <div className="relative z-10 max-w-[520px] p-10 md:p-14 lg:p-20">
-                  <h3 className="text-[20px] font-semibold uppercase tracking-[1.5px] text-white md:text-[24px] lg:text-[28px]">
-                    {panel.title}
-                  </h3>
-                  <p className="mt-4 text-[15px] leading-[1.6] text-white/95 md:text-[16px] lg:text-[18px]">
-                    {panel.body}
-                  </p>
+                  key={panel.title}
+                  aria-hidden={!isActive}
+                  className={`absolute inset-0 transition-opacity ${
+                    prefersReducedMotion ? "duration-150" : "duration-[800ms]"
+                  } ease-out ${isActive ? "opacity-100" : "opacity-0"}`}
+                >
+                  <div
+                    className={`absolute inset-0 transition-transform ${
+                      prefersReducedMotion ? "duration-150" : "duration-[800ms]"
+                    } ease-out ${isActive ? "scale-[1.02]" : "scale-100"} md:group-hover:scale-105`}
+                    style={{
+                      backgroundImage: `url(${panel.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.18) 70%, rgba(0,0,0,0.05) 100%)",
+                    }}
+                  />
+                  <div className="absolute bottom-7 left-5 z-10 max-w-[520px] md:bottom-14 md:left-14">
+                    <h3 className="text-[20px] font-semibold uppercase tracking-[1.5px] text-white md:text-[28px]">
+                      {panel.title}
+                    </h3>
+                    <p className="mt-4 text-[15px] leading-[1.6] text-white/95 md:text-[18px]">
+                      {panel.body}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              );
+            })}
+
+            <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+              {content.moments.panels.map((panel, index) => (
+                <button
+                  key={`${panel.title}-dot`}
+                  type="button"
+                  aria-label={`Go to moment ${index + 1}`}
+                  className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                    index === activeMomentIndex ? "bg-white" : "bg-white/45 hover:bg-white/70"
+                  }`}
+                  onClick={() => handleMomentNavigate(index)}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              aria-label="Previous moment"
+              className="absolute left-4 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-black/25 p-2 text-white/85 transition-colors hover:bg-black/40 lg:block"
+              onClick={() => handleMomentNavigate(activeMomentIndex - 1)}
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next moment"
+              className="absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-black/25 p-2 text-white/85 transition-colors hover:bg-black/40 lg:block"
+              onClick={() => handleMomentNavigate(activeMomentIndex + 1)}
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
         </div>
       </section>
 
