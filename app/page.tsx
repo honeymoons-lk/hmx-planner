@@ -53,20 +53,20 @@ const content = {
   },
   moments: {
     id: "moments",
-    heading: "For couples who want more than a hotel.",
-    subcopy: "We design honeymoons around moments — not listings.",
+    heading: "The moments we design",
+    subcopy: "Not a list of activities — the highlights we build your trip around.",
     items: [
       {
-        title: "Private beach evenings",
-        description: "Candlelight. No crowds. Just the two of you and the ocean.",
+        title: "Private beach dinners",
+        description: "Sunset, candlelight, and a table made for two.",
       },
       {
         title: "Tea country slow mornings",
-        description: "Colonial estates, cool mountain air, and long slow breakfasts.",
+        description: "Misty views, estate stays, and long breakfasts.",
       },
       {
-        title: "Safari at golden hour",
-        description: "Your own jeep. Wild landscapes. Champagne at sunset.",
+        title: "Safari sundowners",
+        description: "Private jeeps, golden hour, and wild Sri Lanka.",
       },
       {
         title: "Heritage evenings",
@@ -104,31 +104,31 @@ const content = {
   },
   flow: {
     id: "flow",
-    heading: "A journey with rhythm.",
-    subcopy: "Most Sri Lanka honeymoons follow a natural flow — we tailor the details.",
+    heading: "A typical Sri Lanka honeymoon flow",
+    subcopy: "A proven rhythm — we tailor the details to you.",
     steps: [
       {
-        stop: "Colombo",
-        detail: "Arrive, reset, and ease into Sri Lanka.",
+        stop: "Colombo (1 night)",
+        detail: "Reset after landing. Great food, easy pace.",
       },
       {
-        stop: "Cultural Triangle",
-        detail: "Ancient landscapes and slow luxury.",
+        stop: "Cultural Triangle (2–3 nights)",
+        detail: "Sigiriya, temples, slow luxury.",
       },
       {
-        stop: "Tea Country",
-        detail: "Scenic trains and estate stays in the hills.",
+        stop: "Tea Country (2 nights)",
+        detail: "Scenic train + estate mornings.",
       },
       {
-        stop: "South Coast",
-        detail: "Beach time, long lunches, and sunset swims.",
+        stop: "South Coast (3–5 nights)",
+        detail: "Beach time, dinners, and downtime.",
       },
       {
-        stop: "Optional: Maldives",
-        detail: "A barefoot finale over turquoise water.",
+        stop: "Optional: Maldives (3–5 nights)",
+        detail: "Barefoot luxury to finish.",
       },
     ],
-    note: "",
+    note: "This is a starting point — we design around your dates and preferences.",
   },
   partners: {
     id: "partners",
@@ -366,34 +366,22 @@ export default function HomePage() {
         />
       </section>
 
-      <section id={content.moments.id} className="w-full px-4 py-24 md:px-6 md:py-32">
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="mb-14 max-w-3xl space-y-3 md:mb-16">
-            <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">{content.moments.heading}</h2>
-            <p className="text-sm text-muted-foreground md:text-base">{content.moments.subcopy}</p>
-          </div>
+      <section id={content.moments.id} className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6">
+        <div className="mb-8 max-w-2xl space-y-3">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{content.moments.heading}</h2>
+          <p className="text-muted-foreground">{content.moments.subcopy}</p>
+        </div>
 
-          <div className="space-y-16 md:space-y-20">
-            {content.moments.items.map((moment, index) => {
-              const reverse = index % 2 === 1;
-              return (
-                <article
-                  key={moment.title}
-                  className={`flex flex-col gap-8 md:items-center md:gap-12 ${reverse ? "md:flex-row-reverse" : "md:flex-row"}`}
-                >
-                  <div className="md:basis-[66%]">
-                    <div className="aspect-video w-full rounded-xl bg-gradient-to-br from-[var(--brand-tint-2)] via-muted to-[var(--brand-tint-1)]" />
-                  </div>
-                  <div className="md:basis-[34%]">
-                    <h3 className="text-3xl font-semibold tracking-tight md:text-4xl">{moment.title}</h3>
-                    <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                      {moment.description}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {content.moments.items.map((moment) => (
+            <Card key={moment.title} className="overflow-hidden border-border">
+              <div className="h-20 bg-gradient-to-r from-[var(--brand-tint-2)] to-muted" />
+              <CardHeader className="space-y-2">
+                <CardTitle className="text-lg">{moment.title}</CardTitle>
+                <CardDescription>{moment.description}</CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
         </div>
       </section>
 
@@ -424,20 +412,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id={content.flow.id} className="mx-auto w-full max-w-7xl px-4 py-20 md:px-6 md:py-28">
+      <section id={content.flow.id} className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
         <div className="mb-8 max-w-2xl space-y-3">
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{content.flow.heading}</h2>
           <p className="text-muted-foreground">{content.flow.subcopy}</p>
         </div>
 
-        <div className="flex flex-col gap-8 md:flex-row md:gap-6">
+        <div className="grid gap-4 md:grid-cols-5">
           {content.flow.steps.map((step) => (
-            <article key={step.stop} className="flex-1 space-y-4">
-              <div className="aspect-video w-full rounded-xl bg-gradient-to-br from-[var(--brand-tint-2)] via-muted to-[var(--brand-tint-1)]" />
-              <h3 className="text-xl font-semibold tracking-tight">{step.stop}</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">{step.detail}</p>
-            </article>
+            <Card key={step.stop} className="border-border">
+              <CardHeader className="space-y-1">
+                <CardTitle className="text-base">{step.stop}</CardTitle>
+                <CardDescription>{step.detail}</CardDescription>
+              </CardHeader>
+            </Card>
           ))}
+        </div>
+
+        <p className="mt-5 text-sm text-muted-foreground">{content.flow.note}</p>
+      </section>
+
+      <section id={content.partners.id} className="mx-auto w-full max-w-6xl px-4 py-12 md:px-6">
+        <div className="mb-6 max-w-xl space-y-2">
+          <h3 className="text-xl font-semibold tracking-tight md:text-2xl">{content.partners.heading}</h3>
+          <p className="text-sm text-muted-foreground">{content.partners.subcopy}</p>
+        </div>
+        <div className="group relative rounded-xl border border-border bg-background/70 p-3 focus-within:[&_.marquee-track]:[animation-play-state:paused] hover:[&_.marquee-track]:[animation-play-state:paused]">
+          <div className="overflow-x-auto md:overflow-hidden">
+            <div className="marquee-track flex w-max gap-3 motion-safe:animate-[marquee-left_26s_linear_infinite] motion-reduce:animate-none">
+              {marqueeLogos.map((partner, index) => (
+                <div
+                  key={`${partner}-${index}`}
+                  className="flex h-16 min-w-[160px] items-center justify-center rounded-lg border border-border bg-[var(--brand-tint-2)] px-4 text-center text-xs font-medium uppercase tracking-wide text-muted-foreground"
+                  tabIndex={0}
+                >
+                  {partner}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -466,28 +479,6 @@ export default function HomePage() {
               </CardContent>
             </Card>
           ))}
-        </div>
-      </section>
-
-      <section id={content.partners.id} className="mx-auto w-full max-w-6xl px-4 pt-20 pb-12 md:px-6 md:pt-24">
-        <div className="mb-6 max-w-xl space-y-2">
-          <h3 className="text-lg font-semibold tracking-tight md:text-xl">{content.partners.heading}</h3>
-          <p className="text-sm text-muted-foreground">A few names we regularly book with.</p>
-        </div>
-        <div className="group relative rounded-xl border border-border bg-background/70 p-3 focus-within:[&_.marquee-track]:[animation-play-state:paused] hover:[&_.marquee-track]:[animation-play-state:paused]">
-          <div className="overflow-x-auto md:overflow-hidden">
-            <div className="marquee-track flex w-max gap-2.5 motion-safe:animate-[marquee-left_26s_linear_infinite] motion-reduce:animate-none">
-              {marqueeLogos.map((partner, index) => (
-                <div
-                  key={`${partner}-${index}`}
-                  className="flex h-12 min-w-[132px] items-center justify-center rounded-lg border border-border bg-[var(--brand-tint-2)] px-3 text-center text-[10px] font-medium uppercase tracking-wide text-muted-foreground"
-                  tabIndex={0}
-                >
-                  {partner}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
