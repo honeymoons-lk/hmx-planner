@@ -15,7 +15,6 @@ const content = {
   header: {
     brand: "Honeymoons.lk",
     links: [
-      { label: "Home", href: "/" },
       { label: "Honeymoons in Sri Lanka", href: "/sri-lanka" },
       { label: "Our Approach", href: "/approach" },
       { label: "Real Honeymoons", href: "/real-honeymoons" },
@@ -333,10 +332,6 @@ export default function HomePage() {
           <p className="text-base leading-relaxed text-foreground/85 md:text-lg">
             {content.hero.emotionTagline}
           </p>
-
-          <Button asChild size="lg">
-            <Link href="/start">Start Planning</Link>
-          </Button>
 
           <div className="mt-8 max-w-[520px]">
             <Carousel setApi={setTestimonialApi} className="rounded-xl bg-[var(--brand-tint-2)]/40 p-5">
