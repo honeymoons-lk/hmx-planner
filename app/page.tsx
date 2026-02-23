@@ -1,11 +1,17 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, type DateRange } from "@/components/ui/calendar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import {
   Card,
   CardContent,
@@ -43,6 +49,7 @@ import {
   MapPinned,
   Menu,
   MessageSquareHeart,
+  Quote,
   ShieldCheck,
   Sparkles,
   Wallet,
@@ -90,10 +97,24 @@ const content = {
       "Quiet villas made just for two.",
     ],
     emotionTagline: "Designed around you. Managed by us.",
-    trustGrid: [
-      { title: "Local concierge team", desc: "On the ground in Sri Lanka" },
-      { title: "End-to-end handled", desc: "Stays, transfers, coordination" },
-      { title: "Reply in 24–48h", desc: "Tailored proposal, not a template" },
+    testimonials: [
+      {
+        quote:
+          "We felt completely looked after — every detail was seamless from the moment we landed.",
+        name: "Emma & Daniel",
+        origin: "UK",
+      },
+      {
+        quote:
+          "The stays were stunning and the pacing was perfect. It felt effortless the whole way through.",
+        name: "Nadia & Aaron",
+        origin: "AU",
+      },
+      {
+        quote: "It didn’t feel like a package. It felt like it was built for us.",
+        name: "Rhea & Mark",
+        origin: "SG",
+      },
     ],
     reassurance: "Reviewed by our Sri Lanka concierge team • First reply in 24–48 hours",
     timeframeOptions: [
@@ -265,6 +286,9 @@ const content = {
 export default function HomePage() {
   const router = useRouter();
   const marqueeLogos = [...content.partners.logos, ...content.partners.logos];
+  const [testimonialApi, setTestimonialApi] = useState<CarouselApi | null>(null);
+  const [pauseTestimonialAuto, setPauseTestimonialAuto] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const [timeframe, setTimeframe] = useState("");
   const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
@@ -279,7 +303,7 @@ export default function HomePage() {
     if (timeframe !== "pick-dates") return null;
     if (!dateRange?.from || !dateRange?.to) return null;
     return differenceInDays(dateRange.from, dateRange.to);
-  }, [dateRange?.from, dateRange?.to, timeframe]);
+  }, [dateRange, timeframe]);
 
   const selectedNightsValue = timeframe === "pick-dates" ? (calculatedNights ? String(calculatedNights) : "") : nights;
 
@@ -299,6 +323,52 @@ export default function HomePage() {
       styleOption.label.toLowerCase().includes(query),
     );
   }, [styleSearch]);
+
+  useEffect(() => {
+    if (!testimonialApi || pauseTestimonialAuto) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const intervalId = window.setInterval(() => {
+      testimonialApi.scrollNext();
+    }, 6000);
+
+    return () => window.clearInterval(intervalId);
+  }, [pauseTestimonialAuto, testimonialApi]);
+
+  useEffect(() => {
+    if (!pauseTestimonialAuto) return;
+    const timeoutId = window.setTimeout(() => setPauseTestimonialAuto(false), 12000);
+    return () => window.clearTimeout(timeoutId);
+  }, [pauseTestimonialAuto]);
+
+  useEffect(() => {
+    if (!testimonialApi) return;
+    const viewport = testimonialApi.getViewport();
+    if (!viewport) return;
+
+    const updateActiveFromScroll = () => {
+      const slides = Array.from(viewport.children) as HTMLElement[];
+      if (slides.length === 0) return;
+
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+      const left = viewport.scrollLeft;
+
+      slides.forEach((slide, index) => {
+        const distance = Math.abs(slide.offsetLeft - left);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveTestimonial(closestIndex);
+    };
+
+    updateActiveFromScroll();
+    viewport.addEventListener("scroll", updateActiveFromScroll, { passive: true });
+    return () => viewport.removeEventListener("scroll", updateActiveFromScroll);
+  }, [testimonialApi]);
 
   const toggleStyle = (value: string) => {
     setStyles((prev) =>
@@ -409,20 +479,41 @@ export default function HomePage() {
             </Button>
           </div>
 
-          <div className="mt-8 grid gap-x-8 gap-y-6 text-sm sm:grid-cols-2">
-            <div className="space-y-5">
-              {content.hero.trustGrid.slice(0, 2).map((item) => (
-                <div key={item.title} className="space-y-1.5">
-                  <p className="font-semibold text-foreground">{item.title}</p>
-                  <p className="text-xs leading-relaxed text-muted-foreground">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-            <div className="space-y-1.5">
-              <p className="font-semibold text-foreground">{content.hero.trustGrid[2].title}</p>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                {content.hero.trustGrid[2].desc}
-              </p>
+          <div className="mt-8 max-w-[520px]">
+            <Carousel setApi={setTestimonialApi} className="rounded-xl bg-[var(--brand-tint-2)]/40 p-5">
+              <CarouselContent className="-ml-0 gap-0">
+                {content.hero.testimonials.map((item) => (
+                  <CarouselItem key={`${item.name}-${item.origin}`} className="pl-0">
+                    <div className="space-y-3">
+                      <Quote className="h-4 w-4 text-primary/70" aria-hidden="true" />
+                      <p className="text-base leading-relaxed text-foreground/90">{item.quote}</p>
+                      <p className="text-sm font-medium text-foreground/75">{`— ${item.name}, ${item.origin}`}</p>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+
+            <div className="mt-4 flex items-center justify-center gap-2">
+              {content.hero.testimonials.map((item, index) => {
+                const isActive = index === activeTestimonial;
+                return (
+                  <button
+                    key={`${item.name}-dot`}
+                    type="button"
+                    aria-label={`Go to testimonial ${index + 1}`}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                      isActive ? "bg-primary" : "bg-foreground/20 hover:bg-foreground/35"
+                    }`}
+                    onClick={() => {
+                      setPauseTestimonialAuto(true);
+                      setActiveTestimonial(index);
+                      testimonialApi?.scrollTo(index);
+                    }}
+                  />
+                );
+              })}
             </div>
           </div>
 

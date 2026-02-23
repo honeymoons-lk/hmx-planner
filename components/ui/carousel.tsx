@@ -13,6 +13,13 @@ type CarouselContextValue = {
   scrollNext: () => void
 }
 
+export type CarouselApi = {
+  scrollPrev: () => void
+  scrollNext: () => void
+  scrollTo: (index: number) => void
+  getViewport: () => HTMLDivElement | null
+}
+
 const CarouselContext = React.createContext<CarouselContextValue | null>(null)
 
 function useCarousel() {
@@ -26,9 +33,11 @@ function useCarousel() {
 function Carousel({
   orientation = "horizontal",
   className,
+  setApi,
   children,
 }: React.ComponentProps<"div"> & {
   orientation?: "horizontal" | "vertical"
+  setApi?: (api: CarouselApi) => void
 }) {
   const viewportRef = React.useRef<HTMLDivElement>(null)
 
@@ -63,6 +72,29 @@ function Carousel({
       behavior: "smooth",
     })
   }, [orientation])
+
+  const scrollTo = React.useCallback((index: number) => {
+    const viewport = viewportRef.current
+    if (!viewport) return
+    const target = viewport.children.item(index)
+    if (!(target instanceof HTMLElement)) return
+
+    viewport.scrollTo({
+      left: orientation === "horizontal" ? target.offsetLeft : 0,
+      top: orientation === "vertical" ? target.offsetTop : 0,
+      behavior: "smooth",
+    })
+  }, [orientation])
+
+  React.useEffect(() => {
+    if (!setApi) return
+    setApi({
+      scrollPrev,
+      scrollNext,
+      scrollTo,
+      getViewport: () => viewportRef.current,
+    })
+  }, [setApi, scrollPrev, scrollNext, scrollTo])
 
   return (
     <CarouselContext.Provider value={{ viewportRef, orientation, scrollPrev, scrollNext }}>
