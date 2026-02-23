@@ -14,10 +14,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Compass,
-  HeartHandshake,
-  MapPinned,
   Menu,
-  MessageSquareHeart,
   Quote,
   ShieldCheck,
   Sparkles,
@@ -221,23 +218,19 @@ const content = {
     steps: [
       {
         title: "Discovery",
-        description: "Your dates, budget, and what matters most to you.",
-        icon: MessageSquareHeart,
+        description: "We learn your pace, priorities, and what matters most to you.",
       },
       {
         title: "Design",
-        description: "We craft a tailored route, stays, and moments.",
-        icon: MapPinned,
+        description: "We craft a route, stays, and moments around you.",
       },
       {
         title: "Refinement",
-        description: "You review. We adjust until it feels right.",
-        icon: Sparkles,
+        description: "We adjust details together until it feels exactly right.",
       },
       {
         title: "Seamless travel",
         description: "We handle bookings, transfers, and on-ground support.",
-        icon: HeartHandshake,
       },
     ],
   },
@@ -289,6 +282,7 @@ export default function HomePage() {
   const [momentUserInteracted, setMomentUserInteracted] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [activeApproachStep, setActiveApproachStep] = useState<number | null>(null);
   const marqueeLogos = [...content.partners.logos, ...content.partners.logos];
 
   useEffect(() => {
@@ -684,23 +678,47 @@ export default function HomePage() {
           <p className="text-muted-foreground">{content.approach.subcopy}</p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {content.approach.steps.map((step) => {
-            const Icon = step.icon;
-            return (
-              <Card key={step.title} className="h-full border-border">
-                <CardHeader>
-                  <div className="mb-3 w-fit rounded-md bg-[var(--brand-tint-1)] p-2 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <CardTitle className="text-lg">{step.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{step.description}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
+        <div className="hidden md:block">
+          <div className="relative">
+            <div className="absolute left-0 right-0 top-2.5 h-px bg-border" />
+            <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+              {content.approach.steps.map((step, index) => {
+                const isActive = activeApproachStep === index;
+                const isDimmed = activeApproachStep !== null && activeApproachStep !== index;
+                return (
+                  <article
+                    key={step.title}
+                    className={`${prefersReducedMotion ? "" : "transition-opacity duration-200"} ${
+                      isDimmed ? "opacity-60" : "opacity-100"
+                    }`}
+                    onMouseEnter={() => setActiveApproachStep(index)}
+                    onMouseLeave={() => setActiveApproachStep(null)}
+                  >
+                    <div className="relative pb-6">
+                      <span
+                        className={`${prefersReducedMotion ? "" : "transition-all duration-200"} absolute left-0 top-0 h-2 w-2 rounded-full bg-foreground ${
+                          isActive ? "scale-110 opacity-100" : "scale-100 opacity-75"
+                        }`}
+                      />
+                    </div>
+                    <h3 className="text-base font-semibold tracking-wide text-foreground">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative space-y-8 pl-6 md:hidden">
+          <div className="absolute bottom-2 left-2 top-2 w-px bg-border" />
+          {content.approach.steps.map((step) => (
+            <article key={step.title} className="relative">
+              <span className="absolute -left-[18px] top-2.5 h-2 w-2 rounded-full bg-foreground/80" />
+              <h3 className="text-base font-semibold tracking-wide text-foreground">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+            </article>
+          ))}
         </div>
       </section>
 
