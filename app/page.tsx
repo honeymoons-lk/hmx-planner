@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { BriefIntakeCard } from "@/components/brief-intake-card";
+import { FlowMapSketch } from "@/src/components/FlowMapSketch";
 import {
   ChevronLeft,
   ChevronRight,
@@ -130,33 +131,32 @@ const content = {
   flow: {
     id: "flow",
     eyebrow: "A TYPICAL SRI LANKA HONEYMOON FLOW",
-    heading: "A rhythm that works — tailored to you.",
-    subcopy: "This is a starting point. We adapt it to your dates, pace, and style.",
+    heading: "A journey that flows — tailored to you.",
+    subcopy: "A starting rhythm. We adjust pace, dates, and style around you.",
     steps: [
       {
+        id: "colombo",
         stop: "Colombo",
         nights: "1 night",
         caption: "Reset after landing. Great food, easy pace.",
       },
       {
+        id: "cultural",
         stop: "Cultural Triangle",
         nights: "2–3 nights",
         caption: "Sigiriya, temples, and slow luxury.",
       },
       {
+        id: "tea",
         stop: "Tea Country",
         nights: "2 nights",
         caption: "Scenic train + estate mornings.",
       },
       {
+        id: "south",
         stop: "South Coast",
         nights: "3–5 nights",
         caption: "Beach time, dinners, and downtime.",
-      },
-      {
-        stop: "Optional: Maldives",
-        nights: "3–5 nights",
-        caption: "Barefoot luxury to finish.",
       },
     ],
     note: "We design the route first — then we match stays and moments to fit.",
@@ -606,45 +606,15 @@ export default function HomePage() {
         <p className="mt-6 text-sm leading-relaxed text-muted-foreground md:mt-7">{content.stays.footerNote}</p>
       </section>
 
-      <section id={content.flow.id} className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
-        <div className="mb-10 max-w-3xl space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[1.5px] text-muted-foreground">
-            {content.flow.eyebrow}
-          </p>
-          <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">{content.flow.heading}</h2>
-          <p className="text-sm leading-relaxed text-muted-foreground md:text-base">{content.flow.subcopy}</p>
-        </div>
-
-        <div className="relative hidden lg:block">
-          <div className="absolute left-0 right-0 top-4 h-px bg-border/70" />
-          <div className="relative mx-auto flex max-w-[1150px] items-start justify-between gap-6">
-            {content.flow.steps.map((step) => (
-              <article key={step.stop} className="group flex max-w-[210px] flex-1 flex-col items-center text-center">
-                <div className="mb-5 h-3 w-3 rounded-full bg-primary transition-transform duration-300 group-hover:scale-110" />
-                <h3 className="text-base font-semibold text-foreground">{step.stop}</h3>
-                <p className="mt-1 text-xs font-medium text-muted-foreground">{step.nights}</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground transition-opacity duration-300 group-hover:opacity-100 lg:opacity-85">
-                  {step.caption}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="relative space-y-8 lg:hidden">
-          <div className="absolute bottom-0 left-[7px] top-0 w-px bg-border/70" />
-          {content.flow.steps.map((step) => (
-            <article key={step.stop} className="relative pl-8">
-              <div className="absolute left-[2px] top-[6px] h-3 w-3 rounded-full bg-primary" />
-              <h3 className="text-base font-semibold text-foreground">{step.stop}</h3>
-              <p className="mt-1 text-xs font-medium text-muted-foreground">{step.nights}</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.caption}</p>
-            </article>
-          ))}
-        </div>
-
-        <p className="mt-7 text-sm leading-relaxed text-muted-foreground">{content.flow.note}</p>
-      </section>
+      <FlowMapSketch
+        id={content.flow.id}
+        eyebrow={content.flow.eyebrow}
+        heading={content.flow.heading}
+        subcopy={content.flow.subcopy}
+        steps={content.flow.steps}
+        note={content.flow.note}
+        prefersReducedMotion={prefersReducedMotion}
+      />
 
       <section id={content.partners.id} className="mx-auto w-full max-w-6xl px-4 py-12 md:px-6">
         <div className="mb-6 max-w-xl space-y-2">

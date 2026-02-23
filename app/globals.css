@@ -105,9 +105,29 @@
   }
 }
 
+@keyframes pinPulse {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pin-pulse {
+  animation: pinPulse 300ms ease;
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none !important;
     transform: none !important;
+  }
+  .pin-pulse {
+    animation: none !important;
   }
 }
