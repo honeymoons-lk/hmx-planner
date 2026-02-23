@@ -84,8 +84,12 @@ const content = {
   hero: {
     kicker: "Sri Lanka Romantic Travel Concierge",
     heading: "Your Sri Lanka romantic escape, handled end-to-end",
-    subcopy: "Designed around you. Managed by us.",
-    subcopySecondary: "From arrival to final sunset.",
+    emotionLines: [
+      "Tea hills at sunrise.",
+      "Barefoot dinners by the sea.",
+      "Quiet villas made just for two.",
+    ],
+    emotionTagline: "Designed around you. Managed by us.",
     trustGrid: [
       { title: "Local concierge team", desc: "On the ground in Sri Lanka" },
       { title: "End-to-end handled", desc: "Stays, transfers, coordination" },
@@ -386,11 +390,17 @@ export default function HomePage() {
             {content.hero.heading}
           </h1>
 
-          <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-            {content.hero.subcopy}
-            <span className="mt-1 block text-xs text-muted-foreground/80 md:text-sm">
-              {content.hero.subcopySecondary}
-            </span>
+          <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
+            {content.hero.emotionLines.map((line, index) => (
+              <span key={line}>
+                {line}
+                {index < content.hero.emotionLines.length - 1 ? <br /> : null}
+              </span>
+            ))}
+          </p>
+
+          <p className="text-base leading-relaxed text-foreground/85 md:text-lg">
+            {content.hero.emotionTagline}
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row">
