@@ -93,59 +93,73 @@ const content = {
   },
   stays: {
     id: "stays",
-    heading: "The kind of stays we curate",
-    subcopy: "A quick sense of the standard we book — tailored to your style and budget.",
-    note: "Not a catalogue.",
+    eyebrow: "THE KIND OF STAYS WE CURATE",
+    heading: "Where you’ll stay — thoughtfully chosen",
+    subcopy:
+      "We don’t list hundreds of hotels. We handpick a few that fit your honeymoon style.",
+    footerNote:
+      "We match these to your dates, budget band, and honeymoon style — then handle the details.",
     items: [
       {
-        title: "Boutique villas",
-        description: "Private, design-led stays with intimate service.",
-        badges: ["Uga", "Teardrop"],
+        title: "Luxury beach resorts",
+        description:
+          "Barefoot mornings, private stretches of coast, and sunsets worth dressing up for.",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        alt: "Luxury beach resort setting by the coast",
       },
       {
-        title: "Luxury beach resorts",
-        description: "Refined coastal properties with easy indulgence.",
-        badges: ["Jetwing", "Cinnamon"],
+        title: "Boutique villas",
+        description: "Intimate stays with personality — often just a handful of rooms.",
+        image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
+        alt: "Boutique villa architecture and pool",
       },
       {
         title: "Tea estate retreats",
-        description: "Cool-climate hideaways surrounded by tea country.",
-        badges: ["Resplendent"],
+        description: "Historic bungalows in the hills, where mist rolls in before breakfast.",
+        image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+        alt: "Tea estate retreat in misty hills",
       },
       {
         title: "Heritage stays",
-        description: "Character-rich properties with timeless Sri Lankan charm.",
-        badges: ["Aitken Spence"],
+        description: "Restored courtyards, old-world charm, and a real sense of place.",
+        image: "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba",
+        alt: "Heritage stay with restored courtyard design",
       },
     ],
   },
   flow: {
     id: "flow",
-    heading: "A typical Sri Lanka honeymoon flow",
-    subcopy: "A proven rhythm — we tailor the details to you.",
+    eyebrow: "A TYPICAL SRI LANKA HONEYMOON FLOW",
+    heading: "A rhythm that works — tailored to you.",
+    subcopy: "This is a starting point. We adapt it to your dates, pace, and style.",
     steps: [
       {
-        stop: "Colombo (1 night)",
-        detail: "Reset after landing. Great food, easy pace.",
+        stop: "Colombo",
+        nights: "1 night",
+        caption: "Reset after landing. Great food, easy pace.",
       },
       {
-        stop: "Cultural Triangle (2–3 nights)",
-        detail: "Sigiriya, temples, slow luxury.",
+        stop: "Cultural Triangle",
+        nights: "2–3 nights",
+        caption: "Sigiriya, temples, and slow luxury.",
       },
       {
-        stop: "Tea Country (2 nights)",
-        detail: "Scenic train + estate mornings.",
+        stop: "Tea Country",
+        nights: "2 nights",
+        caption: "Scenic train + estate mornings.",
       },
       {
-        stop: "South Coast (3–5 nights)",
-        detail: "Beach time, dinners, and downtime.",
+        stop: "South Coast",
+        nights: "3–5 nights",
+        caption: "Beach time, dinners, and downtime.",
       },
       {
-        stop: "Optional: Maldives (3–5 nights)",
-        detail: "Barefoot luxury to finish.",
+        stop: "Optional: Maldives",
+        nights: "3–5 nights",
+        caption: "Barefoot luxury to finish.",
       },
     ],
-    note: "This is a starting point — we design around your dates and preferences.",
+    note: "We design the route first — then we match stays and moments to fit.",
   },
   partners: {
     id: "partners",
@@ -543,51 +557,93 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id={content.stays.id} className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6">
-        <div className="mb-8 max-w-3xl space-y-3">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{content.stays.heading}</h2>
-          <p className="text-muted-foreground">{content.stays.subcopy}</p>
-          <p className="text-sm text-muted-foreground">{content.stays.note}</p>
+      <section id={content.stays.id} className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+        <div className="mb-10 max-w-3xl space-y-3 md:mb-12">
+          <p className="text-xs font-semibold uppercase tracking-[1.5px] text-muted-foreground">
+            {content.stays.eyebrow}
+          </p>
+          <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">{content.stays.heading}</h2>
+          <p className="text-sm leading-relaxed text-muted-foreground md:text-base">{content.stays.subcopy}</p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {content.stays.items.map((stay) => (
-            <Card key={stay.title} className="overflow-hidden border-border">
-              <div className="h-20 bg-gradient-to-r from-[var(--brand-tint-2)] to-muted" />
-              <CardHeader className="space-y-2">
-                <CardTitle className="text-lg">{stay.title}</CardTitle>
-                <CardDescription>{stay.description}</CardDescription>
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {stay.badges.map((badge) => (
-                    <Badge key={badge} variant="secondary" className="text-[10px]">
-                      {badge}
-                    </Badge>
-                  ))}
-                </div>
-              </CardHeader>
-            </Card>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-[280px_220px] lg:grid-cols-[1.6fr_1fr] lg:grid-rows-[320px_240px] lg:gap-5">
+          {content.stays.items.map((stay, index) => (
+            <article
+              key={stay.title}
+              className={`group relative overflow-hidden rounded-xl ${
+                index === 0
+                  ? "h-[260px] md:h-auto"
+                  : index === 1
+                    ? "h-[240px] md:h-auto"
+                    : index === 2
+                      ? "h-[240px] md:h-auto"
+                      : "h-[240px] md:h-auto"
+              }`}
+            >
+              <img
+                src={stay.image}
+                alt={stay.alt}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none lg:group-hover:scale-[1.03]"
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.32) 45%, rgba(0,0,0,0.10) 80%, rgba(0,0,0,0.00) 100%)",
+                }}
+              />
+              <div className="absolute bottom-5 left-5 z-10 max-w-[360px] md:bottom-6 md:left-6">
+                <h3 className="text-[18px] font-semibold text-white md:text-[22px]">{stay.title}</h3>
+                <p className="mt-2 text-[14px] leading-[1.6] text-white/95 md:text-[16px]">
+                  {stay.description}
+                </p>
+              </div>
+            </article>
           ))}
         </div>
+
+        <p className="mt-6 text-sm leading-relaxed text-muted-foreground md:mt-7">{content.stays.footerNote}</p>
       </section>
 
-      <section id={content.flow.id} className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
-        <div className="mb-8 max-w-2xl space-y-3">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{content.flow.heading}</h2>
-          <p className="text-muted-foreground">{content.flow.subcopy}</p>
+      <section id={content.flow.id} className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+        <div className="mb-10 max-w-3xl space-y-3">
+          <p className="text-xs font-semibold uppercase tracking-[1.5px] text-muted-foreground">
+            {content.flow.eyebrow}
+          </p>
+          <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">{content.flow.heading}</h2>
+          <p className="text-sm leading-relaxed text-muted-foreground md:text-base">{content.flow.subcopy}</p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-5">
+        <div className="relative hidden lg:block">
+          <div className="absolute left-0 right-0 top-4 h-px bg-border/70" />
+          <div className="relative mx-auto flex max-w-[1150px] items-start justify-between gap-6">
+            {content.flow.steps.map((step) => (
+              <article key={step.stop} className="group flex max-w-[210px] flex-1 flex-col items-center text-center">
+                <div className="mb-5 h-3 w-3 rounded-full bg-primary transition-transform duration-300 group-hover:scale-110" />
+                <h3 className="text-base font-semibold text-foreground">{step.stop}</h3>
+                <p className="mt-1 text-xs font-medium text-muted-foreground">{step.nights}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground transition-opacity duration-300 group-hover:opacity-100 lg:opacity-85">
+                  {step.caption}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative space-y-8 lg:hidden">
+          <div className="absolute bottom-0 left-[7px] top-0 w-px bg-border/70" />
           {content.flow.steps.map((step) => (
-            <Card key={step.stop} className="border-border">
-              <CardHeader className="space-y-1">
-                <CardTitle className="text-base">{step.stop}</CardTitle>
-                <CardDescription>{step.detail}</CardDescription>
-              </CardHeader>
-            </Card>
+            <article key={step.stop} className="relative pl-8">
+              <div className="absolute left-[2px] top-[6px] h-3 w-3 rounded-full bg-primary" />
+              <h3 className="text-base font-semibold text-foreground">{step.stop}</h3>
+              <p className="mt-1 text-xs font-medium text-muted-foreground">{step.nights}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.caption}</p>
+            </article>
           ))}
         </div>
 
-        <p className="mt-5 text-sm text-muted-foreground">{content.flow.note}</p>
+        <p className="mt-7 text-sm leading-relaxed text-muted-foreground">{content.flow.note}</p>
       </section>
 
       <section id={content.partners.id} className="mx-auto w-full max-w-6xl px-4 py-12 md:px-6">
