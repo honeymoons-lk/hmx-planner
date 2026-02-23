@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -53,24 +53,29 @@ const content = {
   },
   moments: {
     id: "moments",
-    heading: "The moments we design",
-    subcopy: "Not a list of activities — the highlights we build your trip around.",
-    items: [
+    eyebrow: "THE MOMENTS WE DESIGN",
+    heading: "The highlights your honeymoon will be built around.",
+    subcopy: "Not a list of activities. The experiences that shape the story.",
+    panels: [
       {
-        title: "Private beach dinners",
-        description: "Sunset, candlelight, and a table made for two.",
+        title: "PRIVATE BEACH DINNERS",
+        body: "Sunset. Candlelight. Just the two of you, with the ocean doing the rest.",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
       },
       {
-        title: "Tea country slow mornings",
-        description: "Misty views, estate stays, and long breakfasts.",
+        title: "TEA COUNTRY SLOW MORNINGS",
+        body: "Misty hills, estate breakfasts, and mornings that aren’t rushed.",
+        image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
       },
       {
-        title: "Safari sundowners",
-        description: "Private jeeps, golden hour, and wild Sri Lanka.",
+        title: "SAFARI SUNDOWNERS",
+        body: "Private jeeps, golden light, and champagne in the wild.",
+        image: "https://images.unsplash.com/photo-1519681393784-d120267933ba",
       },
       {
-        title: "Heritage evenings",
-        description: "Old towns, quiet courtyards, and stories worth keeping.",
+        title: "HERITAGE EVENINGS",
+        body: "Old forts, quiet courtyards, and stories in stone.",
+        image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
       },
     ],
   },
@@ -245,6 +250,10 @@ const content = {
 
 export default function HomePage() {
   const [testimonialApi, setTestimonialApi] = useState<CarouselApi | null>(null);
+  const [visiblePanels, setVisiblePanels] = useState<boolean[]>(
+    () => content.moments.panels.map(() => false),
+  );
+  const panelRefs = useRef<Array<HTMLElement | null>>([]);
   const marqueeLogos = [...content.partners.logos, ...content.partners.logos];
 
   useEffect(() => {
@@ -257,6 +266,33 @@ export default function HomePage() {
 
     return () => window.clearInterval(intervalId);
   }, [testimonialApi]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const index = Number((entry.target as HTMLElement).dataset.panelIndex ?? "-1");
+          if (Number.isNaN(index) || index < 0) return;
+
+          setVisiblePanels((prev) => {
+            if (prev[index]) return prev;
+            const next = [...prev];
+            next[index] = true;
+            return next;
+          });
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    panelRefs.current.forEach((panel) => {
+      if (panel) observer.observe(panel);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[var(--brand-tint-2)]/35 via-background to-[var(--brand-tint-1)]/35 text-foreground">
@@ -366,21 +402,57 @@ export default function HomePage() {
         />
       </section>
 
-      <section id={content.moments.id} className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6">
-        <div className="mb-8 max-w-2xl space-y-3">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{content.moments.heading}</h2>
-          <p className="text-muted-foreground">{content.moments.subcopy}</p>
+      <section id={content.moments.id} className="moments-section w-full py-20 md:py-28">
+        <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
+          <p className="text-xs font-semibold uppercase tracking-[1.5px] text-muted-foreground">
+            {content.moments.eyebrow}
+          </p>
+          <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
+            {content.moments.heading}
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+            {content.moments.subcopy}
+          </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {content.moments.items.map((moment) => (
-            <Card key={moment.title} className="overflow-hidden border-border">
-              <div className="h-20 bg-gradient-to-r from-[var(--brand-tint-2)] to-muted" />
-              <CardHeader className="space-y-2">
-                <CardTitle className="text-lg">{moment.title}</CardTitle>
-                <CardDescription>{moment.description}</CardDescription>
-              </CardHeader>
-            </Card>
+        <div className="mt-12 space-y-6 md:mt-16 md:space-y-8">
+          {content.moments.panels.map((panel, index) => (
+            <article
+              key={panel.title}
+              ref={(element) => {
+                panelRefs.current[index] = element;
+              }}
+              data-panel-index={index}
+              className={`relative w-full overflow-hidden opacity-0 translate-y-10 transition-all duration-[800ms] ease-out ${
+                visiblePanels[index] ? "opacity-100 translate-y-0" : ""
+              }`}
+            >
+              <div className="group relative flex h-[60vh] items-end md:h-[65vh] lg:h-[75vh]">
+                <div
+                  className="absolute inset-0 transition-transform duration-[600ms] ease-out md:group-hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${panel.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.15) 70%, rgba(0,0,0,0.05) 100%)",
+                  }}
+                />
+                <div className="relative z-10 max-w-[520px] p-10 md:p-14 lg:p-20">
+                  <h3 className="text-[20px] font-semibold uppercase tracking-[1.5px] text-white md:text-[24px] lg:text-[28px]">
+                    {panel.title}
+                  </h3>
+                  <p className="mt-4 text-[15px] leading-[1.6] text-white/95 md:text-[16px] lg:text-[18px]">
+                    {panel.body}
+                  </p>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </section>
