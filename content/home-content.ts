@@ -2,10 +2,10 @@ export const homeContent = {
   header: {
     brand: "Honeymoons.lk",
     links: [
-      { label: "Experiences", href: "#experiences" },
-      { label: "How It Flows", href: "#how-it-flows" },
-      { label: "Real Honeymoons", href: "#real-honeymoons" },
-      { label: "Our Approach", href: "#our-approach" },
+      { label: "Experiences", href: "#moments" },
+      { label: "How It Flows", href: "#flow" },
+      { label: "Real Honeymoons", href: "#stories" },
+      { label: "Our Approach", href: "#approach" },
     ],
     cta: { label: "Start Planning", href: "/start" },
   },
