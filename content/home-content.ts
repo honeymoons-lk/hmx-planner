@@ -2,10 +2,10 @@ export const homeContent = {
   header: {
     brand: "Honeymoons.lk",
     links: [
-      { label: "Moments", href: "#moments" },
-      { label: "Journey", href: "#flow" },
-      { label: "Real Honeymoons", href: "#stories" },
-      { label: "Our Approach", href: "#approach" },
+      { label: "Experiences", href: "#experiences" },
+      { label: "How It Flows", href: "#how-it-flows" },
+      { label: "Real Honeymoons", href: "#real-honeymoons" },
+      { label: "Our Approach", href: "#our-approach" },
     ],
     cta: { label: "Start Planning", href: "/start" },
   },
@@ -42,8 +42,8 @@ export const homeContent = {
   moments: {
     id: "moments",
     eyebrow: "THE MOMENTS WE DESIGN",
-    heading: "Signature moments we design into your journey",
-    subcopy: "Not a list of activities. The experiences that shape the story.",
+    heading: "The moments your honeymoon will be built around",
+    subcopy: "Carefully curated, never off-the-shelf",
     panels: [
       {
         title: "PRIVATE BEACH DINNERS",

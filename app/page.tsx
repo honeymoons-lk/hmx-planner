@@ -22,14 +22,6 @@ export default function HomePage() {
 
       <HeroSection content={homeContent.hero} />
 
-      <PartnersSection
-        id={homeContent.partners.id}
-        eyebrow={homeContent.partners.eyebrow}
-        heading={homeContent.partners.heading}
-        supporting={homeContent.partners.subcopy}
-        logos={homeContent.partners.logos}
-      />
-
       <MomentsSection
         id={homeContent.moments.id}
         eyebrow={homeContent.moments.eyebrow}
@@ -73,6 +65,14 @@ export default function HomePage() {
         steps={homeContent.approach.steps}
       />
 
+    <PartnersSection
+        id={homeContent.partners.id}
+        eyebrow={homeContent.partners.eyebrow}
+        heading={homeContent.partners.heading}
+        supporting={homeContent.partners.subcopy}
+        logos={homeContent.partners.logos}
+      />
+
       <WhySection
         id={homeContent.why.id}
         eyebrow={homeContent.why.eyebrow}
@@ -81,6 +81,8 @@ export default function HomePage() {
         objections={homeContent.why.objections}
         closing={homeContent.why.closing}
       />
+
+      
 
       <FinalCtaSection
         heading={homeContent.finalCta.heading}
