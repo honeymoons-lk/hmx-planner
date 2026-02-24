@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SRI_LANKA_PATH } from "@/src/assets/sriLankaPath";
+import { SectionHeader } from "@/components/section-header";
 
 type FlowStep = {
   id: string;
@@ -127,11 +128,7 @@ export function FlowMapSketch({
 
   return (
     <section ref={sectionRef} id={id} className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
-      <div className="mb-10 max-w-3xl space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[1.5px] text-muted-foreground">{eyebrow}</p>
-        <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">{heading}</h2>
-        <p className="text-sm leading-relaxed text-muted-foreground md:text-base">{subcopy}</p>
-      </div>
+      <SectionHeader eyebrow={eyebrow} heading={heading} supporting={subcopy} />
 
       <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,640px)_minmax(0,1fr)] lg:gap-12">
         <div className="w-full lg:max-w-[640px]">
