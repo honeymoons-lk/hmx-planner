@@ -22,6 +22,14 @@ export default function HomePage() {
 
       <HeroSection content={homeContent.hero} />
 
+      <PartnersSection
+        id={homeContent.partners.id}
+        eyebrow={homeContent.partners.eyebrow}
+        heading={homeContent.partners.heading}
+        supporting={homeContent.partners.subcopy}
+        logos={homeContent.partners.logos}
+      />
+
       <MomentsSection
         id={homeContent.moments.id}
         eyebrow={homeContent.moments.eyebrow}
@@ -48,13 +56,6 @@ export default function HomePage() {
         note={homeContent.flow.note}
       />
 
-      <PartnersSection
-        id={homeContent.partners.id}
-        eyebrow={homeContent.partners.eyebrow}
-        heading={homeContent.partners.heading}
-        supporting={homeContent.partners.subcopy}
-        logos={homeContent.partners.logos}
-      />
 
       <StoriesSection
         id={homeContent.stories.id}

@@ -42,7 +42,7 @@ export const homeContent = {
   moments: {
     id: "moments",
     eyebrow: "THE MOMENTS WE DESIGN",
-    heading: "The highlights your honeymoon will be built around.",
+    heading: "Signature moments we design into your journey",
     subcopy: "Not a list of activities. The experiences that shape the story.",
     panels: [
       {
