@@ -12,6 +12,7 @@ export const homeContent = {
   hero: {
     kicker: "Sri Lanka Romantic Travel Concierge",
     heading: "Your Sri Lanka romantic escape, handled end-to-end",
+    backgroundImage: "/api/media/hero",
     emotionSentence:
       "Tea hills at sunrise. Barefoot dinners by the sea. Quiet villas made just for two.",
     emotionTagline: "Designed around you. Managed by us.",
