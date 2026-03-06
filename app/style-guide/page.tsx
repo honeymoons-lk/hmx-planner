@@ -198,15 +198,18 @@ const tokenSnippets: TokenSnippet[] = [
     code: `:root {
   --space-1: 4px;
   --space-11: 120px;
-  --section-space-mobile: 80px;
-  --section-space-desktop: 112px;
+  --section-space-mobile: 100px;
+  --section-space-desktop: 120px;
   --heading-body-gap: 20px;
   --card-padding: 28px;
 
-  --radius-button: 10px;
-  --radius-card: 12px;
-  --radius-form: 12px;
-  --radius-input: 8px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-button: var(--radius-md);
+  --radius-card: var(--radius-lg);
+  --radius-form: var(--radius-lg);
+  --radius-input: var(--radius-sm);
 
   --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
   --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.06);

@@ -81,13 +81,13 @@ const formContent = {
     { value: "balanced", label: "A bit of both" },
     { value: "packed", label: "Packed with highlights" },
   ],
-  reassurance: "Reviewed by our Sri Lanka concierge team • First reply in 24–48 hours",
+  reassurance: "Takes about 60 seconds. We’ll reply personally within 24–48 hours.",
 };
 
 export function BriefIntakeCard({
   id,
   className,
-  title = "Tell us what you’re dreaming of for your honeymoon",
+  title = "Tell us about the journey you are imagining",
   description = "4 quick choices. Add dates if you have them. We’ll come back with a tailored proposal.",
 }: BriefIntakeCardProps) {
   const router = useRouter();
@@ -302,7 +302,7 @@ export function BriefIntakeCard({
             disabled={!canSubmitBrief}
             onClick={handleSubmitBrief}
           >
-            Continue
+            Continue Planning
           </Button>
 
           <p className="text-center text-xs text-muted-foreground">{formContent.reassurance}</p>

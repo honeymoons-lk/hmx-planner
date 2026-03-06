@@ -189,7 +189,7 @@ function Wizard() {
         {step === 1 ? (
           <Card>
             <CardHeader>
-              <CardTitle>A few finishing touches</CardTitle>
+              <CardTitle>A few final details</CardTitle>
               <CardDescription>
                 This helps us shape options that match your comfort level and occasion.
               </CardDescription>
