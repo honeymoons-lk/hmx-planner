@@ -28,7 +28,7 @@ export function HomeHeader({ brand, links, cta }: HomeHeaderProps) {
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="type-ui-sm text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {link.label}
             </Link>
@@ -53,7 +53,7 @@ export function HomeHeader({ brand, links, cta }: HomeHeaderProps) {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="rounded-sm text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="type-ui-sm rounded-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {link.label}
                 </Link>

@@ -186,9 +186,11 @@ const tokenSnippets: TokenSnippet[] = [
   --type-hero-size: clamp(56px, 6.4vw, 64px);
   --type-section-size: clamp(36px, 4.2vw, 40px);
   --type-subheading-size: clamp(22px, 2.6vw, 24px);
-  --type-body-size: 16px;
+  --type-body-size: 17px;
   --type-body-lg-size: 18px;
+  --type-ui-sm-size: 14px;
   --type-eyebrow-size: 12px;
+  --type-eyebrow-spacing: 0.08em;
 }`,
   },
   {

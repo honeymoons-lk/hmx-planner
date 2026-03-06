@@ -10,7 +10,7 @@ export function SiteFooter({ note, links, copyright }: SiteFooterProps) {
   return (
     <footer className="border-t border-border bg-[var(--color-dark)] text-[var(--color-light)]">
       <div className="mx-auto w-full max-w-6xl px-4 py-8 md:px-6">
-        <div className="flex flex-col gap-4 text-sm text-[color-mix(in_srgb,var(--color-light)_78%,var(--color-bg-alt))] md:flex-row md:items-center md:justify-between">
+        <div className="type-ui-sm flex flex-col gap-4 text-[color-mix(in_srgb,var(--color-light)_78%,var(--color-bg-alt))] md:flex-row md:items-center md:justify-between">
           <p>{note}</p>
           <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {links.map((link) => (
@@ -24,7 +24,7 @@ export function SiteFooter({ note, links, copyright }: SiteFooterProps) {
             ))}
           </nav>
         </div>
-        <p className="mt-4 text-sm text-[color-mix(in_srgb,var(--color-light)_70%,var(--color-bg-alt))]">{copyright}</p>
+        <p className="type-ui-sm mt-4 text-[color-mix(in_srgb,var(--color-light)_70%,var(--color-bg-alt))]">{copyright}</p>
       </div>
     </footer>
   );

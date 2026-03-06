@@ -109,13 +109,15 @@
   --type-section-line: 1.2;
   --type-subheading-size: clamp(22px, 2.6vw, 24px);
   --type-subheading-line: 1.35;
-  --type-body-size: 16px;
-  --type-body-line: 1.75;
+  --type-body-size: 17px;
+  --type-body-line: 1.72;
   --type-body-lg-size: 18px;
-  --type-body-lg-line: 1.72;
+  --type-body-lg-line: 1.7;
+  --type-ui-sm-size: 14px;
+  --type-ui-sm-line: 1.45;
   --type-eyebrow-size: 12px;
   --type-eyebrow-line: 1.35;
-  --type-eyebrow-spacing: 0.1em;
+  --type-eyebrow-spacing: 0.08em;
 
   --radius-button: 10px;
   --radius-card: 12px;
@@ -215,6 +217,11 @@
     line-height: var(--type-eyebrow-line);
     letter-spacing: var(--type-eyebrow-spacing);
     text-transform: uppercase;
+  }
+
+  .type-ui-sm {
+    font-size: var(--type-ui-sm-size);
+    line-height: var(--type-ui-sm-line);
   }
 }
 
