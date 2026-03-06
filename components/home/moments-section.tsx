@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SectionHeader } from "@/components/section-header";
+import { proxiedImageUrl } from "@/lib/media";
 import {
   Carousel,
   CarouselContent,
@@ -105,7 +106,7 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
               >
                 <article className="relative h-[58vh] min-h-[400px] overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_62%,transparent)] bg-[var(--color-bg-alt)] md:h-[64vh] lg:h-[680px] lg:min-h-[680px] lg:max-h-[680px]">
                   <img
-                    src={panel.image}
+                    src={proxiedImageUrl(panel.image)}
                     alt={panel.title}
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out motion-reduce:transition-none lg:hover:scale-[1.02]"

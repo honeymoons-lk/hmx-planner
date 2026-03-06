@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SectionHeader } from "@/components/section-header";
+import { proxiedImageUrl } from "@/lib/media";
 
 type StayImage = {
   image: string;
@@ -81,7 +82,7 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
           {activeImages.map((stayImage, imageIndex) => (
             <img
               key={`${activeCategory.title}-${stayImage.caption || stayImage.alt}`}
-              src={stayImage.image}
+              src={proxiedImageUrl(stayImage.image)}
               alt={stayImage.alt}
               loading="lazy"
               className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-700 ease-out ${

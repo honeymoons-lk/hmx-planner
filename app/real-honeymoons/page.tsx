@@ -6,6 +6,7 @@ import { HomeHeader } from "@/components/home/home-header";
 import { FinalCtaSection } from "@/components/home/final-cta-section";
 import { SiteFooter } from "@/components/home/site-footer";
 import { Badge } from "@/components/ui/badge";
+import { proxiedImageUrl } from "@/lib/media";
 
 type JourneyStop = {
   id: string;
@@ -217,7 +218,7 @@ export default function RealHoneymoonsPage() {
               <p className="type-body mt-4 max-w-[62ch] text-[var(--color-text-secondary)]">{activeStop.body}</p>
 
               <img
-                src={activeStop.image}
+                src={proxiedImageUrl(activeStop.image)}
                 alt={activeStop.title}
                 loading="lazy"
                 className="mt-6 h-[360px] w-full rounded-[var(--radius-card)] object-cover object-center md:h-[440px]"
@@ -227,7 +228,7 @@ export default function RealHoneymoonsPage() {
                 <h3 className="font-serif text-[32px] leading-[1.1] text-[var(--color-text)]">Where they stayed</h3>
                 <div className="mt-4 grid overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_78%,transparent)] bg-[var(--color-surface)] md:grid-cols-[220px_1fr]">
                   <img
-                    src={activeStop.image}
+                    src={proxiedImageUrl(activeStop.image)}
                     alt={`${activeJourney.stayName} preview`}
                     loading="lazy"
                     className="h-[210px] w-full object-cover object-center md:h-full"
@@ -306,4 +307,3 @@ export default function RealHoneymoonsPage() {
     </main>
   );
 }
-

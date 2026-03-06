@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { SectionHeader } from "@/components/section-header";
+import { proxiedImageUrl } from "@/lib/media";
 
 type FlowStep = {
   id: string;
@@ -117,7 +118,7 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
             <p className="type-body mt-4 max-w-[62ch] text-[var(--color-text-secondary)]">{detail.body}</p>
 
             <img
-              src={detail.image}
+              src={proxiedImageUrl(detail.image)}
               alt={detail.title}
               loading="lazy"
               className="mt-6 h-[380px] w-full rounded-[var(--radius-card)] object-cover object-center md:h-[460px]"
@@ -127,7 +128,7 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
               <h4 className="font-serif text-[34px] leading-[1.1] text-[var(--color-text)]">Where you could stay</h4>
               <div className="mt-4 grid overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_78%,transparent)] bg-[var(--color-surface)] md:grid-cols-[220px_1fr]">
                 <img
-                  src={detail.image}
+                  src={proxiedImageUrl(detail.image)}
                   alt={`${detail.stayName} preview`}
                   loading="lazy"
                   className="h-[210px] w-full object-cover object-center md:h-full"

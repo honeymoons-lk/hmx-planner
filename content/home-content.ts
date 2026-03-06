@@ -79,7 +79,7 @@ export const homeContent = {
   stays: {
     id: "stays",
     eyebrow: "THE KIND OF STAYS WE CURATE",
-    heading: "Where you’ll stay - thoughtfully chosen.",
+    heading: "Places made for slow mornings and long evenings.",
     subcopy: "Properties chosen for atmosphere, privacy and character.",
     footerNote:
       "We match these to your dates, budget band, and honeymoon style - then handle the details.",
