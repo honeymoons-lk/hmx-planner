@@ -5,11 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export default function PlanThanksPage() {
   return (
-    <main className="min-h-screen bg-background px-4 py-10 md:px-6">
+    <main className="min-h-screen bg-background px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
       <div className="mx-auto w-full max-w-2xl">
         <Card>
           <CardHeader>
-            <CardTitle className="font-serif text-4xl font-medium">Request received</CardTitle>
+            <CardTitle className="type-section font-serif font-medium">Request received</CardTitle>
             <CardDescription>
               Your Sri Lanka concierge team will reply within 24–48 hours.
             </CardDescription>

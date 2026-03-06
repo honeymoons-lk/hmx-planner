@@ -8,7 +8,7 @@ function Command({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="command"
-      className={cn("bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md", className)}
+      className={cn("bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-[var(--radius-input)]", className)}
       {...props}
     />
   );
@@ -20,7 +20,7 @@ function CommandInput({ className, ...props }: React.ComponentProps<"input">) {
       <input
         data-slot="command-input"
         className={cn(
-          "placeholder:text-muted-foreground h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "placeholder:text-muted-foreground h-9 w-full rounded-[var(--radius-input)] border border-input bg-transparent px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring",
           className,
         )}
         {...props}

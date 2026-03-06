@@ -72,7 +72,7 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
   };
 
   return (
-    <section id={id} className="moments-section w-full py-20 md:py-28">
+    <section id={id} className="moments-section w-full py-[var(--section-space-mobile)] md:py-[var(--section-space-desktop)]">
       <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
         <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="max-w-3xl" />
       </div>
@@ -119,22 +119,22 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
                   }}
                 />
                 <div className="absolute bottom-7 left-5 z-10 max-w-[520px] md:bottom-14 md:left-14">
-                  <h3 className="text-[20px] font-semibold uppercase tracking-[1.5px] text-white md:text-[28px]">
+                  <h3 className="type-subheading font-serif font-medium uppercase tracking-[0.08em] text-white">
                     {panel.title}
                   </h3>
-                  <p className="mt-4 text-[15px] leading-[1.6] text-white/95 md:text-[18px]">{panel.body}</p>
+                  <p className="type-body mt-4 text-white/95 md:text-[17px]">{panel.body}</p>
                 </div>
               </div>
             );
           })}
 
-          <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-black/25 p-1 backdrop-blur-md md:gap-2">
+          <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 rounded-[var(--radius-input)] bg-black/25 p-1 backdrop-blur-md md:gap-2">
             {panels.map((panel, index) => (
               <button
                 key={`${panel.title}-tab`}
                 type="button"
                 aria-label={`Show ${panel.label}`}
-                className={`rounded-full px-2 py-1 text-[10px] font-medium uppercase tracking-[0.8px] transition-colors md:px-2.5 md:text-[11px] ${
+                className={`type-eyebrow rounded-[var(--radius-input)] px-2 py-1 font-medium transition-colors md:px-2.5 ${
                   index === activeMomentIndex ? "bg-white text-foreground" : "text-white/90 hover:bg-white/15"
                 }`}
                 onClick={() => handleMomentNavigate(index)}

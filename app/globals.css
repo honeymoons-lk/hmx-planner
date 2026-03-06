@@ -27,10 +27,10 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
 
-  --radius-sm: 10px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  --radius-sm: var(--radius-input);
+  --radius-md: var(--radius-button);
+  --radius-lg: var(--radius-card);
+  --radius-xl: var(--radius-form);
 }
 
 :root {
@@ -103,8 +103,32 @@
   --space-10: 96px;
   --space-11: 120px;
 
-  --shadow-soft: 0 8px 30px rgba(28, 23, 21, 0.06);
-  --shadow-hover: 0 12px 40px rgba(28, 23, 21, 0.1);
+  --type-hero-size: clamp(56px, 6.4vw, 64px);
+  --type-hero-line: 1.12;
+  --type-section-size: clamp(36px, 4.2vw, 40px);
+  --type-section-line: 1.2;
+  --type-subheading-size: clamp(22px, 2.6vw, 24px);
+  --type-subheading-line: 1.35;
+  --type-body-size: 16px;
+  --type-body-line: 1.75;
+  --type-body-lg-size: 18px;
+  --type-body-lg-line: 1.72;
+  --type-eyebrow-size: 12px;
+  --type-eyebrow-line: 1.35;
+  --type-eyebrow-spacing: 0.1em;
+
+  --radius-button: 10px;
+  --radius-card: 12px;
+  --radius-form: 12px;
+  --radius-input: 8px;
+
+  --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+  --section-space-mobile: 80px;
+  --section-space-desktop: 112px;
+  --heading-body-gap: 20px;
+  --card-padding: 28px;
 
   --brand-tint-1: #d9c7b8;
   --brand-tint-2: #f1e7de;
@@ -158,6 +182,38 @@
   .font-wordmark {
     font-family: var(--font-wordmark), "Cinzel", serif;
     letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .type-hero {
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line);
+  }
+
+  .type-section {
+    font-size: var(--type-section-size);
+    line-height: var(--type-section-line);
+  }
+
+  .type-subheading {
+    font-size: var(--type-subheading-size);
+    line-height: var(--type-subheading-line);
+  }
+
+  .type-body {
+    font-size: var(--type-body-size);
+    line-height: var(--type-body-line);
+  }
+
+  .type-body-lg {
+    font-size: var(--type-body-lg-size);
+    line-height: var(--type-body-lg-line);
+  }
+
+  .type-eyebrow {
+    font-size: var(--type-eyebrow-size);
+    line-height: var(--type-eyebrow-line);
+    letter-spacing: var(--type-eyebrow-spacing);
     text-transform: uppercase;
   }
 }

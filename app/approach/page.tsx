@@ -24,11 +24,11 @@ const steps = [
 
 export default function ApproachPage() {
   return (
-    <main className="min-h-screen bg-background px-4 py-12 md:px-6">
-      <div className="mx-auto w-full max-w-6xl space-y-10">
+    <main className="min-h-screen bg-background px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
+      <div className="mx-auto w-full max-w-6xl space-y-12">
         <section className="max-w-3xl space-y-4">
-          <h1 className="font-serif text-5xl font-medium tracking-tight md:text-6xl">Our approach</h1>
-          <p className="text-muted-foreground md:text-lg">
+          <h1 className="type-section font-serif font-medium tracking-tight">Our approach</h1>
+          <p className="type-body-lg text-muted-foreground">
             Every honeymoon is handled by one concierge team from first brief to final airport transfer.
           </p>
         </section>
@@ -37,15 +37,15 @@ export default function ApproachPage() {
           {steps.map((step) => (
             <Card key={step.title} className="border-border">
               <CardHeader>
-                <CardTitle className="text-lg">{step.title}</CardTitle>
+                <CardTitle className="type-subheading font-serif font-medium">{step.title}</CardTitle>
                 <CardDescription>{step.detail}</CardDescription>
               </CardHeader>
             </Card>
           ))}
         </section>
 
-        <section className="space-y-3 rounded-[20px] border border-border bg-[var(--color-bg-alt)]/50 p-6">
-          <h2 className="font-serif text-4xl font-medium tracking-tight">FAQs</h2>
+        <section className="space-y-3 rounded-[var(--radius-form)] border border-border bg-[var(--color-bg-alt)]/50 p-[var(--card-padding)]">
+          <h2 className="type-section font-serif font-medium tracking-tight">FAQs</h2>
           <p className="text-sm text-muted-foreground">How quickly do you reply? Typically within 24–48 hours.</p>
           <p className="text-sm text-muted-foreground">Do you only do fixed packages? No, everything is tailored around your brief.</p>
           <p className="text-sm text-muted-foreground">Can you handle transfers and support on trip? Yes, end-to-end.</p>

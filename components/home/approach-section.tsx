@@ -23,8 +23,8 @@ export function ApproachSection({ id, eyebrow, heading, supporting, steps }: App
   );
 
   return (
-    <section id={id} className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
-      <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="mb-8 max-w-3xl" />
+    <section id={id} className="mx-auto w-full max-w-6xl px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
+      <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="mb-10 max-w-3xl" />
 
       <div className="hidden md:block">
         <div className="relative">
@@ -49,8 +49,8 @@ export function ApproachSection({ id, eyebrow, heading, supporting, steps }: App
                       }`}
                     />
                   </div>
-                  <h3 className="text-base font-semibold tracking-wide text-foreground">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+                  <h3 className="type-subheading font-serif font-medium tracking-wide text-foreground">{step.title}</h3>
+                  <p className="type-body mt-3 text-muted-foreground">{step.description}</p>
                 </article>
               );
             })}
@@ -63,8 +63,8 @@ export function ApproachSection({ id, eyebrow, heading, supporting, steps }: App
         {steps.map((step) => (
           <article key={step.title} className="relative">
             <span className="absolute -left-[18px] top-2.5 h-2 w-2 rounded-full bg-foreground/80" />
-            <h3 className="text-base font-semibold tracking-wide text-foreground">{step.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+            <h3 className="type-subheading font-serif font-medium tracking-wide text-foreground">{step.title}</h3>
+            <p className="type-body mt-3 text-muted-foreground">{step.description}</p>
           </article>
         ))}
       </div>

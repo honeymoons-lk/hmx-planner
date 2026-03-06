@@ -28,13 +28,13 @@ export function StoriesSection({
   caseStudies,
 }: StoriesSectionProps) {
   return (
-    <section id={id} className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
-      <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="mb-8 max-w-3xl" />
+    <section id={id} className="mx-auto w-full max-w-6xl px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
+      <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="mb-10 max-w-3xl" />
       <div className="grid gap-4 md:grid-cols-3">
         {caseStudies.map((story) => (
           <Card key={story.couple} className="border-border">
             <CardHeader>
-              <CardTitle className="flex items-center justify-between gap-4 text-lg">
+              <CardTitle className="type-subheading flex items-center justify-between gap-4 font-serif font-medium">
                 <span>{story.couple}</span>
                 <Badge variant="secondary">{story.budget}</Badge>
               </CardTitle>

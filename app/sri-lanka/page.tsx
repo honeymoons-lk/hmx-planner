@@ -20,11 +20,11 @@ const moments = [
 
 export default function SriLankaPage() {
   return (
-    <main className="min-h-screen bg-background px-4 py-12 md:px-6">
-      <div className="mx-auto w-full max-w-6xl space-y-10">
+    <main className="min-h-screen bg-background px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
+      <div className="mx-auto w-full max-w-6xl space-y-12">
         <section className="max-w-3xl space-y-4">
-          <h1 className="font-serif text-5xl font-medium tracking-tight md:text-6xl">Honeymoons in Sri Lanka</h1>
-          <p className="text-muted-foreground md:text-lg">
+          <h1 className="type-section font-serif font-medium tracking-tight">Honeymoons in Sri Lanka</h1>
+          <p className="type-body-lg text-muted-foreground">
             A concierge-crafted balance of tea country, culture, and coastline, tailored around your pace.
           </p>
           <Button asChild size="lg">
@@ -35,7 +35,7 @@ export default function SriLankaPage() {
         <section className="grid gap-4 md:grid-cols-2">
           <Card className="border-border">
             <CardHeader>
-              <CardTitle>Typical flow</CardTitle>
+              <CardTitle className="type-subheading font-serif font-medium">Typical flow</CardTitle>
               <CardDescription>A proven rhythm we adapt to your dates.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2 text-sm text-muted-foreground">
@@ -47,7 +47,7 @@ export default function SriLankaPage() {
 
           <Card className="border-border">
             <CardHeader>
-              <CardTitle>Moments we design</CardTitle>
+              <CardTitle className="type-subheading font-serif font-medium">Moments we design</CardTitle>
               <CardDescription>Highlights we build each honeymoon around.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2 text-sm text-muted-foreground">

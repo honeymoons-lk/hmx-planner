@@ -181,14 +181,14 @@ const tokenSnippets: TokenSnippet[] = [
     code: `:root {
   --font-display: "Cormorant Garamond", serif;
   --font-body: "Inter", sans-serif;
+  --font-wordmark: "Cinzel", serif;
 
-  --display-xl: 72px/80px var(--font-display);
-  --display-l: 60px/68px var(--font-display);
-  --display-m: 48px/56px var(--font-display);
-  --h1: 40px/48px var(--font-display);
-  --h2: 32px/40px var(--font-display);
-  --h3: 26px/34px var(--font-display);
-  --body-m: 16px/28px var(--font-body);
+  --type-hero-size: clamp(56px, 6.4vw, 64px);
+  --type-section-size: clamp(36px, 4.2vw, 40px);
+  --type-subheading-size: clamp(22px, 2.6vw, 24px);
+  --type-body-size: 16px;
+  --type-body-lg-size: 18px;
+  --type-eyebrow-size: 12px;
 }`,
   },
   {
@@ -196,14 +196,18 @@ const tokenSnippets: TokenSnippet[] = [
     code: `:root {
   --space-1: 4px;
   --space-11: 120px;
+  --section-space-mobile: 80px;
+  --section-space-desktop: 112px;
+  --heading-body-gap: 20px;
+  --card-padding: 28px;
 
-  --radius-sm: 10px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  --radius-button: 10px;
+  --radius-card: 12px;
+  --radius-form: 12px;
+  --radius-input: 8px;
 
-  --shadow-soft: 0 8px 30px rgba(28, 23, 21, 0.06);
-  --shadow-hover: 0 12px 40px rgba(28, 23, 21, 0.10);
+  --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.06);
 }`,
   },
 ];

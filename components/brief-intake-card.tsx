@@ -147,12 +147,12 @@ export function BriefIntakeCard({
   return (
     <Card id={id} className={className}>
       <div className="h-1.5 w-full bg-gradient-to-r from-primary via-[var(--color-accent)] to-[var(--color-bg-alt)]" />
-      <CardHeader className="space-y-2 px-6 pt-6">
-        <CardTitle className="font-serif text-[36px] leading-[1.2] font-medium">{title}</CardTitle>
-        <CardDescription className="text-base text-muted-foreground">{description}</CardDescription>
+      <CardHeader className="space-y-3 px-7 pt-7">
+        <CardTitle className="type-section font-serif font-medium">{title}</CardTitle>
+        <CardDescription className="type-body text-muted-foreground">{description}</CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-4 px-6 pb-6">
+      <CardContent className="space-y-5 px-7 pb-7">
         <div className="space-y-2">
           <Label htmlFor="timeframe">When would you like to travel?</Label>
           <Select value={timeframe} onValueChange={setTimeframe}>

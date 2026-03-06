@@ -177,7 +177,7 @@ function Wizard() {
   };
 
   return (
-    <main className="min-h-screen bg-background px-4 py-10 md:px-6">
+    <main className="min-h-screen bg-background px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
       <div className="mx-auto w-full max-w-4xl space-y-6">
         <Card>
           <CardHeader>
@@ -195,7 +195,7 @@ function Wizard() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="rounded-lg border border-border bg-muted p-4">
+              <div className="rounded-[var(--radius-input)] border border-border bg-muted p-4">
                 <p className="mb-3 text-sm font-medium text-foreground">Your honeymoon snapshot</p>
                 <div className="grid gap-3 text-sm md:grid-cols-2">
                   <div>
@@ -375,7 +375,7 @@ function Wizard() {
                 </div>
 
                 <div className="md:col-span-2">
-                  <div className="rounded-lg border border-border bg-muted p-4">
+                  <div className="rounded-[var(--radius-input)] border border-border bg-muted p-4">
                     <p className="mb-3 text-sm font-medium text-foreground">Review your request</p>
                     <div className="space-y-2 text-sm">
                       <p className="text-muted-foreground">When</p>
@@ -441,7 +441,7 @@ export default function PlanStartPage() {
   return (
     <Suspense
       fallback={
-        <main className="min-h-screen bg-background px-4 py-10 md:px-6">
+        <main className="min-h-screen bg-background px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
           <div className="mx-auto w-full max-w-3xl">
             <Card>
               <CardHeader>

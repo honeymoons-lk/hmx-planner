@@ -30,11 +30,11 @@ const stories = [
 
 export default function RealHoneymoonsPage() {
   return (
-    <main className="min-h-screen bg-background px-4 py-12 md:px-6">
-      <div className="mx-auto w-full max-w-6xl space-y-8">
+    <main className="min-h-screen bg-background px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
+      <div className="mx-auto w-full max-w-6xl space-y-10">
         <section className="max-w-3xl space-y-3">
-          <h1 className="font-serif text-5xl font-medium tracking-tight md:text-6xl">Real honeymoons</h1>
-          <p className="text-muted-foreground md:text-lg">
+          <h1 className="type-section font-serif font-medium tracking-tight">Real honeymoons</h1>
+          <p className="type-body-lg text-muted-foreground">
             Example journeys we have curated across different styles and budget bands.
           </p>
         </section>
@@ -43,7 +43,7 @@ export default function RealHoneymoonsPage() {
           {stories.map((story) => (
             <Card key={story.couple} className="border-border">
               <CardHeader>
-                <CardTitle className="flex items-center justify-between gap-3 text-lg">
+                <CardTitle className="type-subheading flex items-center justify-between gap-3 font-serif font-medium">
                   <span>{story.couple}</span>
                   <Badge variant="secondary">{story.budget}</Badge>
                 </CardTitle>
