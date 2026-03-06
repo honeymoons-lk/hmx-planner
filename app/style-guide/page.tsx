@@ -184,13 +184,26 @@ const tokenSnippets: TokenSnippet[] = [
   --font-wordmark: "Cinzel", serif;
 
   --type-hero-size: clamp(56px, 6.4vw, 64px);
+  --type-hero-line: 1.12;
   --type-section-size: clamp(36px, 4.2vw, 40px);
+  --type-section-line: 1.2;
   --type-subheading-size: clamp(22px, 2.6vw, 24px);
+  --type-subheading-line: 1.35;
   --type-body-size: 17px;
+  --type-body-line: 1.72;
   --type-body-lg-size: 18px;
+  --type-body-lg-line: 1.7;
   --type-ui-sm-size: 14px;
+  --type-ui-sm-line: 1.45;
+  --type-meta-size: 14px;
+  --type-meta-line: 1.6;
   --type-eyebrow-size: 12px;
+  --type-eyebrow-line: 1.35;
   --type-eyebrow-spacing: 0.08em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-strong: 600;
 }`,
   },
   {
@@ -355,21 +368,43 @@ export default function StyleGuidePage() {
               title="Cormorant Garamond + Inter"
               body="Display and headings carry editorial elegance; body and UI text remain quiet, legible, and modern."
             />
+            <div className={styles.layoutGrid}>
+              <article className={styles.scaleCard}>
+                <h3 className={styles.h5}>Font Families</h3>
+                <p className={styles.bodyM}>Display + major headings: Cormorant Garamond (serif)</p>
+                <p className={styles.bodyM}>Body + UI: Inter (sans-serif)</p>
+                <p className={styles.bodyM}>Wordmark: Cinzel (uppercase only)</p>
+              </article>
+              <article className={styles.scaleCard}>
+                <h3 className={styles.h5}>Weight System</h3>
+                <p className={styles.bodyM}>400: body, supporting copy, descriptive text</p>
+                <p className={styles.bodyM}>500: emphasis, card titles, nav, buttons</p>
+                <p className={styles.bodyM}>600: eyebrows and small uppercase labels</p>
+              </article>
+              <article className={styles.scaleCard}>
+                <h3 className={styles.h5}>Text Color Hierarchy</h3>
+                <p className={styles.bodyM}>Primary headings: --color-text</p>
+                <p className={styles.bodyM}>Body and support copy: --color-text-secondary</p>
+                <p className={styles.bodyM}>Meta and tertiary text: --color-text-muted</p>
+              </article>
+              <article className={styles.scaleCard}>
+                <h3 className={styles.h5}>Capitalization Rules</h3>
+                <p className={styles.bodyM}>Hero, section headlines, cards, and body copy: sentence case</p>
+                <p className={styles.bodyM}>Navigation and buttons: title case</p>
+                <p className={styles.bodyM}>Eyebrows: uppercase with letter spacing</p>
+              </article>
+            </div>
             <div className={styles.typeShowcase}>
-              <p className={styles.displayXL}>Journeys shaped around the two of you</p>
-              <p className={styles.displayL}>Crafted with quiet luxury</p>
-              <p className={styles.displayM}>Thoughtfully designed, seamlessly handled</p>
-              <p className={styles.h1}>Quiet villas, candlelit dinners, and journeys that feel entirely your own</p>
-              <p className={styles.h2}>A concierge-led approach to romantic travel in Sri Lanka</p>
-              <p className={styles.h3}>Editorial warmth with architectural precision</p>
-              <p className={styles.h4}>Premium hospitality, personally arranged</p>
-              <p className={styles.h5}>Every detail considered in advance</p>
-              <p className={styles.bodyL}>Body L: ideal for introductory paragraphs and richer narrative moments.</p>
-              <p className={styles.bodyM}>Body M: the default for product copy, section support text, and card content.</p>
-              <p className={styles.bodyS}>Body S: use for compact support content without losing readability.</p>
-              <p className={styles.label}>Label: form labels and compact interface descriptors.</p>
-              <p className={styles.caption}>Caption: small metadata, timing, and supplementary context.</p>
-              <p className={styles.eyebrow}>Eyebrow: small uppercase pre-heading</p>
+              <p className={styles.displayXL}>Hero / text-display: Journeys shaped around the two of you</p>
+              <p className={styles.h1}>Section headline / text-h1: Crafted with quiet luxury</p>
+              <p className={styles.h4}>Card headline / text-title: Thoughtfully designed, seamlessly handled</p>
+              <p className={styles.bodyL}>
+                Body / text-body: Quiet villas, candlelit dinners, and journeys that feel entirely your own.
+              </p>
+              <p className={styles.bodyS}>Meta / text-meta: A concierge-led approach to romantic travel in Sri Lanka.</p>
+              <p className={styles.eyebrow}>Eyebrow / text-eyebrow: Section Label</p>
+              <p className={styles.navText}>Nav / type-ui-sm: Real Honeymoons</p>
+              <p className={styles.buttonText}>Button / 500 sans: Start Your Honeymoon Plan</p>
             </div>
           </section>
 

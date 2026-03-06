@@ -119,10 +119,10 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
                   }}
                 />
                 <div className="absolute bottom-7 left-5 z-10 max-w-[520px] md:bottom-14 md:left-14">
-                  <h3 className="type-subheading font-serif font-medium uppercase tracking-[0.08em] text-white">
+                  <h3 className="type-subheading font-serif font-medium text-white">
                     {panel.title}
                   </h3>
-                  <p className="type-body mt-4 text-white/95 md:text-[17px]">{panel.body}</p>
+                  <p className="type-body mt-4 text-white/95">{panel.body}</p>
                 </div>
               </div>
             );

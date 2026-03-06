@@ -49,7 +49,7 @@ export function ApproachSection({ id, eyebrow, heading, supporting, steps }: App
                       }`}
                     />
                   </div>
-                  <h3 className="type-subheading font-serif font-medium tracking-wide text-foreground">{step.title}</h3>
+                  <h3 className="type-subheading font-serif font-medium text-foreground">{step.title}</h3>
                   <p className="type-body mt-3 text-muted-foreground">{step.description}</p>
                 </article>
               );
@@ -63,7 +63,7 @@ export function ApproachSection({ id, eyebrow, heading, supporting, steps }: App
         {steps.map((step) => (
           <article key={step.title} className="relative">
             <span className="absolute -left-[18px] top-2.5 h-2 w-2 rounded-full bg-foreground/80" />
-            <h3 className="type-subheading font-serif font-medium tracking-wide text-foreground">{step.title}</h3>
+            <h3 className="type-subheading font-serif font-medium text-foreground">{step.title}</h3>
             <p className="type-body mt-3 text-muted-foreground">{step.description}</p>
           </article>
         ))}

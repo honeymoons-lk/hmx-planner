@@ -23,7 +23,7 @@ export default function SriLankaPage() {
     <main className="min-h-screen bg-background px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
       <div className="mx-auto w-full max-w-6xl space-y-12">
         <section className="max-w-3xl space-y-4">
-          <h1 className="type-section font-serif font-medium tracking-tight">Honeymoons in Sri Lanka</h1>
+          <h1 className="type-section font-serif tracking-tight">Honeymoons in Sri Lanka</h1>
           <p className="type-body-lg text-muted-foreground">
             A concierge-crafted balance of tea country, culture, and coastline, tailored around your pace.
           </p>
@@ -38,7 +38,7 @@ export default function SriLankaPage() {
               <CardTitle className="type-subheading font-serif font-medium">Typical flow</CardTitle>
               <CardDescription>A proven rhythm we adapt to your dates.</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <CardContent className="space-y-2 type-body text-muted-foreground">
               {flow.map((item) => (
                 <p key={item}>{item}</p>
               ))}
@@ -50,7 +50,7 @@ export default function SriLankaPage() {
               <CardTitle className="type-subheading font-serif font-medium">Moments we design</CardTitle>
               <CardDescription>Highlights we build each honeymoon around.</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <CardContent className="space-y-2 type-body text-muted-foreground">
               {moments.map((item) => (
                 <p key={item}>{item}</p>
               ))}

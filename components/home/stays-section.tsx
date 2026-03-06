@@ -21,18 +21,18 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
     <section id={id} className="mx-auto w-full max-w-6xl px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
       <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="md:mb-12" />
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-[280px_220px] lg:grid-cols-[1.6fr_1fr] lg:grid-rows-[320px_240px] lg:gap-5">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5 lg:gap-5">
         {items.map((stay, index) => (
           <article
             key={stay.title}
-            className={`group relative overflow-hidden rounded-[var(--radius-card)] ${
+            className={`group relative overflow-hidden rounded-[var(--radius-card)] h-[240px] md:h-[260px] lg:h-[300px] ${
               index === 0
-                ? "h-[260px] md:h-auto"
+                ? "lg:col-span-3"
                 : index === 1
-                  ? "h-[240px] md:h-auto"
+                  ? "lg:col-span-2"
                   : index === 2
-                    ? "h-[240px] md:h-auto"
-                    : "h-[240px] md:h-auto"
+                    ? "lg:col-span-2"
+                    : "lg:col-span-3"
             }`}
           >
             <img
@@ -50,13 +50,13 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
             />
             <div className="absolute bottom-5 left-5 z-10 max-w-[360px] md:bottom-6 md:left-6">
               <h3 className="type-subheading font-serif font-medium text-white">{stay.title}</h3>
-              <p className="mt-2 text-[14px] leading-[1.6] text-white/95 md:text-[16px]">{stay.description}</p>
+              <p className="type-meta mt-2 text-white/95 md:type-body">{stay.description}</p>
             </div>
           </article>
         ))}
       </div>
 
-      <p className="mt-6 text-sm leading-relaxed text-muted-foreground md:mt-7">{footerNote}</p>
+      <p className="type-meta mt-6 text-muted-foreground md:mt-7">{footerNote}</p>
     </section>
   );
 }

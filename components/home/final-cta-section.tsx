@@ -15,7 +15,7 @@ export function FinalCtaSection({ heading, subcopy, primary, secondary }: FinalC
       <Card className="border-border bg-[var(--color-bg-alt)]">
         <CardContent className="flex flex-col gap-6 p-[var(--card-padding)] md:flex-row md:items-center md:justify-between">
           <div className="max-w-2xl space-y-3">
-            <h2 className="type-section font-serif font-medium tracking-tight">{heading}</h2>
+            <h2 className="type-section font-serif tracking-tight">{heading}</h2>
             <p className="type-body text-[var(--color-text-secondary)]">{subcopy}</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">

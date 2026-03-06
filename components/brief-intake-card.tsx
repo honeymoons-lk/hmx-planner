@@ -148,7 +148,7 @@ export function BriefIntakeCard({
     <Card id={id} className={className}>
       <div className="h-1.5 w-full bg-gradient-to-r from-primary via-[var(--color-accent)] to-[var(--color-bg-alt)]" />
       <CardHeader className="space-y-3 px-7 pt-7">
-        <CardTitle className="type-section font-serif font-medium">{title}</CardTitle>
+        <CardTitle className="type-subheading font-serif">{title}</CardTitle>
         <CardDescription className="type-body text-muted-foreground">{description}</CardDescription>
       </CardHeader>
 
@@ -173,9 +173,9 @@ export function BriefIntakeCard({
           <div className="space-y-2">
             <Label>Travel dates</Label>
             <Popover>
-              <PopoverTrigger asChild>
-                <Button type="button" variant="outline" className="w-full justify-start border-input text-left font-normal">
-                  <CalendarDays className="mr-2 h-4 w-4" />
+            <PopoverTrigger asChild>
+              <Button type="button" variant="outline" className="w-full justify-start border-input text-left font-normal">
+                <CalendarDays className="mr-2 h-4 w-4" />
                   {dateRange?.from && dateRange?.to
                     ? `${formatDateLabel(dateRange.from)} – ${formatDateLabel(dateRange.to)}`
                     : dateRange?.from
@@ -189,11 +189,11 @@ export function BriefIntakeCard({
             </Popover>
 
             {calculatedNights ? (
-              <p className="text-xs text-muted-foreground">
+              <p className="type-ui-sm text-muted-foreground">
                 Trip length: {calculatedNights} night{calculatedNights > 1 ? "s" : ""} (auto-calculated)
               </p>
             ) : (
-              <p className="text-xs text-muted-foreground">Select return date</p>
+              <p className="type-ui-sm text-muted-foreground">Select return date</p>
             )}
           </div>
         ) : (
@@ -224,7 +224,7 @@ export function BriefIntakeCard({
                     styles.map((value) => {
                       const label = formContent.styleOptions.find((item) => item.value === value)?.label ?? value;
                       return (
-                        <span key={value} className="rounded-md border border-border bg-muted px-2 py-0.5 text-xs text-foreground">
+                        <span key={value} className="type-ui-sm rounded-md border border-border bg-muted px-2 py-0.5 text-foreground">
                           {label}
                         </span>
                       );
@@ -305,9 +305,9 @@ export function BriefIntakeCard({
             Continue Planning
           </Button>
 
-          <p className="text-center text-xs text-muted-foreground">{formContent.reassurance}</p>
+          <p className="type-ui-sm text-center text-muted-foreground">{formContent.reassurance}</p>
 
-          <p className="text-center text-xs text-muted-foreground">
+          <p className="type-ui-sm text-center text-muted-foreground">
             Prefer a quick chat first?{" "}
             <Link href="/plan/consultation" className="font-medium text-foreground underline underline-offset-4">
               Book a call

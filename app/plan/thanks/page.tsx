@@ -9,13 +9,13 @@ export default function PlanThanksPage() {
       <div className="mx-auto w-full max-w-2xl">
         <Card>
           <CardHeader>
-            <CardTitle className="type-section font-serif font-medium">Request received</CardTitle>
+            <CardTitle className="type-section font-serif">Request received</CardTitle>
             <CardDescription>
               Your Sri Lanka concierge team will reply within 24–48 hours.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm text-muted-foreground">If you chose WhatsApp, we’ll reach out there.</p>
+            <p className="type-body text-muted-foreground">If you chose WhatsApp, we’ll reach out there.</p>
             <Button asChild>
               <Link href="/">Back to home</Link>
             </Button>

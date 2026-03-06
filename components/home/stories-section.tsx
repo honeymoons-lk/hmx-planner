@@ -41,8 +41,8 @@ export function StoriesSection({
               <CardDescription>{story.route}</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="mb-2 text-sm leading-relaxed text-muted-foreground">{story.summary}</p>
-              <p className="mb-4 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              <p className="type-body mb-2 text-muted-foreground">{story.summary}</p>
+              <p className="type-eyebrow mb-4 text-muted-foreground">
                 {story.quote}
               </p>
               <Button asChild variant="outline">

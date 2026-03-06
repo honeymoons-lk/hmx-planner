@@ -15,8 +15,8 @@ export default function ConsultationPage() {
       <div className="mx-auto w-full max-w-2xl">
         <Card>
           <CardHeader>
-            <CardTitle className="type-section font-serif font-medium">Book a consultation</CardTitle>
-            <CardDescription>
+            <CardTitle className="type-section font-serif">Book a consultation</CardTitle>
+            <CardDescription className="type-body">
               Scheduling coming next. For now, send us your details via the planner.
             </CardDescription>
           </CardHeader>

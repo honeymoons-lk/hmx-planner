@@ -181,8 +181,8 @@ function Wizard() {
       <div className="mx-auto w-full max-w-4xl space-y-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl">Your concierge request</CardTitle>
-            <CardDescription>Step {step} of 2</CardDescription>
+            <CardTitle className="type-subheading font-serif font-medium">Your concierge request</CardTitle>
+            <CardDescription className="type-meta">Step {step} of 2</CardDescription>
           </CardHeader>
         </Card>
 
@@ -196,23 +196,23 @@ function Wizard() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="rounded-[var(--radius-input)] border border-border bg-muted p-4">
-                <p className="mb-3 text-sm font-medium text-foreground">Your honeymoon snapshot</p>
-                <div className="grid gap-3 text-sm md:grid-cols-2">
+                <p className="type-ui-sm mb-3 text-foreground">Your honeymoon snapshot</p>
+                <div className="type-meta grid gap-3 md:grid-cols-2">
                   <div>
                     <p className="text-muted-foreground">When</p>
-                    <p className="font-medium text-foreground">
+                    <p className="type-ui-sm text-foreground">
                       {timeframeLabels[brief.timeframe] || "Not provided"}
                     </p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Dates</p>
-                    <p className="font-medium text-foreground">
+                    <p className="type-ui-sm text-foreground">
                       {brief.start && brief.end ? `${brief.start} → ${brief.end}` : "Not provided"}
                     </p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Trip length</p>
-                    <p className="font-medium text-foreground">{nightsLabel(brief.nights)}</p>
+                    <p className="type-ui-sm text-foreground">{nightsLabel(brief.nights)}</p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Styles</p>
@@ -224,17 +224,17 @@ function Wizard() {
                           </Badge>
                         ))
                       ) : (
-                        <span className="font-medium text-foreground">Not provided</span>
+                        <span className="type-ui-sm text-foreground">Not provided</span>
                       )}
                     </div>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Wow moment</p>
-                    <p className="font-medium text-foreground">{wowLabels[brief.wow] || "Not provided"}</p>
+                    <p className="type-ui-sm text-foreground">{wowLabels[brief.wow] || "Not provided"}</p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Vibe</p>
-                    <p className="font-medium text-foreground">{paceLabels[brief.pace] || "Not provided"}</p>
+                    <p className="type-ui-sm text-foreground">{paceLabels[brief.pace] || "Not provided"}</p>
                   </div>
                 </div>
               </div>
@@ -257,7 +257,7 @@ function Wizard() {
                     </Label>
                   ))}
                 </RadioGroup>
-                <p className="text-xs text-muted-foreground">
+                <p className="type-ui-sm text-muted-foreground">
                 We’ll recommend stays that match this direction
                 </p>
               </div>
@@ -317,7 +317,7 @@ function Wizard() {
                       aria-invalid={firstName.trim().length === 0}
                     />
                     {firstName.trim().length === 0 ? (
-                      <p className="text-xs text-destructive">Please add your name.</p>
+                      <p className="type-ui-sm text-destructive">Please add your name.</p>
                     ) : null}
                   </div>
 
@@ -332,7 +332,7 @@ function Wizard() {
                       aria-invalid={!emailValid}
                     />
                     {!emailValid ? (
-                      <p className="text-xs text-destructive">Please add a valid email.</p>
+                      <p className="type-ui-sm text-destructive">Please add a valid email.</p>
                     ) : null}
                   </div>
 
@@ -376,36 +376,36 @@ function Wizard() {
 
                 <div className="md:col-span-2">
                   <div className="rounded-[var(--radius-input)] border border-border bg-muted p-4">
-                    <p className="mb-3 text-sm font-medium text-foreground">Review your request</p>
-                    <div className="space-y-2 text-sm">
+                    <p className="type-ui-sm mb-3 text-foreground">Review your request</p>
+                    <div className="type-meta space-y-2">
                       <p className="text-muted-foreground">When</p>
-                      <p className="font-medium text-foreground">{timeframeLabels[payload.timeframe] || "-"}</p>
+                      <p className="type-ui-sm text-foreground">{timeframeLabels[payload.timeframe] || "-"}</p>
 
                       <p className="text-muted-foreground">Dates</p>
-                      <p className="font-medium text-foreground">
+                      <p className="type-ui-sm text-foreground">
                         {payload.start && payload.end ? `${payload.start} → ${payload.end}` : "-"}
                       </p>
 
                       <p className="text-muted-foreground">Trip length</p>
-                      <p className="font-medium text-foreground">{nightsLabel(payload.nights)}</p>
+                      <p className="type-ui-sm text-foreground">{nightsLabel(payload.nights)}</p>
 
                       <p className="text-muted-foreground">Styles</p>
-                      <p className="font-medium text-foreground">
+                      <p className="type-ui-sm text-foreground">
                         {payload.styles.map((style) => styleLabels[style] || style).join(", ") || "-"}
                       </p>
 
                       <p className="text-muted-foreground">Wow + vibe</p>
-                      <p className="font-medium text-foreground">
+                      <p className="type-ui-sm text-foreground">
                         {[wowLabels[payload.wow], paceLabels[payload.pace]].filter(Boolean).join(" · ") || "-"}
                       </p>
 
                       <p className="text-muted-foreground">Comfort + occasion</p>
-                      <p className="font-medium text-foreground">
+                      <p className="type-ui-sm text-foreground">
                         {[budgetLabels[payload.budget], occasionLabels[payload.occasion]].filter(Boolean).join(" · ") || "-"}
                       </p>
 
                       <p className="text-muted-foreground">Contact</p>
-                      <p className="font-medium text-foreground">
+                      <p className="type-ui-sm text-foreground">
                         {[payload.firstName, payload.email, payload.country].filter(Boolean).join(" · ") || "-"}
                       </p>
                     </div>
@@ -413,7 +413,7 @@ function Wizard() {
                 </div>
               </div>
 
-              {submitError ? <p className="text-sm text-destructive">{submitError}</p> : null}
+              {submitError ? <p className="type-body text-destructive">{submitError}</p> : null}
 
               <div className="flex justify-between">
                 <Button variant="outline" onClick={() => setStep(1)}>
@@ -445,7 +445,7 @@ export default function PlanStartPage() {
           <div className="mx-auto w-full max-w-3xl">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl">Loading request…</CardTitle>
+                <CardTitle className="type-subheading font-serif font-medium">Loading request…</CardTitle>
               </CardHeader>
             </Card>
           </div>

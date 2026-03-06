@@ -33,7 +33,7 @@ export default function RealHoneymoonsPage() {
     <main className="min-h-screen bg-background px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
       <div className="mx-auto w-full max-w-6xl space-y-10">
         <section className="max-w-3xl space-y-3">
-          <h1 className="type-section font-serif font-medium tracking-tight">Real honeymoons</h1>
+          <h1 className="type-section font-serif tracking-tight">Real honeymoons</h1>
           <p className="type-body-lg text-muted-foreground">
             Example journeys we have curated across different styles and budget bands.
           </p>
@@ -50,8 +50,8 @@ export default function RealHoneymoonsPage() {
                 <CardDescription>{story.route}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-muted-foreground">{story.note}</p>
-                <p className="text-sm font-medium text-foreground/80">“{story.testimonial}”</p>
+                <p className="type-body text-muted-foreground">{story.note}</p>
+                <p className="type-ui-sm text-foreground/80">“{story.testimonial}”</p>
                 <Button asChild variant="outline">
                   <Link href="/start">Plan something similar</Link>
                 </Button>

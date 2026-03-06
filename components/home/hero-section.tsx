@@ -48,8 +48,8 @@ export function HeroSection({ content }: HeroSectionProps) {
                 <CarouselItem key={`${item.name}-${item.origin}`} className="pl-0">
                   <div className="space-y-3">
                     <Quote className="h-4 w-4 text-primary/70" aria-hidden="true" />
-                    <p className="text-base leading-relaxed text-foreground/90">{item.quote}</p>
-                    <p className="text-sm font-medium text-foreground/75">{`— ${item.name}, ${item.origin}`}</p>
+                    <p className="type-body text-foreground/90">{item.quote}</p>
+                    <p className="type-ui-sm text-foreground/75">{`— ${item.name}, ${item.origin}`}</p>
                   </div>
                 </CarouselItem>
               ))}
@@ -58,10 +58,10 @@ export function HeroSection({ content }: HeroSectionProps) {
         </div>
 
         <div className="mt-14">
-          <p className="text-base">
-            <span className="font-semibold text-foreground">{content.secondaryStrip.label}</span>
+          <p className="type-body">
+            <span className="font-medium text-foreground">{content.secondaryStrip.label}</span>
           </p>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="type-meta mt-1 text-muted-foreground">
             {content.secondaryStrip.items[0]} · {content.secondaryStrip.items[1]} ·{" "}
             {content.secondaryStrip.items[2]}
           </p>
