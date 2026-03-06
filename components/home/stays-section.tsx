@@ -1,10 +1,18 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
 import { SectionHeader } from "@/components/section-header";
 
-type StayItem = {
-  title: string;
-  description: string;
+type StayImage = {
   image: string;
   alt: string;
+  caption?: string;
+};
+
+type StayCategory = {
+  title: string;
+  description: string;
+  images: readonly StayImage[];
 };
 
 type StaysSectionProps = {
@@ -13,50 +21,101 @@ type StaysSectionProps = {
   heading: string;
   supporting: string;
   footerNote: string;
-  items: readonly StayItem[];
+  items: readonly StayCategory[];
 };
 
 export function StaysSection({ id, eyebrow, heading, supporting, footerNote, items }: StaysSectionProps) {
+  const [activeByCategory, setActiveByCategory] = useState<number[]>(
+    items.map((item, index) => (item.images.length ? index % item.images.length : 0)),
+  );
+
+  const hasImages = useMemo(() => items.some((item) => item.images.length > 1), [items]);
+
+  useEffect(() => {
+    if (!hasImages) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = window.setInterval(() => {
+      setActiveByCategory((prev) =>
+        prev.map((currentIndex, categoryIndex) => {
+          const total = items[categoryIndex]?.images.length ?? 0;
+          if (total <= 1) return currentIndex;
+          return (currentIndex + 1) % total;
+        }),
+      );
+    }, 4600);
+
+    return () => window.clearInterval(timer);
+  }, [hasImages, items]);
+
   return (
     <section id={id} className="mx-auto w-full max-w-6xl px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
-      <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="md:mb-12" />
+      <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="md:mb-14" />
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5 lg:gap-5">
-        {items.map((stay, index) => (
-          <article
-            key={stay.title}
-            className={`group relative overflow-hidden rounded-[var(--radius-card)] h-[240px] md:h-[260px] lg:h-[300px] ${
-              index === 0
-                ? "lg:col-span-3"
-                : index === 1
-                  ? "lg:col-span-2"
-                  : index === 2
-                    ? "lg:col-span-2"
-                    : "lg:col-span-3"
-            }`}
-          >
-            <img
-              src={stay.image}
-              alt={stay.alt}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none lg:group-hover:scale-[1.03]"
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.32) 45%, rgba(0,0,0,0.10) 80%, rgba(0,0,0,0.00) 100%)",
-              }}
-            />
-            <div className="absolute bottom-5 left-5 z-10 max-w-[360px] md:bottom-6 md:left-6">
-              <h3 className="type-subheading font-serif font-medium text-white">{stay.title}</h3>
-              <p className="type-meta mt-2 text-white/95 md:type-body">{stay.description}</p>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7 lg:gap-8">
+        {items.map((category, categoryIndex) => {
+          const activeImageIndex = activeByCategory[categoryIndex] ?? 0;
+          return (
+            <article
+              key={category.title}
+              className="rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_78%,transparent)] bg-[var(--color-surface)] p-5 md:p-6"
+            >
+              <div className="space-y-2">
+                <h3 className="type-subheading font-serif text-[var(--color-text)]">{category.title}</h3>
+                <p className="type-body text-[var(--color-text-secondary)]">{category.description}</p>
+              </div>
+
+              <figure className="mt-5">
+                <div className="relative h-[260px] overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_70%,transparent)] bg-[var(--color-bg-alt)] md:h-[280px]">
+                  {category.images.map((stayImage, imageIndex) => (
+                    <img
+                      key={`${category.title}-${stayImage.caption || stayImage.alt}`}
+                      src={stayImage.image}
+                      alt={stayImage.alt}
+                      loading="lazy"
+                      className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500 ease-out ${
+                        imageIndex === activeImageIndex ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  ))}
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/40 to-transparent" />
+                </div>
+
+                <figcaption className="type-meta mt-2 text-[color-mix(in_srgb,var(--color-text-muted)_92%,var(--color-text-secondary))]">
+                  {category.images[activeImageIndex]?.caption}
+                </figcaption>
+              </figure>
+
+              <div className="mt-4 flex items-center justify-between">
+                <p className="type-eyebrow text-[var(--color-text-muted)]">
+                  {activeImageIndex + 1} / {category.images.length}
+                </p>
+                <div className="flex items-center gap-1.5">
+                  {category.images.map((stayImage, imageIndex) => (
+                    <button
+                      key={`${category.title}-${stayImage.alt}-dot`}
+                      type="button"
+                      aria-label={`Show ${stayImage.caption || stayImage.alt}`}
+                      onClick={() =>
+                        setActiveByCategory((prev) =>
+                          prev.map((value, index) => (index === categoryIndex ? imageIndex : value)),
+                        )
+                      }
+                      className={`h-1.5 rounded-full transition-all ${
+                        imageIndex === activeImageIndex
+                          ? "w-5 bg-[var(--color-brand)]"
+                          : "w-1.5 bg-[color-mix(in_srgb,var(--color-border-strong)_82%,transparent)]"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </article>
+          );
+        })}
             </div>
-          </article>
-        ))}
-      </div>
 
-      <p className="type-meta mt-6 text-muted-foreground md:mt-7">{footerNote}</p>
+      <p className="type-meta mt-8 text-muted-foreground md:mt-10">{footerNote}</p>
     </section>
   );
 }
