@@ -1,8 +1,13 @@
 "use client";
 
-import { useEffect, useState, type KeyboardEventHandler } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import { SectionHeader } from "@/components/section-header";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 type MomentPanel = { title: string; label: string; body: string; image: string };
 
@@ -15,152 +20,108 @@ type MomentsSectionProps = {
 };
 
 export function MomentsSection({ id, eyebrow, heading, supporting, panels }: MomentsSectionProps) {
-  const [activeMomentIndex, setActiveMomentIndex] = useState(0);
-  const [isMomentPaused, setIsMomentPaused] = useState(false);
-  const [momentUserInteracted, setMomentUserInteracted] = useState(false);
-  const [isPageVisible, setIsPageVisible] = useState(true);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const handleMotionChange = () => setPrefersReducedMotion(mediaQuery.matches);
-    handleMotionChange();
-    mediaQuery.addEventListener("change", handleMotionChange);
-    return () => mediaQuery.removeEventListener("change", handleMotionChange);
-  }, []);
+    if (!carouselApi) return;
+    const viewport = carouselApi.getViewport();
+    if (!viewport) return;
 
-  useEffect(() => {
-    const handleVisibility = () => {
-      const visible = document.visibilityState === "visible";
-      setIsPageVisible(visible);
-      if (!visible) {
-        setIsMomentPaused(true);
-      } else if (!momentUserInteracted && !prefersReducedMotion) {
-        setIsMomentPaused(false);
+    const updateActiveSlide = () => {
+      const slides = Array.from(viewport.children) as HTMLElement[];
+      if (!slides.length) return;
+      const currentLeft = viewport.scrollLeft;
+
+      let bestIndex = 0;
+      let bestDistance = Number.POSITIVE_INFINITY;
+      for (let index = 0; index < slides.length; index += 1) {
+        const distance = Math.abs(slides[index].offsetLeft - currentLeft);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestIndex = index;
+        }
       }
+      setActiveSlide(bestIndex);
     };
-    handleVisibility();
-    document.addEventListener("visibilitychange", handleVisibility);
-    return () => document.removeEventListener("visibilitychange", handleVisibility);
-  }, [momentUserInteracted, prefersReducedMotion]);
+
+    updateActiveSlide();
+    viewport.addEventListener("scroll", updateActiveSlide, { passive: true });
+    return () => viewport.removeEventListener("scroll", updateActiveSlide);
+  }, [carouselApi]);
 
   useEffect(() => {
-    if (prefersReducedMotion || isMomentPaused || !isPageVisible) return;
-    const intervalId = window.setInterval(() => {
-      setActiveMomentIndex((prev) => (prev + 1) % panels.length);
-    }, 5000);
-    return () => window.clearInterval(intervalId);
-  }, [isMomentPaused, isPageVisible, prefersReducedMotion, panels.length]);
+    if (!carouselApi) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const handleMomentNavigate = (nextIndex: number) => {
-    const total = panels.length;
-    const normalized = ((nextIndex % total) + total) % total;
-    setActiveMomentIndex(normalized);
-    setMomentUserInteracted(true);
-    setIsMomentPaused(true);
-  };
+    const timer = window.setInterval(() => {
+      const viewport = carouselApi.getViewport();
+      if (!viewport) return;
+      const atEnd = viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - 8;
+      if (atEnd) {
+        carouselApi.scrollTo(0);
+      } else {
+        carouselApi.scrollNext();
+      }
+    }, 5200);
 
-  const handleMomentKeyDown: KeyboardEventHandler<HTMLElement> = (event) => {
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      handleMomentNavigate(activeMomentIndex - 1);
-    }
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      handleMomentNavigate(activeMomentIndex + 1);
-    }
-  };
+    return () => window.clearInterval(timer);
+  }, [carouselApi]);
 
   return (
     <section id={id} className="moments-section w-full py-[var(--section-space-mobile)] md:py-[var(--section-space-desktop)]">
       <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
-        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="max-w-3xl" />
+        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="max-w-3xl md:mb-14" />
       </div>
 
-      <div className="mt-12 md:mt-16">
-        <div
-          className="group relative h-[48vh] min-h-[360px] w-full overflow-hidden md:h-[55vh] lg:h-[60vh] lg:min-h-[520px] lg:max-h-[720px]"
-          tabIndex={0}
-          onKeyDown={handleMomentKeyDown}
-          onMouseEnter={() => {
-            if (window.matchMedia("(min-width: 1024px)").matches) setIsMomentPaused(true);
-          }}
-          onMouseLeave={() => {
-            if (!momentUserInteracted && !prefersReducedMotion && isPageVisible) {
-              setIsMomentPaused(false);
-            }
-          }}
-        >
-          {panels.map((panel, index) => {
-            const isActive = index === activeMomentIndex;
-            return (
-              <div
+      <div className="relative left-1/2 w-screen -translate-x-1/2">
+        <Carousel setApi={setCarouselApi} className="w-full">
+          <CarouselContent className="gap-4 px-4 md:gap-6 md:px-6 lg:px-10">
+            {panels.map((panel) => (
+              <CarouselItem
                 key={panel.title}
-                aria-hidden={!isActive}
-                className={`absolute inset-0 transition-opacity ${
-                  prefersReducedMotion ? "duration-150" : "duration-[800ms]"
-                } ease-out ${isActive ? "opacity-100" : "opacity-0"}`}
+                className="basis-[88%] md:basis-[70%] lg:basis-[56%] xl:basis-[50%]"
               >
-                <div
-                  className={`absolute inset-0 transition-transform ${
-                    prefersReducedMotion ? "duration-150" : "duration-[800ms]"
-                  } ease-out ${isActive ? "scale-[1.02]" : "scale-100"} md:group-hover:scale-105`}
-                  style={{
-                    backgroundImage: `url(${panel.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.18) 70%, rgba(0,0,0,0.05) 100%)",
-                  }}
-                />
-                <div className="absolute bottom-7 left-5 z-10 max-w-[520px] md:bottom-14 md:left-14">
-                  <h3 className="type-subheading font-serif font-medium text-white">
-                    {panel.title}
-                  </h3>
-                  <p className="type-body mt-4 text-white/95">{panel.body}</p>
-                </div>
-              </div>
-            );
-          })}
+                <article className="relative h-[52vh] min-h-[360px] overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_62%,transparent)] bg-[var(--color-bg-alt)] md:h-[58vh] lg:min-h-[520px] lg:max-h-[760px]">
+                  <img
+                    src={panel.image}
+                    alt={panel.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out motion-reduce:transition-none lg:hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.46)_42%,rgba(0,0,0,0.18)_72%,rgba(0,0,0,0.04)_100%)]" />
+                  <div className="absolute bottom-8 left-6 right-6 z-10 md:bottom-10 md:left-9 md:right-9">
+                    <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_84%,var(--color-bg-alt))]">
+                      {panel.label}
+                    </p>
+                    <h3 className="mt-2 font-serif text-[clamp(30px,4vw,46px)] leading-[1.08] font-medium tracking-tight text-[var(--color-light)]">
+                      {panel.title}
+                    </h3>
+                    <p className="type-body mt-3 max-w-[44ch] text-[color-mix(in_srgb,var(--color-light)_90%,var(--color-bg-alt))]">
+                      {panel.body}
+                    </p>
+                  </div>
+                </article>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
 
-          <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 rounded-[var(--radius-input)] bg-black/25 p-1 backdrop-blur-md md:gap-2">
+          <div className="mt-6 flex items-center justify-center gap-2">
             {panels.map((panel, index) => (
               <button
-                key={`${panel.title}-tab`}
+                key={`${panel.title}-dot`}
                 type="button"
-                aria-label={`Show ${panel.label}`}
-                className={`type-eyebrow rounded-[var(--radius-input)] px-2 py-1 font-medium transition-colors md:px-2.5 ${
-                  index === activeMomentIndex ? "bg-white text-foreground" : "text-white/90 hover:bg-white/15"
+                aria-label={`Go to ${panel.label}`}
+                onClick={() => carouselApi?.scrollTo(index)}
+                className={`h-1.5 rounded-full transition-all ${
+                  activeSlide === index
+                    ? "w-6 bg-[var(--color-brand)]"
+                    : "w-2 bg-[color-mix(in_srgb,var(--color-border-strong)_86%,transparent)]"
                 }`}
-                onClick={() => handleMomentNavigate(index)}
-              >
-                {panel.label}
-              </button>
+              />
             ))}
           </div>
-
-          <button
-            type="button"
-            aria-label="Previous moment"
-            className="absolute left-4 top-1/2 z-20 hidden -translate-y-1/2 p-2 text-white/70 transition-colors hover:text-white lg:block"
-            onClick={() => handleMomentNavigate(activeMomentIndex - 1)}
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next moment"
-            className="absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 p-2 text-white/70 transition-colors hover:text-white lg:block"
-            onClick={() => handleMomentNavigate(activeMomentIndex + 1)}
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-        </div>
+        </Carousel>
       </div>
     </section>
   );
