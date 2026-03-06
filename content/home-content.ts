@@ -1,6 +1,6 @@
 export const homeContent = {
   header: {
-    brand: "Luna Voyages",
+    brand: "LUNA VOYAGES",
     links: [
       { label: "Experiences", href: "#moments" },
       { label: "How It Flows", href: "#flow" },
@@ -254,6 +254,6 @@ export const homeContent = {
       { label: "Partner With Us", href: "/partner-with-us" },
       { label: "Privacy", href: "/privacy" },
     ],
-    copyright: "© 2026 Honeymoons.lk",
+    copyright: "© 2026 LUNA VOYAGES",
   },
 } as const;

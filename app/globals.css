@@ -154,6 +154,14 @@
   }
 }
 
+@layer utilities {
+  .font-wordmark {
+    font-family: var(--font-wordmark), "Cinzel", serif;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}
+
 @keyframes marquee-left {
   from {
     transform: translateX(0);

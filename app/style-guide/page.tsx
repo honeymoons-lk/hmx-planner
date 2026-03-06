@@ -1,18 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
 import styles from "./style-guide.module.css";
-
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-display",
-});
-
-const bodyFont = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-body",
-});
 
 export const metadata: Metadata = {
   title: "Luna Voyages Style Guide",
@@ -285,10 +272,10 @@ function ColorGroup({
 
 export default function StyleGuidePage() {
   return (
-    <main className={`${styles.guidePage} ${displayFont.variable} ${bodyFont.variable}`}>
+    <main className={styles.guidePage}>
       <div className={styles.pageGrid}>
         <aside className={styles.sideNav}>
-          <p className={styles.eyebrow}>Luna Voyages</p>
+          <p className={`${styles.eyebrow} font-wordmark`}>LUNA VOYAGES</p>
           <p className={styles.navTitle}>Design System</p>
           <nav aria-label="Style guide sections">
             <ul className={styles.navList}>
@@ -599,7 +586,7 @@ export default function StyleGuidePage() {
             />
             <article className={styles.darkPanel}>
               <p className={styles.eyebrow}>Footer Pattern</p>
-              <h3 className={styles.h2}>Luna Voyages</h3>
+              <h3 className={`${styles.h2} font-wordmark`}>LUNA VOYAGES</h3>
               <p className={styles.darkLead}>
                 A concierge-led approach to romantic travel in Sri Lanka.
               </p>

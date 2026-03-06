@@ -17,10 +17,10 @@ export function HomeHeader({ brand, links, cta }: HomeHeaderProps) {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 md:px-6">
         <Link
           href="/"
-          className="inline-flex items-center gap-2.5 rounded-sm font-serif text-[24px] font-medium tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="inline-flex items-center gap-2 rounded-sm text-[20px] font-medium tracking-tight md:text-[22px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          <Image src="/logo-icon.png" alt="Luna Voyages logo" width={30} height={30} priority />
-          <span>{brand}</span>
+          <Image src="/logo-icon.png" alt="Luna Voyages logo" width={34} height={34} priority />
+          <span className="font-wordmark leading-none">{brand}</span>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
