@@ -1,9 +1,22 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
+
+const displayFont = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
+});
+
+const bodyFont = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-body",
+});
 
 export const metadata: Metadata = {
   title: "Honeymoons.lk",
-  description: "Component-driven travel website scaffold",
+  description: "Luxury honeymoon planning in Sri Lanka",
 };
 
 export default function RootLayout({
@@ -13,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-background text-foreground antialiased">{children}</body>
+      <body className={`${bodyFont.variable} ${displayFont.variable} min-h-screen bg-background text-foreground antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

@@ -23,7 +23,7 @@ export default function SriLankaPage() {
     <main className="min-h-screen bg-background px-4 py-12 md:px-6">
       <div className="mx-auto w-full max-w-6xl space-y-10">
         <section className="max-w-3xl space-y-4">
-          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">Honeymoons in Sri Lanka</h1>
+          <h1 className="font-serif text-5xl font-medium tracking-tight md:text-6xl">Honeymoons in Sri Lanka</h1>
           <p className="text-muted-foreground md:text-lg">
             A concierge-crafted balance of tea country, culture, and coastline, tailored around your pace.
           </p>

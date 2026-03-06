@@ -4,86 +4,130 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 }
 
 :root {
-  --radius: 0.75rem;
+  --background: #f8f3ee;
+  --foreground: #1c1715;
 
-  --background: 0 0% 100%;
-  --foreground: 0 0% 16%;
+  --card: #fcfaf8;
+  --card-foreground: #1c1715;
 
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 16%;
+  --popover: #fcfaf8;
+  --popover-foreground: #1c1715;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 16%;
+  --primary: #6e2c3a;
+  --primary-foreground: #f8f3ee;
 
-  --primary: 356 57% 48%;
-  --primary-foreground: 0 0% 100%;
+  --secondary: #f1e7de;
+  --secondary-foreground: #4a403a;
 
-  --secondary: 354 100% 96%;
-  --secondary-foreground: 0 0% 16%;
+  --muted: #f1e7de;
+  --muted-foreground: #6b5d54;
 
-  --muted: 0 0% 94%;
-  --muted-foreground: 0 0% 43%;
+  --accent: #c8af8a;
+  --accent-foreground: #1c1715;
 
-  --accent: 352 100% 89%;
-  --accent-foreground: 0 0% 16%;
+  --border: #e6d8cb;
+  --input: #e6d8cb;
+  --ring: #6e2c3a;
 
-  --border: 0 0% 72%;
-  --input: 0 0% 72%;
-  --ring: 356 57% 48%;
+  --destructive: #8b3a3a;
+  --destructive-foreground: #f8f3ee;
 
-  --brand-tint-1: #ffc9cd;
-  --brand-tint-2: #ffeaeb;
+  --color-bg: #f8f3ee;
+  --color-bg-alt: #f1e7de;
+  --color-surface: #fcfaf8;
+
+  --color-brand: #6e2c3a;
+  --color-brand-hover: #5a2230;
+  --color-brand-active: #471a25;
+
+  --color-text: #1c1715;
+  --color-text-secondary: #4a403a;
+  --color-text-muted: #6b5d54;
+
+  --color-border: #e6d8cb;
+  --color-border-strong: #d9c7b8;
+
+  --color-accent: #c8af8a;
+
+  --color-dark: #1c1715;
+  --color-light: #f8f3ee;
+
+  --color-success-text: #2f6a4f;
+  --color-success-bg: #eaf4ee;
+
+  --color-warning-text: #8a6430;
+  --color-warning-bg: #faf2e5;
+
+  --color-error-text: #8b3a3a;
+  --color-error-bg: #f8eaea;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 80px;
+  --space-10: 96px;
+  --space-11: 120px;
+
+  --shadow-soft: 0 8px 30px rgba(28, 23, 21, 0.06);
+  --shadow-hover: 0 12px 40px rgba(28, 23, 21, 0.1);
+
+  --brand-tint-1: #d9c7b8;
+  --brand-tint-2: #f1e7de;
 }
 
 .dark {
-  --background: 0 0% 8%;
-  --foreground: 0 0% 96%;
-
-  --card: 0 0% 10%;
-  --card-foreground: 0 0% 96%;
-
-  --popover: 0 0% 10%;
-  --popover-foreground: 0 0% 96%;
-
-  --primary: 356 57% 56%;
-  --primary-foreground: 0 0% 100%;
-
-  --secondary: 0 0% 16%;
-  --secondary-foreground: 0 0% 96%;
-
-  --muted: 0 0% 16%;
-  --muted-foreground: 0 0% 70%;
-
-  --accent: 356 35% 28%;
-  --accent-foreground: 0 0% 96%;
-
-  --border: 0 0% 28%;
-  --input: 0 0% 28%;
-  --ring: 356 57% 56%;
+  --background: #1c1715;
+  --foreground: #f8f3ee;
+  --card: #241d1a;
+  --card-foreground: #f8f3ee;
+  --popover: #241d1a;
+  --popover-foreground: #f8f3ee;
+  --primary: #c8af8a;
+  --primary-foreground: #1c1715;
+  --secondary: #312925;
+  --secondary-foreground: #f8f3ee;
+  --muted: #312925;
+  --muted-foreground: #d9c7b8;
+  --accent: #6e2c3a;
+  --accent-foreground: #f8f3ee;
+  --border: #4a403a;
+  --input: #4a403a;
+  --ring: #c8af8a;
 }
 
 @layer base {
@@ -93,6 +137,20 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body), "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), "Cormorant Garamond", serif;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
   }
 }
 

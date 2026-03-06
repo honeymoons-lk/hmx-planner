@@ -12,11 +12,11 @@ type FinalCtaSectionProps = {
 export function FinalCtaSection({ heading, subcopy, primary, secondary }: FinalCtaSectionProps) {
   return (
     <section className="mx-auto w-full max-w-6xl px-4 pb-14 md:px-6 md:pb-20">
-      <Card className="border-border bg-gradient-to-r from-[var(--brand-tint-2)] to-[var(--brand-tint-1)]">
+      <Card className="border-border bg-[var(--color-bg-alt)]">
         <CardContent className="flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between">
           <div className="max-w-2xl space-y-2">
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{heading}</h2>
-            <p className="text-muted-foreground">{subcopy}</p>
+            <h2 className="font-serif text-[36px] font-medium tracking-tight md:text-[42px]">{heading}</h2>
+            <p className="text-[var(--color-text-secondary)]">{subcopy}</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">

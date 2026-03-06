@@ -13,7 +13,7 @@ import { SiteFooter } from "@/components/home/site-footer";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[var(--brand-tint-2)]/35 via-background to-[var(--brand-tint-1)]/35 text-foreground">
+    <main className="min-h-screen bg-gradient-to-b from-[var(--color-bg-alt)] via-background to-[var(--color-bg)] text-foreground">
       <HomeHeader
         brand={homeContent.header.brand}
         links={homeContent.header.links}

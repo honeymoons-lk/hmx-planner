@@ -1,6 +1,6 @@
 export const homeContent = {
   header: {
-    brand: "Honeymoons.lk",
+    brand: "Luna Voyages",
     links: [
       { label: "Experiences", href: "#moments" },
       { label: "How It Flows", href: "#flow" },

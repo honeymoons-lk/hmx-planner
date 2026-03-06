@@ -9,7 +9,7 @@ export default function PlanThanksPage() {
       <div className="mx-auto w-full max-w-2xl">
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl">Request received</CardTitle>
+            <CardTitle className="font-serif text-4xl font-medium">Request received</CardTitle>
             <CardDescription>
               Your Sri Lanka concierge team will reply within 24–48 hours.
             </CardDescription>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -12,13 +13,14 @@ type HomeHeaderProps = {
 
 export function HomeHeader({ brand, links, cta }: HomeHeaderProps) {
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 md:px-6">
         <Link
           href="/"
-          className="text-base font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="inline-flex items-center gap-2.5 rounded-sm font-serif text-[24px] font-medium tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          {brand}
+          <Image src="/logo-icon.png" alt="Luna Voyages logo" width={30} height={30} priority />
+          <span>{brand}</span>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
@@ -26,7 +28,7 @@ export function HomeHeader({ brand, links, cta }: HomeHeaderProps) {
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="text-sm text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {link.label}
             </Link>

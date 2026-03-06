@@ -30,17 +30,19 @@ export function HeroSection({ content }: HeroSectionProps) {
   return (
     <section className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-10 px-4 py-14 md:grid-cols-12 md:gap-10 md:px-6 md:py-16">
       <div className="space-y-6 md:col-span-5 md:max-w-xl md:pt-4">
-        <Badge variant="secondary" className="bg-[var(--brand-tint-1)] text-foreground">
+        <Badge variant="secondary" className="bg-[var(--color-bg-alt)] text-[var(--color-text-secondary)]">
           <Sparkles className="mr-1 h-3.5 w-3.5" />
           {content.kicker}
         </Badge>
 
-        <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">{content.heading}</h1>
+        <h1 className="font-serif text-4xl font-medium leading-tight tracking-tight md:text-[56px] md:leading-[1.15]">
+          {content.heading}
+        </h1>
         <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">{content.emotionSentence}</p>
-        <p className="text-base leading-relaxed text-foreground/85 md:text-lg">{content.emotionTagline}</p>
+        <p className="text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg">{content.emotionTagline}</p>
 
         <div className="mt-8 max-w-[520px]">
-          <Carousel setApi={setTestimonialApi} className="rounded-xl bg-[var(--brand-tint-2)]/40 p-5">
+          <Carousel setApi={setTestimonialApi} className="rounded-[20px] border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
             <CarouselContent className="-ml-0 gap-0">
               {content.testimonials.map((item) => (
                 <CarouselItem key={`${item.name}-${item.origin}`} className="pl-0">
@@ -68,7 +70,7 @@ export function HeroSection({ content }: HeroSectionProps) {
 
       <BriefIntakeCard
         id="brief-card"
-        className="overflow-hidden border-border bg-card shadow-md shadow-primary/10 md:col-span-7 md:sticky md:top-24 md:max-w-[620px] md:justify-self-end"
+        className="overflow-hidden border-border bg-card shadow-[var(--shadow-soft)] md:col-span-7 md:sticky md:top-24 md:max-w-[620px] md:justify-self-end"
       />
     </section>
   );

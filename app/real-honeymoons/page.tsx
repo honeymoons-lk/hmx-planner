@@ -33,7 +33,7 @@ export default function RealHoneymoonsPage() {
     <main className="min-h-screen bg-background px-4 py-12 md:px-6">
       <div className="mx-auto w-full max-w-6xl space-y-8">
         <section className="max-w-3xl space-y-3">
-          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">Real honeymoons</h1>
+          <h1 className="font-serif text-5xl font-medium tracking-tight md:text-6xl">Real honeymoons</h1>
           <p className="text-muted-foreground md:text-lg">
             Example journeys we have curated across different styles and budget bands.
           </p>

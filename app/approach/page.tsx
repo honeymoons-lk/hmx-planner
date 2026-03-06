@@ -27,7 +27,7 @@ export default function ApproachPage() {
     <main className="min-h-screen bg-background px-4 py-12 md:px-6">
       <div className="mx-auto w-full max-w-6xl space-y-10">
         <section className="max-w-3xl space-y-4">
-          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">Our approach</h1>
+          <h1 className="font-serif text-5xl font-medium tracking-tight md:text-6xl">Our approach</h1>
           <p className="text-muted-foreground md:text-lg">
             Every honeymoon is handled by one concierge team from first brief to final airport transfer.
           </p>
@@ -44,8 +44,8 @@ export default function ApproachPage() {
           ))}
         </section>
 
-        <section className="space-y-3 rounded-xl border border-border bg-muted/40 p-6">
-          <h2 className="text-2xl font-semibold tracking-tight">FAQs</h2>
+        <section className="space-y-3 rounded-[20px] border border-border bg-[var(--color-bg-alt)]/50 p-6">
+          <h2 className="font-serif text-4xl font-medium tracking-tight">FAQs</h2>
           <p className="text-sm text-muted-foreground">How quickly do you reply? Typically within 24–48 hours.</p>
           <p className="text-sm text-muted-foreground">Do you only do fixed packages? No, everything is tailored around your brief.</p>
           <p className="text-sm text-muted-foreground">Can you handle transfers and support on trip? Yes, end-to-end.</p>
