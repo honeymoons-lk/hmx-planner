@@ -7,9 +7,8 @@ import { SectionHeader } from "@/components/section-header";
 type Story = {
   couple: string;
   route: string;
-  budget: string;
+  pricingTier: string;
   summary: string;
-  quote: string;
 };
 
 type StoriesSectionProps = {
@@ -36,15 +35,12 @@ export function StoriesSection({
             <CardHeader>
               <CardTitle className="type-subheading flex items-center justify-between gap-4 font-serif font-medium">
                 <span>{story.couple}</span>
-                <Badge variant="secondary">{story.budget}</Badge>
+                <Badge variant="secondary">{story.pricingTier}</Badge>
               </CardTitle>
               <CardDescription>{story.route}</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="type-body mb-2 text-muted-foreground">{story.summary}</p>
-              <p className="type-eyebrow mb-4 text-muted-foreground">
-                {story.quote}
-              </p>
               <Button asChild variant="outline">
                 <Link href="/real-honeymoons">See this honeymoon</Link>
               </Button>

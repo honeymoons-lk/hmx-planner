@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SectionHeader } from "@/components/section-header";
 import {
   Carousel,
@@ -22,11 +22,14 @@ type MomentsSectionProps = {
 export function MomentsSection({ id, eyebrow, heading, supporting, panels }: MomentsSectionProps) {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const activePhysicalIndexRef = useRef(0);
+  const logicalCount = panels.length;
+  const loopedPanels = useMemo(() => [...panels, ...panels, ...panels], [panels]);
 
   useEffect(() => {
     if (!carouselApi) return;
     const viewport = carouselApi.getViewport();
-    if (!viewport) return;
+    if (!viewport || logicalCount === 0) return;
 
     const updateActiveSlide = () => {
       const slides = Array.from(viewport.children) as HTMLElement[];
@@ -42,27 +45,45 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
           bestIndex = index;
         }
       }
-      setActiveSlide(bestIndex);
+
+      // Keep the viewport in the middle segment for seamless infinite loop illusion.
+      if (bestIndex < logicalCount) {
+        const target = slides[bestIndex + logicalCount];
+        if (target) {
+          viewport.scrollTo({ left: target.offsetLeft, behavior: "auto" });
+          bestIndex = bestIndex + logicalCount;
+        }
+      } else if (bestIndex >= logicalCount * 2) {
+        const target = slides[bestIndex - logicalCount];
+        if (target) {
+          viewport.scrollTo({ left: target.offsetLeft, behavior: "auto" });
+          bestIndex = bestIndex - logicalCount;
+        }
+      }
+
+      activePhysicalIndexRef.current = bestIndex;
+      setActiveSlide(bestIndex % logicalCount);
     };
+
+    // Start on the middle segment so users can scroll in both directions.
+    const initial = viewport.children.item(logicalCount) as HTMLElement | null;
+    if (initial) {
+      viewport.scrollTo({ left: initial.offsetLeft, behavior: "auto" });
+      activePhysicalIndexRef.current = logicalCount;
+      setActiveSlide(0);
+    }
 
     updateActiveSlide();
     viewport.addEventListener("scroll", updateActiveSlide, { passive: true });
     return () => viewport.removeEventListener("scroll", updateActiveSlide);
-  }, [carouselApi]);
+  }, [carouselApi, logicalCount]);
 
   useEffect(() => {
     if (!carouselApi) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const timer = window.setInterval(() => {
-      const viewport = carouselApi.getViewport();
-      if (!viewport) return;
-      const atEnd = viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - 8;
-      if (atEnd) {
-        carouselApi.scrollTo(0);
-      } else {
-        carouselApi.scrollNext();
-      }
+      carouselApi.scrollNext();
     }, 5200);
 
     return () => window.clearInterval(timer);
@@ -77,12 +98,12 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
       <div className="relative left-1/2 w-screen -translate-x-1/2">
         <Carousel setApi={setCarouselApi} className="w-full">
           <CarouselContent className="gap-4 px-4 md:gap-6 md:px-6 lg:px-10">
-            {panels.map((panel) => (
+            {loopedPanels.map((panel, index) => (
               <CarouselItem
-                key={panel.title}
-                className="basis-[88%] md:basis-[70%] lg:basis-[56%] xl:basis-[50%]"
+                key={`${panel.title}-${index}`}
+                className="basis-[88%] md:basis-[62%] lg:basis-[40%] xl:basis-[36%]"
               >
-                <article className="relative h-[52vh] min-h-[360px] overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_62%,transparent)] bg-[var(--color-bg-alt)] md:h-[58vh] lg:min-h-[520px] lg:max-h-[760px]">
+                <article className="relative h-[58vh] min-h-[400px] overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_62%,transparent)] bg-[var(--color-bg-alt)] md:h-[64vh] lg:h-[680px] lg:min-h-[680px] lg:max-h-[680px]">
                   <img
                     src={panel.image}
                     alt={panel.title}
@@ -112,7 +133,16 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
                 key={`${panel.title}-dot`}
                 type="button"
                 aria-label={`Go to ${panel.label}`}
-                onClick={() => carouselApi?.scrollTo(index)}
+                onClick={() => {
+                  if (!carouselApi || logicalCount === 0) return;
+                  const current = activePhysicalIndexRef.current || logicalCount;
+                  const segmentStart = Math.floor(current / logicalCount) * logicalCount;
+                  const candidates = [segmentStart + index, segmentStart - logicalCount + index, segmentStart + logicalCount + index];
+                  const nearest = candidates.reduce((best, candidate) =>
+                    Math.abs(candidate - current) < Math.abs(best - current) ? candidate : best,
+                  );
+                  carouselApi.scrollTo(nearest);
+                }}
                 className={`h-1.5 rounded-full transition-all ${
                   activeSlide === index
                     ? "w-6 bg-[var(--color-brand)]"

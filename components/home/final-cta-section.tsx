@@ -23,7 +23,7 @@ export function FinalCtaSection({ heading, subcopy, primary, secondary }: FinalC
               <Link href="/start">{primary}</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/approach">{secondary}</Link>
+              <Link href="/#approach">{secondary}</Link>
             </Button>
           </div>
         </CardContent>

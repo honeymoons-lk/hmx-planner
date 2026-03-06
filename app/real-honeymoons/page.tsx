@@ -8,21 +8,21 @@ const stories = [
   {
     couple: "N + A",
     route: "Colombo → Ella → Tangalle",
-    budget: "$4,200–$5,000",
+    pricingTier: "Premium",
     note: "10 nights with tea trails, private moments, and a quiet beach finale.",
     testimonial: "It felt perfectly paced from day one.",
   },
   {
     couple: "R + M",
     route: "Sigiriya → Kandy → Galle",
-    budget: "$2,800–$3,400",
+    pricingTier: "Comfortable",
     note: "8 nights balancing culture landmarks and coastal downtime.",
     testimonial: "Every transfer and check-in was seamless.",
   },
   {
     couple: "D + S",
     route: "Bentota → Yala → Weligama",
-    budget: "$5,500–$6,600",
+    pricingTier: "Exceptional",
     note: "9 nights with villa stays, safari, and signature dining.",
     testimonial: "It felt designed for us, not a template.",
   },
@@ -43,16 +43,16 @@ export default function RealHoneymoonsPage() {
           {stories.map((story) => (
             <Card key={story.couple} className="border-border">
               <CardHeader>
-                <CardTitle className="type-subheading flex items-center justify-between gap-3 font-serif font-medium">
-                  <span>{story.couple}</span>
-                  <Badge variant="secondary">{story.budget}</Badge>
-                </CardTitle>
-                <CardDescription>{story.route}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="type-body text-muted-foreground">{story.note}</p>
-                <p className="type-ui-sm text-foreground/80">“{story.testimonial}”</p>
-                <Button asChild variant="outline">
+              <CardTitle className="type-subheading flex items-center justify-between gap-3 font-serif font-medium">
+                <span>{story.couple}</span>
+                <Badge variant="secondary">{story.pricingTier}</Badge>
+              </CardTitle>
+              <CardDescription>{story.route}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="type-body text-muted-foreground">{story.note}</p>
+              <p className="type-ui-sm text-foreground/80">“{story.testimonial}”</p>
+              <Button asChild variant="outline">
                   <Link href="/start">Plan something similar</Link>
                 </Button>
               </CardContent>
