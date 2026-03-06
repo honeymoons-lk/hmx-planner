@@ -19,7 +19,7 @@ export const homeContent = {
     testimonials: [
       {
         quote:
-          "We felt completely looked after — every detail was seamless from the moment we landed.",
+          "We felt completely looked after - every detail was seamless from the moment we landed.",
         name: "Emma & Daniel",
         origin: "UK",
       },
@@ -79,10 +79,10 @@ export const homeContent = {
   stays: {
     id: "stays",
     eyebrow: "THE KIND OF STAYS WE CURATE",
-    heading: "Where you’ll stay — thoughtfully chosen.",
+    heading: "Where you’ll stay - thoughtfully chosen.",
     subcopy: "Properties chosen for atmosphere, privacy and character.",
     footerNote:
-      "We match these to your dates, budget band, and honeymoon style — then handle the details.",
+      "We match these to your dates, budget band, and honeymoon style - then handle the details.",
     items: [
       {
         title: "Luxury Beach Resorts",
@@ -91,22 +91,22 @@ export const homeContent = {
           {
             image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80",
             alt: "Oceanfront resort at sunset",
-            caption: "Cape Weligama — South Coast",
+            caption: "Cape Weligama - South Coast",
           },
           {
             image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1800&q=80",
             alt: "Minimal luxury resort pool facing the sea",
-            caption: "Anantara Peace Haven — Tangalle",
+            caption: "Anantara Peace Haven - Tangalle",
           },
           {
             image: "https://images.unsplash.com/photo-1570214476695-19bd4c4d1f74?auto=format&fit=crop&w=1800&q=80",
             alt: "Elegant beachfront suite terrace",
-            caption: "Amanwella — Southern Coast",
+            caption: "Amanwella - Southern Coast",
           },
           {
             image: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1800&q=80",
             alt: "Resort lounge with warm neutral interiors",
-            caption: "KK Beach — Habaraduwa",
+            caption: "KK Beach - Habaraduwa",
           },
         ],
       },
@@ -117,22 +117,22 @@ export const homeContent = {
           {
             image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1800&q=80",
             alt: "Boutique villa with tropical courtyard",
-            caption: "Kumu Beach House — Balapitiya",
+            caption: "Kumu Beach House - Balapitiya",
           },
           {
             image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80",
             alt: "Private villa suite with pool deck",
-            caption: "Siri Mendira — Bentota",
+            caption: "Siri Mendira - Bentota",
           },
           {
             image: "https://images.unsplash.com/photo-1616137466211-f939a420be84?auto=format&fit=crop&w=1800&q=80",
             alt: "Villa living area with neutral tones",
-            caption: "The Last House — Tangalle",
+            caption: "The Last House - Tangalle",
           },
           {
             image: "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?auto=format&fit=crop&w=1800&q=80",
             alt: "Boutique garden villa and stone pathway",
-            caption: "Kayaam House — Rekawa",
+            caption: "Kayaam House - Rekawa",
           },
         ],
       },
@@ -143,22 +143,22 @@ export const homeContent = {
           {
             image: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1800&q=80",
             alt: "Tea hills and colonial bungalow view",
-            caption: "Ceylon Tea Trails — Hatton",
+            caption: "Ceylon Tea Trails - Hatton",
           },
           {
             image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1800&q=80",
             alt: "Fireplace lounge in tea estate bungalow",
-            caption: "Goatfell — Nuwara Eliya",
+            caption: "Goatfell - Nuwara Eliya",
           },
           {
             image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=80",
             alt: "Estate veranda overlooking tea country",
-            caption: "Camellia Hills — Dickoya",
+            caption: "Camellia Hills - Dickoya",
           },
           {
             image: "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4c3?auto=format&fit=crop&w=1800&q=80",
             alt: "Tea country bedroom with valley view",
-            caption: "Nine Skies — Demodara",
+            caption: "Nine Skies - Demodara",
           },
         ],
       },
@@ -169,22 +169,22 @@ export const homeContent = {
           {
             image: "https://images.unsplash.com/photo-1535827841776-24afc1e255ac?auto=format&fit=crop&w=1800&q=80",
             alt: "Colonial heritage building and courtyard",
-            caption: "Amangalla — Galle",
+            caption: "Amangalla - Galle",
           },
           {
             image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1800&q=80",
             alt: "Heritage hotel corridor with archways",
-            caption: "The Fort Printers — Galle Fort",
+            caption: "The Fort Printers - Galle Fort",
           },
           {
             image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=80",
             alt: "Heritage suite with warm wood textures",
-            caption: "Wallawwa — Negombo",
+            caption: "Wallawwa - Negombo",
           },
           {
             image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1800&q=80",
             alt: "Historic hotel facade with tropical gardens",
-            caption: "Fort Bazaar — Galle",
+            caption: "Fort Bazaar - Galle",
           },
         ],
       },
@@ -192,9 +192,10 @@ export const homeContent = {
   },
   flow: {
     id: "flow",
-    eyebrow: "A TYPICAL SRI LANKA HONEYMOON FLOW",
-    heading: "A journey that flows — tailored to you.",
-    subcopy: "Balanced pacing, fewer hotel changes, time to actually enjoy it.",
+    eyebrow: "How It Flows",
+    heading: "A sample journey, shaped around your pace.",
+    subcopy:
+      "Every Luna Voyages trip is custom-designed. This example shows how a well-paced Sri Lanka honeymoon can unfold.",
     steps: [
       {
         id: "colombo",
@@ -221,7 +222,7 @@ export const homeContent = {
         caption: "Beach time, dinners, and downtime.",
       },
     ],
-    note: "We design the route first — then we match stays and moments to fit.",
+    note: "We design the route first - then we match stays and moments to fit.",
   },
   partners: {
     id: "partners",
@@ -245,7 +246,7 @@ export const homeContent = {
     id: "stories",
     eyebrow: "REAL HONEYMOONS",
     heading: "Journeys we’ve recently designed.",
-    subcopy: "Different styles, different budgets — always personal.",
+    subcopy: "Different styles, different budgets - always personal.",
     caseStudies: [
       {
         couple: "N + A",
@@ -305,12 +306,12 @@ export const homeContent = {
       {
         question: "Will it be expensive?",
         answer:
-          "Not necessarily. We work within your budget band and explain tradeoffs upfront — so you choose with confidence.",
+          "Not necessarily. We work within your budget band and explain tradeoffs upfront - so you choose with confidence.",
       },
       {
         question: "What happens once we say yes?",
         answer:
-          "We handle bookings, transfers, and on-ground coordination — and you’ll have a real person to contact if plans change.",
+          "We handle bookings, transfers, and on-ground coordination - and you’ll have a real person to contact if plans change.",
       },
     ],
     closing: "Designed around you. Managed by us.",

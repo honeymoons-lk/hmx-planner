@@ -70,7 +70,7 @@ export function HeroSection({ content }: HeroSectionProps) {
                     <div className="space-y-3">
                       <Quote className="h-4 w-4 text-[color-mix(in_srgb,var(--color-accent)_72%,var(--color-light))]" aria-hidden="true" />
                       <p className="type-body text-[color-mix(in_srgb,var(--color-light)_93%,var(--color-bg-alt))]">{item.quote}</p>
-                      <p className="type-ui-sm text-[color-mix(in_srgb,var(--color-light)_80%,var(--color-bg-alt))]">{`— ${item.name}, ${item.origin}`}</p>
+                      <p className="type-ui-sm text-[color-mix(in_srgb,var(--color-light)_80%,var(--color-bg-alt))]">{`- ${item.name}, ${item.origin}`}</p>
                     </div>
                   </CarouselItem>
                 ))}
