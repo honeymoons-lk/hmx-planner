@@ -20,6 +20,7 @@ import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { readPlanningDraft, writePlanningDraft } from "@/lib/planning-draft";
 
 type BriefIntakeCardProps = {
   id?: string;
@@ -91,14 +92,22 @@ export function BriefIntakeCard({
   description = "4 quick choices. Add dates if you have them. We’ll come back with a tailored proposal.",
 }: BriefIntakeCardProps) {
   const router = useRouter();
-  const [timeframe, setTimeframe] = useState("");
-  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
-  const [nights, setNights] = useState("");
-  const [styles, setStyles] = useState<string[]>([]);
+  const seed = useMemo(() => readPlanningDraft(), []);
+  const [timeframe, setTimeframe] = useState(seed.timeframe);
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(
+    seed.start || seed.end
+      ? {
+          from: seed.start ? new Date(`${seed.start}T00:00:00`) : undefined,
+          to: seed.end ? new Date(`${seed.end}T00:00:00`) : undefined,
+        }
+      : undefined,
+  );
+  const [nights, setNights] = useState(seed.nights);
+  const [styles, setStyles] = useState<string[]>(seed.styles);
   const [styleSearch, setStyleSearch] = useState("");
   const [stylePopoverOpen, setStylePopoverOpen] = useState(false);
-  const [pace, setPace] = useState("");
-  const [wow, setWow] = useState("");
+  const [pace, setPace] = useState(seed.pace);
+  const [wow, setWow] = useState(seed.wow);
 
   const calculatedNights = useMemo(() => {
     if (timeframe !== "pick-dates") return null;
@@ -128,20 +137,17 @@ export function BriefIntakeCard({
   };
 
   const handleSubmitBrief = () => {
-    const params = new URLSearchParams();
+    writePlanningDraft({
+      timeframe,
+      start: timeframe === "pick-dates" && dateRange?.from ? toISODate(dateRange.from) : "",
+      end: timeframe === "pick-dates" && dateRange?.to ? toISODate(dateRange.to) : "",
+      nights: selectedNightsValue,
+      styles,
+      wow,
+      pace,
+    });
 
-    if (timeframe) params.set("timeframe", timeframe);
-    if (timeframe === "pick-dates") {
-      if (dateRange?.from) params.set("start", toISODate(dateRange.from));
-      if (dateRange?.to) params.set("end", toISODate(dateRange.to));
-    }
-    if (selectedNightsValue) params.set("nights", selectedNightsValue);
-    if (styles.length) params.set("styles", styles.join(","));
-    if (wow) params.set("wow", wow);
-    if (pace) params.set("pace", pace);
-
-    const query = params.toString();
-    router.push(query ? `/plan/start?${query}` : "/plan/start");
+    router.push("/plan/details");
   };
 
   return (
@@ -308,7 +314,7 @@ export function BriefIntakeCard({
 
           <p className="type-ui-sm text-center text-muted-foreground">
             Prefer a quick chat first?{" "}
-            <Link href="/plan/consultation" className="font-medium text-foreground underline underline-offset-4">
+            <Link href="/plan/contact" className="font-medium text-foreground underline underline-offset-4">
               Book a call
             </Link>
           </p>

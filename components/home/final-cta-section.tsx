@@ -20,7 +20,7 @@ export function FinalCtaSection({ heading, subcopy, primary, secondary }: FinalC
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
-              <Link href="/start">{primary}</Link>
+              <Link href="/plan/journey">{primary}</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link href="/#our-approach">{secondary}</Link>

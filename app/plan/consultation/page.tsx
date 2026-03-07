@@ -1,32 +1,5 @@
-import Link from "next/link"
+import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-
-export default function ConsultationPage() {
-  return (
-    <main className="min-h-screen bg-background px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
-      <div className="mx-auto w-full max-w-2xl">
-        <Card>
-          <CardHeader>
-            <CardTitle className="type-section font-serif">Book a consultation</CardTitle>
-            <CardDescription className="type-body">
-              Scheduling coming next. For now, send us your details via the planner.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button asChild>
-              <Link href="/plan/start">Go to planner start</Link>
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    </main>
-  )
+export default function PlanConsultationRedirectPage() {
+  redirect("/plan/details");
 }

@@ -14,10 +14,12 @@ Open [http://localhost:3000](http://localhost:3000).
 
 - `/`
 - `/robots.txt`
-- `/start`
-- `/plan/start`
-- `/plan/consultation`
-- `/plan/thanks`
+- `/plan/journey`
+- `/plan/details`
+- `/plan/contact`
+- `/plan/thank-you`
+- `/plan/consultation` (redirect)
+- `/plan/thanks` (redirect)
 - `/real-honeymoons`
 - `/style-guide`
 

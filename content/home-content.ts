@@ -7,7 +7,7 @@ export const homeContent = {
       { label: "Real Honeymoons", href: "#real-honeymoons" },
       { label: "Our Approach", href: "#our-approach" },
     ],
-    cta: { label: "Start Planning", href: "/start" },
+    cta: { label: "Start Planning", href: "/plan/journey" },
   },
   hero: {
     kicker: "Sri Lanka Romantic Travel Concierge",

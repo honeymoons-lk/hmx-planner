@@ -9,7 +9,7 @@ This file extracts user-facing text currently used across pages/sections.
 - Nav links: `Experiences`, `The Journey`, `Real Honeymoons`, `Our Approach`
 - CTA: `Start Planning`
 
-### Planning flow header/footer (`/start`, `/plan/start`, `/plan/thanks`)
+### Planning flow header/footer (`/plan/journey`, `/plan/details`, `/plan/contact`, `/plan/thank-you`)
 - Wordmark: `LUNA VOYAGES`
 - Header back link: `Back`
 - Micro-footer links: `Back to home`, `Privacy`, `Terms`
@@ -31,7 +31,7 @@ This file extracts user-facing text currently used across pages/sections.
   - Label: `Also designing romantic escapes for`
   - Items: `Mini-moons`, `Anniversary escapes`, `Baby-moons`
 
-### Hero intake form (also reused at `/start`)
+### Hero intake form (same Step 1 model as `/plan/journey`)
 - Title: `Tell us about the journey you are imagining`
 - Description: `4 quick choices. Add dates if you have them. We'll come back with a tailored proposal.`
 - Field labels and placeholders:
@@ -137,34 +137,10 @@ This file extracts user-facing text currently used across pages/sections.
 
 ---
 
-## `/start`
+## `/plan/journey`
 
-- Same planning chrome (`LUNA VOYAGES`, `Back`, micro-footer links)
-- Same intake form copy as home hero card (see above)
+## `/plan/details`
 
----
-
-## `/plan/start` (2-step wizard)
-
-### Step shell
-- Heading: `Your concierge request`
-- Progress: `Step 1 of 2`, `Step 2 of 2`
-
-### Step 1
-- Card title: `A few final details`
-- Description: `This helps us shape options that match your comfort level and occasion.`
-- Snapshot heading: `Your honeymoon snapshot`
-- Snapshot labels: `When`, `Dates`, `Trip length`, `Styles`, `Wow moment`, `Day-flow vibe`
-- Field: `Property comfort / stay tier`
-  - Options: `Boutique & Comfortable`, `Premium`, `Exceptional`
-  - Helper: `We'll shape options that align with this comfort level.`
-- Field: `Occasion`
-  - Options: `Honeymoon`, `Babymoon`, `Anniversary`, `Proposal trip`, `Other`
-- Field: `Anything that would make this feel personal?`
-  - Placeholder: `Surprises, must-see places, dietary needs, accessibility, departure city...`
-- CTA: `Continue`
-
-### Step 2
 - Card title: `Contact details and final review`
 - Description: `We'll use this to confirm details and send your tailored proposal.`
 - Fields:
@@ -184,12 +160,15 @@ This file extracts user-facing text currently used across pages/sections.
 - Buttons: `Back`, `Request my proposal`
 - Submit loading label: `Sending your request...`
 
-### Fallback state
-- `Loading request...`
+## `/plan/contact`
+
+- Heading: `Contact and review`
+- Description: `We're almost there. Share your contact details and send your request.`
+- Contains contact fields + review panel + submit CTA
 
 ---
 
-## `/plan/thanks`
+## `/plan/thank-you`
 
 - Main heading: `Your request is with us`
 - Intro: `Thank you for sharing your plans. We'll review everything personally and come back with a tailored direction within 24-48 hours.`
@@ -210,13 +189,10 @@ This file extracts user-facing text currently used across pages/sections.
 - Closing reassurance: `Every proposal is shaped around your pace, priorities, and the kind of experience you want to remember.`
 - Link: `Return to Luna Voyages`
 
----
+## Legacy redirects
 
-## `/plan/consultation`
-
-- Heading: `Book a consultation`
-- Description: `Scheduling coming next. For now, send us your details via the planner.`
-- CTA: `Go to planner start`
+- `/plan/consultation` -> `/plan/details`
+- `/plan/thanks` -> `/plan/thank-you`
 
 ---
 
