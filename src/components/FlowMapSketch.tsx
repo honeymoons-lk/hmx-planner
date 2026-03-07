@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SectionHeader } from "@/components/section-header";
 import { proxiedImageUrl } from "@/lib/media";
 
@@ -25,7 +25,6 @@ type ItineraryDetail = {
   title: string;
   body: string;
   image: string;
-  stayRegion: string;
   stayName: string;
   stayNote: string;
 };
@@ -38,7 +37,6 @@ const itineraryDetails: Record<string, ItineraryDetail> = {
       "Land gently with a private transfer, a calm city hotel, and time to recover from the flight. Evening plans stay light: a long dinner, a rooftop drink, and an easy first night.",
     image:
       "https://images.unsplash.com/photo-1531201890865-fb64780d43d8?auto=format&fit=crop&w=2200&q=80",
-    stayRegion: "Colombo",
     stayName: "Uga Residence",
     stayNote: "A quiet city retreat for your first nights.",
   },
@@ -48,8 +46,7 @@ const itineraryDetails: Record<string, ItineraryDetail> = {
     body:
       "Move north for Sigiriya and the ancient cities with early starts and long relaxed afternoons. Private guiding and deliberate pacing keep the experience immersive, not rushed.",
     image:
-      "https://images.unsplash.com/photo-1588598198321-9735b3f9d55b?auto=format&fit=crop&w=2200&q=80",
-    stayRegion: "Cultural Triangle",
+      "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=2200&q=80",
     stayName: "Water Garden Sigiriya",
     stayNote: "Villa-style stays with direct rock fortress views.",
   },
@@ -59,177 +56,215 @@ const itineraryDetails: Record<string, ItineraryDetail> = {
     body:
       "Take the scenic rail route into the hills and settle into estate life. Cool air, misty views, and unhurried mornings create a strong emotional midpoint in the itinerary.",
     image:
-      "https://images.unsplash.com/photo-1544737151-6e4b4f8d6b5b?auto=format&fit=crop&w=2200&q=80",
-    stayRegion: "Tea Country",
+      "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=2200&q=80",
     stayName: "Ceylon Tea Trails",
     stayNote: "Historic bungalows with deeply personal service.",
   },
   south: {
-    days: "Days 8-12",
+    days: "Day 8-10",
     title: "Beach time on the South Coast",
     body:
       "Finish where it feels effortless: ocean-facing villas, slow lunches, and candlelit evenings. This final stretch is designed for downtime, connection, and a graceful end to the journey.",
     image:
       "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=2200&q=80",
-    stayRegion: "South Coast",
     stayName: "Amanwella",
     stayNote: "Minimal beachfront suites with complete privacy.",
   },
 };
 
-const markerPositions: Record<string, { left: string; top: string }> = {
-  colombo: { left: "48%", top: "22%" },
-  cultural: { left: "58%", top: "30%" },
-  tea: { left: "55%", top: "47%" },
-  south: { left: "50%", top: "68%" },
+const markerPositions: Record<string, { x: number; y: number; labelX: number; labelY: number }> = {
+  colombo: { x: 173, y: 172, labelX: 108, labelY: 164 },
+  cultural: { x: 225, y: 250, labelX: 252, labelY: 242 },
+  tea: { x: 212, y: 372, labelX: 238, labelY: 368 },
+  south: { x: 170, y: 500, labelX: 202, labelY: 492 },
 };
 
 export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: FlowMapSketchProps) {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const blockRefs = useRef<Record<string, HTMLElement | null>>({});
   const [activeStopId, setActiveStopId] = useState<string>(steps[0]?.id ?? "");
-  const activeStep = useMemo(
-    () => steps.find((step) => step.id === activeStopId) ?? steps[0],
-    [activeStopId, steps],
+  const [hasEntered, setHasEntered] = useState(false);
+
+  useEffect(() => {
+    const sectionEl = sectionRef.current;
+    if (!sectionEl) return;
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setHasEntered(true);
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
+
+    sectionObserver.observe(sectionEl);
+    return () => sectionObserver.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const blocks = steps
+      .map((step) => blockRefs.current[step.id])
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (!blocks.length) return;
+
+    const blockObserver = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (!visible.length) return;
+        const next = visible[0].target.getAttribute("data-step-id");
+        if (next) setActiveStopId(next);
+      },
+      {
+        threshold: [0.3, 0.5, 0.7],
+        rootMargin: "-24% 0px -34% 0px",
+      },
+    );
+
+    blocks.forEach((block) => blockObserver.observe(block));
+    return () => blockObserver.disconnect();
+  }, [steps]);
+
+  const narrativeSteps = useMemo(
+    () =>
+      steps.map((step) => {
+        const detail = itineraryDetails[step.id] ?? {
+          days: "Day by day",
+          title: step.stop,
+          body: step.caption,
+          image: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=2200&q=80",
+          stayName: "Curated stay",
+          stayNote: "Selected to match your pace and style.",
+        };
+        return { ...step, detail };
+      }),
+    [steps],
   );
 
-  const detail = itineraryDetails[activeStep?.id] ?? {
-    days: "Day by day",
-    title: activeStep?.stop ?? "Journey highlight",
-    body: activeStep?.caption ?? "",
-    image: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=2200&q=80",
-    stayRegion: "Sri Lanka",
-    stayName: "Curated stay",
-    stayNote: "Selected to match your pace and style.",
-  };
-
   return (
-    <section id={id} className="mx-auto w-full max-w-6xl px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
-      <SectionHeader eyebrow={eyebrow} heading={heading} supporting={subcopy} className="max-w-3xl" />
+    <section ref={sectionRef} id={id} className="w-full py-[var(--section-space-mobile)] md:py-[var(--section-space-desktop)]">
+      <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
+        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={subcopy} className="max-w-3xl" />
 
-      <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.92fr)] lg:gap-10">
-        <div className="relative pl-7 lg:pl-10">
-          <span className="absolute bottom-0 left-2 top-2 w-px border-l border-dashed border-[color-mix(in_srgb,var(--color-border-strong)_92%,transparent)]" />
+        <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,43%)_minmax(0,57%)] lg:gap-12">
+          <div className="relative pl-8 md:pl-10">
+            <span className="absolute bottom-6 left-0 top-2 w-px bg-[color-mix(in_srgb,var(--color-border-strong)_86%,transparent)]" />
 
-          <article className="relative mb-8 rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_78%,transparent)] bg-[var(--color-surface)] p-5 md:p-6">
-            <span className="absolute -left-[26px] top-8 h-2.5 w-2.5 rounded-full bg-[var(--color-brand)]" />
-            <p className="type-eyebrow text-[var(--color-text-muted)]">{detail.days}</p>
-            <h3 className="mt-3 font-serif text-[clamp(30px,3.5vw,44px)] leading-[1.12] tracking-tight text-[var(--color-text)]">
-              {detail.title}
-            </h3>
-            <p className="type-body mt-4 max-w-[62ch] text-[var(--color-text-secondary)]">{detail.body}</p>
-
-            <img
-              src={proxiedImageUrl(detail.image)}
-              alt={detail.title}
-              loading="lazy"
-              className="mt-6 h-[380px] w-full rounded-[var(--radius-card)] object-cover object-center md:h-[460px]"
-            />
-
-            <div className="mt-6">
-              <h4 className="font-serif text-[34px] leading-[1.1] text-[var(--color-text)]">Where you could stay</h4>
-              <div className="mt-4 grid overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_78%,transparent)] bg-[var(--color-surface)] md:grid-cols-[220px_1fr]">
-                <img
-                  src={proxiedImageUrl(detail.image)}
-                  alt={`${detail.stayName} preview`}
-                  loading="lazy"
-                  className="h-[210px] w-full object-cover object-center md:h-full"
-                />
-                <div className="space-y-2 p-5">
-                  <p className="type-eyebrow text-[var(--color-text-muted)]">{detail.stayRegion}</p>
-                  <p className="font-serif text-[34px] leading-[1.1] text-[var(--color-text)]">{detail.stayName}</p>
-                  <p className="type-body text-[var(--color-text-secondary)]">{detail.stayNote}</p>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <div className="space-y-2">
-            {steps.map((step) => {
-              const isActive = step.id === activeStopId;
-              return (
-                <button
-                  key={step.id}
-                  type="button"
-                  onClick={() => setActiveStopId(step.id)}
-                  className={`relative flex w-full items-start gap-3 rounded-[var(--radius-input)] px-3 py-3 text-left transition-colors ${
-                    isActive
-                      ? "bg-[color-mix(in_srgb,var(--color-bg-alt)_72%,transparent)]"
-                      : "hover:bg-[color-mix(in_srgb,var(--color-bg-alt)_46%,transparent)]"
-                  }`}
-                >
-                  <span
-                    className={`mt-2 h-2 w-2 rounded-full transition-colors ${
-                      isActive ? "bg-[var(--color-brand)]" : "bg-[var(--color-border-strong)]"
-                    }`}
-                  />
-                  <div>
-                    <p className="type-ui-sm text-[var(--color-text)]">{step.stop}</p>
-                    <p className="type-meta text-[var(--color-text-muted)]">{step.nights}</p>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <aside className="lg:sticky lg:top-24 lg:self-start">
-          <div className="overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_82%,transparent)] bg-[var(--color-bg-alt)]">
-            <div className="relative h-[520px]">
-              <img
-                src="/api/map/flow-static"
-                alt="Sri Lanka itinerary route map"
-                className="absolute inset-0 h-full w-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(248,243,238,0.08)_0%,rgba(248,243,238,0.16)_100%)]" />
-
-              {steps.map((step) => {
-                const marker = markerPositions[step.id] ?? { left: "50%", top: "50%" };
+            <div className="space-y-14">
+              {narrativeSteps.map((step) => {
                 const isActive = step.id === activeStopId;
                 return (
-                  <button
-                    key={`${step.id}-map`}
-                    type="button"
-                    aria-label={`Focus ${step.stop}`}
-                    onClick={() => setActiveStopId(step.id)}
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
-                    style={{ left: marker.left, top: marker.top }}
+                  <article
+                    key={step.id}
+                    data-step-id={step.id}
+                    ref={(element) => {
+                      blockRefs.current[step.id] = element;
+                    }}
+                    className={`relative transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-70"}`}
                   >
                     <span
-                      className={`block rounded-full border border-[var(--color-light)] transition-all ${
-                        isActive
-                          ? "h-4 w-4 bg-[var(--color-brand)] shadow-[0_0_0_5px_rgba(110,44,58,0.22)]"
-                          : "h-3 w-3 bg-[var(--color-text)]/70"
+                      className={`absolute -left-[34px] top-1 h-2.5 w-2.5 rounded-full border border-[var(--color-bg)] transition-all duration-300 ${
+                        isActive ? "bg-[var(--color-brand)] scale-110" : "bg-[var(--color-border-strong)]"
                       }`}
                     />
-                  </button>
+
+                    <p className="type-eyebrow text-[var(--color-text-muted)]">{step.detail.days.toUpperCase()}</p>
+                    <h3 className="mt-3 font-serif text-[clamp(28px,3.2vw,40px)] leading-[1.16] text-[var(--color-text)]">
+                      {step.detail.title}
+                    </h3>
+                    <p className="type-body mt-4 text-[var(--color-text-secondary)]">{step.detail.body}</p>
+
+                    <img
+                      src={proxiedImageUrl(step.detail.image)}
+                      alt={step.detail.title}
+                      loading="lazy"
+                      className="mt-7 aspect-[16/10] w-full rounded-[var(--radius-card)] object-cover object-center"
+                    />
+
+                    <div className="mt-6">
+                      <p className="font-serif text-[30px] leading-[1.15] text-[var(--color-text)]">Where you could stay</p>
+                      <p className="mt-3 font-sans text-[18px] font-medium leading-[1.5] text-[var(--color-text)]">{step.detail.stayName}</p>
+                      <p className="type-body mt-2 text-[var(--color-text-secondary)]">{step.detail.stayNote}</p>
+                    </div>
+                  </article>
                 );
               })}
             </div>
-
-            <div className="space-y-3 border-t border-[color-mix(in_srgb,var(--color-border)_82%,transparent)] p-5">
-              {steps.map((step) => (
-                <button
-                  key={`${step.id}-legend`}
-                  type="button"
-                  onClick={() => setActiveStopId(step.id)}
-                  className={`flex w-full items-center gap-2 rounded-[var(--radius-input)] px-2 py-2 text-left transition-colors ${
-                    step.id === activeStopId
-                      ? "bg-[color-mix(in_srgb,var(--color-bg)_90%,var(--color-bg-alt))]"
-                      : "hover:bg-[color-mix(in_srgb,var(--color-bg)_88%,var(--color-bg-alt))]"
-                  }`}
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-brand)]" />
-                  <span className="type-ui-sm text-[var(--color-text-secondary)]">
-                    {step.stop} <span className="text-[var(--color-text-muted)]">· {step.nights}</span>
-                  </span>
-                </button>
-              ))}
-            </div>
           </div>
-        </aside>
-      </div>
 
-      <p className="type-body mt-7 text-muted-foreground">{note}</p>
+          <aside className="order-last lg:order-none lg:sticky lg:top-24 lg:self-start xl:mr-[-160px] 2xl:mr-[-200px]">
+            <div className="overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_80%,transparent)] bg-[var(--color-bg-alt)]">
+              <div className="relative aspect-[4/5] min-h-[420px] md:aspect-[5/6] lg:min-h-[620px]">
+                <svg viewBox="0 0 420 620" className="h-full w-full" role="img" aria-label="Sri Lanka route map">
+                  <rect x="0" y="0" width="420" height="620" fill="color-mix(in srgb, var(--color-bg-alt) 82%, var(--color-surface))" />
+                  <path
+                    d="M168 84C196 79 222 88 238 103C258 122 271 154 273 184C276 221 269 257 257 293C249 318 250 343 257 370C266 404 263 441 249 472C235 504 215 527 194 542C178 553 157 555 143 547C127 537 120 518 121 497C123 462 137 430 138 397C138 365 128 334 121 303C114 271 114 237 124 206C133 177 149 153 157 125C162 107 160 95 168 84Z"
+                    fill="color-mix(in srgb, var(--color-surface) 95%, var(--color-bg-alt))"
+                    stroke="color-mix(in srgb, var(--color-border-strong) 88%, transparent)"
+                    strokeWidth="2"
+                  />
+
+                  <path
+                    d="M173 172Q198 204 225 250Q220 308 212 372Q190 438 170 500"
+                    fill="none"
+                    stroke="color-mix(in srgb, var(--color-brand) 88%, var(--color-text))"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    pathLength={1}
+                    style={{
+                      strokeDasharray: 1,
+                      strokeDashoffset: hasEntered ? 0 : 1,
+                      transition: "stroke-dashoffset 1400ms ease-out",
+                    }}
+                  />
+
+                  {steps.map((step) => {
+                    const marker = markerPositions[step.id] ?? { x: 210, y: 300, labelX: 230, labelY: 292 };
+                    const isActive = step.id === activeStopId;
+
+                    return (
+                      <g key={`${step.id}-map`}>
+                        <circle
+                          cx={marker.x}
+                          cy={marker.y}
+                          r={isActive ? 10 : 7}
+                          fill={isActive ? "var(--color-brand)" : "color-mix(in srgb, var(--color-text-muted) 75%, var(--color-border-strong))"}
+                          opacity={isActive ? 1 : 0.88}
+                          style={{ transition: "all 280ms ease" }}
+                        />
+                        <circle
+                          cx={marker.x}
+                          cy={marker.y}
+                          r={isActive ? 16 : 0}
+                          fill="none"
+                          stroke="color-mix(in srgb, var(--color-brand) 45%, transparent)"
+                          strokeWidth="1.5"
+                          style={{ transition: "all 280ms ease" }}
+                        />
+                        <text
+                          x={marker.labelX}
+                          y={marker.labelY}
+                          fill="color-mix(in srgb, var(--color-text-secondary) 82%, var(--color-text-muted))"
+                          style={{ fontSize: "11px", fontFamily: "var(--font-body), Inter, sans-serif", letterSpacing: "0.04em" }}
+                        >
+                          {step.stop}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </svg>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <p className="type-body mt-10 max-w-[68ch] text-muted-foreground">{note}</p>
+      </div>
     </section>
   );
 }

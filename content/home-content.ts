@@ -236,7 +236,7 @@ export const homeContent = {
   },
   flow: {
     id: "flow",
-    eyebrow: "How It Flows",
+    eyebrow: "HOW IT FLOWS",
     heading: "A sample journey, shaped around your pace.",
     subcopy:
       "Every Luna Voyages trip is custom-designed. This example shows how a well-paced Sri Lanka honeymoon can unfold.",
