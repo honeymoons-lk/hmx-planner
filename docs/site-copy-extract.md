@@ -9,7 +9,7 @@ This file extracts user-facing text currently used across pages/sections.
 - Nav links: `Experiences`, `The Journey`, `Real Honeymoons`, `Our Approach`
 - CTA: `Start Planning`
 
-### Planning flow header/footer (`/plan/journey`, `/plan/details`, `/plan/contact`, `/plan/thank-you`)
+### Planning/call flow header/footer (`/plan/journey`, `/plan/details`, `/plan/contact`, `/plan/thank-you`, `/book-a-call`, `/book-a-call/thank-you`)
 - Wordmark: `LUNA VOYAGES`
 - Header back link: `Back`
 - Micro-footer links: `Back to home`, `Privacy`, `Terms`
@@ -139,10 +139,41 @@ This file extracts user-facing text currently used across pages/sections.
 
 ## `/plan/journey`
 
+- Progress stages: `1. Your journey`, `2. A few final details`, `3. Contact and review`
+- Image panel label: `Luna Voyages`
+- Image panel copy: `Begin your private planning file with a few thoughtful choices.`
+- Form title: `Tell us about the journey you are imagining`
+- Form description: `4 quick choices. Add dates if you have them. We'll come back with a tailored proposal.`
+- CTA: `Continue Planning`
+- Reassurance: `Takes about 60 seconds. We'll reply personally within 24-48 hours.`
+- Secondary line: `Prefer a quick chat first? Book a call`
+
 ## `/plan/details`
 
-- Card title: `Contact details and final review`
-- Description: `We'll use this to confirm details and send your tailored proposal.`
+- Progress stages: `1. Your journey`, `2. A few final details`, `3. Contact and review`
+- Image block eyebrow: `Tailoring the journey`
+- Image block copy: `Thoughtful choices that shape the tone, comfort, and rhythm of your honeymoon.`
+- Main heading: `A few final details`
+- Description: `This helps us shape options that match your comfort level and occasion.`
+- Snapshot heading: `Your honeymoon snapshot`
+- Snapshot labels: `When`, `Dates`, `Trip length`, `Styles`, `Wow moment`, `Day-flow vibe`
+- Comfort section label: `Property comfort / stay tier`
+- Comfort options:
+  - `Boutique & Comfortable` / `intimate, beautiful, thoughtfully chosen`
+  - `Premium` / `refined stays with elevated comfort`
+  - `Exceptional` / `standout properties and signature settings`
+- Field labels:
+  - `Occasion` / placeholder `Select occasion`
+  - Occasion options: `Honeymoon`, `Babymoon`, `Anniversary`, `Proposal trip`, `Other`
+  - `Anything that would make this feel personal?`
+  - Notes placeholder: `Surprises, must-see places, dietary needs, accessibility, departure city…`
+- Buttons: `Back`, `Continue`
+
+## `/plan/contact`
+
+- Progress stages: `1. Your journey`, `2. A few final details`, `3. Contact and review`
+- Heading: `Contact and review`
+- Description: `We're almost there. Share your contact details and send your request.`
 - Fields:
   - `First name` / placeholder `Your first name`
   - `Email` / placeholder `name@email.com`
@@ -159,12 +190,7 @@ This file extracts user-facing text currently used across pages/sections.
   - `We couldn't submit right now. Please try again in a moment.`
 - Buttons: `Back`, `Request my proposal`
 - Submit loading label: `Sending your request...`
-
-## `/plan/contact`
-
-- Heading: `Contact and review`
-- Description: `We're almost there. Share your contact details and send your request.`
-- Contains contact fields + review panel + submit CTA
+- Secondary line: `Prefer a quick chat first? Book a call`
 
 ---
 
@@ -184,10 +210,65 @@ This file extracts user-facing text currently used across pages/sections.
 - `3. Concierge follow-up` - `You'll hear from us personally within 24-48 hours.`
 
 ### Secondary actions
-- `Prefer to talk sooner?`
-- CTA: `Book a call`
 - Closing reassurance: `Every proposal is shaped around your pace, priorities, and the kind of experience you want to remember.`
 - Link: `Return to Luna Voyages`
+
+---
+
+## `/book-a-call`
+
+- Eyebrow: `Book a call`
+- Main heading: `Talk through your plans with us`
+- Supporting copy: `Prefer to start with a conversation? Share a few details and we'll arrange a suitable time for a short personal call.`
+- Reassurance line: `A personal conversation, not a generic sales call.`
+
+### What to expect block
+- Title: `What to expect`
+- Items:
+  - `Around 15-20 minutes.`
+  - `A personal conversation about your plans, timing, and priorities.`
+  - `No need to have every detail decided yet.`
+  - `We'll guide the right next step after the call.`
+- Alternative path line: `Prefer to share your preferences first? Start planning instead`
+
+### Call request form
+- Card title: `A few quick details`
+- Card description: `We'll use this to arrange a suitable call time for you.`
+- Fields:
+  - `First name` / placeholder `Your first name`
+  - `Email` / placeholder `name@email.com`
+  - `Country` / placeholder `Select country`
+  - Countries: `Australia`, `New Zealand`, `United Kingdom`, `United States`, `Canada`, `Singapore`, `Other`
+  - `Phone / WhatsApp number` / placeholder `Include country code`
+  - `Preferred contact method`: `WhatsApp`, `Phone`, `Email first`
+  - `Preferred timing`: `As soon as possible`, `This week`, `Next week`, `I'm flexible`
+  - `Notes (optional)` / placeholder `Anything helpful to know about your trip or what you'd like to discuss?`
+- Validation line: `Please add your first name, email, country, and phone / WhatsApp number.`
+- Error line: `We couldn't send your request right now. Please try again in a moment.`
+- CTA: `Request a call`
+- Submit loading label: `Sending your request...`
+- CTA reassurance: `We'll reach out personally to arrange a suitable time.`
+
+## `/book-a-call/thank-you`
+
+- Main heading: `Your call request is with us`
+- Supporting copy: `Thank you. We'll reach out personally to arrange a suitable time for your call.`
+
+### Summary card
+- Title: `Call request summary`
+- Description: `Here's what we'll use to arrange your conversation.`
+- Labels: `Name`, `Email`, `Country`, `Phone / WhatsApp`, `Preferred contact method`, `Preferred timing`, `Notes`
+
+### Next steps card
+- Title: `What happens next`
+- `1. Personal review` - `We review your request and preferred contact timing.`
+- `2. We reach out` - `We'll contact you personally to arrange a suitable time.`
+- `3. Next-step guidance` - `From there, we'll help shape the right next step for your journey.`
+- Reassurance line: `If a tailored proposal makes more sense after the call, we'll guide that too.`
+
+### Actions
+- Button: `Return to Luna Voyages`
+- Link: `Prefer to share your preferences first? Start planning instead`
 
 ## Legacy redirects
 
