@@ -6,7 +6,7 @@ This file extracts user-facing text currently used across pages/sections.
 
 ### Main header
 - Brand: `LUNA VOYAGES`
-- Nav links: `Experiences`, `How It Flows`, `Real Honeymoons`, `Our Approach`
+- Nav links: `Experiences`, `The Journey`, `Real Honeymoons`, `Our Approach`
 - CTA: `Start Planning`
 
 ### Planning flow header/footer (`/start`, `/plan/start`, `/plan/thanks`)
@@ -100,9 +100,9 @@ This file extracts user-facing text currently used across pages/sections.
 - Heading: `Journeys we've recently designed.`
 - Subcopy: `Different styles, different budgets - always personal.`
 - Preview rows:
-  - `N + A` / `Colombo -> Ella -> Tangalle` / `Premium` / `10 nights: boutique stays, tea trails, and a relaxed beach finale.`
-  - `R + M` / `Sigiriya -> Kandy -> Galle` / `Comfortable` / `8 nights: culture landmarks plus intimate coastal time.`
-  - `D + S` / `Bentota -> Yala -> Weligama` / `Exceptional` / `9 nights: villa stays, private safari, and signature dining.`
+  - `N + A` / `Colombo → Ella → Tangalle` / `Premium` / `10 nights: boutique stays, tea trails, and a relaxed beach finale.`
+  - `R + M` / `Sigiriya → Kandy → Galle` / `Comfortable` / `8 nights: culture landmarks plus intimate coastal time.`
+  - `D + S` / `Bentota → Yala → Weligama` / `Exceptional` / `9 nights: villa stays, private safari, and signature dining.`
 
 ### Approach section (`OUR APPROACH`)
 - Heading: `Concierge-crafted, not booking-engine complexity.`
@@ -118,7 +118,7 @@ This file extracts user-facing text currently used across pages/sections.
 - Subcopy: `A few names we trust for quality and consistency.`
 - Names: `Jetwing`, `Cinnamon`, `Aitken Spence`, `Shangri-La`, `Anantara`, `Uga`, `Resplendent Ceylon`, `Teardrop Hotels`, `Dilmah`, `SriLankan Airlines`
 
-### Why section (`WHY Luna Voyages`)
+### Why section (`WHY HONEYMOONS.LK`)
 - Heading: `Sri Lanka honeymoon design, done properly.`
 - Subcopy: `Local insight, clear guidance, end-to-end handling.`
 - Q&A:
@@ -242,7 +242,7 @@ This file extracts user-facing text currently used across pages/sections.
 - Note: `Minimal beachfront suites and uninterrupted sea views.`
 
 ### Map footer text
-- Route: `Colombo -> Ella -> Tangalle`
+- Route: `Colombo → Ella → Tangalle`
 - Testimonial: `It felt perfectly paced from day one.`
 
 ---
@@ -280,4 +280,3 @@ This file extracts user-facing text currently used across pages/sections.
 - `Typography`
 - `Spacing / Radius / Shadow`
 - Color usage notes such as `Primary actions, links, focused highlights`, `Default page background`, `Main body copy and headings`
-
