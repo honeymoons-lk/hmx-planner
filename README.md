@@ -21,6 +21,7 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/book-a-call`
 - `/book-a-call/thank-you`
 - `/real-honeymoons`
+- `/design-brief`
 - `/style-guide`
 
 ## Current API routes
