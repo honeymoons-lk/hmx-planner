@@ -125,7 +125,7 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
                       <span className="font-sans text-[17px] leading-[1.55]">
                         <span className={`font-medium ${isActive ? "text-[var(--color-text)]" : ""}`}>{property.name}</span>
                         <span className="mx-2 text-[color-mix(in_srgb,var(--color-text-muted)_85%,var(--color-border-strong))]">
-                          —
+                          , 
                         </span>
                         <span className="text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-text-muted))]">
                           {property.location}

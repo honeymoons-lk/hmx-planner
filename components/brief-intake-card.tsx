@@ -146,7 +146,6 @@ export function BriefIntakeCard({
 
   return (
     <Card id={id} className={className}>
-      <div className="h-1.5 w-full bg-gradient-to-r from-primary via-[var(--color-accent)] to-[var(--color-bg-alt)]" />
       <CardHeader className="space-y-3 px-7 pt-7">
         <CardTitle className="type-subheading font-serif">{title}</CardTitle>
         <CardDescription className="type-body text-muted-foreground">{description}</CardDescription>

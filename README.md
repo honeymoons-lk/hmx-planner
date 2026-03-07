@@ -1,4 +1,4 @@
-# Luna Voyages (honeymoons.lk planner)
+# Luna Voyages
 
 Next.js app for the Luna Voyages brand site and planning flow.
 

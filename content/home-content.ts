@@ -2,10 +2,10 @@ export const homeContent = {
   header: {
     brand: "LUNA VOYAGES",
     links: [
-      { label: "Experiences", href: "#moments" },
-      { label: "How It Flows", href: "#flow" },
-      { label: "Real Honeymoons", href: "#stories" },
-      { label: "Our Approach", href: "#approach" },
+      { label: "Experiences", href: "#experiences" },
+      { label: "The Journey", href: "#the-journey" },
+      { label: "Real Honeymoons", href: "#real-honeymoons" },
+      { label: "Our Approach", href: "#our-approach" },
     ],
     cta: { label: "Start Planning", href: "/start" },
   },
@@ -41,7 +41,7 @@ export const homeContent = {
     },
   },
   moments: {
-    id: "moments",
+    id: "experiences",
     eyebrow: "THE MOMENTS WE DESIGN",
     heading: "The moments your honeymoon will be built around",
     subcopy: "Carefully curated, never off-the-shelf",
@@ -235,7 +235,7 @@ export const homeContent = {
     ],
   },
   flow: {
-    id: "flow",
+    id: "the-journey",
     eyebrow: "HOW IT FLOWS",
     heading: "A sample journey, shaped around your pace.",
     subcopy:
@@ -287,7 +287,7 @@ export const homeContent = {
     ],
   },
   stories: {
-    id: "stories",
+    id: "real-honeymoons",
     eyebrow: "REAL HONEYMOONS",
     heading: "Journeys we’ve recently designed.",
     subcopy: "Different styles, different budgets - always personal.",
@@ -313,7 +313,7 @@ export const homeContent = {
     ],
   },
   approach: {
-    id: "approach",
+    id: "our-approach",
     eyebrow: "OUR APPROACH",
     heading: "Concierge-crafted, not booking-engine complexity.",
     subcopy: "Discovery, design, refinement, then seamless travel.",
@@ -338,7 +338,7 @@ export const homeContent = {
   },
   why: {
     id: "why",
-    eyebrow: "WHY HONEYMOONS.LK",
+    eyebrow: "WHY Luna Voyages",
     heading: "Sri Lanka honeymoon design, done properly.",
     subcopy: "Local insight, clear guidance, end-to-end handling.",
     objections: [

@@ -85,7 +85,7 @@ This file extracts user-facing text currently used across pages/sections.
   - Properties: `Galle Fort Hotel - Galle Fort`, `Fort Bazaar - Galle Fort`, `Maniumpathy - Colombo`, `The Kandy House - Kandy`
   - Reassurance: `Chosen for character, sense of place and the stories they bring into the journey.`
 
-### Flow section (`HOW IT FLOWS`)
+### HOW IT FLOWS section (`The Journey`)
 - Heading: `A sample journey, shaped around your pace.`
 - Supporting copy: `Every Luna Voyages trip is custom-designed. This example shows how a well-paced Sri Lanka honeymoon can unfold.`
 - Journey steps:
@@ -118,7 +118,7 @@ This file extracts user-facing text currently used across pages/sections.
 - Subcopy: `A few names we trust for quality and consistency.`
 - Names: `Jetwing`, `Cinnamon`, `Aitken Spence`, `Shangri-La`, `Anantara`, `Uga`, `Resplendent Ceylon`, `Teardrop Hotels`, `Dilmah`, `SriLankan Airlines`
 
-### Why section (`WHY HONEYMOONS.LK`)
+### Why section (`WHY Luna Voyages`)
 - Heading: `Sri Lanka honeymoon design, done properly.`
 - Subcopy: `Local insight, clear guidance, end-to-end handling.`
 - Q&A:
