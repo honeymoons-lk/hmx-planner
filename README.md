@@ -18,8 +18,6 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/plan/details`
 - `/plan/contact`
 - `/plan/thank-you`
-- `/plan/consultation` (redirect)
-- `/plan/thanks` (redirect)
 - `/real-honeymoons`
 - `/style-guide`
 
