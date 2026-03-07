@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { PlanningHeader, PlanningMicroFooter } from "@/components/plan/planning-chrome";
 import { ProgressIndicator } from "@/components/plan/progress-indicator";
 import { readPlanningDraft, writePlanningDraft } from "@/lib/planning-draft";
+import { proxiedImageUrl } from "@/lib/media";
 
 const timeframeLabels: Record<string, string> = {
   "next-3-months": "Next 3 months",
@@ -54,6 +55,9 @@ function nightsLabel(nights: string) {
   return `${nights} nights`;
 }
 
+const detailsImage =
+  "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1800&q=80";
+
 export default function DetailsPage() {
   const router = useRouter();
   const draft = useMemo(() => readPlanningDraft(), []);
@@ -70,7 +74,16 @@ export default function DetailsPage() {
         <div className="mx-auto w-full max-w-5xl space-y-6">
           <ProgressIndicator stage={2} />
 
-          <Card className="border-border bg-[var(--color-surface)]">
+          <Card className="overflow-hidden border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] shadow-[var(--shadow-soft)]">
+            <div className="relative h-20 overflow-hidden md:h-24">
+              <img
+                src={proxiedImageUrl(detailsImage)}
+                alt="Soft interior scene for journey details"
+                className="h-full w-full object-cover object-center"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(28,23,21,0.34)_0%,rgba(28,23,21,0.12)_46%,rgba(28,23,21,0.04)_100%)]" />
+            </div>
             <CardHeader>
               <CardTitle className="type-subheading font-serif">A few final details</CardTitle>
               <CardDescription className="type-body text-muted-foreground">
@@ -78,7 +91,7 @@ export default function DetailsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-7">
-              <div className="rounded-[var(--radius-form)] border border-border bg-[var(--color-bg)] p-5">
+              <div className="rounded-[var(--radius-form)] border border-[color-mix(in_srgb,var(--color-border)_82%,transparent)] bg-[color-mix(in_srgb,var(--color-bg)_78%,var(--color-surface))] p-5 md:p-6">
                 <p className="type-ui-sm mb-3 text-foreground">Your honeymoon snapshot</p>
                 <div className="type-meta grid gap-3 md:grid-cols-2">
                   <div>
@@ -122,19 +135,38 @@ export default function DetailsPage() {
 
               <div className="space-y-3">
                 <Label>Property comfort / stay tier</Label>
-                <RadioGroup value={budget} onValueChange={setBudget} className="grid gap-2 sm:grid-cols-3">
+                <RadioGroup value={budget} onValueChange={setBudget} className="grid gap-3 sm:grid-cols-3">
                   {[
-                    { value: "value", label: "Boutique & Comfortable" },
-                    { value: "mid", label: "Premium" },
-                    { value: "lux", label: "Exceptional" },
+                    {
+                      value: "value",
+                      label: "Boutique & Comfortable",
+                      description: "intimate, beautiful, thoughtfully chosen",
+                    },
+                    {
+                      value: "mid",
+                      label: "Premium",
+                      description: "refined stays with elevated comfort",
+                    },
+                    {
+                      value: "lux",
+                      label: "Exceptional",
+                      description: "standout properties and signature settings",
+                    },
                   ].map((option) => (
                     <Label
                       key={option.value}
                       htmlFor={`budget-${option.value}`}
-                      className="flex cursor-pointer items-center gap-3 rounded-[var(--radius-input)] border border-input bg-background px-3 py-3"
+                      className={`flex min-h-[120px] cursor-pointer flex-col items-start gap-2 rounded-[var(--radius-form)] border px-4 py-4 transition-colors ${
+                        budget === option.value
+                          ? "border-[var(--color-brand)] bg-[color-mix(in_srgb,var(--color-bg-alt)_62%,var(--color-surface))]"
+                          : "border-input bg-background hover:bg-[color-mix(in_srgb,var(--color-bg-alt)_40%,var(--color-surface))]"
+                      }`}
                     >
-                      <RadioGroupItem id={`budget-${option.value}`} value={option.value} />
-                      {option.label}
+                      <div className="flex w-full items-center justify-between gap-3">
+                        <p className="type-ui-sm text-foreground">{option.label}</p>
+                        <RadioGroupItem id={`budget-${option.value}`} value={option.value} />
+                      </div>
+                      <p className="type-meta text-[var(--color-text-muted)]">{option.description}</p>
                     </Label>
                   ))}
                 </RadioGroup>

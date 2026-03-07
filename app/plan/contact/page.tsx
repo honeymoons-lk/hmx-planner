@@ -24,6 +24,7 @@ import {
   writePlanningDraft,
   writeSubmittedPlanningRequest,
 } from "@/lib/planning-draft";
+import { proxiedImageUrl } from "@/lib/media";
 
 const timeframeLabels: Record<string, string> = {
   "next-3-months": "Next 3 months",
@@ -73,6 +74,9 @@ function nightsLabel(nights: string) {
   return `${nights} nights`;
 }
 
+const contactImage =
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80";
+
 export default function ContactPage() {
   const router = useRouter();
   const draft = useMemo(() => readPlanningDraft(), []);
@@ -120,16 +124,25 @@ export default function ContactPage() {
         <div className="mx-auto w-full max-w-5xl space-y-6">
           <ProgressIndicator stage={3} />
 
-          <Card className="border-border bg-[var(--color-surface)]">
+          <Card className="overflow-hidden border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] shadow-[var(--shadow-soft)]">
+            <div className="relative h-20 overflow-hidden md:h-24">
+              <img
+                src={proxiedImageUrl(contactImage)}
+                alt="Calm ocean horizon at dusk"
+                className="h-full w-full object-cover object-center"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(28,23,21,0.34)_0%,rgba(28,23,21,0.12)_46%,rgba(28,23,21,0.04)_100%)]" />
+            </div>
             <CardHeader>
               <CardTitle className="type-subheading font-serif">Contact and review</CardTitle>
               <CardDescription className="type-body text-muted-foreground">
                 We&apos;re almost there. Share your contact details and send your request.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-7">
               <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div className="space-y-2">
                     <Label htmlFor="first-name">First name</Label>
                     <Input
@@ -190,17 +203,20 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <div className="flex items-center gap-2 pt-1">
-                    <Checkbox
-                      id="whatsapp-optin"
-                      checked={whatsappOptIn}
-                      onCheckedChange={(checked) => setWhatsappOptIn(checked === true)}
-                    />
-                    <Label htmlFor="whatsapp-optin">You may contact me on WhatsApp</Label>
+                  <div className="rounded-[var(--radius-input)] border border-[color-mix(in_srgb,var(--color-border)_82%,transparent)] bg-[color-mix(in_srgb,var(--color-bg)_72%,var(--color-surface))] p-3">
+                    <div className="flex items-center gap-2">
+                      <Checkbox
+                        id="whatsapp-optin"
+                        checked={whatsappOptIn}
+                        onCheckedChange={(checked) => setWhatsappOptIn(checked === true)}
+                      />
+                      <Label htmlFor="whatsapp-optin">You may contact me on WhatsApp</Label>
+                    </div>
                   </div>
                 </div>
 
-                <aside className="rounded-[var(--radius-form)] border border-border bg-[var(--color-bg)] p-5">
+                <aside className="relative overflow-hidden rounded-[var(--radius-form)] border border-[color-mix(in_srgb,var(--color-border)_84%,transparent)] bg-[color-mix(in_srgb,var(--color-bg)_70%,var(--color-surface))] p-5">
+                  <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)]" />
                   <p className="type-ui-sm mb-3 text-foreground">Review your request</p>
                   <div className="type-meta space-y-2">
                     <p className="text-muted-foreground">When</p>
@@ -241,16 +257,24 @@ export default function ContactPage() {
                 <Button variant="outline" onClick={() => router.push("/plan/details")}>
                   Back
                 </Button>
-                <Button onClick={submit} disabled={!canSubmit || submitting}>
-                  {submitting ? "Sending your request..." : "Request my proposal"}
-                </Button>
+                <div className="space-y-2">
+                  <Button onClick={submit} disabled={!canSubmit || submitting}>
+                    {submitting ? "Sending your request..." : "Request my proposal"}
+                  </Button>
+                  <p className="type-ui-sm text-[var(--color-text-muted)]">
+                    Every request is reviewed personally by our concierge team.
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
 
           <p className="type-ui-sm text-center text-muted-foreground">
             Prefer a quick chat first?{" "}
-            <Link href="/plan/contact" className="font-medium text-foreground underline underline-offset-4">
+            <Link
+              href="mailto:hello@lunavoyages.com?subject=Luna%20Voyages%20Call%20Request"
+              className="font-medium text-[var(--color-brand)] underline underline-offset-4"
+            >
               Book a call
             </Link>
           </p>

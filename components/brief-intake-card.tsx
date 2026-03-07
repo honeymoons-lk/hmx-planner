@@ -154,10 +154,10 @@ export function BriefIntakeCard({
     <Card id={id} className={className}>
       <CardHeader className="space-y-3 px-7 pt-7">
         <CardTitle className="type-subheading font-serif">{title}</CardTitle>
-        <CardDescription className="type-body text-muted-foreground">{description}</CardDescription>
+        <CardDescription className="type-body pt-1 text-muted-foreground">{description}</CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-5 px-7 pb-7">
+      <CardContent className="space-y-6 px-7 pb-7">
         <div className="space-y-2">
           <Label htmlFor="timeframe">When would you like to travel?</Label>
           <Select value={timeframe} onValueChange={setTimeframe}>
@@ -179,7 +179,7 @@ export function BriefIntakeCard({
             <Label>Travel dates</Label>
             <Popover>
             <PopoverTrigger asChild>
-              <Button type="button" variant="outline" className="w-full justify-start border-input text-left font-normal">
+              <Button type="button" variant="outline" className="w-full justify-start border-input bg-[color-mix(in_srgb,var(--color-surface)_90%,var(--color-bg))] text-left font-normal">
                 <CalendarDays className="mr-2 h-4 w-4" />
                   {dateRange?.from && dateRange?.to
                     ? `${formatDateLabel(dateRange.from)} – ${formatDateLabel(dateRange.to)}`
@@ -223,13 +223,13 @@ export function BriefIntakeCard({
           <Label>What kind of experience are you picturing?</Label>
           <Popover open={stylePopoverOpen} onOpenChange={setStylePopoverOpen}>
             <PopoverTrigger asChild>
-              <Button type="button" variant="outline" className="h-auto min-h-10 w-full justify-between">
+              <Button type="button" variant="outline" className="h-auto min-h-10 w-full justify-between border-input bg-[color-mix(in_srgb,var(--color-surface)_90%,var(--color-bg))]">
                 <span className="mr-3 flex flex-wrap gap-1.5 text-left">
                   {styles.length > 0 ? (
                     styles.map((value) => {
                       const label = formContent.styleOptions.find((item) => item.value === value)?.label ?? value;
                       return (
-                        <span key={value} className="type-ui-sm rounded-md border border-border bg-muted px-2 py-0.5 text-foreground">
+                        <span key={value} className="type-ui-sm rounded-[8px] border border-[color-mix(in_srgb,var(--color-border-strong)_82%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-alt)_64%,var(--color-surface))] px-2.5 py-1 text-foreground">
                           {label}
                         </span>
                       );
@@ -241,7 +241,7 @@ export function BriefIntakeCard({
                 <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[320px] border-border bg-popover p-0" align="start">
+            <PopoverContent className="w-[320px] border-border bg-popover p-0 shadow-[var(--shadow-soft)]" align="start">
               <Command>
                 <CommandInput placeholder="Search styles..." value={styleSearch} onChange={(event) => setStyleSearch(event.target.value)} />
                 <CommandList>
@@ -292,14 +292,19 @@ export function BriefIntakeCard({
           <Label>How would you like the days to flow?</Label>
           <ToggleGroup type="single" value={pace} onValueChange={(v) => setPace(v || "")} className="grid w-full grid-cols-3 gap-2">
             {formContent.paceOptions.map((opt) => (
-              <ToggleGroupItem key={opt.value} value={opt.value} className="w-full border border-border" aria-label={opt.label}>
+              <ToggleGroupItem
+                key={opt.value}
+                value={opt.value}
+                className="w-full border border-border bg-[color-mix(in_srgb,var(--color-surface)_88%,var(--color-bg))] data-[state=on]:border-[var(--color-brand)] data-[state=on]:bg-[color-mix(in_srgb,var(--color-bg-alt)_68%,var(--color-surface))] data-[state=on]:text-[var(--color-text)]"
+                aria-label={opt.label}
+              >
                 {opt.label}
               </ToggleGroupItem>
             ))}
           </ToggleGroup>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3 pt-1">
           <Button
             type="button"
             size="lg"
@@ -314,7 +319,7 @@ export function BriefIntakeCard({
 
           <p className="type-ui-sm text-center text-muted-foreground">
             Prefer a quick chat first?{" "}
-            <Link href="/plan/contact" className="font-medium text-foreground underline underline-offset-4">
+            <Link href="/plan/contact" className="font-medium text-[var(--color-brand)] underline underline-offset-4">
               Book a call
             </Link>
           </p>

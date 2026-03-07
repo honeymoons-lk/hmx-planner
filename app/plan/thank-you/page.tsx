@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlanningHeader, PlanningMicroFooter } from "@/components/plan/planning-chrome";
+import { proxiedImageUrl } from "@/lib/media";
 import {
   readPlanningDraft,
   readSubmittedPlanningRequest,
@@ -59,6 +60,9 @@ function nightsLabel(nights?: string) {
   return `${nights} nights`;
 }
 
+const thankYouImage =
+  "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1800&q=80";
+
 export default function ThankYouPage() {
   const [request, setRequest] = useState<PlanningDraft | null>(null);
 
@@ -71,7 +75,13 @@ export default function ThankYouPage() {
       <PlanningHeader />
       <main className="min-h-[calc(100vh-64px)] bg-background px-4 py-10 md:px-6 md:py-14">
         <div className="mx-auto w-full max-w-5xl space-y-6">
-          <Card className="border-border bg-[var(--color-surface)]">
+          <Card className="overflow-hidden border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_93%,var(--color-bg))] shadow-[var(--shadow-soft)]">
+            <img
+              src={proxiedImageUrl(thankYouImage)}
+              alt="Sri Lanka coastline at dusk"
+              className="h-36 w-full object-cover object-center md:h-44"
+              loading="lazy"
+            />
             <CardHeader className="space-y-3">
               <CardTitle className="type-section font-serif">Your request is with us</CardTitle>
               <CardDescription className="type-body text-[var(--color-text-secondary)]">
@@ -82,7 +92,7 @@ export default function ThankYouPage() {
           </Card>
 
           <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
-            <Card className="border-border bg-[var(--color-surface)]">
+            <Card className="border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_94%,var(--color-bg))] shadow-[var(--shadow-soft)]">
               <CardHeader>
                 <CardTitle className="type-subheading font-serif">Here’s what we’re shaping for you</CardTitle>
               </CardHeader>
@@ -135,11 +145,11 @@ export default function ThankYouPage() {
             </Card>
 
             <div className="space-y-6">
-              <Card className="border-border bg-[var(--color-surface)]">
+              <Card className="border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_94%,var(--color-bg))] shadow-[var(--shadow-soft)]">
                 <CardHeader>
                   <CardTitle className="type-subheading font-serif">What happens next</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-5">
                   <div>
                     <p className="type-ui-sm text-foreground">1. Personal review</p>
                     <p className="type-meta text-muted-foreground">We review your request with care, not automation.</p>
@@ -161,7 +171,7 @@ export default function ThankYouPage() {
             <p className="type-body text-[var(--color-text-secondary)]">
               Every proposal is shaped around your pace, priorities, and the kind of experience you want to remember.
             </p>
-            <Button asChild variant="link" className="mt-2 px-0 text-muted-foreground">
+            <Button asChild variant="outline" className="mt-4">
               <Link href="/">Return to Luna Voyages</Link>
             </Button>
           </div>
