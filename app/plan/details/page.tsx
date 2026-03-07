@@ -75,14 +75,22 @@ export default function DetailsPage() {
           <ProgressIndicator stage={2} />
 
           <Card className="overflow-hidden border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] shadow-[var(--shadow-soft)]">
-            <div className="relative h-20 overflow-hidden md:h-24">
+            <div className="relative h-44 overflow-hidden md:h-56">
               <img
                 src={proxiedImageUrl(detailsImage)}
                 alt="Soft interior scene for journey details"
                 className="h-full w-full object-cover object-center"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(28,23,21,0.34)_0%,rgba(28,23,21,0.12)_46%,rgba(28,23,21,0.04)_100%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(28,23,21,0.54)_0%,rgba(28,23,21,0.18)_44%,rgba(28,23,21,0.06)_100%)]" />
+              <div className="absolute bottom-5 left-5 right-5 md:bottom-7 md:left-7 md:right-7">
+                <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_88%,var(--color-bg-alt))]">
+                  Tailoring the journey
+                </p>
+                <p className="mt-2 max-w-[42ch] font-serif text-[clamp(22px,2.4vw,30px)] leading-[1.2] text-[color-mix(in_srgb,var(--color-light)_95%,var(--color-bg-alt))]">
+                  Thoughtful choices that shape the tone, comfort, and rhythm of your honeymoon.
+                </p>
+              </div>
             </div>
             <CardHeader>
               <CardTitle className="type-subheading font-serif">A few final details</CardTitle>

@@ -24,7 +24,6 @@ import {
   writePlanningDraft,
   writeSubmittedPlanningRequest,
 } from "@/lib/planning-draft";
-import { proxiedImageUrl } from "@/lib/media";
 
 const timeframeLabels: Record<string, string> = {
   "next-3-months": "Next 3 months",
@@ -74,9 +73,6 @@ function nightsLabel(nights: string) {
   return `${nights} nights`;
 }
 
-const contactImage =
-  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80";
-
 export default function ContactPage() {
   const router = useRouter();
   const draft = useMemo(() => readPlanningDraft(), []);
@@ -124,25 +120,16 @@ export default function ContactPage() {
         <div className="mx-auto w-full max-w-5xl space-y-6">
           <ProgressIndicator stage={3} />
 
-          <Card className="overflow-hidden border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] shadow-[var(--shadow-soft)]">
-            <div className="relative h-20 overflow-hidden md:h-24">
-              <img
-                src={proxiedImageUrl(contactImage)}
-                alt="Calm ocean horizon at dusk"
-                className="h-full w-full object-cover object-center"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(28,23,21,0.34)_0%,rgba(28,23,21,0.12)_46%,rgba(28,23,21,0.04)_100%)]" />
-            </div>
+          <Card className="border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] shadow-[var(--shadow-soft)]">
             <CardHeader>
               <CardTitle className="type-subheading font-serif">Contact and review</CardTitle>
               <CardDescription className="type-body text-muted-foreground">
                 We&apos;re almost there. Share your contact details and send your request.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-7">
-              <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-                <div className="space-y-5">
+            <CardContent className="space-y-8">
+              <div className="grid gap-7 lg:grid-cols-[1.2fr_0.8fr]">
+                <div className="space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="first-name">First name</Label>
                     <Input
@@ -215,10 +202,11 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <aside className="relative overflow-hidden rounded-[var(--radius-form)] border border-[color-mix(in_srgb,var(--color-border)_84%,transparent)] bg-[color-mix(in_srgb,var(--color-bg)_70%,var(--color-surface))] p-5">
-                  <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)]" />
-                  <p className="type-ui-sm mb-3 text-foreground">Review your request</p>
-                  <div className="type-meta space-y-2">
+                <aside className="relative overflow-hidden rounded-[var(--radius-form)] border border-[color-mix(in_srgb,var(--color-border)_84%,transparent)] bg-[linear-gradient(160deg,color-mix(in_srgb,var(--color-bg)_74%,var(--color-surface))_0%,color-mix(in_srgb,var(--color-bg-alt)_34%,var(--color-surface))_100%)] p-6">
+                  <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)]" />
+                  <div className="pointer-events-none absolute -left-10 bottom-6 h-20 w-20 rounded-full border border-[color-mix(in_srgb,var(--color-border-strong)_45%,transparent)]" />
+                  <p className="type-ui-sm mb-4 text-foreground">Review your request</p>
+                  <div className="type-meta space-y-3">
                     <p className="text-muted-foreground">When</p>
                     <p className="type-ui-sm text-foreground">{timeframeLabels[draft.timeframe] || "-"}</p>
 
@@ -253,15 +241,15 @@ export default function ContactPage() {
 
               {submitError ? <p className="type-ui-sm text-muted-foreground">{submitError}</p> : null}
 
-              <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-col-reverse gap-4 sm:flex-row sm:items-end sm:justify-between">
                 <Button variant="outline" onClick={() => router.push("/plan/details")}>
                   Back
                 </Button>
-                <div className="space-y-2">
+                <div className="space-y-2 sm:max-w-[360px] sm:text-right">
                   <Button onClick={submit} disabled={!canSubmit || submitting}>
                     {submitting ? "Sending your request..." : "Request my proposal"}
                   </Button>
-                  <p className="type-ui-sm text-[var(--color-text-muted)]">
+                  <p className="type-ui-sm text-[var(--color-text-secondary)]">
                     Every request is reviewed personally by our concierge team.
                   </p>
                 </div>
