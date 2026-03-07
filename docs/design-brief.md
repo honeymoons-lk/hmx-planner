@@ -141,7 +141,7 @@ Avoid dense image grids.
 
 # Typography
 
-Logo direction: Roman capital style inspired by Trajan.
+Logo direction: Roman-capitals style wordmark using **Cinzel** (uppercase LUNA VOYAGES).
 
 Website typography should feel editorial and elegant.
 
@@ -185,7 +185,7 @@ Avoid overuse.
 Goal: immediate emotional positioning.
 
 Left: brand message  
-Right: concierge planning form
+Right: concierge planning form (Step 1 equivalent)
 
 Reference: Aman hero composition.
 
@@ -215,14 +215,12 @@ Categories:
 - Tea Estate Stays
 - Heritage Properties
 
-Each category can contain a small horizontal image gallery.
-
-Images per category: 3–5
-
-Property names can appear as **small captions only**.
-
-Example:
-Amangalla - Galle
+Current implementation direction:
+- category-led editorial two-column layout
+- category navigation + curated property shortlist on the left
+- single large preview image panel on the right
+- selecting/hovering a property updates the preview panel
+- property names are supporting proof, not primary cards
 
 Avoid:
 - hotel lists
@@ -231,18 +229,23 @@ Avoid:
 - booking buttons
 - comparison cards
 
-Reference: Jacada travel gallery style.
+Reference: Jacada-inspired curated presentation.
 
 ---
 
 ## Journey Flow
 
-Illustrated Sri Lanka route showing typical journey flow.
+Narrative itinerary + illustrated Sri Lanka route map.
 
-Example:
+Example route:
 Colombo → Cultural Triangle → Tea Country → South Coast
 
-Reference: Jacada trip route visuals.
+Current implementation direction:
+- left column: itinerary narrative blocks (day ranges, short story, one atmosphere image, one stay example)
+- right column: stylized Sri Lanka SVG map with route line and stop markers
+- active stop highlight updates as user scrolls itinerary blocks
+
+Reference: Jacada trip narrative + route context.
 
 ---
 
@@ -306,9 +309,47 @@ Primary CTA: **Start Planning**
 
 ---
 
+# Planning Funnel Structure (Current)
+
+Primary planning funnel routes:
+- `/plan/journey`
+- `/plan/details`
+- `/plan/contact`
+- `/plan/thank-you`
+
+Legacy aliases (redirects):
+- `/plan/consultation` -> `/plan/details`
+- `/plan/thanks` -> `/plan/thank-you`
+
+Funnel behavior:
+- minimal planning header/footer chrome
+- premium 3-stage progress tracker on journey/details/contact
+- no progress tracker on thank-you
+
+---
+
+# Book a Call Flow (Current)
+
+Separate from planning wizard, lower-friction call path:
+- `/book-a-call`
+- `/book-a-call/thank-you`
+
+Purpose:
+- for users who prefer a short conversation first
+- fewer fields than full planning funnel
+- concierge-led, human, non-salesy tone
+
+UI direction:
+- premium editorial intro with single wide image
+- concise "What to expect" content
+- short call request form
+- dedicated call confirmation page
+
+---
+
 # UI Component Direction
 
-The site will likely be implemented using **shadcn/ui compatible components**.
+The site is implemented with **shadcn/ui compatible components**.
 
 Components should:
 - remain simple
@@ -341,4 +382,3 @@ This is a **luxury hospitality brand**, not a booking marketplace.
 When couples land on the homepage they should immediately feel:
 
 "This is exactly the kind of honeymoon we want."
-
