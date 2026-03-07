@@ -85,36 +85,152 @@ export const homeContent = {
       "We match these to your dates, budget band, and honeymoon style - then handle the details.",
     items: [
       {
+        id: "beach-resorts",
         title: "Luxury Beach Resorts",
         description: "Coastal sanctuaries with polished service and space to exhale.",
-        image:
-          "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=80",
-        alt: "Luxury beach resort atmosphere by the Sri Lankan coast",
-        properties: ["Amanwella", "KK Beach", "Cape Weligama", "Anantara Peace Haven"],
+        framingLine: "A few places we return to often",
+        reassuranceLine: "Chosen to match the rhythm, privacy and atmosphere of your journey.",
+        properties: [
+          {
+            name: "Amanwella",
+            location: "Tangalle Coast",
+            image:
+              "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=80",
+            alt: "Ocean-facing luxury beach resort atmosphere on Sri Lanka's southern coast",
+          },
+          {
+            name: "Cape Weligama",
+            location: "Southern Coast",
+            image:
+              "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=2200&q=80",
+            alt: "Luxury seaside terrace and coastal horizon at sunset",
+          },
+          {
+            name: "KK Beach",
+            location: "Habaraduwa",
+            image:
+              "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=2200&q=80",
+            alt: "Refined coastal resort interiors with warm, relaxed atmosphere",
+          },
+          {
+            name: "Anantara Peace Haven",
+            location: "Tangalle",
+            image:
+              "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=2200&q=80",
+            alt: "Modern luxury resort pool framed by tropical greenery",
+          },
+        ],
       },
       {
+        id: "boutique-villas",
         title: "Boutique Villas",
         description: "Private, character-filled stays with intimacy and quiet built in.",
-        image:
-          "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2200&q=80",
-        alt: "Boutique villa with tropical architecture and private atmosphere",
-        properties: ["Kahanda Kanda", "The Last House", "Taru Villas", "Maniumpathy"],
+        framingLine: "A few places we return to often",
+        reassuranceLine: "Chosen for intimacy, character and the feeling of having space of your own.",
+        properties: [
+          {
+            name: "Kahanda Kanda",
+            location: "Koggala",
+            image:
+              "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2200&q=80",
+            alt: "Private boutique villa with tropical landscape and architectural character",
+          },
+          {
+            name: "The Last House",
+            location: "Tangalle",
+            image:
+              "https://images.unsplash.com/photo-1616137466211-f939a420be84?auto=format&fit=crop&w=2200&q=80",
+            alt: "Quiet villa suite with warm tones and intimate atmosphere",
+          },
+          {
+            name: "Taru Villas",
+            location: "Various Locations",
+            image:
+              "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?auto=format&fit=crop&w=2200&q=80",
+            alt: "Boutique villa garden walkway with restrained luxury details",
+          },
+          {
+            name: "Maniumpathy",
+            location: "Colombo",
+            image:
+              "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2200&q=80",
+            alt: "Elegant heritage-villa blend with calm premium interiors",
+          },
+        ],
       },
       {
+        id: "tea-estate-stays",
         title: "Tea Estate Stays",
         description: "Misty mornings, planter’s bungalows and slower rhythms in the hills.",
-        image:
-          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2200&q=80",
-        alt: "Tea estate hills and bungalow mood in Sri Lanka highlands",
-        properties: ["Ceylon Tea Trails", "Goatfell", "Nine Skies", "Camellia Hills"],
+        framingLine: "A few places we return to often",
+        reassuranceLine: "Chosen for atmosphere, stillness and a slower pace in the highlands.",
+        properties: [
+          {
+            name: "Ceylon Tea Trails",
+            location: "Hatton",
+            image:
+              "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=2200&q=80",
+            alt: "Tea country bungalow with expansive misty hill views",
+          },
+          {
+            name: "Goatfell",
+            location: "Nuwara Eliya",
+            image:
+              "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=2200&q=80",
+            alt: "Planter's bungalow lounge with fireplace in the highlands",
+          },
+          {
+            name: "Nine Skies",
+            location: "Demodara",
+            image:
+              "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4c3?auto=format&fit=crop&w=2200&q=80",
+            alt: "Tea estate stay with classic interiors and mountain outlook",
+          },
+          {
+            name: "Camellia Hills",
+            location: "Dickoya",
+            image:
+              "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2200&q=80",
+            alt: "Elegant tea estate veranda with still, cinematic atmosphere",
+          },
+        ],
       },
       {
+        id: "heritage-properties",
         title: "Heritage Properties",
         description: "Old walls, courtyards and storied houses that give the journey depth.",
-        image:
-          "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2200&q=80",
-        alt: "Heritage property with historic architecture and warm courtyards",
-        properties: ["Galle Fort Hotel", "Fort Bazaar", "Maniumpathy", "The Kandy House"],
+        framingLine: "A few places we return to often",
+        reassuranceLine: "Chosen for character, sense of place and the stories they bring into the journey.",
+        properties: [
+          {
+            name: "Galle Fort Hotel",
+            location: "Galle Fort",
+            image:
+              "https://images.unsplash.com/photo-1535827841776-24afc1e255ac?auto=format&fit=crop&w=2200&q=80",
+            alt: "Historic courtyard setting in a restored heritage property",
+          },
+          {
+            name: "Fort Bazaar",
+            location: "Galle Fort",
+            image:
+              "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=2200&q=80",
+            alt: "Refined heritage hotel architecture with warm colonial character",
+          },
+          {
+            name: "Maniumpathy",
+            location: "Colombo",
+            image:
+              "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=2200&q=80",
+            alt: "Heritage suite with layered textures and calm lighting",
+          },
+          {
+            name: "The Kandy House",
+            location: "Kandy",
+            image:
+              "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2200&q=80",
+            alt: "Classic Sri Lankan manor architecture in a lush tropical setting",
+          },
+        ],
       },
     ],
   },
