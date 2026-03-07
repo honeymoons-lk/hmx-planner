@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { homeContent } from "@/content/home-content";
 import { HomeHeader } from "@/components/home/home-header";
 import { FinalCtaSection } from "@/components/home/final-cta-section";
@@ -23,9 +23,7 @@ type JourneyCase = {
   pricingTier: "Comfortable" | "Premium" | "Exceptional";
   intro: string;
   testimonial: string;
-  mapImage: string;
   stayName: string;
-  stayRegion: string;
   stayNote: string;
   stops: JourneyStop[];
 };
@@ -38,14 +36,12 @@ const realJourneys: JourneyCase[] = [
     pricingTier: "Premium",
     intro: "10 nights with tea trails, private moments, and a quiet beach finale.",
     testimonial: "It felt perfectly paced from day one.",
-    mapImage: "/api/map/flow-static",
     stayName: "Amanwella",
-    stayRegion: "South Coast",
     stayNote: "Minimal beachfront suites and uninterrupted sea views.",
     stops: [
       {
         id: "na-colombo",
-        dayRange: "Days 1-2",
+        dayRange: "Day 1-2",
         title: "Landing softly in Colombo",
         body: "Private transfer, gentle first-night pacing, and an easy city rhythm before moving inland.",
         image:
@@ -53,15 +49,15 @@ const realJourneys: JourneyCase[] = [
       },
       {
         id: "na-ella",
-        dayRange: "Days 3-6",
+        dayRange: "Day 3-6",
         title: "Tea hills and scenic rail in Ella",
         body: "Mornings on misty terraces, estate walks, and one of the island’s most beautiful rail journeys.",
         image:
-          "https://images.unsplash.com/photo-1544737151-6e4b4f8d6b5b?auto=format&fit=crop&w=2200&q=80",
+          "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=2200&q=80",
       },
       {
         id: "na-tangalle",
-        dayRange: "Days 7-10",
+        dayRange: "Day 7-10",
         title: "Barefoot close on the South Coast",
         body: "Private beach time, long dinners, and a final stretch designed around rest and connection.",
         image:
@@ -76,22 +72,20 @@ const realJourneys: JourneyCase[] = [
     pricingTier: "Comfortable",
     intro: "8 nights balancing culture landmarks and coastal downtime.",
     testimonial: "Every transfer and check-in was seamless.",
-    mapImage: "/api/map/flow-static",
     stayName: "Fort Bazaar",
-    stayRegion: "Galle Fort",
     stayNote: "A refined boutique base in the heart of the fort.",
     stops: [
       {
         id: "rm-sigiriya",
-        dayRange: "Days 1-3",
+        dayRange: "Day 1-3",
         title: "Ancient cities and Sigiriya mornings",
         body: "Sunrise climbs, private guiding, and slow afternoons with views over the Cultural Triangle.",
         image:
-          "https://images.unsplash.com/photo-1588598198321-9735b3f9d55b?auto=format&fit=crop&w=2200&q=80",
+          "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=2200&q=80",
       },
       {
         id: "rm-kandy",
-        dayRange: "Days 4-5",
+        dayRange: "Day 4-5",
         title: "Kandy’s cultural core",
         body: "Temple visits, relaxed city pacing, and curated local experiences without overloading the day.",
         image:
@@ -99,7 +93,7 @@ const realJourneys: JourneyCase[] = [
       },
       {
         id: "rm-galle",
-        dayRange: "Days 6-8",
+        dayRange: "Day 6-8",
         title: "Fort walks and ocean evenings in Galle",
         body: "Golden-hour ramparts, design-led boutique stays, and an elegant coastal finish.",
         image:
@@ -114,14 +108,12 @@ const realJourneys: JourneyCase[] = [
     pricingTier: "Exceptional",
     intro: "9 nights with villa stays, safari, and signature dining.",
     testimonial: "It felt designed for us, not a template.",
-    mapImage: "/api/map/flow-static",
     stayName: "Cape Weligama",
-    stayRegion: "Weligama",
     stayNote: "Clifftop villas with expansive Indian Ocean views.",
     stops: [
       {
         id: "ds-bentota",
-        dayRange: "Days 1-3",
+        dayRange: "Day 1-3",
         title: "Riverside calm in Bentota",
         body: "A serene start with private villa living, river excursions, and unhurried beach afternoons.",
         image:
@@ -129,7 +121,7 @@ const realJourneys: JourneyCase[] = [
       },
       {
         id: "ds-yala",
-        dayRange: "Days 4-6",
+        dayRange: "Day 4-6",
         title: "Safari days around Yala",
         body: "Dawn game drives, slow lodge mornings, and nature-led moments layered with comfort.",
         image:
@@ -137,7 +129,7 @@ const realJourneys: JourneyCase[] = [
       },
       {
         id: "ds-weligama",
-        dayRange: "Days 7-9",
+        dayRange: "Day 7-9",
         title: "Ocean-facing final days in Weligama",
         body: "Signature dining, sunset rituals, and full-service ease until departure.",
         image:
@@ -147,18 +139,84 @@ const realJourneys: JourneyCase[] = [
   },
 ];
 
-export default function RealHoneymoonsPage() {
-  const [activeJourneyId, setActiveJourneyId] = useState(realJourneys[0].id);
-  const activeJourney = useMemo(
-    () => realJourneys.find((journey) => journey.id === activeJourneyId) ?? realJourneys[0],
-    [activeJourneyId],
-  );
-  const [activeStopId, setActiveStopId] = useState(activeJourney.stops[0].id);
+const routePoints = [
+  { x: 173, y: 172, labelX: 108, labelY: 164 },
+  { x: 225, y: 250, labelX: 252, labelY: 242 },
+  { x: 212, y: 372, labelX: 238, labelY: 368 },
+  { x: 170, y: 500, labelX: 202, labelY: 492 },
+] as const;
 
-  const activeStop = useMemo(
-    () => activeJourney.stops.find((stop) => stop.id === activeStopId) ?? activeJourney.stops[0],
-    [activeJourney, activeStopId],
-  );
+function indexToPointIndex(index: number, total: number): number {
+  if (total <= 1) return 1;
+  if (total === 2) return [0, 3][index] ?? 3;
+  if (total === 3) return [0, 1, 3][index] ?? 3;
+  return [0, 1, 2, 3][index] ?? 3;
+}
+
+function buildRoutePath(stopsCount: number): string {
+  const points = Array.from({ length: stopsCount }, (_, index) => routePoints[indexToPointIndex(index, stopsCount)]);
+  if (!points.length) return "";
+  if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
+
+  let d = `M ${points[0].x} ${points[0].y}`;
+  for (let i = 1; i < points.length; i += 1) {
+    const prev = points[i - 1];
+    const curr = points[i];
+    const cx = (prev.x + curr.x) / 2;
+    const cy = (prev.y + curr.y) / 2 - 24;
+    d += ` Q ${cx} ${cy} ${curr.x} ${curr.y}`;
+  }
+  return d;
+}
+
+export default function RealHoneymoonsPage() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const blockRefs = useRef<Record<string, HTMLElement | null>>({});
+  const activeJourney = realJourneys[0];
+  const [activeStopId, setActiveStopId] = useState(activeJourney.stops[0].id);
+  const [hasEntered, setHasEntered] = useState(false);
+
+  useEffect(() => {
+    const sectionEl = sectionRef.current;
+    if (!sectionEl) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setHasEntered(true);
+        });
+      },
+      { threshold: 0.3 },
+    );
+    observer.observe(sectionEl);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const blocks = activeJourney.stops
+      .map((stop) => blockRefs.current[stop.id])
+      .filter((element): element is HTMLElement => Boolean(element));
+    if (!blocks.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (!visible.length) return;
+        const stepId = visible[0].target.getAttribute("data-step-id");
+        if (stepId) setActiveStopId(stepId);
+      },
+      {
+        threshold: [0.3, 0.5, 0.7],
+        rootMargin: "-24% 0px -34% 0px",
+      },
+    );
+
+    blocks.forEach((block) => observer.observe(block));
+    return () => observer.disconnect();
+  }, [activeJourney.stops]);
+
+  const routePath = useMemo(() => buildRoutePath(activeJourney.stops.length), [activeJourney.stops.length]);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[var(--color-bg-alt)] via-background to-[var(--color-bg)] text-foreground">
@@ -168,124 +226,134 @@ export default function RealHoneymoonsPage() {
         cta={homeContent.header.cta}
       />
 
-      <section className="mx-auto w-full max-w-6xl px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
+      <section
+        ref={sectionRef}
+        className="mx-auto w-full max-w-6xl px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]"
+      >
         <header className="max-w-3xl">
-          <p className="type-eyebrow text-muted-foreground">Real honeymoons</p>
+          <p className="type-eyebrow text-muted-foreground">REAL HONEYMOONS</p>
           <h1 className="type-section mt-4 font-serif tracking-tight">Journeys we have designed in detail</h1>
           <p className="type-body-lg mt-[var(--heading-body-gap)] text-[var(--color-text-secondary)]">
             Explore real route structures, pacing decisions, and the kinds of stays we match to each couple.
           </p>
         </header>
 
-        <div className="mt-8 -mx-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="inline-flex min-w-full items-center gap-3">
-            {realJourneys.map((journey) => (
-              <button
-                key={journey.id}
-                type="button"
-                onClick={() => {
-                  setActiveJourneyId(journey.id);
-                  setActiveStopId(journey.stops[0].id);
-                }}
-                className={`rounded-[var(--radius-input)] border px-4 py-3 text-left transition-colors ${
-                  journey.id === activeJourneyId
-                    ? "border-[var(--color-border-strong)] bg-[var(--color-surface)]"
-                    : "border-border bg-[var(--color-bg)] hover:bg-[var(--color-surface)]"
-                }`}
-              >
-                <p className="type-ui-sm text-[var(--color-text)]">{journey.couple}</p>
-                <p className="type-meta text-[var(--color-text-muted)]">{journey.route}</p>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-7 flex flex-wrap items-center gap-3">
+        <div className="mt-6 flex flex-wrap items-center gap-3">
           <Badge variant="secondary">{activeJourney.pricingTier}</Badge>
           <p className="type-body text-[var(--color-text-secondary)]">{activeJourney.intro}</p>
         </div>
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.92fr)] lg:gap-10">
-          <div className="relative pl-7 lg:pl-10">
-            <span className="absolute bottom-0 left-2 top-2 w-px border-l border-dashed border-[color-mix(in_srgb,var(--color-border-strong)_92%,transparent)]" />
+        <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,43%)_minmax(0,57%)] lg:gap-12">
+          <div className="relative pl-8 md:pl-10">
+            <span className="absolute bottom-6 left-0 top-2 w-px bg-[color-mix(in_srgb,var(--color-border-strong)_86%,transparent)]" />
 
-            <article className="relative mb-8 rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_78%,transparent)] bg-[var(--color-surface)] p-5 md:p-6">
-              <span className="absolute -left-[26px] top-8 h-2.5 w-2.5 rounded-full bg-[var(--color-brand)]" />
-              <p className="type-eyebrow text-[var(--color-text-muted)]">{activeStop.dayRange}</p>
-              <h2 className="mt-3 font-serif text-[clamp(30px,3.5vw,44px)] leading-[1.12] tracking-tight text-[var(--color-text)]">
-                {activeStop.title}
-              </h2>
-              <p className="type-body mt-4 max-w-[62ch] text-[var(--color-text-secondary)]">{activeStop.body}</p>
-
-              <img
-                src={proxiedImageUrl(activeStop.image)}
-                alt={activeStop.title}
-                loading="lazy"
-                className="mt-6 h-[360px] w-full rounded-[var(--radius-card)] object-cover object-center md:h-[440px]"
-              />
-
-              <div className="mt-6">
-                <h3 className="font-serif text-[32px] leading-[1.1] text-[var(--color-text)]">Where they stayed</h3>
-                <div className="mt-4 grid overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_78%,transparent)] bg-[var(--color-surface)] md:grid-cols-[220px_1fr]">
-                  <img
-                    src={proxiedImageUrl(activeStop.image)}
-                    alt={`${activeJourney.stayName} preview`}
-                    loading="lazy"
-                    className="h-[210px] w-full object-cover object-center md:h-full"
-                  />
-                  <div className="space-y-2 p-5">
-                    <p className="type-eyebrow text-[var(--color-text-muted)]">{activeJourney.stayRegion}</p>
-                    <p className="font-serif text-[32px] leading-[1.1] text-[var(--color-text)]">{activeJourney.stayName}</p>
-                    <p className="type-body text-[var(--color-text-secondary)]">{activeJourney.stayNote}</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <div className="space-y-2">
+            <div className="space-y-14">
               {activeJourney.stops.map((stop) => {
                 const isActive = stop.id === activeStopId;
                 return (
-                  <button
+                  <article
                     key={stop.id}
-                    type="button"
-                    onClick={() => setActiveStopId(stop.id)}
-                    className={`relative flex w-full items-start gap-3 rounded-[var(--radius-input)] px-3 py-3 text-left transition-colors ${
-                      isActive
-                        ? "bg-[color-mix(in_srgb,var(--color-bg-alt)_72%,transparent)]"
-                        : "hover:bg-[color-mix(in_srgb,var(--color-bg-alt)_46%,transparent)]"
-                    }`}
+                    data-step-id={stop.id}
+                    ref={(element) => {
+                      blockRefs.current[stop.id] = element;
+                    }}
+                    className={`relative transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-70"}`}
                   >
                     <span
-                      className={`mt-2 h-2 w-2 rounded-full transition-colors ${
-                        isActive ? "bg-[var(--color-brand)]" : "bg-[var(--color-border-strong)]"
+                      className={`absolute -left-[34px] top-1 h-2.5 w-2.5 rounded-full border border-[var(--color-bg)] transition-all duration-300 ${
+                        isActive ? "bg-[var(--color-brand)] scale-110" : "bg-[var(--color-border-strong)]"
                       }`}
                     />
-                    <div>
-                      <p className="type-ui-sm text-[var(--color-text)]">{stop.title}</p>
-                      <p className="type-meta text-[var(--color-text-muted)]">{stop.dayRange}</p>
+
+                    <p className="type-eyebrow text-[var(--color-text-muted)]">{stop.dayRange.toUpperCase()}</p>
+                    <h2 className="mt-3 font-serif text-[clamp(28px,3.2vw,40px)] leading-[1.16] text-[var(--color-text)]">
+                      {stop.title}
+                    </h2>
+                    <p className="type-body mt-4 text-[var(--color-text-secondary)]">{stop.body}</p>
+
+                    <img
+                      src={proxiedImageUrl(stop.image)}
+                      alt={stop.title}
+                      loading="lazy"
+                      className="mt-7 aspect-[16/10] w-full rounded-[var(--radius-card)] object-cover object-center"
+                    />
+
+                    <div className="mt-6">
+                      <p className="font-serif text-[30px] leading-[1.15] text-[var(--color-text)]">Where you could stay</p>
+                      <p className="mt-3 font-sans text-[18px] font-medium leading-[1.5] text-[var(--color-text)]">{activeJourney.stayName}</p>
+                      <p className="type-body mt-2 text-[var(--color-text-secondary)]">{activeJourney.stayNote}</p>
                     </div>
-                  </button>
+                  </article>
                 );
               })}
             </div>
           </div>
 
-          <aside className="lg:sticky lg:top-24 lg:self-start">
-            <div className="overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_82%,transparent)] bg-[var(--color-bg-alt)]">
-              <div className="relative h-[520px]">
-                <img
-                  src={activeJourney.mapImage}
-                  alt={`${activeJourney.route} map`}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(248,243,238,0.08)_0%,rgba(248,243,238,0.16)_100%)]" />
+          <aside className="order-last lg:order-none lg:sticky lg:top-24 lg:self-start xl:mr-[-160px] 2xl:mr-[-200px]">
+            <div className="overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_80%,transparent)] bg-[var(--color-bg-alt)]">
+              <div className="relative aspect-[4/5] min-h-[420px] md:aspect-[5/6] lg:min-h-[620px]">
+                <svg viewBox="0 0 420 620" className="h-full w-full" role="img" aria-label={`${activeJourney.route} route map`}>
+                  <rect x="0" y="0" width="420" height="620" fill="color-mix(in srgb, var(--color-bg-alt) 82%, var(--color-surface))" />
+                  <path
+                    d="M168 84C196 79 222 88 238 103C258 122 271 154 273 184C276 221 269 257 257 293C249 318 250 343 257 370C266 404 263 441 249 472C235 504 215 527 194 542C178 553 157 555 143 547C127 537 120 518 121 497C123 462 137 430 138 397C138 365 128 334 121 303C114 271 114 237 124 206C133 177 149 153 157 125C162 107 160 95 168 84Z"
+                    fill="color-mix(in srgb, var(--color-surface) 95%, var(--color-bg-alt))"
+                    stroke="color-mix(in srgb, var(--color-border-strong) 88%, transparent)"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d={routePath}
+                    fill="none"
+                    stroke="color-mix(in srgb, var(--color-brand) 88%, var(--color-text))"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    pathLength={1}
+                    style={{
+                      strokeDasharray: 1,
+                      strokeDashoffset: hasEntered ? 0 : 1,
+                      transition: "stroke-dashoffset 1400ms ease-out",
+                    }}
+                  />
+
+                  {activeJourney.stops.map((stop, index) => {
+                    const point = routePoints[indexToPointIndex(index, activeJourney.stops.length)];
+                    const isActive = stop.id === activeStopId;
+                    return (
+                      <g key={`${stop.id}-map-marker`}>
+                        <circle
+                          cx={point.x}
+                          cy={point.y}
+                          r={isActive ? 10 : 7}
+                          fill={isActive ? "var(--color-brand)" : "color-mix(in srgb, var(--color-text-muted) 75%, var(--color-border-strong))"}
+                          opacity={isActive ? 1 : 0.88}
+                          style={{ transition: "all 280ms ease" }}
+                        />
+                        <circle
+                          cx={point.x}
+                          cy={point.y}
+                          r={isActive ? 16 : 0}
+                          fill="none"
+                          stroke="color-mix(in srgb, var(--color-brand) 45%, transparent)"
+                          strokeWidth="1.5"
+                          style={{ transition: "all 280ms ease" }}
+                        />
+                        <text
+                          x={point.labelX}
+                          y={point.labelY}
+                          fill="color-mix(in srgb, var(--color-text-secondary) 82%, var(--color-text-muted))"
+                          style={{ fontSize: "11px", fontFamily: "var(--font-body), Inter, sans-serif", letterSpacing: "0.04em" }}
+                        >
+                          {stop.dayRange}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </svg>
               </div>
 
-              <div className="space-y-2 border-t border-[color-mix(in_srgb,var(--color-border)_82%,transparent)] p-5">
+              <div className="border-t border-[color-mix(in_srgb,var(--color-border)_82%,transparent)] p-5">
                 <p className="type-eyebrow text-[var(--color-text-muted)]">{activeJourney.route}</p>
-                <p className="type-body text-[var(--color-text-secondary)]">“{activeJourney.testimonial}”</p>
+                <p className="type-body mt-2 text-[var(--color-text-secondary)]">“{activeJourney.testimonial}”</p>
               </div>
             </div>
           </aside>
