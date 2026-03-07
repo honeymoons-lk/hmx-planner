@@ -18,6 +18,10 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/plan/details`
 - `/plan/contact`
 - `/plan/thank-you`
+- `/plan/consultation` (legacy alias)
+- `/plan/thanks` (legacy alias)
+- `/book-a-call`
+- `/book-a-call/thank-you`
 - `/real-honeymoons`
 - `/style-guide`
 

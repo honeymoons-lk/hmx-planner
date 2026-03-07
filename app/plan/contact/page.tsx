@@ -260,7 +260,7 @@ export default function ContactPage() {
           <p className="type-ui-sm text-center text-muted-foreground">
             Prefer a quick chat first?{" "}
             <Link
-              href="mailto:hello@lunavoyages.com?subject=Luna%20Voyages%20Call%20Request"
+              href="/book-a-call"
               className="font-medium text-[var(--color-brand)] underline underline-offset-4"
             >
               Book a call

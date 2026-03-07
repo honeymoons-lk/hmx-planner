@@ -319,7 +319,7 @@ export function BriefIntakeCard({
 
           <p className="type-ui-sm text-center text-muted-foreground">
             Prefer a quick chat first?{" "}
-            <Link href="/plan/contact" className="font-medium text-[var(--color-brand)] underline underline-offset-4">
+            <Link href="/book-a-call" className="font-medium text-[var(--color-brand)] underline underline-offset-4">
               Book a call
             </Link>
           </p>
