@@ -13,16 +13,20 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Current page routes
 
 - `/`
-- `/robots.txt`
+- `/real-honeymoons`
+- `/style-guide`
+- `/design-brief`
+- `/sitemap`
+- `/book-a-call`
+- `/book-a-call/thank-you`
 - `/plan/journey`
 - `/plan/details`
 - `/plan/contact`
 - `/plan/thank-you`
-- `/book-a-call`
-- `/book-a-call/thank-you`
-- `/real-honeymoons`
-- `/design-brief`
-- `/style-guide`
+
+## Public utility route
+
+- `/robots.txt`
 
 ## Current API routes
 

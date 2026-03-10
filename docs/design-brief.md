@@ -1,4 +1,4 @@
-# Luna Voyages — Website Design Brief (Designer Handoff)
+# Luna Voyages - Website Design Brief (Designer Handoff)
 
 ## Purpose of This Brief
 This is a **design brief for final visual design**, not a product spec and not a set of wireframes to be polished mechanically.
@@ -11,12 +11,12 @@ The current UI work should be treated as **high-definition wireframes**:
 - layout rhythm is useful
 - **visual design is not final**
 
-The goal for design is to translate this into a website that feels emotionally elevated, brand-led, and unmistakably premium — **not a generic startup landing page, not a travel OTA, and not a “pretty Dribbble concept” disconnected from conversion and usability.**
+The goal for design is to translate this into a website that feels emotionally elevated, brand-led, and unmistakably premium - **not a generic startup landing page, not a travel OTA, and not a “pretty Dribbble concept” disconnected from conversion and usability.**
 
 ---
 
 ## Design North Star
-The website should feel like the **digital equivalent of arriving at a quiet luxury romantic resort** — calm, intimate, refined and intentional.
+The website should feel like the **digital equivalent of arriving at a quiet luxury romantic resort** - calm, intimate, refined and intentional.
 
 This is the core standard the design should be judged against.
 
@@ -93,9 +93,9 @@ Primary CTA:
 
 ## Visual Reference Direction
 Reference brands:
-- Aman - https://www.aman.com
-- Jacada Travel - https://www.jacadatravel.com
-- Black Tomato - https://www.blacktomato.com
+- Aman
+- Jacada Travel
+- Black Tomato
 
 These references are useful for:
 - restraint
@@ -281,7 +281,7 @@ Immediate emotional positioning plus a clear path into planning.
 - emotional positioning copy
 - compact planning form embedded in the hero
 
-This should feel premium and calm — **not** like a hard-sell lead-generation panel.
+This should feel premium and calm - **not** like a hard-sell lead-generation panel.
 
 ### Important product logic
 The hero form is **not redundant** with the planning funnel.
@@ -289,12 +289,12 @@ It supports a specific entry journey.
 
 There are **two valid user journeys** into planning:
 
-#### User Journey 1 — Hero-first entry
+#### User Journey 1 - Hero-first entry
 - user starts from the homepage hero form
 - after submitting that form, they move into **Step 2** of the planning flow
 - this path is useful for users coming from targeted entry points such as paid traffic / campaign landing scenarios
 
-#### User Journey 2 — CTA-first entry
+#### User Journey 2 - CTA-first entry
 - user clicks **Start Planning** from the homepage or other CTA locations
 - they begin at **/plan/journey**
 - this is the full Step 1 entry path
@@ -511,7 +511,7 @@ The target is a **quiet luxury planning experience**.
 
 ---
 
-## Step 1 — `/plan/journey`
+## Step 1 - `/plan/journey`
 This is the fuller preference-capture entry point for users who start from **Start Planning** rather than the hero form.
 
 It captures things like:
@@ -532,7 +532,7 @@ Not like a questionnaire dashboard.
 
 ---
 
-## Step 2 — `/plan/details`
+## Step 2 - `/plan/details`
 This captures comfort level, occasion, and personal notes.
 
 ### Design goal
@@ -545,7 +545,7 @@ A summary of earlier preferences is helpful and should feel curated rather than 
 
 ---
 
-## Step 3 — `/plan/contact`
+## Step 3 - `/plan/contact`
 This captures contact details and allows final review before submission.
 
 ### Design goal
@@ -562,7 +562,7 @@ A review panel is useful, but should be visually integrated into the brand langu
 
 ---
 
-## Thank You — `/plan/thank-you`
+## Thank You - `/plan/thank-you`
 The confirmation page should not feel like a dead end.
 
 It should:
@@ -646,10 +646,224 @@ Specifically avoid:
 
 ---
 
+# What would make this a 9/10 design outcome
+
+The current work should be treated as a strong structural foundation.
+The designer’s job is not to simply make the wireframes prettier.
+The job is to turn them into a visually unified, emotionally distinctive, premium brand experience.
+
+To reach that level, the design needs to solve the following well:
+
+## 1. Make the three entry paths feel intentionally different
+Luna Voyages has three valid ways into conversion:
+- the homepage hero form
+- Start Planning
+- Book a Call
+
+These should not feel like three versions of the same thing.
+They should feel like three deliberately different invitations.
+
+### Hero form
+Should feel like:
+- the most emotional entry
+- lightweight
+- refined
+- an elegant opening move
+
+It should feel integrated into the hero, not like a standard lead-gen panel.
+
+### Start Planning
+Should feel like:
+- the main tailored planning path
+- more considered
+- more complete
+- more preference-led
+
+### Book a Call
+Should feel like:
+- conversation-first
+- reassuring
+- more human
+- more personal and less form-heavy
+
+The difference between these paths should be clear in both layout and visual tone.
+
+---
+
+## 2. Give each homepage section a clearly different visual role
+The homepage should not feel like a repeated sequence of elegant content blocks.
+Each section should have its own reading mode and visual identity.
+
+For example:
+- Hero = immersive and cinematic
+- Signature Moments = seductive and image-led
+- The Kind of Stays We Curate = editorial and taste-led
+- Journey / Sample Itinerary = narrative and structured
+- Real Honeymoons / Designed Journeys = proof-led
+- Concierge Process / Our Approach = minimal and reassuring
+- FAQ / trust / final CTA = calm and low-noise
+
+The homepage should feel like a sequence of distinct reveals, not one long premium layout system.
+
+---
+
+## 3. Design for “quiet resort arrival,” not generic luxury travel marketing
+A common failure mode is creating a site that looks expensive but feels generic.
+This project should not become:
+- a polished beige travel landing page
+- a Dribbble-style editorial concept
+- a generic luxury marketing site
+
+The emotional target is:
+- arrival
+- exhale
+- privacy
+- warmth
+- intimacy
+- calm confidence
+
+The design should feel like someone has prepared a beautiful place for the visitor, not like someone has prepared a presentation for them.
+
+---
+
+## 4. Make the planning funnel feel like a private continuation of the homepage world
+The funnel should feel like entering a quieter, more private room inside the same brand experience.
+It should not feel like leaving the website and entering a standard multi-step form system.
+
+The designer should preserve:
+- emotional continuity
+- visual continuity
+- tonal continuity
+
+This matters especially on:
+- `/plan/journey`
+- `/plan/details`
+- `/plan/contact`
+- `/book-a-call`
+
+These pages can be simpler and calmer than the homepage, but they still need to feel unmistakably part of Luna Voyages.
+
+---
+
+## 5. Make the progress tracker and forms feel bespoke
+The stepper, form fields, selection cards, inputs and review panels should not feel like default component-library UI.
+They should feel custom-curated, refined and hospitality-led.
+
+The desired feel is:
+- breathable
+- tactile
+- calm
+- premium
+- composed
+
+Not:
+- onboarding flow
+- checkout UI
+- SaaS wizard
+- dashboard form design
+
+---
+
+## 6. Visually separate journey storytelling from service process
+Two ideas must remain clearly different throughout the homepage:
+- the journey itself
+- how Luna Voyages works
+
+### Journey / Sample Itinerary
+Should feel:
+- place-led
+- narrative
+- geographic
+- immersive
+
+### Concierge Process / Our Approach
+Should feel:
+- lighter
+- more reassuring
+- more human
+- less dominant
+
+If both sections are treated too similarly, the homepage loses clarity.
+
+---
+
+## 7. Make Real Honeymoons / Designed Journeys feel like proof, not filler
+This section should not feel like another inspiration block or another generic card grid.
+It should communicate:
+- credibility
+- realness
+- range
+- confidence
+
+It should feel closer to a curated portfolio of designed journeys than a sample package section.
+
+---
+
+## 8. Use imagery as pacing, not just decoration
+Imagery is not only there to make the site beautiful.
+It should control:
+- emotional lift
+- stillness
+- transition
+- intimacy
+- emphasis
+
+The designer should vary:
+- crop scale
+- image density
+- visual rhythm
+- distance vs intimacy
+
+The site should feel visually rich, but never noisy.
+
+---
+
+## 9. Prevent visual overlap between sections
+If two sections do different jobs, they should not look too similar.
+Avoid repeating the same:
+- card language
+- image ratios
+- content rhythm
+- visual density
+- compositional pattern
+
+The page should feel composed and intentional, not templated.
+
+---
+
+## 10. Keep reassurance sections inside the mood of the brand
+FAQ, trust signals, partner references, and end-of-page reassurance should not collapse the mood into generic marketing or support UI.
+
+These sections should still feel:
+- calm
+- elegant
+- integrated
+- low-noise
+
+Trust should feel like quiet confidence.
+FAQ should feel like thoughtful reassurance.
+
+---
+
+## 11. Bring a stronger sense of private hospitality into the internal pages
+The internal planning and Book a Call pages should feel like private consultation rooms within the same resort-like world.
+
+This can come through:
+- softer framing
+- more intimate imagery
+- quieter composition
+- warmer hierarchy
+- tactile surfaces and cards
+- stronger sense of personal attention
+
+This is one of the key places where the designer can lift the experience from good to exceptional.
+
+---
+
 # What Success Looks Like
 When the right couple lands on the site, they should feel:
 
-**“This is exactly the kind of journey we want — and these people will handle it beautifully.”**
+**“This is exactly the kind of journey we want - and these people will handle it beautifully.”**
 
 The final design should create three outcomes at once:
 - emotional desire

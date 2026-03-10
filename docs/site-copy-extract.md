@@ -270,11 +270,6 @@ This file extracts user-facing text currently used across pages/sections.
 - Button: `Return to Luna Voyages`
 - Link: `Prefer to share your preferences first? Start planning instead`
 
-## Legacy redirects
-
-- `/plan/consultation` -> `/plan/details`
-- `/plan/thanks` -> `/plan/thank-you`
-
 ---
 
 ## `/real-honeymoons`
