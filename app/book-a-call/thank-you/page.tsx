@@ -134,7 +134,7 @@ export default function BookACallThankYouPage() {
             </Card>
           </div>
 
-          <div className="space-y-3 text-center">
+          <div className="space-y-4 text-center mt-12">
             <Button asChild variant="outline">
               <Link href="/">Return to Luna Voyages</Link>
             </Button>

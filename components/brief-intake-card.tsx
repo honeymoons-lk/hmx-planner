@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { CalendarDays, Check, ChevronDown } from "lucide-react";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, type DateRange } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,6 +22,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { readPlanningDraft, writePlanningDraft } from "@/lib/planning-draft";
+import { cn } from "@/lib/utils";
 
 type BriefIntakeCardProps = {
   id?: string;
@@ -88,8 +90,8 @@ const formContent = {
 export function BriefIntakeCard({
   id,
   className,
-  title = "Tell us about the journey you are imagining",
-  description = "4 quick choices. Add dates if you have them. We’ll come back with a tailored proposal.",
+  title = "Begin your private planning brief",
+  description = "Share the shape of the escape you are imagining. We’ll come back with a thoughtful route, stay style, and next steps.",
 }: BriefIntakeCardProps) {
   const router = useRouter();
   const seed = useMemo(() => readPlanningDraft(), []);
@@ -151,14 +153,24 @@ export function BriefIntakeCard({
   };
 
   return (
-    <Card id={id} className={className}>
-      <CardHeader className="space-y-3 px-7 pt-7">
-        <CardTitle className="type-subheading font-serif">{title}</CardTitle>
-        <CardDescription className="type-body pt-1 text-muted-foreground">{description}</CardDescription>
+    <Card id={id} className={cn("bg-[rgba(252,248,244,0.94)] backdrop-blur-2xl rounded-[8px] border border-[rgba(255,255,255,0.6)] shadow-[0_40px_80px_rgba(14,11,10,0.15)]", className)}>
+      <CardHeader className="space-y-5 border-b border-[rgba(0,0,0,0.06)] px-8 pt-9 pb-7">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <span className="type-eyebrow text-[var(--color-brand)]">
+            Personal Planning Brief
+          </span>
+          <span className="text-[12px] text-[var(--color-text-muted)] italic">Takes ~60 seconds</span>
+        </div>
+        <CardTitle className="type-subheading font-serif tracking-tight text-[var(--color-text)]">
+          {title}
+        </CardTitle>
+        <CardDescription className="type-body text-[var(--color-text-secondary)] font-light">
+          {description}
+        </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-6 px-7 pb-7">
-        <div className="space-y-2">
+      <CardContent className="space-y-7 px-8 py-8">
+        <div className="space-y-3">
           <Label htmlFor="timeframe">When would you like to travel?</Label>
           <Select value={timeframe} onValueChange={setTimeframe}>
             <SelectTrigger id="timeframe" className="w-full">
@@ -175,12 +187,16 @@ export function BriefIntakeCard({
         </div>
 
         {timeframe === "pick-dates" ? (
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Label>Travel dates</Label>
             <Popover>
-            <PopoverTrigger asChild>
-              <Button type="button" variant="outline" className="w-full justify-start border-input bg-[color-mix(in_srgb,var(--color-surface)_90%,var(--color-bg))] text-left font-normal">
-                <CalendarDays className="mr-2 h-4 w-4" />
+              <PopoverTrigger asChild>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full justify-start text-left font-normal"
+                >
+                  <CalendarDays className="mr-3 h-4 w-4 text-[var(--color-text-muted)]" />
                   {dateRange?.from && dateRange?.to
                     ? `${formatDateLabel(dateRange.from)} – ${formatDateLabel(dateRange.to)}`
                     : dateRange?.from
@@ -188,21 +204,21 @@ export function BriefIntakeCard({
                       : "Select your dates"}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-full min-w-[280px] border-border bg-popover p-3" align="start">
+              <PopoverContent className="w-full min-w-[280px] p-3" align="start">
                 <Calendar mode="range" selected={dateRange} onSelect={setDateRange} />
               </PopoverContent>
             </Popover>
 
             {calculatedNights ? (
-              <p className="type-ui-sm text-muted-foreground">
+              <p className="text-[13px] text-[var(--color-text-muted)] italic">
                 Trip length: {calculatedNights} night{calculatedNights > 1 ? "s" : ""} (auto-calculated)
               </p>
             ) : (
-              <p className="type-ui-sm text-muted-foreground">Select return date</p>
+              <p className="text-[13px] text-[var(--color-text-muted)] italic">Select return date</p>
             )}
           </div>
         ) : (
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Label htmlFor="nights">Nights</Label>
             <Select value={nights} onValueChange={setNights}>
               <SelectTrigger id="nights" className="w-full">
@@ -219,29 +235,32 @@ export function BriefIntakeCard({
           </div>
         )}
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label>What kind of experience are you picturing?</Label>
           <Popover open={stylePopoverOpen} onOpenChange={setStylePopoverOpen}>
             <PopoverTrigger asChild>
-              <Button type="button" variant="outline" className="h-auto min-h-10 w-full justify-between border-input bg-[color-mix(in_srgb,var(--color-surface)_90%,var(--color-bg))]">
-                <span className="mr-3 flex flex-wrap gap-1.5 text-left">
+              <Button type="button" variant="outline" className="w-full min-h-14 h-auto justify-between py-3">
+                <span className="mr-3 flex flex-wrap gap-2 text-left">
                   {styles.length > 0 ? (
                     styles.map((value) => {
                       const label = formContent.styleOptions.find((item) => item.value === value)?.label ?? value;
                       return (
-                        <span key={value} className="type-ui-sm rounded-[8px] border border-[color-mix(in_srgb,var(--color-border-strong)_82%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-alt)_64%,var(--color-surface))] px-2.5 py-1 text-foreground">
+                        <span
+                          key={value}
+                          className="inline-flex items-center justify-center rounded-[4px] border border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] bg-[var(--color-surface-strong)] px-2.5 py-1 text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]"
+                        >
                           {label}
                         </span>
                       );
                     })
                   ) : (
-                    <span className="text-muted-foreground">Choose one or more</span>
+                    <span className="text-[var(--color-text-muted)] font-normal">Choose one or more</span>
                   )}
                 </span>
-                <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground" />
+                <ChevronDown className="h-4 w-4 shrink-0 text-[var(--color-text-muted)]" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[320px] border-border bg-popover p-0 shadow-[var(--shadow-soft)]" align="start">
+            <PopoverContent className="w-[320px] p-0" align="start">
               <Command>
                 <CommandInput placeholder="Search styles..." value={styleSearch} onChange={(event) => setStyleSearch(event.target.value)} />
                 <CommandList>
@@ -272,8 +291,8 @@ export function BriefIntakeCard({
           </Popover>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="wow">What would make this honeymoon unforgettable for you?</Label>
+        <div className="space-y-3">
+          <Label htmlFor="wow">What would make this unforgettable?</Label>
           <Select value={wow} onValueChange={setWow}>
             <SelectTrigger id="wow" className="w-full">
               <SelectValue placeholder="Choose a highlight" />
@@ -288,14 +307,19 @@ export function BriefIntakeCard({
           </Select>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           <Label>How would you like the days to flow?</Label>
-          <ToggleGroup type="single" value={pace} onValueChange={(v) => setPace(v || "")} className="grid w-full grid-cols-3 gap-2">
+          <ToggleGroup
+            type="single"
+            value={pace}
+            onValueChange={(v) => setPace(v || "")}
+            className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3"
+          >
             {formContent.paceOptions.map((opt) => (
               <ToggleGroupItem
                 key={opt.value}
                 value={opt.value}
-                className="w-full border border-border bg-[color-mix(in_srgb,var(--color-surface)_88%,var(--color-bg))] data-[state=on]:border-[var(--color-brand)] data-[state=on]:bg-[color-mix(in_srgb,var(--color-bg-alt)_68%,var(--color-surface))] data-[state=on]:text-[var(--color-text)]"
+                className="h-auto w-full rounded-[4px] border border-[rgba(0,0,0,0.08)] bg-white/50 px-3 py-3 text-[13px] font-medium text-[var(--color-text-secondary)] hover:bg-white data-[state=on]:border-[var(--color-brand)] data-[state=on]:bg-white data-[state=on]:text-[var(--color-brand)] data-[state=on]:shadow-sm transition-all"
                 aria-label={opt.label}
               >
                 {opt.label}
@@ -304,25 +328,28 @@ export function BriefIntakeCard({
           </ToggleGroup>
         </div>
 
-        <div className="space-y-3 pt-1">
+        <div className="space-y-4 border-t border-[rgba(0,0,0,0.06)] pt-8 mt-2">
           <Button
             type="button"
             size="lg"
-            className="w-full disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full"
             disabled={!canSubmitBrief}
             onClick={handleSubmitBrief}
           >
-            Continue Planning
+            Begin Designing Your Journey
           </Button>
 
-          <p className="type-ui-sm text-center text-muted-foreground">{formContent.reassurance}</p>
-
-          <p className="type-ui-sm text-center text-muted-foreground">
-            Prefer a quick chat first?{" "}
-            <Link href="/book-a-call" className="font-medium text-[var(--color-brand)] underline underline-offset-4">
-              Book a call
-            </Link>
-          </p>
+          <div className="flex flex-col items-center gap-2 pt-2">
+            <p className="text-[13px] text-[var(--color-text-muted)]">
+              Prefer a quick chat first?{" "}
+              <Link href="/book-a-call" className="font-medium text-[var(--color-brand)] hover:text-[var(--color-brand-hover)] underline underline-offset-4 transition-colors">
+                Book a call
+              </Link>
+            </p>
+            <p className="text-[12px] text-[var(--color-text-muted)]/80 text-center max-w-[30ch]">
+              No generic packages. No obligation. Just a thoughtful first response.
+            </p>
+          </div>
         </div>
       </CardContent>
     </Card>

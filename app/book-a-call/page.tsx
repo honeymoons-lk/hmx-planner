@@ -117,60 +117,59 @@ export default function BookACallPage() {
   return (
     <>
       <PlanningHeader />
-      <main className="min-h-[calc(100vh-64px)] bg-background px-4 py-10 md:px-6 md:py-14">
-        <div className="mx-auto w-full max-w-6xl space-y-7">
-          <Card className="overflow-hidden border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_94%,var(--color-bg))] shadow-[var(--shadow-soft)]">
+      <main className="min-h-[calc(100vh-64px)] bg-[var(--color-bg)] px-4 py-16 md:px-6 md:py-24">
+        <div className="mx-auto w-full max-w-5xl space-y-12">
+          <Card className="overflow-hidden border border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_94%,var(--color-bg))] shadow-sm">
             <img
               src={proxiedImageUrl(callImage)}
               alt="Quiet terrace view in Sri Lanka"
-              className="h-52 w-full object-cover object-center md:h-64"
+              className="h-52 w-full object-cover object-center md:h-72"
               loading="lazy"
             />
-            <CardHeader className="space-y-3">
+            <CardHeader className="space-y-4 px-8 pt-8 pb-6">
               <p className="type-eyebrow text-[var(--color-text-muted)]">Book a call</p>
               <CardTitle className="type-section font-serif">Talk through your plans with us</CardTitle>
-              <CardDescription className="type-body max-w-[62ch] text-[var(--color-text-secondary)]">
+              <CardDescription className="type-body max-w-[54ch] text-[var(--color-text-secondary)] font-light">
                 Prefer to start with a conversation? Share a few details and we’ll arrange a suitable
                 time for a short personal call.
               </CardDescription>
-              <p className="type-ui-sm text-[var(--color-text-muted)]">
+              <p className="type-ui-sm text-[var(--color-text-muted)] italic">
                 A personal conversation, not a generic sales call.
               </p>
             </CardHeader>
           </Card>
 
-          <section className="grid gap-6 lg:grid-cols-[minmax(0,44%)_minmax(0,56%)]">
-            <Card className="relative overflow-hidden border-[color-mix(in_srgb,var(--color-border)_84%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_90%,var(--color-bg))] shadow-[var(--shadow-soft)]">
-              <div className="pointer-events-none absolute -left-24 top-16 h-56 w-56 rounded-full border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)]" />
-              <CardHeader>
-                <CardTitle className="type-subheading font-serif">What to expect</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-5">
-                <ul className="space-y-3 text-[var(--color-text-secondary)]">
+          <section className="grid gap-8 lg:grid-cols-[minmax(0,40%)_minmax(0,60%)]">
+            <div className="space-y-8 lg:pr-8">
+              <div className="space-y-6">
+                <h2 className="type-subheading font-serif">What to expect</h2>
+                <ul className="space-y-4 text-[var(--color-text-secondary)] font-light">
                   <li className="type-body">Around 15–20 minutes.</li>
                   <li className="type-body">A personal conversation about your plans, timing, and priorities.</li>
                   <li className="type-body">No need to have every detail decided yet.</li>
                   <li className="type-body">We’ll guide the right next step after the call.</li>
                 </ul>
+              </div>
 
+              <div className="border-t border-[var(--color-border-strong)] pt-6">
                 <p className="type-ui-sm text-[var(--color-text-muted)]">
                   Prefer to share your preferences first?{" "}
-                  <Link href="/plan/journey" className="text-[var(--color-brand)] underline underline-offset-4">
+                  <Link href="/plan/journey" className="text-[var(--color-brand)] hover:text-[var(--color-brand-hover)] underline underline-offset-4 transition-colors">
                     Start planning instead
                   </Link>
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_95%,var(--color-bg))] shadow-[var(--shadow-soft)]">
-              <CardHeader>
+            <Card className="border border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_95%,var(--color-bg))] shadow-sm">
+              <CardHeader className="px-8 pt-8 pb-6 border-b border-[rgba(0,0,0,0.06)]">
                 <CardTitle className="type-subheading font-serif">A few quick details</CardTitle>
-                <CardDescription className="type-meta text-[var(--color-text-muted)]">
+                <CardDescription className="type-body text-[var(--color-text-muted)] font-light mt-2">
                   We’ll use this to arrange a suitable call time for you.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-5">
-                <div className="space-y-2">
+              <CardContent className="space-y-8 px-8 py-8">
+                <div className="space-y-3">
                   <Label htmlFor="call-first-name">First name</Label>
                   <Input
                     id="call-first-name"
@@ -184,7 +183,7 @@ export default function BookACallPage() {
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Label htmlFor="call-email">Email</Label>
                   <Input
                     id="call-email"
@@ -200,7 +199,7 @@ export default function BookACallPage() {
                 </div>
 
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <Label htmlFor="call-country">Country</Label>
                     <Select
                       value={country}
@@ -222,7 +221,7 @@ export default function BookACallPage() {
                     </Select>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <Label htmlFor="call-phone">Phone / WhatsApp number</Label>
                     <Input
                       id="call-phone"
@@ -237,7 +236,7 @@ export default function BookACallPage() {
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Label>Preferred contact method</Label>
                   <RadioGroup
                     value={preferredMethod}
@@ -251,10 +250,10 @@ export default function BookACallPage() {
                       <Label
                         key={option.value}
                         htmlFor={`method-${option.value}`}
-                        className={`flex cursor-pointer items-center justify-between gap-2 rounded-[var(--radius-input)] border px-3 py-2.5 transition-colors ${
+                        className={`flex cursor-pointer items-center justify-between gap-2 rounded-[4px] border px-3 py-2.5 transition-colors ${
                           preferredMethod === option.value
                             ? "border-[var(--color-brand)] bg-[color-mix(in_srgb,var(--color-bg-alt)_62%,var(--color-surface))]"
-                            : "border-input bg-background"
+                            : "border-[rgba(0,0,0,0.08)] bg-white/50 hover:bg-white/80"
                         }`}
                       >
                         <span className="type-ui-sm text-foreground">{option.label}</span>
@@ -264,7 +263,7 @@ export default function BookACallPage() {
                   </RadioGroup>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Label htmlFor="call-timing">Preferred timing</Label>
                   <Select
                     value={preferredTiming}
@@ -286,7 +285,7 @@ export default function BookACallPage() {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Label htmlFor="call-notes">Notes (optional)</Label>
                   <Textarea
                     id="call-notes"
@@ -307,7 +306,7 @@ export default function BookACallPage() {
 
                 {submitError ? <p className="type-ui-sm text-[var(--color-text-muted)]">{submitError}</p> : null}
 
-                <div className="space-y-2 pt-1">
+                <div className="space-y-3 pt-4">
                   <Button onClick={submitRequest} disabled={!canSubmit || submitting} className="w-full">
                     {submitting ? "Sending your request..." : "Request a call"}
                   </Button>

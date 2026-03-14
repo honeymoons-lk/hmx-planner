@@ -116,21 +116,21 @@ export default function ContactPage() {
   return (
     <>
       <PlanningHeader />
-      <main className="min-h-[calc(100vh-64px)] bg-background px-4 py-10 md:px-6 md:py-14">
-        <div className="mx-auto w-full max-w-5xl space-y-6">
+      <main className="min-h-[calc(100vh-64px)] bg-[var(--color-bg)] px-4 py-16 md:px-6 md:py-24">
+        <div className="mx-auto w-full max-w-5xl space-y-12">
           <ProgressIndicator stage={3} />
 
-          <Card className="border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] shadow-[var(--shadow-soft)]">
-            <CardHeader>
+          <Card className="border border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] shadow-sm">
+            <CardHeader className="px-8 pt-8 pb-6 border-b border-[rgba(0,0,0,0.06)]">
               <CardTitle className="type-subheading font-serif">Contact and review</CardTitle>
-              <CardDescription className="type-body text-muted-foreground">
+              <CardDescription className="type-body text-[var(--color-text-muted)] font-light mt-2">
                 We&apos;re almost there. Share your contact details and send your request.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-8">
-              <div className="grid gap-7 lg:grid-cols-[1.2fr_0.8fr]">
+            <CardContent className="space-y-10 px-8 py-8">
+              <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
                 <div className="space-y-6">
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <Label htmlFor="first-name">First name</Label>
                     <Input
                       id="first-name"
@@ -144,7 +144,7 @@ export default function ContactPage() {
                     ) : null}
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
@@ -159,7 +159,7 @@ export default function ContactPage() {
                     ) : null}
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <Label htmlFor="country">Country</Label>
                     <Select value={country} onValueChange={setCountry}>
                       <SelectTrigger id="country" aria-invalid={showValidation && !country}>
@@ -180,7 +180,7 @@ export default function ContactPage() {
                     ) : null}
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <Label htmlFor="phone">Phone (optional)</Label>
                     <Input
                       id="phone"
@@ -190,7 +190,7 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <div className="rounded-[var(--radius-input)] border border-[color-mix(in_srgb,var(--color-border)_82%,transparent)] bg-[color-mix(in_srgb,var(--color-bg)_72%,var(--color-surface))] p-3">
+                  <div className="rounded-[4px] border border-[rgba(0,0,0,0.08)] bg-white/50 p-3">
                     <div className="flex items-center gap-2">
                       <Checkbox
                         id="whatsapp-optin"
@@ -202,50 +202,64 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <aside className="relative overflow-hidden rounded-[var(--radius-form)] border border-[color-mix(in_srgb,var(--color-border)_84%,transparent)] bg-[linear-gradient(160deg,color-mix(in_srgb,var(--color-bg)_74%,var(--color-surface))_0%,color-mix(in_srgb,var(--color-bg-alt)_34%,var(--color-surface))_100%)] p-6">
+                <aside className="relative overflow-hidden rounded-[8px] border border-[rgba(0,0,0,0.08)] bg-white/50 p-8">
                   <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)]" />
                   <div className="pointer-events-none absolute -left-10 bottom-6 h-20 w-20 rounded-full border border-[color-mix(in_srgb,var(--color-border-strong)_45%,transparent)]" />
-                  <p className="type-ui-sm mb-4 text-foreground">Review your request</p>
-                  <div className="type-meta space-y-3">
-                    <p className="text-muted-foreground">When</p>
-                    <p className="type-ui-sm text-foreground">{timeframeLabels[draft.timeframe] || "-"}</p>
+                  <p className="type-eyebrow mb-6 text-[var(--color-text-secondary)]">Review your request</p>
+                  <div className="type-meta space-y-5">
+                    <div>
+                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">When</p>
+                      <p className="type-ui-sm text-foreground">{timeframeLabels[draft.timeframe] || "-"}</p>
+                    </div>
 
-                    <p className="text-muted-foreground">Dates</p>
-                    <p className="type-ui-sm text-foreground">
-                      {draft.start && draft.end ? `${draft.start} → ${draft.end}` : "-"}
-                    </p>
+                    <div>
+                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Dates</p>
+                      <p className="type-ui-sm text-foreground">
+                        {draft.start && draft.end ? `${draft.start} → ${draft.end}` : "-"}
+                      </p>
+                    </div>
 
-                    <p className="text-muted-foreground">Trip length</p>
-                    <p className="type-ui-sm text-foreground">{nightsLabel(draft.nights)}</p>
+                    <div>
+                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Trip length</p>
+                      <p className="type-ui-sm text-foreground">{nightsLabel(draft.nights)}</p>
+                    </div>
 
-                    <p className="text-muted-foreground">Styles</p>
-                    <p className="type-ui-sm text-foreground">
-                      {draft.styles.map((style) => styleLabels[style] || style).join(", ") || "-"}
-                    </p>
+                    <div>
+                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Styles</p>
+                      <p className="type-ui-sm text-foreground">
+                        {draft.styles.map((style) => styleLabels[style] || style).join(", ") || "-"}
+                      </p>
+                    </div>
 
-                    <p className="text-muted-foreground">Wow + vibe</p>
-                    <p className="type-ui-sm text-foreground">
-                      {[wowLabels[draft.wow], paceLabels[draft.pace]].filter(Boolean).join(" · ") || "-"}
-                    </p>
+                    <div>
+                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Wow + vibe</p>
+                      <p className="type-ui-sm text-foreground">
+                        {[wowLabels[draft.wow], paceLabels[draft.pace]].filter(Boolean).join(" · ") || "-"}
+                      </p>
+                    </div>
 
-                    <p className="text-muted-foreground">Comfort + occasion</p>
-                    <p className="type-ui-sm text-foreground">
-                      {[budgetLabels[draft.budget], occasionLabels[draft.occasion]].filter(Boolean).join(" · ") || "-"}
-                    </p>
+                    <div>
+                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Comfort + occasion</p>
+                      <p className="type-ui-sm text-foreground">
+                        {[budgetLabels[draft.budget], occasionLabels[draft.occasion]].filter(Boolean).join(" · ") || "-"}
+                      </p>
+                    </div>
 
-                    <p className="text-muted-foreground">Contact notes</p>
-                    <p className="type-ui-sm text-foreground">{draft.notes.trim() || "-"}</p>
+                    <div>
+                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Contact notes</p>
+                      <p className="type-ui-sm text-foreground">{draft.notes.trim() || "-"}</p>
+                    </div>
                   </div>
                 </aside>
               </div>
 
               {submitError ? <p className="type-ui-sm text-muted-foreground">{submitError}</p> : null}
 
-              <div className="flex flex-col-reverse gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="flex flex-col-reverse gap-4 sm:flex-row sm:items-end sm:justify-between pt-4">
                 <Button variant="outline" onClick={() => router.push("/plan/details")}>
                   Back
                 </Button>
-                <div className="space-y-2 sm:max-w-[360px] sm:text-right">
+                <div className="space-y-3 sm:max-w-[360px] sm:text-right">
                   <Button onClick={submit} disabled={!canSubmit || submitting}>
                     {submitting ? "Sending your request..." : "Request my proposal"}
                   </Button>

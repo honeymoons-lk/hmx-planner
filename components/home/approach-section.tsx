@@ -17,56 +17,53 @@ type ApproachSectionProps = {
 };
 
 export function ApproachSection({ id, eyebrow, heading, supporting, steps }: ApproachSectionProps) {
-  const [activeApproachStep, setActiveApproachStep] = useState<number | null>(null);
-  const [prefersReducedMotion] = useState(
-    typeof window !== "undefined" ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : false,
-  );
+  const [activeApproachStep, setActiveApproachStep] = useState<number | null>(0);
 
   return (
-    <section id={id} className="mx-auto w-full max-w-6xl px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]">
-      <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="mb-10 max-w-3xl" />
+    <section id={id} className="section-shell w-full bg-[var(--color-bg-alt)]">
+      <div className="page-shell">
+        <div className="grid gap-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start lg:gap-24">
+          <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">
+            <SectionHeader
+              eyebrow={eyebrow}
+              heading={heading}
+              supporting={supporting}
+              className="mb-0 max-w-none"
+            />
+            <div className="mt-8 h-[1px] w-12 bg-[var(--color-brand)]" aria-hidden="true" />
+            <p className="type-body-lg mt-8 max-w-[34ch] text-[var(--color-text-secondary)] font-light">
+              You brief us once, we shape the route with care, and we stay close to the trip right through to departure and on-ground support.
+            </p>
+          </div>
 
-      <div className="hidden md:block">
-        <div className="relative">
-          <div className="absolute left-0 right-0 top-2.5 h-px bg-border" />
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-x-12 gap-y-16 sm:grid-cols-2">
             {steps.map((step, index) => {
               const isActive = activeApproachStep === index;
-              const isDimmed = activeApproachStep !== null && activeApproachStep !== index;
               return (
                 <article
                   key={step.title}
-                  className={`${prefersReducedMotion ? "" : "transition-opacity duration-200"} ${
-                    isDimmed ? "opacity-60" : "opacity-100"
-                  }`}
+                  className="group relative border-t border-[var(--color-border-strong)] pt-8 transition-all duration-300"
                   onMouseEnter={() => setActiveApproachStep(index)}
-                  onMouseLeave={() => setActiveApproachStep(null)}
                 >
-                  <div className="relative pb-6">
-                    <span
-                      className={`${prefersReducedMotion ? "" : "transition-all duration-200"} absolute left-0 top-0 h-2 w-2 rounded-full bg-foreground ${
-                        isActive ? "scale-110 opacity-100" : "scale-100 opacity-75"
-                      }`}
-                    />
-                  </div>
-                  <h3 className="type-subheading font-serif font-medium text-foreground">{step.title}</h3>
-                  <p className="type-body mt-3 text-muted-foreground">{step.description}</p>
+                  <div 
+                    className={`absolute top-[-1px] left-0 h-[2px] bg-[var(--color-brand)] transition-all duration-500 ease-out ${
+                      isActive ? "w-full" : "w-0"
+                    }`} 
+                  />
+                  <p className="font-serif text-[28px] italic text-[var(--color-text-muted)] transition-colors duration-300 group-hover:text-[var(--color-brand)]">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-6 type-subheading font-serif text-[var(--color-text)]">
+                    {step.title}
+                  </h3>
+                  <p className="type-body mt-4 text-[var(--color-text-secondary)] font-light">
+                    {step.description}
+                  </p>
                 </article>
               );
             })}
           </div>
         </div>
-      </div>
-
-      <div className="relative space-y-8 pl-6 md:hidden">
-        <div className="absolute bottom-2 left-2 top-2 w-px bg-border" />
-        {steps.map((step) => (
-          <article key={step.title} className="relative">
-            <span className="absolute -left-[18px] top-2.5 h-2 w-2 rounded-full bg-foreground/80" />
-            <h3 className="type-subheading font-serif font-medium text-foreground">{step.title}</h3>
-            <p className="type-body mt-3 text-muted-foreground">{step.description}</p>
-          </article>
-        ))}
       </div>
     </section>
   );

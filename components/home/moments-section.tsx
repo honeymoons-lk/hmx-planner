@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/section-header";
 import { proxiedImageUrl } from "@/lib/media";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -91,44 +93,82 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
   }, [carouselApi]);
 
   return (
-    <section id={id} className="moments-section w-full py-[var(--section-space-mobile)] md:py-[var(--section-space-desktop)]">
-      <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
-        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="max-w-3xl md:mb-14" />
+    <section id={id} className="moments-section section-shell w-full">
+      <div className="page-shell-wide">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionHeader
+            eyebrow={eyebrow}
+            heading={heading}
+            supporting={supporting}
+            className="mb-0 max-w-3xl"
+          />
+          <div className="flex items-center justify-between gap-5 md:justify-end">
+            <p className="type-ui-sm text-[var(--color-text-muted)]">
+              {String(activeSlide + 1).padStart(2, "0")} / {String(logicalCount).padStart(2, "0")}
+            </p>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-brand)] hover:text-[var(--color-brand)] focus-visible:outline-none"
+                onClick={() => carouselApi?.scrollPrev()}
+                aria-label="Previous moment"
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-brand)] hover:text-[var(--color-brand)] focus-visible:outline-none"
+                onClick={() => carouselApi?.scrollNext()}
+                aria-label="Next moment"
+              >
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="relative left-1/2 w-screen -translate-x-1/2">
         <Carousel setApi={setCarouselApi} className="w-full">
-          <CarouselContent className="gap-4 px-4 md:gap-6 md:px-6 lg:px-10">
+          <CarouselContent className="gap-5 px-4 pb-2 pt-10 md:gap-6 md:px-6 lg:px-8 xl:px-10">
             {loopedPanels.map((panel, index) => (
               <CarouselItem
                 key={`${panel.title}-${index}`}
-                className="basis-[88%] md:basis-[62%] lg:basis-[40%] xl:basis-[36%]"
+                className="basis-[86%] md:basis-[56%] lg:basis-[36%] xl:basis-[32%]"
               >
-                <article className="relative h-[58vh] min-h-[400px] overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_62%,transparent)] bg-[var(--color-bg-alt)] md:h-[64vh] lg:h-[680px] lg:min-h-[680px] lg:max-h-[680px]">
+                <article className="group relative h-[58vh] min-h-[420px] overflow-hidden rounded-[4px] bg-[var(--color-bg-alt)] md:h-[62vh] lg:h-[680px] lg:min-h-[680px] lg:max-h-[680px]">
                   <img
                     src={proxiedImageUrl(panel.image)}
                     alt={panel.title}
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out motion-reduce:transition-none lg:hover:scale-[1.02]"
+                    className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-1000 ease-out motion-reduce:transition-none group-hover:scale-[1.05]"
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.46)_42%,rgba(0,0,0,0.18)_72%,rgba(0,0,0,0.04)_100%)]" />
-                  <div className="absolute bottom-8 left-6 right-6 z-10 md:bottom-10 md:left-9 md:right-9">
-                    <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_84%,var(--color-bg-alt))]">
+                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,11,10,0.9)_0%,rgba(14,11,10,0.4)_40%,transparent_100%)] transition-opacity duration-500 group-hover:opacity-90" />
+                  
+                  <div className="absolute left-6 top-6 z-10 md:left-8 md:top-8">
+                    <span className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_90%,var(--color-bg-alt))]">
                       {panel.label}
-                    </p>
-                    <h3 className="mt-2 font-serif text-[clamp(30px,4vw,46px)] leading-[1.08] font-medium tracking-tight text-[var(--color-light)]">
+                    </span>
+                  </div>
+                  
+                  <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-8">
+                    <h3 className="type-subheading font-serif text-[var(--color-light)]">
                       {panel.title}
                     </h3>
-                    <p className="type-body mt-3 max-w-[44ch] text-[color-mix(in_srgb,var(--color-light)_90%,var(--color-bg-alt))]">
-                      {panel.body}
-                    </p>
+                    <div className="grid grid-rows-[0fr] transition-all duration-500 ease-in-out group-hover:grid-rows-[1fr]">
+                      <div className="overflow-hidden">
+                        <p className="type-body mt-3 max-w-[38ch] text-[color-mix(in_srgb,var(--color-light)_80%,var(--color-bg-alt))] font-light opacity-0 transition-opacity duration-500 delay-100 group-hover:opacity-100">
+                          {panel.body}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </article>
               </CarouselItem>
             ))}
           </CarouselContent>
 
-          <div className="mt-6 flex items-center justify-center gap-2">
+          <div className="mt-8 flex items-center justify-center gap-2">
             {panels.map((panel, index) => (
               <button
                 key={`${panel.title}-dot`}
@@ -144,10 +184,10 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
                   );
                   carouselApi.scrollTo(nearest);
                 }}
-                className={`h-1.5 rounded-full transition-all ${
+                className={`h-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-[4px] focus-visible:ring-ring/14 ${
                   activeSlide === index
-                    ? "w-6 bg-[var(--color-brand)]"
-                    : "w-2 bg-[color-mix(in_srgb,var(--color-border-strong)_86%,transparent)]"
+                    ? "w-8 bg-[var(--color-brand)]"
+                    : "w-2.5 bg-[color-mix(in_srgb,var(--color-border-strong)_86%,transparent)]"
                 }`}
               />
             ))}
