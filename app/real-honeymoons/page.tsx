@@ -239,7 +239,7 @@ export default function RealHoneymoonsPage() {
         </header>
 
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          <Badge variant="secondary">{activeJourney.pricingTier}</Badge>
+          <Badge variant="default">{activeJourney.pricingTier}</Badge>
           <p className="type-body text-[var(--color-text-secondary)]">{activeJourney.intro}</p>
         </div>
 
