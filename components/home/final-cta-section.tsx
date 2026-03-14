@@ -17,13 +17,13 @@ export function FinalCtaSection({ heading, subcopy, primary, secondary }: FinalC
       <div className="absolute bottom-[-20%] right-[-10%] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(204,178,139,0.08)_0%,transparent_60%)] blur-3xl" />
       
       <div className="page-shell relative z-10 flex flex-col items-center text-center">
-        <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[color-mix(in_srgb,var(--color-light)_70%,transparent)] mb-6">
+        <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_70%,transparent)] mb-6">
           Ready when you are
         </p>
-        <h2 className="font-serif text-[clamp(36px,5vw,56px)] leading-[1.05] tracking-tight text-[var(--color-light)] max-w-[20ch] mx-auto mb-6">
+        <h2 className="type-section text-balance-pretty font-serif tracking-tight text-[var(--color-light)] max-w-[20ch] mx-auto mb-6">
           {heading}
         </h2>
-        <p className="text-[18px] leading-[1.6] max-w-[42ch] text-[color-mix(in_srgb,var(--color-light)_85%,transparent)] font-light mb-12">
+        <p className="type-body-lg max-w-[42ch] text-[color-mix(in_srgb,var(--color-light)_85%,transparent)] font-light mb-12">
           {subcopy}
         </p>
         

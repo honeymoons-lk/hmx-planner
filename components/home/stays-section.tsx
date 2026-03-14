@@ -41,7 +41,7 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
   }, [activeCategoryIndex]);
 
   return (
-    <section id={id} className="section-shell w-full bg-[var(--color-bg)]">
+    <section id={id} className="section-shell w-full">
       <div className="page-shell">
         <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="md:mb-20" />
 
@@ -61,7 +61,7 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
                     className="text-left focus-visible:outline-none"
                   >
                     <h3
-                      className={`font-serif text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-tight transition-colors duration-500 ${
+                      className={`type-section font-serif tracking-tight transition-colors duration-500 ${
                         isActive
                           ? "text-[var(--color-text)]"
                           : "text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
@@ -77,12 +77,12 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="text-[17px] leading-[1.7] max-w-[44ch] text-[var(--color-text-secondary)] font-light">
+                      <p className="type-body max-w-[44ch] text-[var(--color-text-secondary)] font-light">
                         {category.description}
                       </p>
 
                       <div className="mt-10 mb-4">
-                        <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-muted)] mb-5">
+                        <p className="type-eyebrow text-[var(--color-text-muted)] mb-5">
                           {category.framingLine}
                         </p>
                         <ul className="space-y-3">
@@ -133,7 +133,7 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
 
           {/* Right: Cinematic Image Frame */}
           <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">
-            <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--color-bg-alt)]">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[4px] bg-[var(--color-bg-alt)]">
               {activeProperty ? (
                 <img
                   key={`${activeCategory.id}-${activeProperty.name}`}
@@ -146,14 +146,14 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
             </div>
             <div className="mt-6 flex items-start justify-between gap-4 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-5">
               <div>
-                <p className="font-serif text-[24px] leading-none text-[var(--color-text)]">
+                <p className="type-subheading font-serif text-[var(--color-text)]">
                   {activeProperty?.name}
                 </p>
-                <p className="mt-2 text-[12px] tracking-[0.15em] uppercase text-[var(--color-text-muted)]">
+                <p className="mt-2 type-eyebrow text-[var(--color-text-muted)]">
                   {activeProperty?.location}
                 </p>
               </div>
-              <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-brand)] text-right max-w-[120px]">
+              <span className="type-eyebrow text-[var(--color-brand)] text-right max-w-[120px]">
                 {activeCategory.title}
               </span>
             </div>

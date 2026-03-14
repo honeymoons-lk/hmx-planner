@@ -153,27 +153,27 @@ export function BriefIntakeCard({
   };
 
   return (
-    <Card id={id} className={cn("bg-[rgba(252,248,244,0.94)] backdrop-blur-2xl rounded-[16px] border border-[rgba(255,255,255,0.6)] shadow-[0_40px_80px_rgba(14,11,10,0.15)]", className)}>
+    <Card id={id} className={cn("bg-[rgba(252,248,244,0.94)] backdrop-blur-2xl rounded-[8px] border border-[rgba(255,255,255,0.6)] shadow-[0_40px_80px_rgba(14,11,10,0.15)]", className)}>
       <CardHeader className="space-y-5 border-b border-[rgba(0,0,0,0.06)] px-8 pt-9 pb-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--color-brand)]">
+          <span className="type-eyebrow text-[var(--color-brand)]">
             Personal Planning Brief
           </span>
           <span className="text-[12px] text-[var(--color-text-muted)] italic">Takes ~60 seconds</span>
         </div>
-        <CardTitle className="font-serif text-[clamp(28px,3vw,34px)] leading-[1.1] tracking-tight text-[var(--color-text)]">
+        <CardTitle className="type-subheading font-serif tracking-tight text-[var(--color-text)]">
           {title}
         </CardTitle>
-        <CardDescription className="text-[15px] leading-[1.6] text-[var(--color-text-secondary)]">
+        <CardDescription className="type-body text-[var(--color-text-secondary)] font-light">
           {description}
         </CardDescription>
       </CardHeader>
 
       <CardContent className="space-y-7 px-8 py-8">
         <div className="space-y-3">
-          <Label htmlFor="timeframe" className="text-[12px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]">When would you like to travel?</Label>
+          <Label htmlFor="timeframe" className="type-eyebrow text-[var(--color-text-secondary)]">When would you like to travel?</Label>
           <Select value={timeframe} onValueChange={setTimeframe}>
-            <SelectTrigger id="timeframe" className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-lg focus:ring-[var(--color-brand)]">
+            <SelectTrigger id="timeframe" className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-[4px] focus:ring-[var(--color-brand)]">
               <SelectValue placeholder="Choose a timeframe" />
             </SelectTrigger>
             <SelectContent>
@@ -188,13 +188,13 @@ export function BriefIntakeCard({
 
         {timeframe === "pick-dates" ? (
           <div className="space-y-3">
-            <Label className="text-[12px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]">Travel dates</Label>
+            <Label className="type-eyebrow text-[var(--color-text-secondary)]">Travel dates</Label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-lg justify-start text-left font-normal hover:bg-white/80"
+                  className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-[4px] justify-start text-left font-normal hover:bg-white/80"
                 >
                   <CalendarDays className="mr-3 h-4 w-4 text-[var(--color-text-muted)]" />
                   {dateRange?.from && dateRange?.to
@@ -219,9 +219,9 @@ export function BriefIntakeCard({
           </div>
         ) : (
           <div className="space-y-3">
-            <Label htmlFor="nights" className="text-[12px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]">Nights</Label>
+            <Label htmlFor="nights" className="type-eyebrow text-[var(--color-text-secondary)]">Nights</Label>
             <Select value={nights} onValueChange={setNights}>
-              <SelectTrigger id="nights" className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-lg focus:ring-[var(--color-brand)]">
+              <SelectTrigger id="nights" className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-[4px] focus:ring-[var(--color-brand)]">
                 <SelectValue placeholder="Choose stay length" />
               </SelectTrigger>
               <SelectContent>
@@ -236,10 +236,10 @@ export function BriefIntakeCard({
         )}
 
         <div className="space-y-3">
-          <Label className="text-[12px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]">What kind of experience are you picturing?</Label>
+          <Label className="type-eyebrow text-[var(--color-text-secondary)]">What kind of experience are you picturing?</Label>
           <Popover open={stylePopoverOpen} onOpenChange={setStylePopoverOpen}>
             <PopoverTrigger asChild>
-              <Button type="button" variant="outline" className="w-full min-h-12 h-auto bg-white/50 border-[rgba(0,0,0,0.08)] rounded-lg justify-between py-3 hover:bg-white/80">
+              <Button type="button" variant="outline" className="w-full min-h-12 h-auto bg-white/50 border-[rgba(0,0,0,0.08)] rounded-[4px] justify-between py-3 hover:bg-white/80">
                 <span className="mr-3 flex flex-wrap gap-2 text-left">
                   {styles.length > 0 ? (
                     styles.map((value) => {
@@ -292,9 +292,9 @@ export function BriefIntakeCard({
         </div>
 
         <div className="space-y-3">
-          <Label htmlFor="wow" className="text-[12px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]">What would make this unforgettable?</Label>
+          <Label htmlFor="wow" className="type-eyebrow text-[var(--color-text-secondary)]">What would make this unforgettable?</Label>
           <Select value={wow} onValueChange={setWow}>
-            <SelectTrigger id="wow" className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-lg focus:ring-[var(--color-brand)]">
+            <SelectTrigger id="wow" className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-[4px] focus:ring-[var(--color-brand)]">
               <SelectValue placeholder="Choose a highlight" />
             </SelectTrigger>
             <SelectContent>
@@ -308,7 +308,7 @@ export function BriefIntakeCard({
         </div>
 
         <div className="space-y-4">
-          <Label className="text-[12px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]">How would you like the days to flow?</Label>
+          <Label className="type-eyebrow text-[var(--color-text-secondary)]">How would you like the days to flow?</Label>
           <ToggleGroup
             type="single"
             value={pace}
@@ -319,7 +319,7 @@ export function BriefIntakeCard({
               <ToggleGroupItem
                 key={opt.value}
                 value={opt.value}
-                className="h-auto w-full rounded-lg border border-[rgba(0,0,0,0.08)] bg-white/50 px-3 py-3 text-[13px] font-medium text-[var(--color-text-secondary)] hover:bg-white data-[state=on]:border-[var(--color-brand)] data-[state=on]:bg-white data-[state=on]:text-[var(--color-brand)] data-[state=on]:shadow-sm transition-all"
+                className="h-auto w-full rounded-[4px] border border-[rgba(0,0,0,0.08)] bg-white/50 px-3 py-3 text-[13px] font-medium text-[var(--color-text-secondary)] hover:bg-white data-[state=on]:border-[var(--color-brand)] data-[state=on]:bg-white data-[state=on]:text-[var(--color-brand)] data-[state=on]:shadow-sm transition-all"
                 aria-label={opt.label}
               >
                 {opt.label}
@@ -332,7 +332,7 @@ export function BriefIntakeCard({
           <Button
             type="button"
             size="lg"
-            className="w-full h-14 rounded-lg bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white font-medium tracking-wide text-[15px] shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full h-14 rounded-[4px] bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white font-medium tracking-wide text-[15px] shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-60"
             disabled={!canSubmitBrief}
             onClick={handleSubmitBrief}
           >

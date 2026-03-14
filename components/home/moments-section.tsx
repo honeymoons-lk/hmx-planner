@@ -106,27 +106,23 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
             <p className="type-ui-sm text-[var(--color-text-muted)]">
               {String(activeSlide + 1).padStart(2, "0")} / {String(logicalCount).padStart(2, "0")}
             </p>
-            <div className="flex items-center gap-2">
-              <Button
+            <div className="flex items-center gap-3">
+              <button
                 type="button"
-                variant="outline"
-                size="icon-sm"
-                className="bg-[color-mix(in_srgb,var(--color-surface-strong)_82%,var(--color-bg))]"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-brand)] hover:text-[var(--color-brand)] focus-visible:outline-none"
                 onClick={() => carouselApi?.scrollPrev()}
                 aria-label="Previous moment"
               >
-                <ArrowLeft className="size-4" />
-              </Button>
-              <Button
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+              <button
                 type="button"
-                variant="outline"
-                size="icon-sm"
-                className="bg-[color-mix(in_srgb,var(--color-surface-strong)_82%,var(--color-bg))]"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-brand)] hover:text-[var(--color-brand)] focus-visible:outline-none"
                 onClick={() => carouselApi?.scrollNext()}
                 aria-label="Next moment"
               >
-                <ArrowRight className="size-4" />
-              </Button>
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </div>
@@ -140,7 +136,7 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
                 key={`${panel.title}-${index}`}
                 className="basis-[86%] md:basis-[56%] lg:basis-[36%] xl:basis-[32%]"
               >
-                <article className="group relative h-[58vh] min-h-[420px] overflow-hidden rounded-[8px] bg-[var(--color-bg-alt)] md:h-[62vh] lg:h-[680px] lg:min-h-[680px] lg:max-h-[680px]">
+                <article className="group relative h-[58vh] min-h-[420px] overflow-hidden rounded-[4px] bg-[var(--color-bg-alt)] md:h-[62vh] lg:h-[680px] lg:min-h-[680px] lg:max-h-[680px]">
                   <img
                     src={proxiedImageUrl(panel.image)}
                     alt={panel.title}
@@ -150,18 +146,18 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
                   <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,11,10,0.9)_0%,rgba(14,11,10,0.4)_40%,transparent_100%)] transition-opacity duration-500 group-hover:opacity-90" />
                   
                   <div className="absolute left-6 top-6 z-10 md:left-8 md:top-8">
-                    <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[color-mix(in_srgb,var(--color-light)_90%,var(--color-bg-alt))]">
+                    <span className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_90%,var(--color-bg-alt))]">
                       {panel.label}
                     </span>
                   </div>
                   
                   <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-8">
-                    <h3 className="font-serif text-[clamp(28px,3vw,38px)] leading-[1.1] text-[var(--color-light)]">
+                    <h3 className="type-subheading font-serif text-[var(--color-light)]">
                       {panel.title}
                     </h3>
                     <div className="grid grid-rows-[0fr] transition-all duration-500 ease-in-out group-hover:grid-rows-[1fr]">
                       <div className="overflow-hidden">
-                        <p className="text-[15px] leading-[1.6] mt-3 max-w-[38ch] text-[color-mix(in_srgb,var(--color-light)_80%,var(--color-bg-alt))] font-light opacity-0 transition-opacity duration-500 delay-100 group-hover:opacity-100">
+                        <p className="type-body mt-3 max-w-[38ch] text-[color-mix(in_srgb,var(--color-light)_80%,var(--color-bg-alt))] font-light opacity-0 transition-opacity duration-500 delay-100 group-hover:opacity-100">
                           {panel.body}
                         </p>
                       </div>

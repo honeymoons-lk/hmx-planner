@@ -43,36 +43,36 @@ export function HeroSection({ content }: HeroSectionProps) {
           </div>
 
           <div className="mt-8 space-y-6">
-            <h1 className="font-serif text-[clamp(48px,6.5vw,84px)] leading-[1.02] tracking-tight text-[var(--color-light)]">
+            <h1 className="type-hero text-balance-pretty font-serif tracking-tight text-[var(--color-light)]">
               {content.heading}
             </h1>
-            <p className="text-[22px] leading-[1.5] max-w-[34ch] text-[color-mix(in_srgb,var(--color-light)_95%,var(--color-bg-alt))] font-light">
+            <p className="type-body-lg max-w-[34ch] text-[color-mix(in_srgb,var(--color-light)_95%,var(--color-bg-alt))] font-light">
               {content.emotionSentence}
             </p>
-            <p className="text-[13px] font-medium tracking-[0.15em] uppercase text-[color-mix(in_srgb,var(--color-accent)_90%,var(--color-light))]">
+            <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-accent)_90%,var(--color-light))]">
               {content.emotionTagline}
             </p>
           </div>
 
           {/* Replaced the heavy carousel box with a refined, floating typographic quote */}
           <div className="mt-16 max-w-[32rem] border-l border-[color-mix(in_srgb,var(--color-light)_20%,transparent)] pl-6">
-            <p className="font-serif text-[22px] leading-[1.4] text-[color-mix(in_srgb,var(--color-light)_85%,var(--color-bg-alt))] italic">
+            <p className="type-subheading font-serif text-[color-mix(in_srgb,var(--color-light)_85%,var(--color-bg-alt))] italic">
               &ldquo;{featuredTestimonial?.quote}&rdquo;
             </p>
-            <p className="mt-4 text-[12px] font-medium tracking-[0.1em] uppercase text-[color-mix(in_srgb,var(--color-light)_50%,var(--color-bg-alt))]">
+            <p className="mt-4 type-eyebrow text-[color-mix(in_srgb,var(--color-light)_50%,var(--color-bg-alt))]">
               — {featuredTestimonial?.name}, {featuredTestimonial?.origin}
             </p>
           </div>
 
           {/* Replaced the secondary strip box with a clean typographic list */}
           <div className="mt-16 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[color-mix(in_srgb,var(--color-light)_50%,var(--color-bg-alt))]">
+            <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_50%,var(--color-bg-alt))]">
               {content.secondaryStrip.label}
             </p>
             <div className="flex flex-wrap gap-4">
               {content.secondaryStrip.items.map((item, i) => (
                 <div key={item} className="flex items-center gap-4">
-                  <span className="text-[13px] text-[color-mix(in_srgb,var(--color-light)_80%,var(--color-bg-alt))]">
+                  <span className="type-ui-sm text-[color-mix(in_srgb,var(--color-light)_80%,var(--color-bg-alt))]">
                     {item}
                   </span>
                   {i < content.secondaryStrip.items.length - 1 && (

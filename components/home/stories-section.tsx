@@ -53,36 +53,36 @@ export function StoriesSection({
               
               <div className="flex flex-col flex-1">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-muted)]">
+                  <span className="type-eyebrow text-[var(--color-text-muted)]">
                     {story.duration}
                   </span>
                   <span className="h-[1px] w-6 bg-[var(--color-border-strong)]" />
-                  <span className="text-[12px] italic text-[var(--color-text-secondary)]">
+                  <span className="text-[13px] italic text-[var(--color-text-secondary)]">
                     {story.route}
                   </span>
                 </div>
 
-                <h3 className="font-serif text-[clamp(28px,3vw,34px)] leading-[1.1] text-[var(--color-text)] mb-4">
+                <h3 className="type-subheading font-serif text-[var(--color-text)] mb-4">
                   {story.title}
                 </h3>
                 
-                <p className="text-[15px] leading-[1.7] text-[var(--color-text-secondary)] font-light mb-8">
+                <p className="type-body text-[var(--color-text-secondary)] font-light mb-8">
                   {story.summary}
                 </p>
 
                 <div className="mt-auto border-t border-[var(--color-border-strong)] pt-6">
                   <div className="grid gap-4">
                     <div className="flex items-baseline gap-4">
-                      <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-muted)] w-24 shrink-0">
+                      <p className="type-eyebrow text-[var(--color-text-muted)] w-24 shrink-0">
                         Mood
                       </p>
-                      <p className="text-[14px] text-[var(--color-text)]">{story.mood}</p>
+                      <p className="type-ui-sm text-[var(--color-text)]">{story.mood}</p>
                     </div>
                     <div className="flex items-baseline gap-4">
-                      <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-muted)] w-24 shrink-0">
+                      <p className="type-eyebrow text-[var(--color-text-muted)] w-24 shrink-0">
                         Stays
                       </p>
-                      <p className="text-[14px] text-[var(--color-text)]">{story.stayStyle}</p>
+                      <p className="type-ui-sm text-[var(--color-text)]">{story.stayStyle}</p>
                     </div>
                   </div>
                 </div>
@@ -90,7 +90,7 @@ export function StoriesSection({
                 <div className="mt-8">
                   <Link 
                     href="/plan/journey"
-                    className="inline-flex items-center gap-2 text-[12px] font-semibold tracking-[0.15em] uppercase text-[var(--color-brand)] hover:text-[var(--color-brand-hover)] transition-colors group/link"
+                    className="inline-flex items-center gap-2 type-eyebrow text-[var(--color-brand)] hover:text-[var(--color-brand-hover)] transition-colors group/link"
                   >
                     Plan a journey like this
                     <span className="transition-transform duration-300 group-hover/link:translate-x-1">→</span>

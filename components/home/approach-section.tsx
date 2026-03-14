@@ -20,7 +20,7 @@ export function ApproachSection({ id, eyebrow, heading, supporting, steps }: App
   const [activeApproachStep, setActiveApproachStep] = useState<number | null>(0);
 
   return (
-    <section id={id} className="section-shell w-full bg-[var(--color-surface-muted)]">
+    <section id={id} className="section-shell w-full bg-[var(--color-bg-alt)]">
       <div className="page-shell">
         <div className="grid gap-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start lg:gap-24">
           <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">
@@ -31,7 +31,7 @@ export function ApproachSection({ id, eyebrow, heading, supporting, steps }: App
               className="mb-0 max-w-none"
             />
             <div className="mt-8 h-[1px] w-12 bg-[var(--color-brand)]" aria-hidden="true" />
-            <p className="text-[17px] leading-[1.7] mt-8 max-w-[34ch] text-[var(--color-text-secondary)] font-light">
+            <p className="type-body-lg mt-8 max-w-[34ch] text-[var(--color-text-secondary)] font-light">
               You brief us once, we shape the route with care, and we stay close to the trip right through to departure and on-ground support.
             </p>
           </div>
@@ -50,13 +50,13 @@ export function ApproachSection({ id, eyebrow, heading, supporting, steps }: App
                       isActive ? "w-full" : "w-0"
                     }`} 
                   />
-                  <p className="font-serif text-[24px] italic text-[var(--color-text-muted)] transition-colors duration-300 group-hover:text-[var(--color-brand)]">
+                  <p className="font-serif text-[28px] italic text-[var(--color-text-muted)] transition-colors duration-300 group-hover:text-[var(--color-brand)]">
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="mt-6 font-serif text-[28px] leading-[1.1] text-[var(--color-text)]">
+                  <h3 className="mt-6 type-subheading font-serif text-[var(--color-text)]">
                     {step.title}
                   </h3>
-                  <p className="text-[15px] leading-[1.6] mt-4 text-[var(--color-text-secondary)] font-light">
+                  <p className="type-body mt-4 text-[var(--color-text-secondary)] font-light">
                     {step.description}
                   </p>
                 </article>

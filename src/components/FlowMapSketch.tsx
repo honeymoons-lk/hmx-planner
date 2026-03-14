@@ -193,20 +193,20 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
 
                     {/* Step Header */}
                     <div className="flex flex-wrap items-center gap-4 mb-4">
-                      <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-muted)]">
+                      <p className="type-eyebrow text-[var(--color-text-muted)]">
                         {step.detail.days}
                       </p>
                       <span className="h-[1px] w-8 bg-[color-mix(in_srgb,var(--color-border-strong)_60%,transparent)]" />
-                      <p className="text-[12px] italic text-[var(--color-text-secondary)]">
+                      <p className="type-ui-sm italic text-[var(--color-text-secondary)]">
                         {step.nights}
                       </p>
                     </div>
 
-                    <h3 className="font-serif text-[clamp(28px,3vw,36px)] leading-[1.1] text-[var(--color-text)] mb-4">
+                    <h3 className="type-subheading font-serif text-[var(--color-text)] mb-4">
                       {step.detail.title}
                     </h3>
                     
-                    <p className="text-[16px] leading-[1.7] text-[var(--color-text-secondary)] font-light max-w-[42ch]">
+                    <p className="type-body text-[var(--color-text-secondary)] font-light max-w-[42ch]">
                       {step.detail.body}
                     </p>
 
@@ -225,14 +225,14 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
                     {/* Stay Cue - Typographic instead of boxed */}
                     <div className="mt-8 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-5">
                       <div className="flex items-baseline gap-6">
-                        <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-muted)] w-24 shrink-0">
+                        <p className="type-eyebrow text-[var(--color-text-muted)] w-24 shrink-0">
                           Stay Cue
                         </p>
                         <div>
-                          <p className="text-[16px] font-medium text-[var(--color-text)]">
+                          <p className="type-ui-sm text-[var(--color-text)]">
                             {step.detail.stayType}
                           </p>
-                          <p className="text-[14px] text-[var(--color-text-secondary)] italic mt-1">
+                          <p className="type-meta text-[var(--color-text-secondary)] italic mt-1">
                             e.g. {step.detail.stayName} — {step.detail.stayNote}
                           </p>
                         </div>
