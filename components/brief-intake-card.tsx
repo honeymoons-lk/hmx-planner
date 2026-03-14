@@ -171,9 +171,9 @@ export function BriefIntakeCard({
 
       <CardContent className="space-y-7 px-8 py-8">
         <div className="space-y-3">
-          <Label htmlFor="timeframe" className="type-eyebrow text-[var(--color-text-secondary)]">When would you like to travel?</Label>
+          <Label htmlFor="timeframe">When would you like to travel?</Label>
           <Select value={timeframe} onValueChange={setTimeframe}>
-            <SelectTrigger id="timeframe" className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-[4px] focus:ring-[var(--color-brand)]">
+            <SelectTrigger id="timeframe" className="w-full">
               <SelectValue placeholder="Choose a timeframe" />
             </SelectTrigger>
             <SelectContent>
@@ -188,13 +188,13 @@ export function BriefIntakeCard({
 
         {timeframe === "pick-dates" ? (
           <div className="space-y-3">
-            <Label className="type-eyebrow text-[var(--color-text-secondary)]">Travel dates</Label>
+            <Label>Travel dates</Label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-[4px] justify-start text-left font-normal hover:bg-white/80"
+                  className="w-full justify-start text-left font-normal"
                 >
                   <CalendarDays className="mr-3 h-4 w-4 text-[var(--color-text-muted)]" />
                   {dateRange?.from && dateRange?.to
@@ -219,9 +219,9 @@ export function BriefIntakeCard({
           </div>
         ) : (
           <div className="space-y-3">
-            <Label htmlFor="nights" className="type-eyebrow text-[var(--color-text-secondary)]">Nights</Label>
+            <Label htmlFor="nights">Nights</Label>
             <Select value={nights} onValueChange={setNights}>
-              <SelectTrigger id="nights" className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-[4px] focus:ring-[var(--color-brand)]">
+              <SelectTrigger id="nights" className="w-full">
                 <SelectValue placeholder="Choose stay length" />
               </SelectTrigger>
               <SelectContent>
@@ -236,10 +236,10 @@ export function BriefIntakeCard({
         )}
 
         <div className="space-y-3">
-          <Label className="type-eyebrow text-[var(--color-text-secondary)]">What kind of experience are you picturing?</Label>
+          <Label>What kind of experience are you picturing?</Label>
           <Popover open={stylePopoverOpen} onOpenChange={setStylePopoverOpen}>
             <PopoverTrigger asChild>
-              <Button type="button" variant="outline" className="w-full min-h-12 h-auto bg-white/50 border-[rgba(0,0,0,0.08)] rounded-[4px] justify-between py-3 hover:bg-white/80">
+              <Button type="button" variant="outline" className="w-full min-h-14 h-auto justify-between py-3">
                 <span className="mr-3 flex flex-wrap gap-2 text-left">
                   {styles.length > 0 ? (
                     styles.map((value) => {
@@ -247,7 +247,7 @@ export function BriefIntakeCard({
                       return (
                         <span
                           key={value}
-                          className="text-[12px] font-medium rounded-md border border-[rgba(0,0,0,0.06)] bg-white px-2.5 py-1 text-[var(--color-text)] shadow-sm"
+                          className="inline-flex items-center justify-center rounded-[4px] border border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] bg-[var(--color-surface-strong)] px-2.5 py-1 text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]"
                         >
                           {label}
                         </span>
@@ -292,9 +292,9 @@ export function BriefIntakeCard({
         </div>
 
         <div className="space-y-3">
-          <Label htmlFor="wow" className="type-eyebrow text-[var(--color-text-secondary)]">What would make this unforgettable?</Label>
+          <Label htmlFor="wow">What would make this unforgettable?</Label>
           <Select value={wow} onValueChange={setWow}>
-            <SelectTrigger id="wow" className="w-full h-12 bg-white/50 border-[rgba(0,0,0,0.08)] rounded-[4px] focus:ring-[var(--color-brand)]">
+            <SelectTrigger id="wow" className="w-full">
               <SelectValue placeholder="Choose a highlight" />
             </SelectTrigger>
             <SelectContent>
@@ -308,7 +308,7 @@ export function BriefIntakeCard({
         </div>
 
         <div className="space-y-4">
-          <Label className="type-eyebrow text-[var(--color-text-secondary)]">How would you like the days to flow?</Label>
+          <Label>How would you like the days to flow?</Label>
           <ToggleGroup
             type="single"
             value={pace}
@@ -332,7 +332,7 @@ export function BriefIntakeCard({
           <Button
             type="button"
             size="lg"
-            className="w-full h-14 rounded-[4px] bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white font-medium tracking-wide text-[15px] shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full"
             disabled={!canSubmitBrief}
             onClick={handleSubmitBrief}
           >

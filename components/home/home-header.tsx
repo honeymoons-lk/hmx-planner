@@ -36,7 +36,7 @@ export function HomeHeader({ brand, links, cta }: HomeHeaderProps) {
         </nav>
 
         <div className="hidden lg:block">
-          <Button asChild size="sm">
+          <Button asChild size="sm" className="px-6 h-10">
             <Link href={cta.href}>{cta.label}</Link>
           </Button>
         </div>
@@ -62,7 +62,7 @@ export function HomeHeader({ brand, links, cta }: HomeHeaderProps) {
                 </Link>
               ))}
               <Separator className="my-2" />
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="w-full mt-4">
                 <Link href={cta.href}>{cta.label}</Link>
               </Button>
             </nav>

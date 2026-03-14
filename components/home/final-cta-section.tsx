@@ -28,10 +28,10 @@ export function FinalCtaSection({ heading, subcopy, primary, secondary }: FinalC
         </p>
         
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-          <Button asChild size="lg" className="bg-[var(--color-light)] text-[var(--color-brand)] hover:bg-white h-14 px-8 text-[14px] tracking-wide shadow-lg">
+          <Button asChild size="lg" className="bg-[var(--color-light)] text-[var(--color-brand)] hover:bg-white">
             <Link href="/plan/journey">{primary}</Link>
           </Button>
-          <Button asChild size="lg" variant="outline" className="h-14 px-8 text-[14px] tracking-wide border-[color-mix(in_srgb,var(--color-light)_30%,transparent)] text-[var(--color-light)] hover:bg-[color-mix(in_srgb,var(--color-light)_10%,transparent)] hover:text-white bg-transparent">
+          <Button asChild size="lg" variant="outline" className="border-[color-mix(in_srgb,var(--color-light)_30%,transparent)] text-[var(--color-light)] hover:bg-[color-mix(in_srgb,var(--color-light)_10%,transparent)] hover:text-white hover:border-[color-mix(in_srgb,var(--color-light)_50%,transparent)]">
             <Link href="/#our-approach">{secondary}</Link>
           </Button>
         </div>

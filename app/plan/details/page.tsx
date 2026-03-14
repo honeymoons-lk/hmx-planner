@@ -70,58 +70,58 @@ export default function DetailsPage() {
   return (
     <>
       <PlanningHeader />
-      <main className="min-h-[calc(100vh-64px)] bg-background px-4 py-10 md:px-6 md:py-14">
-        <div className="mx-auto w-full max-w-5xl space-y-6">
+      <main className="min-h-[calc(100vh-64px)] bg-[var(--color-bg)] px-4 py-16 md:px-6 md:py-24">
+        <div className="mx-auto w-full max-w-5xl space-y-12">
           <ProgressIndicator stage={2} />
 
-          <Card className="overflow-hidden border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] shadow-[var(--shadow-soft)]">
-            <div className="relative h-44 overflow-hidden md:h-56">
+          <Card className="overflow-hidden border border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] shadow-sm">
+            <div className="relative h-44 overflow-hidden md:h-64">
               <img
                 src={proxiedImageUrl(detailsImage)}
                 alt="Soft interior scene for journey details"
                 className="h-full w-full object-cover object-center"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(28,23,21,0.54)_0%,rgba(28,23,21,0.18)_44%,rgba(28,23,21,0.06)_100%)]" />
-              <div className="absolute bottom-5 left-5 right-5 md:bottom-7 md:left-7 md:right-7">
-                <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_88%,var(--color-bg-alt))]">
+              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(28,23,21,0.6)_0%,rgba(28,23,21,0.2)_44%,rgba(28,23,21,0.06)_100%)]" />
+              <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
+                <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_88%,var(--color-bg-alt))] mb-3">
                   Tailoring the journey
                 </p>
-                <p className="mt-2 max-w-[42ch] font-serif text-[clamp(22px,2.4vw,30px)] leading-[1.2] text-[color-mix(in_srgb,var(--color-light)_95%,var(--color-bg-alt))]">
+                <p className="max-w-[42ch] font-serif text-[clamp(24px,3vw,34px)] leading-[1.1] text-[color-mix(in_srgb,var(--color-light)_95%,var(--color-bg-alt))]">
                   Thoughtful choices that shape the tone, comfort, and rhythm of your honeymoon.
                 </p>
               </div>
             </div>
-            <CardHeader>
+            <CardHeader className="px-8 pt-8 pb-6 border-b border-[rgba(0,0,0,0.06)]">
               <CardTitle className="type-subheading font-serif">A few final details</CardTitle>
-              <CardDescription className="type-body text-muted-foreground">
+              <CardDescription className="type-body text-[var(--color-text-muted)] font-light mt-2">
                 This helps us shape options that match your comfort level and occasion.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-7">
-              <div className="rounded-[var(--radius-form)] border border-[color-mix(in_srgb,var(--color-border)_82%,transparent)] bg-[color-mix(in_srgb,var(--color-bg)_78%,var(--color-surface))] p-5 md:p-6">
-                <p className="type-ui-sm mb-3 text-foreground">Your honeymoon snapshot</p>
-                <div className="type-meta grid gap-3 md:grid-cols-2">
+            <CardContent className="space-y-10 px-8 py-8">
+              <div className="rounded-[8px] border border-[rgba(0,0,0,0.08)] bg-white/50 p-6 md:p-8">
+                <p className="type-eyebrow mb-6 text-[var(--color-text-secondary)]">Your honeymoon snapshot</p>
+                <div className="type-meta grid gap-6 md:grid-cols-2">
                   <div>
-                    <p className="text-muted-foreground">When</p>
+                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">When</p>
                     <p className="type-ui-sm text-foreground">{timeframeLabels[draft.timeframe] || "Not provided"}</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">Dates</p>
+                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Dates</p>
                     <p className="type-ui-sm text-foreground">
                       {draft.start && draft.end ? `${draft.start} → ${draft.end}` : "Not provided"}
                     </p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">Trip length</p>
+                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Trip length</p>
                     <p className="type-ui-sm text-foreground">{nightsLabel(draft.nights)}</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">Styles</p>
-                    <div className="mt-1 flex flex-wrap gap-1.5">
+                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-2">Styles</p>
+                    <div className="flex flex-wrap gap-2">
                       {draft.styles.length > 0 ? (
                         draft.styles.map((style) => (
-                          <Badge key={style} variant="secondary">
+                          <Badge key={style} variant="default">
                             {styleLabels[style] || style}
                           </Badge>
                         ))
@@ -131,11 +131,11 @@ export default function DetailsPage() {
                     </div>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">Wow moment</p>
+                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Wow moment</p>
                     <p className="type-ui-sm text-foreground">{wowLabels[draft.wow] || "Not provided"}</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">Day-flow vibe</p>
+                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Day-flow vibe</p>
                     <p className="type-ui-sm text-foreground">{paceLabels[draft.pace] || "Not provided"}</p>
                   </div>
                 </div>
@@ -164,10 +164,10 @@ export default function DetailsPage() {
                     <Label
                       key={option.value}
                       htmlFor={`budget-${option.value}`}
-                      className={`flex min-h-[120px] cursor-pointer flex-col items-start gap-2 rounded-[var(--radius-form)] border px-4 py-4 transition-colors ${
+                      className={`flex min-h-[120px] cursor-pointer flex-col items-start gap-2 rounded-[8px] border px-4 py-4 transition-colors ${
                         budget === option.value
                           ? "border-[var(--color-brand)] bg-[color-mix(in_srgb,var(--color-bg-alt)_62%,var(--color-surface))]"
-                          : "border-input bg-background hover:bg-[color-mix(in_srgb,var(--color-bg-alt)_40%,var(--color-surface))]"
+                          : "border-[rgba(0,0,0,0.08)] bg-white/50 hover:bg-white/80"
                       }`}
                     >
                       <div className="flex w-full items-center justify-between gap-3">
@@ -180,7 +180,7 @@ export default function DetailsPage() {
                 </RadioGroup>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <Label htmlFor="occasion">Occasion</Label>
                 <Select value={occasion} onValueChange={setOccasion}>
                   <SelectTrigger id="occasion">
@@ -196,7 +196,7 @@ export default function DetailsPage() {
                 </Select>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <Label htmlFor="notes">Anything that would make this feel personal?</Label>
                 <Textarea
                   id="notes"
@@ -206,7 +206,7 @@ export default function DetailsPage() {
                 />
               </div>
 
-              <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between pt-4">
                 <Button variant="outline" onClick={() => router.push("/plan/journey")}>
                   Back
                 </Button>

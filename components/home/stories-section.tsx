@@ -45,9 +45,9 @@ export function StoriesSection({
                   className="h-full w-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
                 />
                 <div className="absolute left-4 top-4 flex gap-2">
-                  <span className="bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text)]">
+                  <Badge variant="glass">
                     Sample {String(index + 1).padStart(2, "0")}
-                  </span>
+                  </Badge>
                 </div>
               </div>
               
@@ -87,15 +87,9 @@ export function StoriesSection({
                   </div>
                 </div>
 
-                <div className="mt-8">
-                  <Link 
-                    href="/plan/journey"
-                    className="inline-flex items-center gap-2 type-eyebrow text-[var(--color-brand)] hover:text-[var(--color-brand-hover)] transition-colors group/link"
-                  >
-                    Plan a journey like this
-                    <span className="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
-                  </Link>
-                </div>
+                <Button asChild variant="outline" className="w-full sm:w-auto mt-6">
+                  <Link href="/plan/journey">Plan a journey like this</Link>
+                </Button>
               </div>
             </article>
           ))}
