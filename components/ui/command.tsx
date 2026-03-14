@@ -8,7 +8,10 @@ function Command({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="command"
-      className={cn("bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-[var(--radius-input)]", className)}
+      className={cn(
+        "bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-[calc(var(--radius-input)+2px)]",
+        className,
+      )}
       {...props}
     />
   );
@@ -16,11 +19,11 @@ function Command({ className, ...props }: React.ComponentProps<"div">) {
 
 function CommandInput({ className, ...props }: React.ComponentProps<"input">) {
   return (
-    <div className="border-b border-border p-2">
+    <div className="border-b border-[color-mix(in_srgb,var(--color-border)_82%,transparent)] p-2.5">
       <input
         data-slot="command-input"
         className={cn(
-          "placeholder:text-muted-foreground h-9 w-full rounded-[var(--radius-input)] border border-input bg-transparent px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "field-surface placeholder:text-muted-foreground h-10 w-full rounded-[var(--radius-input)] border border-input px-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/14",
           className,
         )}
         {...props}
@@ -59,7 +62,7 @@ function CommandItem({ className, ...props }: React.ComponentProps<"button">) {
       type="button"
       data-slot="command-item"
       className={cn(
-        "hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-left text-sm outline-none",
+        "hover:bg-[color-mix(in_srgb,var(--color-bg-alt)_86%,var(--color-surface))] hover:text-[var(--color-text)] focus-visible:bg-[color-mix(in_srgb,var(--color-bg-alt)_86%,var(--color-surface))] focus-visible:text-[var(--color-text)] flex w-full items-center gap-2 rounded-[14px] px-3 py-2 text-left text-sm text-[var(--color-text-secondary)] outline-none",
         className,
       )}
       {...props}

@@ -41,128 +41,131 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
   }, [activeCategoryIndex]);
 
   return (
-    <section id={id} className="w-full py-[var(--section-space-mobile)] md:py-[var(--section-space-desktop)]">
-      <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="md:mb-12" />
+    <section id={id} className="section-shell w-full bg-[var(--color-bg)]">
+      <div className="page-shell">
+        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="md:mb-20" />
 
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,40%)_minmax(0,60%)] lg:gap-14 xl:gap-16">
-          <div>
-            <div className="-mx-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div
-                role="tablist"
-                aria-label="Stay categories"
-                className="inline-flex min-w-full items-center gap-5 border-b border-[color-mix(in_srgb,var(--color-border)_76%,transparent)] pb-3"
-              >
-                {items.map((category, index) => (
+        <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start lg:gap-24">
+          {/* Left: Typographic Accordion */}
+          <div className="space-y-8 lg:space-y-12">
+            {items.map((category, index) => {
+              const isActive = index === activeCategoryIndex;
+              return (
+                <div key={category.id} className="group flex flex-col">
                   <button
-                    key={category.id}
                     type="button"
-                    role="tab"
-                    id={`${tabsId}-tab-${index}`}
-                    aria-controls={`${tabsId}-panel-${index}`}
-                    aria-selected={index === activeCategoryIndex}
-                    tabIndex={index === activeCategoryIndex ? 0 : -1}
-                    onClick={() => setActiveCategoryIndex(index)}
-                    onKeyDown={(event) => {
-                      if (event.key === "ArrowRight") {
-                        event.preventDefault();
-                        setActiveCategoryIndex((prev) => (prev + 1) % items.length);
-                      }
-                      if (event.key === "ArrowLeft") {
-                        event.preventDefault();
-                        setActiveCategoryIndex((prev) => (prev - 1 + items.length) % items.length);
-                      }
+                    onClick={() => {
+                      setActiveCategoryIndex(index);
+                      setActivePropertyIndex(0);
                     }}
-                    className={`type-ui-sm relative shrink-0 pb-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)] ${
-                      index === activeCategoryIndex
-                        ? "text-[var(--color-text)]"
-                        : "text-[color-mix(in_srgb,var(--color-text-muted)_92%,var(--color-text-secondary))] hover:text-[var(--color-text-secondary)]"
+                    className="text-left focus-visible:outline-none"
+                  >
+                    <h3
+                      className={`font-serif text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-tight transition-colors duration-500 ${
+                        isActive
+                          ? "text-[var(--color-text)]"
+                          : "text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
+                      }`}
+                    >
+                      {category.title}
+                    </h3>
+                  </button>
+
+                  <div
+                    className={`grid transition-all duration-500 ease-in-out ${
+                      isActive ? "grid-rows-[1fr] opacity-100 mt-6" : "grid-rows-[0fr] opacity-0 mt-0"
                     }`}
                   >
-                    {category.title}
-                    <span
-                      className={`absolute bottom-0 left-0 h-px bg-[var(--color-brand)] transition-all ${
-                        index === activeCategoryIndex ? "w-full opacity-100" : "w-0 opacity-0"
-                      }`}
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
+                    <div className="overflow-hidden">
+                      <p className="text-[17px] leading-[1.7] max-w-[44ch] text-[var(--color-text-secondary)] font-light">
+                        {category.description}
+                      </p>
 
-            <div
-              key={activeCategory.id}
-              role="tabpanel"
-              id={`${tabsId}-panel-${activeCategoryIndex}`}
-              aria-labelledby={`${tabsId}-tab-${activeCategoryIndex}`}
-              className="mt-10 md:mt-12"
-            >
-              <h3 className="type-section text-[var(--color-text)]">{activeCategory.title}</h3>
-              <p className="type-body mt-4 max-w-[46ch] text-[var(--color-text-secondary)]">{activeCategory.description}</p>
-
-              <p className="type-meta mt-9 text-[color-mix(in_srgb,var(--color-text-muted)_90%,var(--color-text-secondary))]">
-                {activeCategory.framingLine}
-              </p>
-
-              <div className="mt-5 space-y-4 md:space-y-[18px]">
-                {activeCategory.properties.map((property, index) => {
-                  const isActive = index === activePropertyIndex;
-                  return (
-                    <button
-                      key={`${property.name}-${property.location}`}
-                      type="button"
-                      onMouseEnter={() => setActivePropertyIndex(index)}
-                      onFocus={() => setActivePropertyIndex(index)}
-                      onClick={() => setActivePropertyIndex(index)}
-                      className={`group flex w-full items-start gap-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)] ${
-                        isActive ? "text-[var(--color-text)]" : "text-[var(--color-text-muted)]"
-                      }`}
-                      aria-label={`Preview ${property.name} in ${property.location}`}
-                    >
-                      <span aria-hidden className="mt-1 inline-flex h-6 w-1 items-center justify-center">
-                        {isActive ? <span className="h-4 w-px bg-[color-mix(in_srgb,var(--color-brand)_82%,var(--color-text))]" /> : null}
-                      </span>
-                      <span className="font-sans text-[17px] leading-[1.55]">
-                        <span className={`font-medium ${isActive ? "text-[var(--color-text)]" : ""}`}>{property.name}</span>
-                        <span className="mx-2 text-[color-mix(in_srgb,var(--color-text-muted)_85%,var(--color-border-strong))]">
-                          , 
-                        </span>
-                        <span className="text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-text-muted))]">
-                          {property.location}
-                        </span>
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              <p className="type-meta mt-9 max-w-[46ch] text-[var(--color-text-muted)]">{activeCategory.reassuranceLine}</p>
-            </div>
+                      <div className="mt-10 mb-4">
+                        <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-muted)] mb-5">
+                          {category.framingLine}
+                        </p>
+                        <ul className="space-y-3">
+                          {category.properties.map((property, pIdx) => {
+                            const isPropActive = pIdx === activePropertyIndex;
+                            return (
+                              <li key={`${property.name}-${property.location}`}>
+                                <button
+                                  type="button"
+                                  onMouseEnter={() => setActivePropertyIndex(pIdx)}
+                                  onClick={() => setActivePropertyIndex(pIdx)}
+                                  className="group/prop flex items-center gap-4 text-left focus-visible:outline-none w-full py-1"
+                                >
+                                  <span
+                                    className={`h-[1px] transition-all duration-500 ease-out ${
+                                      isPropActive
+                                        ? "w-8 bg-[var(--color-brand)]"
+                                        : "w-0 bg-transparent group-hover/prop:w-4 group-hover/prop:bg-[var(--color-border-strong)]"
+                                    }`}
+                                  />
+                                  <span
+                                    className={`text-[16px] transition-colors duration-300 ${
+                                      isPropActive
+                                        ? "text-[var(--color-text)] font-medium"
+                                        : "text-[var(--color-text-secondary)] group-hover/prop:text-[var(--color-text)]"
+                                    }`}
+                                  >
+                                    {property.name}
+                                  </span>
+                                  <span className="text-[14px] text-[var(--color-text-muted)] italic font-serif">
+                                    — {property.location}
+                                  </span>
+                                </button>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                      <p className="mt-8 max-w-[46ch] text-[14px] text-[var(--color-text-muted)] italic font-serif">
+                        {category.reassuranceLine}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="lg:pt-2 xl:mr-[-140px] 2xl:mr-[-180px]">
-            <div className="relative aspect-[5/4] overflow-hidden rounded-[var(--radius-card)] bg-[var(--color-bg-alt)] md:aspect-[4/3] lg:aspect-[16/10]">
+          {/* Right: Cinematic Image Frame */}
+          <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--color-bg-alt)]">
               {activeProperty ? (
                 <img
                   key={`${activeCategory.id}-${activeProperty.name}`}
                   src={proxiedImageUrl(activeProperty.image)}
                   alt={activeProperty.alt}
                   loading="lazy"
-                  className="h-full w-full object-cover object-center transition-opacity duration-300 ease-out motion-reduce:transition-none"
+                  className="absolute inset-0 h-full w-full object-cover animate-in fade-in duration-1000 ease-out"
                 />
               ) : null}
             </div>
-            <div className="mt-5">
-              <p className="type-subheading text-[var(--color-text)]">{activeProperty?.name}</p>
-              <p className="type-meta mt-2 text-[var(--color-text-muted)]">{activeProperty?.location}</p>
+            <div className="mt-6 flex items-start justify-between gap-4 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-5">
+              <div>
+                <p className="font-serif text-[24px] leading-none text-[var(--color-text)]">
+                  {activeProperty?.name}
+                </p>
+                <p className="mt-2 text-[12px] tracking-[0.15em] uppercase text-[var(--color-text-muted)]">
+                  {activeProperty?.location}
+                </p>
+              </div>
+              <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-brand)] text-right max-w-[120px]">
+                {activeCategory.title}
+              </span>
             </div>
           </div>
         </div>
-      </div>
 
-      <p className="type-meta mx-auto mt-7 w-full max-w-6xl px-4 text-muted-foreground md:mt-9 md:px-6">
-        {footerNote}
-      </p>
+        <div className="mt-16 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-8 md:mt-24">
+          <p className="text-[14px] max-w-[52rem] text-[var(--color-text-muted)]">
+            {footerNote}
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

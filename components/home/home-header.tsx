@@ -13,53 +13,56 @@ type HomeHeaderProps = {
 
 export function HomeHeader({ brand, links, cta }: HomeHeaderProps) {
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 md:px-6">
+    <header className="sticky top-0 z-50 border-b border-[color-mix(in_srgb,var(--color-border)_72%,transparent)] bg-[color-mix(in_srgb,var(--color-bg)_86%,rgba(255,255,255,0.72))] backdrop-blur-xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_82%,rgba(255,255,255,0.68))]">
+      <div className="page-shell flex h-[74px] items-center justify-between md:h-[84px]">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-sm text-[20px] font-medium tracking-tight md:text-[22px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="inline-flex items-center gap-3 rounded-full px-1 py-1 text-[20px] font-medium tracking-tight transition-colors hover:text-[var(--color-brand)] focus-visible:outline-none focus-visible:ring-[4px] focus-visible:ring-ring/16 md:text-[22px]"
         >
-          <Image src="/logo-icon.png" alt="Luna Voyages logo" width={34} height={34} priority />
-          <span className="font-wordmark leading-none">{brand}</span>
+          <Image src="/logo-icon.png" alt="Luna Voyages logo" width={38} height={38} priority />
+          <span className="font-wordmark text-[0.92em] leading-none text-[var(--color-text)]">{brand}</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
           {links.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="type-ui-sm text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="type-ui-sm relative rounded-full px-1 py-2 text-[var(--color-text-secondary)] transition-colors duration-300 after:absolute after:bottom-1 after:left-1 after:h-px after:w-[calc(100%-0.5rem)] after:origin-left after:scale-x-0 after:bg-[color-mix(in_srgb,var(--color-brand)_62%,var(--color-border-strong))] after:transition-transform after:duration-300 hover:text-[var(--color-brand)] hover:after:scale-x-100 focus-visible:outline-none focus-visible:ring-[4px] focus-visible:ring-ring/16"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden md:block">
-          <Button asChild>
+        <div className="hidden lg:block">
+          <Button asChild size="sm">
             <Link href={cta.href}>{cta.label}</Link>
           </Button>
         </div>
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="md:hidden" aria-label="Open menu">
+            <Button variant="outline" size="icon-sm" className="lg:hidden" aria-label="Open menu">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[290px]">
-            <nav className="mt-8 flex flex-col gap-4" aria-label="Mobile">
+          <SheetContent
+            side="right"
+            className="w-[320px] border-l border-[color-mix(in_srgb,var(--color-border)_72%,transparent)] bg-[linear-gradient(180deg,rgba(255,251,247,0.98)_0%,rgba(246,238,230,0.96)_100%)] px-6"
+          >
+            <nav className="mt-10 flex flex-col gap-4" aria-label="Mobile">
               {links.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="type-ui-sm rounded-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="type-ui-sm rounded-[18px] px-3 py-2 text-[var(--color-text)] transition-colors hover:text-[var(--color-brand)] focus-visible:outline-none focus-visible:ring-[4px] focus-visible:ring-ring/16"
                 >
                   {link.label}
                 </Link>
               ))}
               <Separator className="my-2" />
-              <Button asChild>
+              <Button asChild size="lg">
                 <Link href={cta.href}>{cta.label}</Link>
               </Button>
             </nav>

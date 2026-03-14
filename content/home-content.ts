@@ -4,7 +4,7 @@ export const homeContent = {
     links: [
       { label: "Experiences", href: "#experiences" },
       { label: "The Journey", href: "#the-journey" },
-      { label: "Real Honeymoons", href: "#real-honeymoons" },
+      { label: "Sample Journeys", href: "#sample-journeys" },
       { label: "Our Approach", href: "#our-approach" },
     ],
     cta: { label: "Start Planning", href: "/plan/journey" },
@@ -73,6 +73,20 @@ export const homeContent = {
         body: "Old forts, quiet courtyards, and stories in stone.",
         image:
           "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=2200&q=80",
+      },
+      {
+        title: "SCENIC TRAIN MOMENTS",
+        label: "Hill country rail",
+        body: "Windows open, tea slopes rolling by, and the kind of journey that becomes part of the honeymoon itself.",
+        image:
+          "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=80",
+      },
+      {
+        title: "SECLUDED POOLSIDE AFTERNOONS",
+        label: "Private villas",
+        body: "Quiet hours between plans, a book, a breeze, and nowhere else you need to be.",
+        image:
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2200&q=80",
       },
     ],
   },
@@ -287,28 +301,40 @@ export const homeContent = {
     ],
   },
   stories: {
-    id: "real-honeymoons",
-    eyebrow: "REAL HONEYMOONS",
-    heading: "Journeys we’ve recently designed.",
-    subcopy: "Different styles, different budgets - always personal.",
+    id: "sample-journeys",
+    eyebrow: "SAMPLE JOURNEYS",
+    heading: "A few journey shapes couples often begin with.",
+    subcopy: "These are starting points, not fixed packages. We tailor the pacing, stays, and moments around the two of you.",
     caseStudies: [
       {
-        couple: "N + A",
-        route: "Colombo → Ella → Tangalle",
-        pricingTier: "Premium",
-        summary: "10 nights: boutique stays, tea trails, and a relaxed beach finale.",
+        title: "Tea Hills to South Coast",
+        duration: "10 nights",
+        route: "Colombo → Tea Country → Tangalle",
+        mood: "Slow romance with a graceful beach finish",
+        stayStyle: "Estate bungalows + beachfront suites",
+        summary: "A softly paced honeymoon built around scenic rail, misty mornings, and a final stretch of sea-facing downtime.",
+        image:
+          "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=2200&q=80",
       },
       {
-        couple: "R + M",
+        title: "Culture to Coast",
+        duration: "8 nights",
         route: "Sigiriya → Kandy → Galle",
-        pricingTier: "Comfortable",
-        summary: "8 nights: culture landmarks plus intimate coastal time.",
+        mood: "Ancient sites, boutique charm, and ocean evenings",
+        stayStyle: "Design-led villas + heritage stays",
+        summary: "Ideal for couples who want meaningful landmark moments without losing the calm, intimate feel of the trip.",
+        image:
+          "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=2200&q=80",
       },
       {
-        couple: "D + S",
+        title: "Safari and Villa Escape",
+        duration: "9 nights",
         route: "Bentota → Yala → Weligama",
-        pricingTier: "Exceptional",
-        summary: "9 nights: villa stays, private safari, and signature dining.",
+        mood: "Private wildlife moments with a polished coastal close",
+        stayStyle: "Riverside villas + clifftop ocean suites",
+        summary: "For couples who want nature, privacy, and a stronger sense of occasion woven through the route.",
+        image:
+          "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=2200&q=80",
       },
     ],
   },
@@ -338,9 +364,9 @@ export const homeContent = {
   },
   why: {
     id: "why",
-    eyebrow: "WHY Luna Voyages",
-    heading: "Sri Lanka honeymoon design, done properly.",
-    subcopy: "Local insight, clear guidance, end-to-end handling.",
+    eyebrow: "FAQ / REASSURANCE",
+    heading: "What couples usually want to know before they enquire.",
+    subcopy: "Clear answers, calm handling, and no generic package language.",
     objections: [
       {
         question: "Is this just another booking site?",

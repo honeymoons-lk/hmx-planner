@@ -25,6 +25,7 @@ type ItineraryDetail = {
   title: string;
   body: string;
   image: string;
+  stayType: string;
   stayName: string;
   stayNote: string;
 };
@@ -37,6 +38,7 @@ const itineraryDetails: Record<string, ItineraryDetail> = {
       "Land gently with a private transfer, a calm city hotel, and time to recover from the flight. Evening plans stay light: a long dinner, a rooftop drink, and an easy first night.",
     image:
       "https://images.unsplash.com/photo-1531201890865-fb64780d43d8?auto=format&fit=crop&w=2200&q=80",
+    stayType: "City retreat",
     stayName: "Uga Residence",
     stayNote: "A quiet city retreat for your first nights.",
   },
@@ -47,6 +49,7 @@ const itineraryDetails: Record<string, ItineraryDetail> = {
       "Move north for Sigiriya and the ancient cities with early starts and long relaxed afternoons. Private guiding and deliberate pacing keep the experience immersive, not rushed.",
     image:
       "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=2200&q=80",
+    stayType: "Villa hideaway",
     stayName: "Water Garden Sigiriya",
     stayNote: "Villa-style stays with direct rock fortress views.",
   },
@@ -57,6 +60,7 @@ const itineraryDetails: Record<string, ItineraryDetail> = {
       "Take the scenic rail route into the hills and settle into estate life. Cool air, misty views, and unhurried mornings create a strong emotional midpoint in the itinerary.",
     image:
       "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=2200&q=80",
+    stayType: "Estate bungalow",
     stayName: "Ceylon Tea Trails",
     stayNote: "Historic bungalows with deeply personal service.",
   },
@@ -67,6 +71,7 @@ const itineraryDetails: Record<string, ItineraryDetail> = {
       "Finish where it feels effortless: ocean-facing villas, slow lunches, and candlelit evenings. This final stretch is designed for downtime, connection, and a graceful end to the journey.",
     image:
       "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=2200&q=80",
+    stayType: "Beachfront suite",
     stayName: "Amanwella",
     stayNote: "Minimal beachfront suites with complete privacy.",
   },
@@ -137,6 +142,7 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
           title: step.stop,
           body: step.caption,
           image: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=2200&q=80",
+          stayType: "Curated stay",
           stayName: "Curated stay",
           stayNote: "Selected to match your pace and style.",
         };
@@ -146,15 +152,17 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
   );
 
   return (
-    <section ref={sectionRef} id={id} className="w-full py-[var(--section-space-mobile)] md:py-[var(--section-space-desktop)]">
-      <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
+    <section ref={sectionRef} id={id} className="section-shell w-full">
+      <div className="page-shell">
         <SectionHeader eyebrow={eyebrow} heading={heading} supporting={subcopy} className="max-w-3xl" />
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,43%)_minmax(0,57%)] lg:gap-12">
-          <div className="relative pl-8 md:pl-10">
-            <span className="absolute bottom-6 left-0 top-2 w-px bg-[color-mix(in_srgb,var(--color-border-strong)_86%,transparent)]" />
+        <div className="mt-16 grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-24">
+          {/* Left: Editorial Timeline */}
+          <div className="relative">
+            {/* Continuous fine line for the timeline */}
+            <div className="absolute bottom-0 left-[11px] top-4 w-[1px] bg-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)]" />
 
-            <div className="space-y-14">
+            <div className="space-y-20">
               {narrativeSteps.map((step) => {
                 const isActive = step.id === activeStopId;
                 return (
@@ -164,31 +172,71 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
                     ref={(element) => {
                       blockRefs.current[step.id] = element;
                     }}
-                    className={`relative transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-70"}`}
+                    className={`relative pl-10 transition-all duration-700 ${
+                      isActive ? "opacity-100" : "opacity-40 hover:opacity-70"
+                    }`}
                   >
-                    <span
-                      className={`absolute -left-[34px] top-1 h-2.5 w-2.5 rounded-full border border-[var(--color-bg)] transition-all duration-300 ${
-                        isActive ? "bg-[var(--color-brand)] scale-110" : "bg-[var(--color-border-strong)]"
+                    {/* Timeline Dot */}
+                    <div
+                      className={`absolute left-0 top-2 h-6 w-6 -translate-x-[5.5px] rounded-full border bg-[var(--color-bg)] transition-all duration-500 flex items-center justify-center ${
+                        isActive
+                          ? "border-[var(--color-brand)]"
+                          : "border-[var(--color-border-strong)]"
                       }`}
-                    />
+                    >
+                      <div
+                        className={`h-2 w-2 rounded-full transition-all duration-500 ${
+                          isActive ? "bg-[var(--color-brand)] scale-100" : "bg-transparent scale-0"
+                        }`}
+                      />
+                    </div>
 
-                    <p className="type-eyebrow text-[var(--color-text-muted)]">{step.detail.days.toUpperCase()}</p>
-                    <h3 className="mt-3 font-serif text-[clamp(28px,3.2vw,40px)] leading-[1.16] text-[var(--color-text)]">
+                    {/* Step Header */}
+                    <div className="flex flex-wrap items-center gap-4 mb-4">
+                      <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-muted)]">
+                        {step.detail.days}
+                      </p>
+                      <span className="h-[1px] w-8 bg-[color-mix(in_srgb,var(--color-border-strong)_60%,transparent)]" />
+                      <p className="text-[12px] italic text-[var(--color-text-secondary)]">
+                        {step.nights}
+                      </p>
+                    </div>
+
+                    <h3 className="font-serif text-[clamp(28px,3vw,36px)] leading-[1.1] text-[var(--color-text)] mb-4">
                       {step.detail.title}
                     </h3>
-                    <p className="type-body mt-4 text-[var(--color-text-secondary)]">{step.detail.body}</p>
+                    
+                    <p className="text-[16px] leading-[1.7] text-[var(--color-text-secondary)] font-light max-w-[42ch]">
+                      {step.detail.body}
+                    </p>
 
-                    <img
-                      src={proxiedImageUrl(step.detail.image)}
-                      alt={step.detail.title}
-                      loading="lazy"
-                      className="mt-7 aspect-[16/10] w-full rounded-[var(--radius-card)] object-cover object-center"
-                    />
+                    {/* Image */}
+                    <div className="mt-8 overflow-hidden rounded-[4px]">
+                      <img
+                        src={proxiedImageUrl(step.detail.image)}
+                        alt={step.detail.title}
+                        loading="lazy"
+                        className={`aspect-[16/9] w-full object-cover object-center transition-transform duration-1000 ${
+                          isActive ? "scale-100" : "scale-105"
+                        }`}
+                      />
+                    </div>
 
-                    <div className="mt-6">
-                      <p className="font-serif text-[30px] leading-[1.15] text-[var(--color-text)]">Where you could stay</p>
-                      <p className="mt-3 font-sans text-[18px] font-medium leading-[1.5] text-[var(--color-text)]">{step.detail.stayName}</p>
-                      <p className="type-body mt-2 text-[var(--color-text-secondary)]">{step.detail.stayNote}</p>
+                    {/* Stay Cue - Typographic instead of boxed */}
+                    <div className="mt-8 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-5">
+                      <div className="flex items-baseline gap-6">
+                        <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-muted)] w-24 shrink-0">
+                          Stay Cue
+                        </p>
+                        <div>
+                          <p className="text-[16px] font-medium text-[var(--color-text)]">
+                            {step.detail.stayType}
+                          </p>
+                          <p className="text-[14px] text-[var(--color-text-secondary)] italic mt-1">
+                            e.g. {step.detail.stayName} — {step.detail.stayNote}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </article>
                 );
@@ -196,74 +244,83 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
             </div>
           </div>
 
-          <aside className="order-last lg:order-none lg:sticky lg:top-24 lg:self-start xl:mr-[-160px] 2xl:mr-[-200px]">
-            <div className="overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border)_80%,transparent)] bg-[var(--color-bg-alt)]">
-              <div className="relative aspect-[4/5] min-h-[420px] md:aspect-[5/6] lg:min-h-[620px]">
-                <svg viewBox="0 0 420 620" className="h-full w-full" role="img" aria-label="Sri Lanka route map">
-                  <rect x="0" y="0" width="420" height="620" fill="color-mix(in srgb, var(--color-bg-alt) 82%, var(--color-surface))" />
-                  <path
-                    d="M168 84C196 79 222 88 238 103C258 122 271 154 273 184C276 221 269 257 257 293C249 318 250 343 257 370C266 404 263 441 249 472C235 504 215 527 194 542C178 553 157 555 143 547C127 537 120 518 121 497C123 462 137 430 138 397C138 365 128 334 121 303C114 271 114 237 124 206C133 177 149 153 157 125C162 107 160 95 168 84Z"
-                    fill="color-mix(in srgb, var(--color-surface) 95%, var(--color-bg-alt))"
-                    stroke="color-mix(in srgb, var(--color-border-strong) 88%, transparent)"
-                    strokeWidth="2"
-                  />
+          {/* Right: Floating Minimal Map */}
+          <aside className="order-first lg:order-none lg:sticky lg:top-[calc(var(--header-height)+40px)] lg:self-start">
+            <div className="relative aspect-[4/5] min-h-[500px] w-full max-w-[500px] mx-auto lg:min-h-[700px]">
+              {/* Removed the heavy background and border, making the map float */}
+              <svg viewBox="0 0 420 620" className="h-full w-full drop-shadow-sm" role="img" aria-label="Sri Lanka route map">
+                {/* Island Base */}
+                <path
+                  d="M168 84C196 79 222 88 238 103C258 122 271 154 273 184C276 221 269 257 257 293C249 318 250 343 257 370C266 404 263 441 249 472C235 504 215 527 194 542C178 553 157 555 143 547C127 537 120 518 121 497C123 462 137 430 138 397C138 365 128 334 121 303C114 271 114 237 124 206C133 177 149 153 157 125C162 107 160 95 168 84Z"
+                  fill="color-mix(in srgb, var(--color-surface) 60%, transparent)"
+                  stroke="color-mix(in srgb, var(--color-border-strong) 60%, transparent)"
+                  strokeWidth="1"
+                />
 
-                  <path
-                    d="M173 172Q198 204 225 250Q220 308 212 372Q190 438 170 500"
-                    fill="none"
-                    stroke="color-mix(in srgb, var(--color-brand) 88%, var(--color-text))"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    pathLength={1}
-                    style={{
-                      strokeDasharray: 1,
-                      strokeDashoffset: hasEntered ? 0 : 1,
-                      transition: "stroke-dashoffset 1400ms ease-out",
-                    }}
-                  />
+                {/* Route Line */}
+                <path
+                  d="M173 172Q198 204 225 250Q220 308 212 372Q190 438 170 500"
+                  fill="none"
+                  stroke="var(--color-brand)"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  pathLength={1}
+                  style={{
+                    strokeDasharray: 1,
+                    strokeDashoffset: hasEntered ? 0 : 1,
+                    transition: "stroke-dashoffset 2000ms ease-in-out",
+                  }}
+                />
 
-                  {steps.map((step) => {
-                    const marker = markerPositions[step.id] ?? { x: 210, y: 300, labelX: 230, labelY: 292 };
-                    const isActive = step.id === activeStopId;
+                {/* Markers */}
+                {steps.map((step) => {
+                  const marker = markerPositions[step.id] ?? { x: 210, y: 300, labelX: 230, labelY: 292 };
+                  const isActive = step.id === activeStopId;
 
-                    return (
-                      <g key={`${step.id}-map`}>
-                        <circle
-                          cx={marker.x}
-                          cy={marker.y}
-                          r={isActive ? 10 : 7}
-                          fill={isActive ? "var(--color-brand)" : "color-mix(in srgb, var(--color-text-muted) 75%, var(--color-border-strong))"}
-                          opacity={isActive ? 1 : 0.88}
-                          style={{ transition: "all 280ms ease" }}
-                        />
-                        <circle
-                          cx={marker.x}
-                          cy={marker.y}
-                          r={isActive ? 16 : 0}
-                          fill="none"
-                          stroke="color-mix(in srgb, var(--color-brand) 45%, transparent)"
-                          strokeWidth="1.5"
-                          style={{ transition: "all 280ms ease" }}
-                        />
-                        <text
-                          x={marker.labelX}
-                          y={marker.labelY}
-                          fill="color-mix(in srgb, var(--color-text-secondary) 82%, var(--color-text-muted))"
-                          style={{ fontSize: "11px", fontFamily: "var(--font-body), Inter, sans-serif", letterSpacing: "0.04em" }}
-                        >
-                          {step.stop}
-                        </text>
-                      </g>
-                    );
-                  })}
-                </svg>
-              </div>
+                  return (
+                    <g key={`${step.id}-map`} className="transition-opacity duration-500" style={{ opacity: isActive ? 1 : 0.4 }}>
+                      <circle
+                        cx={marker.x}
+                        cy={marker.y}
+                        r={isActive ? 6 : 4}
+                        fill="var(--color-brand)"
+                        style={{ transition: "all 500ms ease" }}
+                      />
+                      <circle
+                        cx={marker.x}
+                        cy={marker.y}
+                        r={isActive ? 14 : 0}
+                        fill="none"
+                        stroke="var(--color-brand)"
+                        strokeWidth="1"
+                        opacity="0.3"
+                        style={{ transition: "all 500ms ease" }}
+                      />
+                      <text
+                        x={marker.labelX}
+                        y={marker.labelY}
+                        fill="var(--color-text)"
+                        style={{ 
+                          fontSize: isActive ? "13px" : "11px", 
+                          fontFamily: "var(--font-display), serif", 
+                          fontStyle: "italic",
+                          transition: "all 500ms ease" 
+                        }}
+                      >
+                        {step.stop}
+                      </text>
+                    </g>
+                  );
+                })}
+              </svg>
             </div>
           </aside>
         </div>
 
-        <p className="type-body mt-10 max-w-[68ch] text-muted-foreground">{note}</p>
+        <div className="mt-20 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-8">
+          <p className="text-[14px] text-[var(--color-text-muted)] italic">{note}</p>
+        </div>
       </div>
     </section>
   );
