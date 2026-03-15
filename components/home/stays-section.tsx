@@ -30,23 +30,23 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
   const layouts = [
     {
       container: "lg:flex-row lg:items-center",
-      image: "lg:w-[55%] aspect-[4/5]",
-      text: "lg:w-[35%]",
+      image: "lg:w-[60%] aspect-[4/5] lg:aspect-[3/4]",
+      text: "lg:w-[32%] lg:pl-8 xl:pl-16",
     },
     {
       container: "lg:flex-row-reverse lg:items-end",
-      image: "lg:w-[45%] aspect-[4/5] md:aspect-[3/4]",
-      text: "lg:w-[40%] lg:pb-16",
+      image: "lg:w-[50%] aspect-[4/5] lg:aspect-[4/5]",
+      text: "lg:w-[40%] lg:pr-8 xl:pr-16 lg:pb-32",
     },
     {
       container: "lg:flex-row lg:items-start",
-      image: "lg:w-[60%] aspect-[4/5]",
-      text: "lg:w-[30%] lg:pt-32",
+      image: "lg:w-[65%] aspect-[4/5] lg:aspect-[16/9]",
+      text: "lg:w-[28%] lg:pl-8 xl:pl-12 lg:pt-48",
     },
     {
       container: "lg:flex-row-reverse lg:items-center",
-      image: "lg:w-[50%] aspect-[4/5] md:aspect-[5/6]",
-      text: "lg:w-[38%]",
+      image: "lg:w-[55%] aspect-[4/5] lg:aspect-[3/4]",
+      text: "lg:w-[35%] lg:pr-8 xl:pr-16",
     }
   ];
 
@@ -60,7 +60,7 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
           className="mb-32 md:mb-48 max-w-3xl mx-auto text-center flex flex-col items-center" 
         />
 
-        <div className="flex flex-col gap-32 md:gap-48 lg:gap-64 w-full">
+        <div className="flex flex-col gap-40 md:gap-56 lg:gap-72 w-full">
           {items.map((category, index) => {
             const layout = layouts[index % layouts.length];
             const mainProperty = category.properties[0];
@@ -69,16 +69,16 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
             return (
               <div 
                 key={category.id} 
-                className={`flex flex-col ${layout.container} justify-between gap-12 md:gap-16 lg:gap-20`}
+                className={`flex flex-col ${layout.container} justify-between gap-16 md:gap-20 lg:gap-0`}
               >
                 {/* Image Side */}
                 <div className={`w-[calc(100%+2rem)] -mx-4 md:w-full md:mx-0 ${layout.image}`}>
-                  <div className="relative w-full h-full overflow-hidden bg-[var(--color-bg-alt)] md:rounded-[4px]">
+                  <div className="relative w-full h-full overflow-hidden bg-[var(--color-bg-alt)] md:rounded-[2px]">
                     <img
                       src={proxiedImageUrl(mainProperty.image)}
                       alt={mainProperty.alt}
                       loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 hover:scale-105"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[2s] ease-out hover:scale-[1.03]"
                     />
                   </div>
                 </div>
@@ -89,11 +89,11 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
                     {category.framingLine}
                   </span>
                   
-                  <h3 className="font-serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] tracking-tight text-[var(--color-text)] mb-6 md:mb-8">
+                  <h3 className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] tracking-tight text-[var(--color-text)] mb-8 md:mb-10">
                     {category.title}
                   </h3>
                   
-                  <p className="text-[1rem] md:text-[1.125rem] leading-[1.8] text-[var(--color-text-secondary)] font-light mb-12 md:mb-16 max-w-[40ch]">
+                  <p className="text-[1.05rem] md:text-[1.125rem] leading-[1.9] text-[var(--color-text-secondary)] font-light mb-16 md:mb-20 max-w-[38ch]">
                     {category.description}
                   </p>
 
