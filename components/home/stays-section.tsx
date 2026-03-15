@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useId, useState } from "react";
 import { SectionHeader } from "@/components/section-header";
 import { proxiedImageUrl } from "@/lib/media";
 
@@ -30,137 +27,107 @@ type StaysSectionProps = {
 };
 
 export function StaysSection({ id, eyebrow, heading, supporting, footerNote, items }: StaysSectionProps) {
-  const tabsId = useId();
-  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
-  const [activePropertyIndex, setActivePropertyIndex] = useState(0);
-  const activeCategory = items[activeCategoryIndex];
-  const activeProperty = activeCategory?.properties[activePropertyIndex];
-
-  useEffect(() => {
-    setActivePropertyIndex(0);
-  }, [activeCategoryIndex]);
+  const layouts = [
+    {
+      container: "lg:flex-row lg:items-center",
+      image: "lg:w-[55%] aspect-[4/5]",
+      text: "lg:w-[35%]",
+    },
+    {
+      container: "lg:flex-row-reverse lg:items-end",
+      image: "lg:w-[45%] aspect-[4/5] md:aspect-[3/4]",
+      text: "lg:w-[40%] lg:pb-16",
+    },
+    {
+      container: "lg:flex-row lg:items-start",
+      image: "lg:w-[60%] aspect-[4/5]",
+      text: "lg:w-[30%] lg:pt-32",
+    },
+    {
+      container: "lg:flex-row-reverse lg:items-center",
+      image: "lg:w-[50%] aspect-[4/5] md:aspect-[5/6]",
+      text: "lg:w-[38%]",
+    }
+  ];
 
   return (
-    <section id={id} className="section-shell w-full">
-      <div className="page-shell">
-        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="md:mb-20" />
+    <section id={id} className="section-shell w-full bg-[var(--color-surface)] pt-32 md:pt-48 lg:pt-56 rounded-t-[2.5rem] md:rounded-t-[4rem]">
+      <div className="w-full px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+        <SectionHeader 
+          eyebrow={eyebrow} 
+          heading={heading} 
+          supporting={supporting} 
+          className="mb-32 md:mb-48 max-w-3xl mx-auto text-center flex flex-col items-center" 
+        />
 
-        <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start lg:gap-24">
-          {/* Left: Typographic Accordion */}
-          <div className="space-y-8 lg:space-y-12">
-            {items.map((category, index) => {
-              const isActive = index === activeCategoryIndex;
-              return (
-                <div key={category.id} className="group flex flex-col">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setActiveCategoryIndex(index);
-                      setActivePropertyIndex(0);
-                    }}
-                    className="text-left focus-visible:outline-none"
-                  >
-                    <h3
-                      className={`type-section font-serif tracking-tight transition-colors duration-500 ${
-                        isActive
-                          ? "text-[var(--color-text)]"
-                          : "text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
-                      }`}
-                    >
-                      {category.title}
-                    </h3>
-                  </button>
+        <div className="flex flex-col gap-32 md:gap-48 lg:gap-64 w-full">
+          {items.map((category, index) => {
+            const layout = layouts[index % layouts.length];
+            const mainProperty = category.properties[0];
+            if (!mainProperty) return null;
 
-                  <div
-                    className={`grid transition-all duration-500 ease-in-out ${
-                      isActive ? "grid-rows-[1fr] opacity-100 mt-6" : "grid-rows-[0fr] opacity-0 mt-0"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="type-body max-w-[44ch] text-[var(--color-text-secondary)] font-light">
-                        {category.description}
-                      </p>
-
-                      <div className="mt-10 mb-4">
-                        <p className="type-eyebrow text-[var(--color-text-muted)] mb-5">
-                          {category.framingLine}
-                        </p>
-                        <ul className="space-y-3">
-                          {category.properties.map((property, pIdx) => {
-                            const isPropActive = pIdx === activePropertyIndex;
-                            return (
-                              <li key={`${property.name}-${property.location}`}>
-                                <button
-                                  type="button"
-                                  onMouseEnter={() => setActivePropertyIndex(pIdx)}
-                                  onClick={() => setActivePropertyIndex(pIdx)}
-                                  className="group/prop flex items-center gap-4 text-left focus-visible:outline-none w-full py-1"
-                                >
-                                  <span
-                                    className={`h-[1px] transition-all duration-500 ease-out ${
-                                      isPropActive
-                                        ? "w-8 bg-[var(--color-brand)]"
-                                        : "w-0 bg-transparent group-hover/prop:w-4 group-hover/prop:bg-[var(--color-border-strong)]"
-                                    }`}
-                                  />
-                                  <span
-                                    className={`text-[16px] transition-colors duration-300 ${
-                                      isPropActive
-                                        ? "text-[var(--color-text)] font-medium"
-                                        : "text-[var(--color-text-secondary)] group-hover/prop:text-[var(--color-text)]"
-                                    }`}
-                                  >
-                                    {property.name}
-                                  </span>
-                                  <span className="text-[14px] text-[var(--color-text-muted)] italic font-serif">
-                                    — {property.location}
-                                  </span>
-                                </button>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                      <p className="mt-8 max-w-[46ch] text-[14px] text-[var(--color-text-muted)] italic font-serif">
-                        {category.reassuranceLine}
-                      </p>
-                    </div>
+            return (
+              <div 
+                key={category.id} 
+                className={`flex flex-col ${layout.container} justify-between gap-12 md:gap-16 lg:gap-20`}
+              >
+                {/* Image Side */}
+                <div className={`w-[calc(100%+2rem)] -mx-4 md:w-full md:mx-0 ${layout.image}`}>
+                  <div className="relative w-full h-full overflow-hidden bg-[var(--color-bg-alt)] md:rounded-[4px]">
+                    <img
+                      src={proxiedImageUrl(mainProperty.image)}
+                      alt={mainProperty.alt}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 hover:scale-105"
+                    />
                   </div>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Right: Cinematic Image Frame */}
-          <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[4px] bg-[var(--color-bg-alt)]">
-              {activeProperty ? (
-                <img
-                  key={`${activeCategory.id}-${activeProperty.name}`}
-                  src={proxiedImageUrl(activeProperty.image)}
-                  alt={activeProperty.alt}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover animate-in fade-in duration-1000 ease-out"
-                />
-              ) : null}
-            </div>
-            <div className="mt-6 flex items-start justify-between gap-4 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-5">
-              <div>
-                <p className="type-subheading font-serif text-[var(--color-text)]">
-                  {activeProperty?.name}
-                </p>
-                <p className="mt-2 type-eyebrow text-[var(--color-text-muted)]">
-                  {activeProperty?.location}
-                </p>
+                {/* Text Side */}
+                <div className={`w-full flex flex-col ${layout.text}`}>
+                  <span className="type-eyebrow text-[var(--color-brand)] mb-6 md:mb-8 block tracking-widest">
+                    {category.framingLine}
+                  </span>
+                  
+                  <h3 className="font-serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] tracking-tight text-[var(--color-text)] mb-6 md:mb-8">
+                    {category.title}
+                  </h3>
+                  
+                  <p className="text-[1rem] md:text-[1.125rem] leading-[1.8] text-[var(--color-text-secondary)] font-light mb-12 md:mb-16 max-w-[40ch]">
+                    {category.description}
+                  </p>
+
+                  <div className="border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-8 md:pt-10">
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-6 md:mb-8">
+                      Curated Examples
+                    </p>
+                    <ul className="space-y-4 md:space-y-5">
+                      {category.properties.map((prop) => (
+                        <li key={`${prop.name}-${prop.location}`} className="flex items-baseline gap-4 md:gap-5 group">
+                          <span className="w-4 md:w-6 h-[1px] bg-[color-mix(in_srgb,var(--color-border-strong)_60%,transparent)] flex-shrink-0 relative top-[-4px] md:top-[-5px] transition-colors group-hover:bg-[var(--color-brand)]" />
+                          <div>
+                            <span className="text-[15px] md:text-[16px] text-[var(--color-text)] font-medium block mb-1">
+                              {prop.name}
+                            </span>
+                            <span className="text-[13px] md:text-[14px] text-[var(--color-text-muted)] italic font-serif">
+                              — {prop.location}
+                            </span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <p className="mt-12 md:mt-16 text-[14px] md:text-[15px] text-[var(--color-text-muted)] italic font-serif max-w-[38ch] leading-relaxed">
+                    {category.reassuranceLine}
+                  </p>
+                </div>
               </div>
-              <span className="type-eyebrow text-[var(--color-brand)] text-right max-w-[120px]">
-                {activeCategory.title}
-              </span>
-            </div>
-          </div>
+            );
+          })}
         </div>
 
-        <div className="mt-16 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-8 md:mt-24">
+        <div className="mt-32 md:mt-48 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-12">
           <p className="text-[14px] max-w-[52rem] text-[var(--color-text-muted)]">
             {footerNote}
           </p>
