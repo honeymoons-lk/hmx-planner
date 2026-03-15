@@ -28,7 +28,13 @@ type StaysSectionProps = {
   items: readonly StayCategory[];
 };
 
-function StayCategoryBlock({ category, layout }: { category: StayCategory; layout: any }) {
+type LayoutConfig = {
+  container: string;
+  image: string;
+  text: string;
+};
+
+function StayCategoryBlock({ category, layout }: { category: StayCategory; layout: LayoutConfig }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (

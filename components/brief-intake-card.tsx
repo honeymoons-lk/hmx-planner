@@ -20,7 +20,7 @@ import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { readPlanningDraft, writePlanningDraft } from "@/lib/planning-draft";
+import { usePlanning } from "@/components/planning-context";
 import { cn } from "@/lib/utils";
 
 type BriefIntakeCardProps = {
@@ -60,6 +60,7 @@ const formContent = {
     { value: "3-6-months", label: "3–6 months" },
     { value: "6-12-months", label: "6–12 months" },
     { value: "pick-dates", label: "I know my dates" },
+    { value: "not-sure", label: "Not sure yet" },
   ],
   starterTimeframeOptions: [
     { value: "next-3-months", label: "Next 3 months" },
@@ -102,23 +103,46 @@ export function BriefIntakeCard({
 }: BriefIntakeCardProps) {
   const router = useRouter();
   const isStarter = mode === "starter";
-  const seed = useMemo(() => readPlanningDraft(), []);
-  const initialTimeframe = isStarter && seed.timeframe === "pick-dates" ? "" : seed.timeframe;
-  const [timeframe, setTimeframe] = useState(initialTimeframe);
-  const [dateRange, setDateRange] = useState<DateRange | undefined>(
-    seed.start || seed.end
-      ? {
-          from: seed.start ? new Date(`${seed.start}T00:00:00`) : undefined,
-          to: seed.end ? new Date(`${seed.end}T00:00:00`) : undefined,
-        }
-      : undefined,
-  );
-  const [nights, setNights] = useState(seed.nights);
-  const [styles, setStyles] = useState<string[]>(seed.styles);
+  const { draft, updateDraft } = usePlanning();
+
+  const timeframe = isStarter && draft.timeframe === "pick-dates" ? "" : draft.timeframe;
+  const setTimeframe = (val: string) => updateDraft({ timeframe: val });
+
+  const dateRange = useMemo<DateRange | undefined>(() => {
+    if (!draft.start && !draft.end) return undefined;
+    return {
+      from: draft.start ? new Date(`${draft.start}T00:00:00`) : undefined,
+      to: draft.end ? new Date(`${draft.end}T00:00:00`) : undefined,
+    };
+  }, [draft.start, draft.end]);
+
+  const setDateRange = (range: DateRange | undefined) => {
+    updateDraft({
+      start: range?.from ? toISODate(range.from) : "",
+      end: range?.to ? toISODate(range.to) : "",
+    });
+  };
+
+  const nights = draft.nights;
+  const setNights = (val: string) => updateDraft({ nights: val });
+
+  const styles = draft.styles;
+  const setStyles = (val: string[] | ((prev: string[]) => string[])) => {
+    if (typeof val === "function") {
+      updateDraft({ styles: val(styles) });
+    } else {
+      updateDraft({ styles: val });
+    }
+  };
+
   const [styleSearch, setStyleSearch] = useState("");
   const [stylePopoverOpen, setStylePopoverOpen] = useState(false);
-  const [pace, setPace] = useState(seed.pace);
-  const [wow, setWow] = useState(seed.wow);
+  
+  const pace = draft.pace;
+  const setPace = (val: string) => updateDraft({ pace: val });
+
+  const wow = draft.wow;
+  const setWow = (val: string) => updateDraft({ wow: val });
 
   const calculatedNights = useMemo(() => {
     if (timeframe !== "pick-dates") return null;
@@ -160,17 +184,26 @@ export function BriefIntakeCard({
   };
 
   const handleSubmitBrief = () => {
-    writePlanningDraft({
+    const updates: Partial<typeof draft> = {
       timeframe,
-      start: !isStarter && timeframe === "pick-dates" && dateRange?.from ? toISODate(dateRange.from) : "",
-      end: !isStarter && timeframe === "pick-dates" && dateRange?.to ? toISODate(dateRange.to) : "",
       nights: selectedNightsValue,
       styles,
-      wow: isStarter ? "" : wow,
-      pace,
-    });
+    };
 
-    router.push("/plan/details");
+    if (!isStarter) {
+      updates.start = timeframe === "pick-dates" && dateRange?.from ? toISODate(dateRange.from) : "";
+      updates.end = timeframe === "pick-dates" && dateRange?.to ? toISODate(dateRange.to) : "";
+      updates.wow = wow;
+      updates.pace = pace;
+    }
+
+    updateDraft(updates);
+
+    if (isStarter) {
+      router.push("/plan/journey");
+    } else {
+      router.push("/plan/details");
+    }
   };
 
   return (
@@ -288,7 +321,7 @@ export function BriefIntakeCard({
                         return (
                           <span
                             key={value}
-                            className="inline-flex items-center justify-center rounded-[4px] border border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] bg-[var(--color-surface-strong)] px-2.5 py-1 text-[11px] leading-[1.35] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]"
+                            className="inline-flex items-center justify-center rounded-[4px] border border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] bg-[var(--color-surface-strong)] px-2.5 py-1 text-[13px] leading-[1.35] font-medium text-[var(--color-text-secondary)]"
                           >
                             {label}
                           </span>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, Cormorant_Garamond, Inter } from "next/font/google";
+import { PlanningProvider } from "@/components/planning-context";
 import "./globals.css";
 
 const displayFont = Cormorant_Garamond({
@@ -35,7 +36,9 @@ export default function RootLayout({
       <body
         className={`${bodyFont.variable} ${displayFont.variable} ${wordmarkFont.variable} min-h-screen bg-background text-foreground antialiased`}
       >
-        {children}
+        <PlanningProvider>
+          {children}
+        </PlanningProvider>
       </body>
     </html>
   );

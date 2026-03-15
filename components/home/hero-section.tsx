@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import { BriefIntakeCard } from "@/components/brief-intake-card";
 
@@ -30,8 +29,11 @@ export function HeroSection({ content }: HeroSectionProps) {
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * curatedImages.length);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveImage(curatedImages[randomIndex]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

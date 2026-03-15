@@ -67,6 +67,7 @@ export default function ThankYouPage() {
   const [request, setRequest] = useState<PlanningDraft | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRequest(readSubmittedPlanningRequest() ?? readPlanningDraft());
   }, []);
 
@@ -98,43 +99,43 @@ export default function ThankYouPage() {
               <CardContent className="px-5 pb-6 pt-6 md:px-10 md:pb-10 md:pt-8">
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Timing</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Timing</p>
                     <p className="type-ui-sm text-foreground">{timeframeLabels[request?.timeframe || ""] || "Not provided"}</p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Dates</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Dates</p>
                     <p className="type-ui-sm text-foreground">
                       {request?.start && request?.end ? `${request.start} → ${request.end}` : "Not provided"}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Duration</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Duration</p>
                     <p className="type-ui-sm text-foreground">{nightsLabel(request?.nights)}</p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Experience</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Experience</p>
                     <p className="type-ui-sm text-foreground">
                       {request?.styles?.length ? request.styles.map((style) => styleLabels[style] || style).join(", ") : "Not provided"}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Highlights</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Highlights</p>
                     <p className="type-ui-sm text-foreground">
                       {[wowLabels[request?.wow || ""], paceLabels[request?.pace || ""]].filter(Boolean).join(" · ") || "Not provided"}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Comfort & Occasion</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Comfort & Occasion</p>
                     <p className="type-ui-sm text-foreground">
                       {[budgetLabels[request?.budget || ""], occasionLabels[request?.occasion || ""]].filter(Boolean).join(" · ") || "Not provided"}
                     </p>
                   </div>
                   <div className="sm:col-span-2">
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Notes</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Notes</p>
                     <p className="type-ui-sm text-foreground">{request?.notes?.trim() || "None shared yet"}</p>
                   </div>
                   <div className="sm:col-span-2">
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Contact</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Contact</p>
                     <p className="type-ui-sm text-foreground">
                       {[request?.firstName, request?.email].filter(Boolean).join(" · ") || "Provided in your request"}
                     </p>

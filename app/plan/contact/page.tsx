@@ -18,12 +18,8 @@ import {
 } from "@/components/ui/select";
 import { PlanningHeader, PlanningMicroFooter } from "@/components/plan/planning-chrome";
 import { ProgressIndicator } from "@/components/plan/progress-indicator";
-import {
-  clearPlanningDraft,
-  readPlanningDraft,
-  writePlanningDraft,
-  writeSubmittedPlanningRequest,
-} from "@/lib/planning-draft";
+import { usePlanning } from "@/components/planning-context";
+import { writeSubmittedPlanningRequest } from "@/lib/planning-draft";
 
 const timeframeLabels: Record<string, string> = {
   "next-3-months": "Next 3 months",
@@ -75,13 +71,23 @@ function nightsLabel(nights: string) {
 
 export default function ContactPage() {
   const router = useRouter();
-  const draft = useMemo(() => readPlanningDraft(), []);
+  const { draft, updateDraft, clearDraft } = usePlanning();
 
-  const [firstName, setFirstName] = useState(draft.firstName);
-  const [email, setEmail] = useState(draft.email);
-  const [country, setCountry] = useState(draft.country);
-  const [phone, setPhone] = useState(draft.phone);
-  const [whatsappOptIn, setWhatsappOptIn] = useState(draft.whatsappOptIn);
+  const firstName = draft.firstName;
+  const setFirstName = (val: string) => updateDraft({ firstName: val });
+
+  const email = draft.email;
+  const setEmail = (val: string) => updateDraft({ email: val });
+
+  const country = draft.country;
+  const setCountry = (val: string) => updateDraft({ country: val });
+
+  const phone = draft.phone;
+  const setPhone = (val: string) => updateDraft({ phone: val });
+
+  const whatsappOptIn = draft.whatsappOptIn;
+  const setWhatsappOptIn = (val: boolean) => updateDraft({ whatsappOptIn: val });
+
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [showValidation, setShowValidation] = useState(false);
@@ -94,17 +100,16 @@ export default function ContactPage() {
     setShowValidation(true);
     if (!canSubmit) return;
 
-    const payload = writePlanningDraft({ firstName, email, country, phone, whatsappOptIn });
     setSubmitting(true);
     try {
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(draft),
       });
       if (!response.ok) throw new Error("Submit failed");
-      writeSubmittedPlanningRequest(payload);
-      clearPlanningDraft();
+      writeSubmittedPlanningRequest(draft);
+      clearDraft();
       router.push("/plan/thank-you");
     } catch {
       setSubmitError("We couldn’t submit right now. Please try again in a moment.");
@@ -224,45 +229,45 @@ export default function ContactPage() {
                   <p className="type-eyebrow mb-6 text-[var(--color-text-secondary)]">Your request</p>
                   <div className="type-meta space-y-5">
                     <div>
-                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Timing</p>
+                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Timing</p>
                       <p className="type-ui-sm text-foreground">{timeframeLabels[draft.timeframe] || "-"}</p>
                     </div>
 
                     <div>
-                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Dates</p>
+                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Dates</p>
                       <p className="type-ui-sm text-foreground">
                         {draft.start && draft.end ? `${draft.start} → ${draft.end}` : "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Duration</p>
+                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Duration</p>
                       <p className="type-ui-sm text-foreground">{nightsLabel(draft.nights)}</p>
                     </div>
 
                     <div>
-                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Experience</p>
+                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Experience</p>
                       <p className="type-ui-sm text-foreground">
                         {draft.styles.map((style) => styleLabels[style] || style).join(", ") || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Highlights</p>
+                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Highlights</p>
                       <p className="type-ui-sm text-foreground">
                         {[wowLabels[draft.wow], paceLabels[draft.pace]].filter(Boolean).join(" · ") || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Comfort & Occasion</p>
+                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Comfort & Occasion</p>
                       <p className="type-ui-sm text-foreground">
                         {[budgetLabels[draft.budget], occasionLabels[draft.occasion]].filter(Boolean).join(" · ") || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Notes</p>
+                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Notes</p>
                       <p className="type-ui-sm text-foreground">{draft.notes.trim() || "-"}</p>
                     </div>
                   </div>

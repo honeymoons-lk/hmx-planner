@@ -1,9 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -18,7 +16,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { PlanningHeader, PlanningMicroFooter } from "@/components/plan/planning-chrome";
 import { ProgressIndicator } from "@/components/plan/progress-indicator";
-import { readPlanningDraft, writePlanningDraft } from "@/lib/planning-draft";
+import { usePlanning } from "@/components/planning-context";
 import { proxiedImageUrl } from "@/lib/media";
 
 const timeframeLabels: Record<string, string> = {
@@ -35,19 +33,6 @@ const styleLabels: Record<string, string> = {
   culture: "Culture",
 };
 
-const wowLabels: Record<string, string> = {
-  "private-dinner": "Private dinner",
-  safari: "Safari",
-  "scenic-train": "Scenic train",
-  "beach-villa": "Beach villa",
-};
-
-const paceLabels: Record<string, string> = {
-  relaxed: "Slow & romantic",
-  balanced: "A bit of both",
-  packed: "Make the most of it",
-};
-
 function nightsLabel(nights: string) {
   if (!nights) return "Not provided";
   if (nights === "not-sure") return "Not sure yet";
@@ -60,10 +45,16 @@ const detailsImage =
 
 export default function DetailsPage() {
   const router = useRouter();
-  const draft = useMemo(() => readPlanningDraft(), []);
-  const [budget, setBudget] = useState(draft.budget);
-  const [occasion, setOccasion] = useState(draft.occasion);
-  const [notes, setNotes] = useState(draft.notes);
+  const { draft, updateDraft } = usePlanning();
+  
+  const budget = draft.budget;
+  const setBudget = (val: string) => updateDraft({ budget: val });
+  
+  const occasion = draft.occasion;
+  const setOccasion = (val: string) => updateDraft({ occasion: val });
+  
+  const notes = draft.notes;
+  const setNotes = (val: string) => updateDraft({ notes: val });
 
   const canContinue = Boolean(budget && occasion);
 
@@ -183,7 +174,6 @@ export default function DetailsPage() {
                   size="lg"
                   className="w-full sm:w-auto"
                   onClick={() => {
-                    writePlanningDraft({ budget, occasion, notes });
                     router.push("/plan/contact");
                   }}
                   disabled={!canContinue}
