@@ -1,9 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import { proxiedImageUrl } from "@/lib/media";
 import { SectionHeader } from "@/components/section-header";
 
 type StayProperty = {
   name: string;
   location: string;
+  image?: string;
 };
 
 type StayCategory = {
@@ -32,6 +36,8 @@ type LayoutConfig = {
 };
 
 function StayCategoryBlock({ category, layout }: { category: StayCategory; layout: LayoutConfig }) {
+  const [activeImage, setActiveImage] = useState(category.image);
+
   return (
     <div className={`flex flex-col ${layout.container} justify-between gap-10 md:gap-16 lg:gap-0`}>
       {/* Image Side */}
@@ -39,7 +45,8 @@ function StayCategoryBlock({ category, layout }: { category: StayCategory; layou
         <div className="relative w-full h-full overflow-hidden bg-[var(--color-bg-alt)] md:rounded-[2px] group/image">
           <div className="absolute inset-0 h-full w-full transition-transform duration-[2.5s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/image:scale-[1.03]">
             <img
-              src={proxiedImageUrl(category.image)}
+              key={activeImage}
+              src={proxiedImageUrl(activeImage)}
               alt={category.alt}
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
@@ -64,7 +71,11 @@ function StayCategoryBlock({ category, layout }: { category: StayCategory; layou
           </p>
           <ul className="space-y-4 md:space-y-5">
             {category.properties.map((prop) => (
-              <li key={`${prop.name}-${prop.location}`} className="text-lg md:text-xl flex items-baseline">
+              <li 
+                key={`${prop.name}-${prop.location}`} 
+                className="text-lg md:text-xl flex items-baseline cursor-pointer"
+                onClick={() => prop.image && setActiveImage(prop.image)}
+              >
                 <span className="text-[var(--color-text)] tracking-wide">{prop.name}</span>
                 <span className="text-[var(--color-text-muted)] italic font-serif ml-3">— {prop.location}</span>
               </li>

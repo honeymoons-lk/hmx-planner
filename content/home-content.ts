@@ -109,14 +109,17 @@ export const homeContent = {
           {
             name: "Amanwella",
             location: "Tangalle Coast",
+            image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2200&q=80",
           },
           {
             name: "Cape Weligama",
             location: "Southern Coast",
+            image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=2200&q=80",
           },
           {
             name: "KK Beach",
             location: "Habaraduwa",
+            image: "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=2200&q=80",
           },
         ],
       },
@@ -131,14 +134,17 @@ export const homeContent = {
           {
             name: "Kahanda Kanda",
             location: "Koggala",
+            image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=2200&q=80",
           },
           {
             name: "The Last House",
             location: "Tangalle",
+            image: "https://images.unsplash.com/photo-1542314831-c6a4d14d837e?auto=format&fit=crop&w=2200&q=80",
           },
           {
             name: "Taru Villas",
             location: "Various Locations",
+            image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2200&q=80",
           },
         ],
       },
@@ -153,14 +159,17 @@ export const homeContent = {
           {
             name: "Ceylon Tea Trails",
             location: "Hatton",
+            image: "https://images.unsplash.com/photo-1596395819057-e37f55a8516b?auto=format&fit=crop&w=2200&q=80",
           },
           {
             name: "Goatfell",
             location: "Nuwara Eliya",
+            image: "https://images.unsplash.com/photo-1542314831-c6a4d14d837e?auto=format&fit=crop&w=2200&q=80",
           },
           {
             name: "Nine Skies",
             location: "Demodara",
+            image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2200&q=80",
           },
         ],
       },
@@ -175,14 +184,17 @@ export const homeContent = {
           {
             name: "Galle Fort Hotel",
             location: "Galle Fort",
+            image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=2200&q=80",
           },
           {
             name: "Fort Bazaar",
             location: "Galle Fort",
+            image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2200&q=80",
           },
           {
             name: "The Kandy House",
             location: "Kandy",
+            image: "https://images.unsplash.com/photo-1542314831-c6a4d14d837e?auto=format&fit=crop&w=2200&q=80",
           },
         ],
       },
