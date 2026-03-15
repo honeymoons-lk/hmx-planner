@@ -78,8 +78,8 @@ export default function DetailsPage() {
         <div className="mx-auto w-full max-w-5xl space-y-8 md:space-y-12">
           <ProgressIndicator stage={2} />
 
-          <Card className="plan-step-card">
-            <div className="relative h-24 overflow-hidden md:h-32">
+          <Card className="plan-step-card overflow-hidden">
+            <div className="relative h-32 md:h-48 lg:h-56 w-full">
               <img
                 src={proxiedImageUrl(detailsImage)}
                 alt="Soft interior scene for journey details"

@@ -76,13 +76,15 @@ export default function ThankYouPage() {
       <PlanningHeader />
       <main className="min-h-[calc(100vh-64px)] bg-[var(--color-bg)] px-4 py-8 md:px-6 md:py-16 lg:py-24">
         <div className="mx-auto w-full max-w-5xl space-y-8 md:space-y-12">
-          <Card className="plan-step-card">
-            <img
-              src={proxiedImageUrl(thankYouImage)}
-              alt="Sri Lanka coastline at dusk"
-              className="h-36 w-full object-cover object-center md:h-56"
-              loading="lazy"
-            />
+          <Card className="plan-step-card overflow-hidden">
+            <div className="relative h-32 md:h-48 lg:h-56 w-full">
+              <img
+                src={proxiedImageUrl(thankYouImage)}
+                alt="Sri Lanka coastline at dusk"
+                className="h-full w-full object-cover object-center"
+                loading="lazy"
+              />
+            </div>
             <CardHeader className="px-5 pt-6 pb-6 md:px-10 md:pt-10">
               <CardTitle className="type-subheading font-serif">Thank you. Your request is with us.</CardTitle>
               <CardDescription className="type-body max-w-[54ch] text-[var(--color-text-muted)] font-light mt-2">
