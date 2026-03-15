@@ -63,8 +63,6 @@ export default function DetailsPage() {
   const draft = useMemo(() => readPlanningDraft(), []);
   const [budget, setBudget] = useState(draft.budget);
   const [occasion, setOccasion] = useState(draft.occasion);
-  const [pace, setPace] = useState(draft.pace);
-  const [wow, setWow] = useState(draft.wow);
   const [notes, setNotes] = useState(draft.notes);
 
   const canContinue = Boolean(budget && occasion);
@@ -72,79 +70,47 @@ export default function DetailsPage() {
   return (
     <>
       <PlanningHeader />
-      <main className="min-h-[calc(100vh-64px)] bg-[var(--color-bg)] px-4 py-16 md:px-6 md:py-24">
-        <div className="mx-auto w-full max-w-5xl space-y-12">
+      <main className="min-h-[calc(100vh-64px)] bg-[var(--color-bg)] px-4 py-8 md:px-6 md:py-16 lg:py-24">
+        <div className="mx-auto w-full max-w-5xl space-y-8 md:space-y-12">
           <ProgressIndicator stage={2} />
 
-          <Card className="overflow-hidden border border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] shadow-sm">
-            <div className="relative h-44 overflow-hidden md:h-64">
+          <Card className="plan-step-card">
+            <div className="relative h-24 overflow-hidden md:h-32">
               <img
                 src={proxiedImageUrl(detailsImage)}
                 alt="Soft interior scene for journey details"
                 className="h-full w-full object-cover object-center"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(28,23,21,0.6)_0%,rgba(28,23,21,0.2)_44%,rgba(28,23,21,0.06)_100%)]" />
-              <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
-                <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_88%,var(--color-bg-alt))] mb-3">
-                  Tailoring the journey
-                </p>
-                <p className="max-w-[42ch] font-serif text-[clamp(24px,3vw,34px)] leading-[1.1] text-[color-mix(in_srgb,var(--color-light)_95%,var(--color-bg-alt))]">
-                  Thoughtful choices that shape the tone, comfort, and rhythm of your honeymoon.
-                </p>
-              </div>
+              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(28,23,21,0.4)_0%,rgba(28,23,21,0.1)_100%)]" />
             </div>
-            <CardHeader className="px-8 pt-8 pb-6 border-b border-[rgba(0,0,0,0.06)]">
-              <CardTitle className="type-subheading font-serif">A few final details</CardTitle>
-              <CardDescription className="type-body text-[var(--color-text-muted)] font-light mt-2">
-                This helps us shape options that match your comfort level and occasion.
+            <CardHeader className="px-5 pt-6 pb-5 md:px-10 md:pt-10 md:pb-6">
+              <CardTitle className="type-subheading font-serif">Refining your journey</CardTitle>
+              <CardDescription className="type-body text-[var(--color-text-muted)] font-light mt-2 max-w-[50ch]">
+                Help us understand your preferred level of comfort and the occasion.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-10 px-8 py-8">
-              <div className="rounded-[8px] border border-[rgba(0,0,0,0.08)] bg-white/50 p-6 md:p-8">
-                <p className="type-eyebrow mb-6 text-[var(--color-text-secondary)]">Your honeymoon snapshot</p>
-                <div className="type-meta grid gap-6 md:grid-cols-2">
-                  <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">When</p>
-                    <p className="type-ui-sm text-foreground">{timeframeLabels[draft.timeframe] || "Not provided"}</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Dates</p>
-                    <p className="type-ui-sm text-foreground">
-                      {draft.start && draft.end ? `${draft.start} → ${draft.end}` : "Not provided"}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Trip length</p>
-                    <p className="type-ui-sm text-foreground">{nightsLabel(draft.nights)}</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-2">Styles</p>
-                    <div className="flex flex-wrap gap-2">
-                      {draft.styles.length > 0 ? (
-                        draft.styles.map((style) => (
-                          <Badge key={style} variant="default">
-                            {styleLabels[style] || style}
-                          </Badge>
-                        ))
-                      ) : (
-                        <span className="type-ui-sm text-foreground">Not provided</span>
-                      )}
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Wow moment</p>
-                    <p className="type-ui-sm text-foreground">{wowLabels[draft.wow] || "Not provided"}</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Day-flow vibe</p>
-                    <p className="type-ui-sm text-foreground">{paceLabels[draft.pace] || "Not provided"}</p>
+            <CardContent className="space-y-8 px-5 pb-6 md:space-y-10 md:px-10 md:pb-10">
+              {/* Compact Recap Strip */}
+              <div className="rounded-[var(--radius-card)] border border-[rgba(0,0,0,0.08)] bg-white/50 px-4 py-4 md:px-5 md:py-4">
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                  <span className="type-eyebrow text-[var(--color-text-muted)]">Your journey:</span>
+                  <div className="flex flex-wrap items-center gap-3 type-ui-sm text-[var(--color-text-secondary)]">
+                    <span>{timeframeLabels[draft.timeframe] || "Dates TBD"}</span>
+                    <span className="text-[var(--color-border-strong)]">•</span>
+                    <span>{nightsLabel(draft.nights)}</span>
+                    <span className="text-[var(--color-border-strong)]">•</span>
+                    <span>
+                      {draft.styles.length > 0 
+                        ? draft.styles.map((style) => styleLabels[style] || style).join(", ")
+                        : "Style TBD"}
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <Label>Property comfort / stay tier</Label>
+                <Label>Preferred stay style</Label>
                 <RadioGroup value={budget} onValueChange={setBudget} className="grid gap-3 sm:grid-cols-3">
                   {[
                     {
@@ -166,7 +132,7 @@ export default function DetailsPage() {
                     <Label
                       key={option.value}
                       htmlFor={`budget-${option.value}`}
-                      className={`flex min-h-[120px] cursor-pointer flex-col items-start gap-2 rounded-[8px] border px-4 py-4 transition-colors ${
+                      className={`flex min-h-[84px] cursor-pointer flex-col items-start gap-1 rounded-[var(--radius-input)] border px-4 py-4 transition-colors sm:min-h-[100px] ${
                         budget === option.value
                           ? "border-[var(--color-brand)] bg-[color-mix(in_srgb,var(--color-bg-alt)_62%,var(--color-surface))]"
                           : "border-[rgba(0,0,0,0.08)] bg-white/50 hover:bg-white/80"
@@ -176,14 +142,14 @@ export default function DetailsPage() {
                         <p className="type-ui-sm text-foreground">{option.label}</p>
                         <RadioGroupItem id={`budget-${option.value}`} value={option.value} />
                       </div>
-                      <p className="type-meta text-[var(--color-text-muted)]">{option.description}</p>
+                      <p className="text-[12px] leading-[1.4] text-[var(--color-text-muted)] font-normal">{option.description}</p>
                     </Label>
                   ))}
                 </RadioGroup>
               </div>
 
               <div className="space-y-3">
-                <Label htmlFor="occasion">Occasion</Label>
+                <Label htmlFor="occasion">What are you celebrating?</Label>
                 <Select value={occasion} onValueChange={setOccasion}>
                   <SelectTrigger id="occasion">
                     <SelectValue placeholder="Select occasion" />
@@ -199,51 +165,25 @@ export default function DetailsPage() {
               </div>
 
               <div className="space-y-3">
-                <Label htmlFor="pace">Preferred pace</Label>
-                <Select value={pace} onValueChange={setPace}>
-                  <SelectTrigger id="pace">
-                    <SelectValue placeholder="Choose the rhythm" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="relaxed">Slow &amp; romantic</SelectItem>
-                    <SelectItem value="balanced">A bit of both</SelectItem>
-                    <SelectItem value="packed">Make the most of it</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-3">
-                <Label htmlFor="wow">Anything you would especially love us to build in?</Label>
-                <Select value={wow} onValueChange={setWow}>
-                  <SelectTrigger id="wow">
-                    <SelectValue placeholder="Choose a highlight" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="private-dinner">Private cliffside dinner</SelectItem>
-                    <SelectItem value="safari">Sunrise safari experience</SelectItem>
-                    <SelectItem value="scenic-train">Scenic train through tea country</SelectItem>
-                    <SelectItem value="beach-villa">Secluded beach villa stay</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-3">
-                <Label htmlFor="notes">Anything that would make this feel personal?</Label>
+                <Label htmlFor="notes">Any personal notes or special requests?</Label>
                 <Textarea
                   id="notes"
                   value={notes}
                   onChange={(event) => setNotes(event.target.value)}
-                  placeholder="Surprises, must-see places, dietary needs, accessibility, departure city…"
+                  placeholder="Dietary requirements, must-see places, or anything else we should know..."
+                  className="min-h-[140px]"
                 />
               </div>
 
-              <div className="flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between pt-4">
-                <Button variant="outline" onClick={() => router.push("/plan/journey")}>
+              <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between pt-6 border-t border-[rgba(0,0,0,0.06)]">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto" onClick={() => router.push("/plan/journey")}>
                   Back
                 </Button>
                 <Button
+                  size="lg"
+                  className="w-full sm:w-auto"
                   onClick={() => {
-                    writePlanningDraft({ budget, occasion, pace, wow, notes });
+                    writePlanningDraft({ budget, occasion, notes });
                     router.push("/plan/contact");
                   }}
                   disabled={!canContinue}

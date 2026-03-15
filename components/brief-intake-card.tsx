@@ -129,12 +129,12 @@ export function BriefIntakeCard({
   const selectedNightsValue = timeframe === "pick-dates" ? (calculatedNights ? String(calculatedNights) : "") : nights;
   const selectedStyle = styles[0] ?? "";
   const resolvedTitle =
-    title ?? (isStarter ? "Start your honeymoon plan" : "Begin your private planning brief");
+    title ?? (isStarter ? "Start your honeymoon plan" : "Tell us about your journey");
   const resolvedDescription =
     description ??
     (isStarter
       ? "A few quick choices to shape your route and stay style."
-      : "Share the shape of the escape you are imagining. We’ll come back with a thoughtful route, stay style, and next steps.");
+      : "A few choices to help us shape your route and stay style.");
 
   const canSubmitBrief = useMemo(() => {
     if (isStarter) {
@@ -174,8 +174,8 @@ export function BriefIntakeCard({
   };
 
   return (
-    <Card id={id} className={cn("bg-[rgba(247,241,234,0.95)] backdrop-blur-md rounded-[8px] border border-[rgba(255,255,255,0.4)] shadow-[0_16px_40px_rgba(14,11,10,0.06)]", className)}>
-      <CardHeader className={cn("px-8", isStarter ? "space-y-1.5 pt-7 pb-0" : "space-y-4 pt-9 pb-2")}>
+    <Card id={id} className={cn(isStarter ? "bg-[rgba(247,241,234,0.95)] backdrop-blur-md rounded-[8px] border border-[rgba(255,255,255,0.4)] shadow-[0_16px_40px_rgba(14,11,10,0.06)]" : "plan-step-card", className)}>
+      <CardHeader className={cn("px-5 md:px-8", isStarter ? "space-y-1.5 pt-7 pb-0" : "space-y-3 pt-6 pb-2 md:pt-8")}>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="type-eyebrow text-[var(--color-brand)]">
             {isStarter ? "Planning Starter" : "Personal Planning Brief"}
@@ -187,14 +187,14 @@ export function BriefIntakeCard({
         <CardTitle className={cn("font-serif tracking-tight text-[var(--color-text)]", isStarter ? "text-[24px] leading-[1.1]" : "type-subheading")}>
           {resolvedTitle}
         </CardTitle>
-        <CardDescription className={cn("font-light", isStarter ? "text-[13.5px] leading-relaxed text-[var(--color-text-muted)]" : "type-body text-[var(--color-text-secondary)]")}>
+        <CardDescription className={cn("font-light", isStarter ? "text-[13.5px] leading-relaxed text-[var(--color-text-muted)]" : "type-body text-[var(--color-text-muted)] mt-2")}>
           {resolvedDescription}
         </CardDescription>
       </CardHeader>
 
-      <CardContent className={cn("px-8", isStarter ? "space-y-4 pt-4 pb-7" : "space-y-6 pt-6 pb-9")}>
+      <CardContent className={cn("px-5 md:px-8", isStarter ? "space-y-4 pt-4 pb-7" : "space-y-5 pt-4 pb-6 md:pb-8")}>
         <div className={cn(isStarter ? "space-y-2" : "space-y-3")}>
-          <Label htmlFor="timeframe">When would you like to travel?</Label>
+          <Label htmlFor="timeframe">When are you planning to travel?</Label>
           <Select value={timeframe} onValueChange={setTimeframe}>
             <SelectTrigger id="timeframe" className="w-full">
               <SelectValue placeholder="Choose a timeframe" />
@@ -217,6 +217,7 @@ export function BriefIntakeCard({
                 <Button
                   type="button"
                   variant="outline"
+                  size="lg"
                   className="w-full justify-start text-left font-normal"
                 >
                   <CalendarDays className="mr-3 h-4 w-4 text-[var(--color-text-muted)]" />
@@ -259,7 +260,7 @@ export function BriefIntakeCard({
         )}
 
         <div className={cn(isStarter ? "space-y-2" : "space-y-3")}>
-          <Label>{isStarter ? "Experience type" : "What kind of experience are you picturing?"}</Label>
+          <Label>{isStarter ? "Experience type" : "What kind of experience are you looking for?"}</Label>
           {isStarter ? (
             <Select
               value={selectedStyle}
@@ -334,7 +335,7 @@ export function BriefIntakeCard({
 
         {!isStarter ? (
           <div className="space-y-3">
-            <Label htmlFor="wow">What would make this unforgettable?</Label>
+            <Label htmlFor="wow">Is there a specific highlight you&apos;d love?</Label>
             <Select value={wow} onValueChange={setWow}>
               <SelectTrigger id="wow" className="w-full">
                 <SelectValue placeholder="Choose a highlight" />
@@ -352,7 +353,7 @@ export function BriefIntakeCard({
 
         {!isStarter ? (
           <div className="space-y-4">
-            <Label>How would you like the days to flow?</Label>
+            <Label>How should the days flow?</Label>
             <ToggleGroup
               type="single"
               value={pace}
@@ -363,7 +364,7 @@ export function BriefIntakeCard({
                 <ToggleGroupItem
                   key={opt.value}
                   value={opt.value}
-                  className="h-auto w-full rounded-[4px] border border-[rgba(0,0,0,0.08)] bg-white/50 px-3 py-3 text-[13px] leading-[1.4] font-medium text-[var(--color-text-secondary)] hover:bg-white data-[state=on]:border-[var(--color-brand)] data-[state=on]:bg-white data-[state=on]:text-[var(--color-brand)] data-[state=on]:shadow-sm transition-all"
+                  className="h-auto w-full rounded-[var(--radius-input)] border border-[rgba(0,0,0,0.08)] bg-white/50 px-3 py-3 text-[13px] leading-[1.4] font-medium text-[var(--color-text-secondary)] hover:bg-white data-[state=on]:border-[var(--color-brand)] data-[state=on]:bg-white data-[state=on]:text-[var(--color-brand)] data-[state=on]:shadow-sm transition-all"
                   aria-label={opt.label}
                 >
                   {opt.label}
@@ -373,7 +374,7 @@ export function BriefIntakeCard({
           </div>
         ) : null}
 
-        <div className={cn(isStarter ? "pt-1" : "mt-2 space-y-4 pt-4")}>
+        <div className={cn(isStarter ? "pt-1" : "mt-2 space-y-4 pt-6 border-t border-[rgba(0,0,0,0.06)]")}>
           <Button
             type="button"
             size="lg"
@@ -381,7 +382,7 @@ export function BriefIntakeCard({
             disabled={!canSubmitBrief}
             onClick={handleSubmitBrief}
           >
-            {isStarter ? "Start planning" : "Begin Designing Your Journey"}
+            {isStarter ? "Start planning" : "Continue"}
           </Button>
           {isStarter && (
             <div className="mt-3.5 flex justify-center">
@@ -394,15 +395,9 @@ export function BriefIntakeCard({
             </div>
           )}
           {!isStarter ? (
-            <div className="flex flex-col items-center gap-2 pt-2">
-              <p className="type-meta text-[var(--color-text-muted)]">
-                Prefer a quick chat first?{" "}
-                <Link href="/book-a-call" className="font-medium text-[var(--color-brand)] hover:text-[var(--color-brand-hover)] underline underline-offset-4 transition-colors">
-                  Book a call
-                </Link>
-              </p>
-              <p className="type-meta text-[var(--color-text-muted)]/80 text-center max-w-[30ch]">
-                No generic packages. No obligation. Just a thoughtful first response.
+            <div className="flex flex-col items-center pt-2">
+              <p className="type-meta text-[var(--color-text-muted)]/80 text-center">
+                Takes about a minute to complete.
               </p>
             </div>
           ) : null}
