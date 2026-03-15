@@ -34,9 +34,9 @@ const wowLabels: Record<string, string> = {
 };
 
 const paceLabels: Record<string, string> = {
-  relaxed: "Slow & romantic",
+  relaxed: "Light & easy",
   balanced: "A bit of both",
-  packed: "Make the most of it",
+  packed: "Packed with highlights",
 };
 
 const budgetLabels: Record<string, string> = {

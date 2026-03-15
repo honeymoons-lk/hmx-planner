@@ -66,6 +66,7 @@ const formContent = {
     { value: "next-3-months", label: "Next 3 months" },
     { value: "3-6-months", label: "3–6 months" },
     { value: "6-12-months", label: "6–12 months" },
+    { value: "pick-dates", label: "I know my dates" },
     { value: "not-sure", label: "Not sure yet" },
   ],
   nights: [
@@ -105,7 +106,7 @@ export function BriefIntakeCard({
   const isStarter = mode === "starter";
   const { draft, updateDraft } = usePlanning();
 
-  const timeframe = isStarter && draft.timeframe === "pick-dates" ? "" : draft.timeframe;
+  const timeframe = draft.timeframe;
   const setTimeframe = (val: string) => updateDraft({ timeframe: val });
 
   const dateRange = useMemo<DateRange | undefined>(() => {
@@ -162,7 +163,12 @@ export function BriefIntakeCard({
 
   const canSubmitBrief = useMemo(() => {
     if (isStarter) {
-      return Boolean(timeframe && nights && styles.length > 0);
+      const hasTimeframeAndStyles = Boolean(timeframe && styles.length > 0);
+      if (!hasTimeframeAndStyles) return false;
+      if (timeframe === "pick-dates") {
+        return Boolean(dateRange?.from && dateRange?.to && calculatedNights);
+      }
+      return Boolean(nights);
     }
 
     const hasPrimaryFields = Boolean(timeframe && styles.length > 0 && wow && pace);
@@ -188,11 +194,11 @@ export function BriefIntakeCard({
       timeframe,
       nights: selectedNightsValue,
       styles,
+      start: timeframe === "pick-dates" && dateRange?.from ? toISODate(dateRange.from) : "",
+      end: timeframe === "pick-dates" && dateRange?.to ? toISODate(dateRange.to) : "",
     };
 
     if (!isStarter) {
-      updates.start = timeframe === "pick-dates" && dateRange?.from ? toISODate(dateRange.from) : "";
-      updates.end = timeframe === "pick-dates" && dateRange?.to ? toISODate(dateRange.to) : "";
       updates.wow = wow;
       updates.pace = pace;
     }
@@ -242,7 +248,7 @@ export function BriefIntakeCard({
           </Select>
         </div>
 
-        {!isStarter && timeframe === "pick-dates" ? (
+        {timeframe === "pick-dates" ? (
           <div className="space-y-3">
             <Label>Travel dates</Label>
             <Popover>

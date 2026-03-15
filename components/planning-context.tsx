@@ -28,6 +28,26 @@ export function PlanningProvider({ children }: { children: React.ReactNode }) {
     setDraft(readPlanningDraft());
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoaded(true);
+
+    // Listen for storage events from other tabs
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === "luna_latest_request") {
+        setDraft(readPlanningDraft());
+      }
+    };
+
+    // Listen for custom clear events
+    const handleClear = () => {
+      setDraft(defaultPlanningDraft);
+    };
+
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener("luna_draft_cleared", handleClear);
+    
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener("luna_draft_cleared", handleClear);
+    };
   }, []);
 
   const updateDraft = (updates: Partial<PlanningDraft>) => {
@@ -41,6 +61,10 @@ export function PlanningProvider({ children }: { children: React.ReactNode }) {
   const clearDraft = () => {
     setDraft(defaultPlanningDraft);
     clearDraftStorage();
+    // Dispatch a custom event so other components/tabs know the draft was cleared
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("luna_draft_cleared"));
+    }
   };
 
   return (

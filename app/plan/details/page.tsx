@@ -33,6 +33,19 @@ const styleLabels: Record<string, string> = {
   culture: "Culture",
 };
 
+const wowLabels: Record<string, string> = {
+  "private-dinner": "Private dinner",
+  safari: "Safari",
+  "scenic-train": "Scenic train",
+  "beach-villa": "Beach villa",
+};
+
+const paceLabels: Record<string, string> = {
+  relaxed: "Light & easy",
+  balanced: "A bit of both",
+  packed: "Packed with highlights",
+};
+
 function nightsLabel(nights: string) {
   if (!nights) return "Not provided";
   if (nights === "not-sure") return "Not sure yet";
@@ -87,7 +100,11 @@ export default function DetailsPage() {
                 <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
                   <span className="type-eyebrow text-[var(--color-text-muted)]">Your journey:</span>
                   <div className="flex flex-wrap items-center gap-3 type-ui-sm text-[var(--color-text-secondary)]">
-                    <span>{timeframeLabels[draft.timeframe] || "Dates TBD"}</span>
+                    <span>
+                      {draft.timeframe === "pick-dates" && draft.start && draft.end
+                        ? `${draft.start} to ${draft.end}`
+                        : timeframeLabels[draft.timeframe] || "Dates TBD"}
+                    </span>
                     <span className="text-[var(--color-border-strong)]">•</span>
                     <span>{nightsLabel(draft.nights)}</span>
                     <span className="text-[var(--color-border-strong)]">•</span>
@@ -96,6 +113,18 @@ export default function DetailsPage() {
                         ? draft.styles.map((style) => styleLabels[style] || style).join(", ")
                         : "Style TBD"}
                     </span>
+                    {draft.wow && (
+                      <>
+                        <span className="text-[var(--color-border-strong)]">•</span>
+                        <span>{wowLabels[draft.wow] || draft.wow}</span>
+                      </>
+                    )}
+                    {draft.pace && (
+                      <>
+                        <span className="text-[var(--color-border-strong)]">•</span>
+                        <span>{paceLabels[draft.pace] || draft.pace}</span>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

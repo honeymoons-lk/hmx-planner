@@ -63,6 +63,8 @@ export function writePlanningDraft(next: Partial<PlanningDraft>) {
 export function clearPlanningDraft() {
   if (typeof window === "undefined") return;
   window.sessionStorage.removeItem(STORAGE_KEY);
+  // Also dispatch event so context can pick it up if called directly
+  window.dispatchEvent(new Event("luna_draft_cleared"));
 }
 
 export function writeSubmittedPlanningRequest(payload: PlanningDraft) {
