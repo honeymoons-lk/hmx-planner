@@ -32,7 +32,7 @@ export function ApproachSection({ id, eyebrow, heading, supporting, steps }: App
             />
             <div className="mt-7 h-[1px] w-12 bg-[var(--color-brand)]" aria-hidden="true" />
             <p className="type-body-lg mt-7 max-w-[34ch] text-[var(--color-text-secondary)] font-light">
-              You brief us once, we shape the route with care, and we stay close to the trip right through to departure and on-ground support.
+              We take the friction out of Sri Lanka. From designing a route that flows beautifully to handling private drivers and reservations, we manage the journey so you can stay in the moment.
             </p>
           </div>
 

@@ -285,8 +285,8 @@ export const homeContent = {
   partners: {
     id: "partners",
     eyebrow: "TRUSTED SRI LANKAN PARTNERS",
-    heading: "The brands we regularly design journeys with.",
-    subcopy: "A few names we trust for quality and consistency.",
+    heading: "Hospitality names we trust with your experience.",
+    subcopy: "We are independent planners, but we regularly collaborate with Sri Lanka’s most respected hospitality brands when their properties are the perfect fit for your journey.",
     logos: [
       "Jetwing",
       "Cinnamon",
@@ -341,47 +341,62 @@ export const homeContent = {
   approach: {
     id: "our-approach",
     eyebrow: "OUR APPROACH",
-    heading: "Concierge-crafted, not booking-engine complexity.",
-    subcopy: "Discovery, design, refinement, then seamless travel.",
+    heading: "A journey shaped around your pace, managed down to the details.",
+    subcopy: "We handle the complexity of Sri Lanka—from shaping the route to securing the bookings—so your only job is to arrive and exhale.",
     steps: [
       {
-        title: "Discovery",
-        description: "We learn your pace, priorities, and what matters most to you.",
+        title: "Trip Shaping",
+        description: "We begin by understanding how you want to feel. Then, we design a custom route that balances iconic moments with quiet, unhurried downtime.",
       },
       {
-        title: "Design",
-        description: "We craft a route, stays, and moments around you.",
+        title: "Stay Selection",
+        description: "Instead of overwhelming you with options, we handpick a few properties chosen for their privacy, atmosphere, and how well they fit the rhythm of your trip.",
       },
       {
-        title: "Refinement",
-        description: "We adjust details together until it feels exactly right.",
+        title: "Seamless Booking",
+        description: "Once the shape of the journey feels right, we quietly secure every detail—from boutique stays and private guides to the subtle romantic extras.",
       },
       {
-        title: "Seamless travel",
-        description: "We handle bookings, transfers, and on-ground support.",
+        title: "On-Ground Coordination",
+        description: "From the moment you land, a private chauffeur guides your route, while our team works behind the scenes to ensure every transition is effortless.",
       },
     ],
   },
   why: {
     id: "why",
     eyebrow: "FAQ / REASSURANCE",
-    heading: "What couples usually want to know before they enquire.",
-    subcopy: "Clear answers, calm handling, and no generic package language.",
+    heading: "Questions couples often ask before we begin.",
+    subcopy: "Clear answers on how we work, what we handle, and why it matters.",
     objections: [
       {
-        question: "Is this just another booking site?",
+        question: "Why use Luna instead of booking Sri Lanka ourselves?",
         answer:
-          "No. We don’t send you a catalogue. We design a route around you, then handpick stays and moments that fit.",
+          "Sri Lanka is stunning, but logistically complex. We remove the friction of piecing together routes, vetting boutique stays, and arranging reliable private transport—giving you the space to simply enjoy the journey.",
       },
       {
-        question: "Will it be expensive?",
+        question: "Do you handle bookings as well as planning?",
         answer:
-          "Not necessarily. We work within your budget band and explain tradeoffs upfront - so you choose with confidence.",
+          "Yes. We are an end-to-end concierge. Once we design your itinerary, we secure all reservations for your stays, private chauffeur, and curated moments.",
       },
       {
-        question: "What happens once we say yes?",
+        question: "Do we need to know exactly where we want to go?",
         answer:
-          "We handle bookings, transfers, and on-ground coordination - and you’ll have a real person to contact if plans change.",
+          "Not at all. Most couples come to us with just their dates and a sense of the mood they want. We guide you toward the best regions, pacing, and stays for the season.",
+      },
+      {
+        question: "Can you tailor the trip around our pace and preferences?",
+        answer:
+          "Absolutely. Every journey is built from scratch. Whether you prefer to cover ground and see the icons, or settle into a few slow, luxurious stops, the rhythm of the trip is entirely yours.",
+      },
+      {
+        question: "Can you help with special moments and romantic extras?",
+        answer:
+          "Yes. From arranging private beach dinners and spa time to quietly ensuring your hotels know it’s a celebration, we handle the subtle details that make the trip feel special.",
+      },
+      {
+        question: "Do you only plan honeymoons?",
+        answer:
+          "While we specialize in honeymoons, we also design anniversary trips, baby-moons, and highly curated escapes for any couple seeking a premium, unhurried experience.",
       },
     ],
     closing: "Designed around you. Managed by us.",
