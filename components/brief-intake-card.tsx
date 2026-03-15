@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { CalendarDays, Check, ChevronDown } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, type DateRange } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,6 +28,7 @@ type BriefIntakeCardProps = {
   className?: string;
   title?: string;
   description?: string;
+  mode?: "full" | "starter";
 };
 
 const dateLabelFormatter = new Intl.DateTimeFormat("en-GB", {
@@ -61,6 +61,12 @@ const formContent = {
     { value: "6-12-months", label: "6–12 months" },
     { value: "pick-dates", label: "I know my dates" },
   ],
+  starterTimeframeOptions: [
+    { value: "next-3-months", label: "Next 3 months" },
+    { value: "3-6-months", label: "3–6 months" },
+    { value: "6-12-months", label: "6–12 months" },
+    { value: "not-sure", label: "Not sure yet" },
+  ],
   nights: [
     { value: "5-7", label: "5–7 nights" },
     { value: "8-10", label: "8–10 nights" },
@@ -90,12 +96,15 @@ const formContent = {
 export function BriefIntakeCard({
   id,
   className,
-  title = "Begin your private planning brief",
-  description = "Share the shape of the escape you are imagining. We’ll come back with a thoughtful route, stay style, and next steps.",
+  title,
+  description,
+  mode = "full",
 }: BriefIntakeCardProps) {
   const router = useRouter();
+  const isStarter = mode === "starter";
   const seed = useMemo(() => readPlanningDraft(), []);
-  const [timeframe, setTimeframe] = useState(seed.timeframe);
+  const initialTimeframe = isStarter && seed.timeframe === "pick-dates" ? "" : seed.timeframe;
+  const [timeframe, setTimeframe] = useState(initialTimeframe);
   const [dateRange, setDateRange] = useState<DateRange | undefined>(
     seed.start || seed.end
       ? {
@@ -118,15 +127,27 @@ export function BriefIntakeCard({
   }, [dateRange, timeframe]);
 
   const selectedNightsValue = timeframe === "pick-dates" ? (calculatedNights ? String(calculatedNights) : "") : nights;
+  const selectedStyle = styles[0] ?? "";
+  const resolvedTitle =
+    title ?? (isStarter ? "Start your honeymoon plan" : "Begin your private planning brief");
+  const resolvedDescription =
+    description ??
+    (isStarter
+      ? "A few quick choices to shape your route and stay style."
+      : "Share the shape of the escape you are imagining. We’ll come back with a thoughtful route, stay style, and next steps.");
 
   const canSubmitBrief = useMemo(() => {
+    if (isStarter) {
+      return Boolean(timeframe && nights && styles.length > 0);
+    }
+
     const hasPrimaryFields = Boolean(timeframe && styles.length > 0 && wow && pace);
     if (!hasPrimaryFields) return false;
     if (timeframe === "pick-dates") {
       return Boolean(dateRange?.from && dateRange?.to && calculatedNights);
     }
     return Boolean(nights);
-  }, [calculatedNights, dateRange?.from, dateRange?.to, nights, pace, styles.length, timeframe, wow]);
+  }, [calculatedNights, dateRange?.from, dateRange?.to, isStarter, nights, pace, styles.length, timeframe, wow]);
 
   const filteredStyleOptions = useMemo(() => {
     const query = styleSearch.trim().toLowerCase();
@@ -141,11 +162,11 @@ export function BriefIntakeCard({
   const handleSubmitBrief = () => {
     writePlanningDraft({
       timeframe,
-      start: timeframe === "pick-dates" && dateRange?.from ? toISODate(dateRange.from) : "",
-      end: timeframe === "pick-dates" && dateRange?.to ? toISODate(dateRange.to) : "",
+      start: !isStarter && timeframe === "pick-dates" && dateRange?.from ? toISODate(dateRange.from) : "",
+      end: !isStarter && timeframe === "pick-dates" && dateRange?.to ? toISODate(dateRange.to) : "",
       nights: selectedNightsValue,
       styles,
-      wow,
+      wow: isStarter ? "" : wow,
       pace,
     });
 
@@ -154,22 +175,24 @@ export function BriefIntakeCard({
 
   return (
     <Card id={id} className={cn("bg-[rgba(252,248,244,0.94)] backdrop-blur-2xl rounded-[8px] border border-[rgba(255,255,255,0.6)] shadow-[0_40px_80px_rgba(14,11,10,0.15)]", className)}>
-      <CardHeader className="space-y-5 border-b border-[rgba(0,0,0,0.06)] px-8 pt-9 pb-7">
+      <CardHeader className={cn("border-b border-[rgba(0,0,0,0.06)] px-8", isStarter ? "space-y-2 pt-6 pb-5" : "space-y-4 pt-9 pb-7")}>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="type-eyebrow text-[var(--color-brand)]">
-            Personal Planning Brief
+            {isStarter ? "Planning Starter" : "Personal Planning Brief"}
           </span>
-          <span className="text-[12px] text-[var(--color-text-muted)] italic">Takes ~60 seconds</span>
+          <span className="type-meta text-[var(--color-text-muted)] italic">
+            {isStarter ? "Takes ~30 seconds" : "Takes ~60 seconds"}
+          </span>
         </div>
-        <CardTitle className="type-subheading font-serif tracking-tight text-[var(--color-text)]">
-          {title}
+        <CardTitle className={cn("font-serif tracking-tight text-[var(--color-text)]", isStarter ? "text-2xl" : "type-subheading")}>
+          {resolvedTitle}
         </CardTitle>
-        <CardDescription className="type-body text-[var(--color-text-secondary)] font-light">
-          {description}
+        <CardDescription className={cn("font-light", isStarter ? "text-[14px] leading-relaxed text-[var(--color-text-muted)]" : "type-body text-[var(--color-text-secondary)]")}>
+          {resolvedDescription}
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-7 px-8 py-8">
+      <CardContent className={cn("px-8", isStarter ? "space-y-5 py-6" : "space-y-6 py-8")}>
         <div className="space-y-3">
           <Label htmlFor="timeframe">When would you like to travel?</Label>
           <Select value={timeframe} onValueChange={setTimeframe}>
@@ -177,7 +200,7 @@ export function BriefIntakeCard({
               <SelectValue placeholder="Choose a timeframe" />
             </SelectTrigger>
             <SelectContent>
-              {formContent.timeframeOptions.map((opt) => (
+              {(isStarter ? formContent.starterTimeframeOptions : formContent.timeframeOptions).map((opt) => (
                 <SelectItem key={opt.value} value={opt.value}>
                   {opt.label}
                 </SelectItem>
@@ -186,7 +209,7 @@ export function BriefIntakeCard({
           </Select>
         </div>
 
-        {timeframe === "pick-dates" ? (
+        {!isStarter && timeframe === "pick-dates" ? (
           <div className="space-y-3">
             <Label>Travel dates</Label>
             <Popover>
@@ -210,19 +233,19 @@ export function BriefIntakeCard({
             </Popover>
 
             {calculatedNights ? (
-              <p className="text-[13px] text-[var(--color-text-muted)] italic">
+              <p className="type-meta text-[var(--color-text-muted)] italic">
                 Trip length: {calculatedNights} night{calculatedNights > 1 ? "s" : ""} (auto-calculated)
               </p>
             ) : (
-              <p className="text-[13px] text-[var(--color-text-muted)] italic">Select return date</p>
+              <p className="type-meta text-[var(--color-text-muted)] italic">Select return date</p>
             )}
           </div>
         ) : (
           <div className="space-y-3">
-            <Label htmlFor="nights">Nights</Label>
+            <Label htmlFor="nights">{isStarter ? "Stay length" : "Nights"}</Label>
             <Select value={nights} onValueChange={setNights}>
               <SelectTrigger id="nights" className="w-full">
-                <SelectValue placeholder="Choose stay length" />
+                <SelectValue placeholder={isStarter ? "Choose a stay length" : "Choose stay length"} />
               </SelectTrigger>
               <SelectContent>
                 {formContent.nights.map((opt) => (
@@ -236,99 +259,121 @@ export function BriefIntakeCard({
         )}
 
         <div className="space-y-3">
-          <Label>What kind of experience are you picturing?</Label>
-          <Popover open={stylePopoverOpen} onOpenChange={setStylePopoverOpen}>
-            <PopoverTrigger asChild>
-              <Button type="button" variant="outline" className="w-full min-h-14 h-auto justify-between py-3">
-                <span className="mr-3 flex flex-wrap gap-2 text-left">
-                  {styles.length > 0 ? (
-                    styles.map((value) => {
-                      const label = formContent.styleOptions.find((item) => item.value === value)?.label ?? value;
-                      return (
-                        <span
-                          key={value}
-                          className="inline-flex items-center justify-center rounded-[4px] border border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] bg-[var(--color-surface-strong)] px-2.5 py-1 text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]"
-                        >
-                          {label}
-                        </span>
-                      );
-                    })
-                  ) : (
-                    <span className="text-[var(--color-text-muted)] font-normal">Choose one or more</span>
-                  )}
-                </span>
-                <ChevronDown className="h-4 w-4 shrink-0 text-[var(--color-text-muted)]" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-[320px] p-0" align="start">
-              <Command>
-                <CommandInput placeholder="Search styles..." value={styleSearch} onChange={(event) => setStyleSearch(event.target.value)} />
-                <CommandList>
-                  {filteredStyleOptions.length === 0 ? (
-                    <CommandEmpty>No styles found.</CommandEmpty>
-                  ) : (
-                    <CommandGroup>
-                      {filteredStyleOptions.map((opt) => {
-                        const isSelected = styles.includes(opt.value);
+          <Label>{isStarter ? "Experience type" : "What kind of experience are you picturing?"}</Label>
+          {isStarter ? (
+            <Select
+              value={selectedStyle}
+              onValueChange={(value) => setStyles(value ? [value] : [])}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Choose the overall feel" />
+              </SelectTrigger>
+              <SelectContent>
+                {formContent.styleOptions.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          ) : (
+            <Popover open={stylePopoverOpen} onOpenChange={setStylePopoverOpen}>
+              <PopoverTrigger asChild>
+                <Button type="button" variant="outline" className="w-full min-h-14 h-auto justify-between py-3">
+                  <span className="mr-3 flex flex-wrap gap-2 text-left">
+                    {styles.length > 0 ? (
+                      styles.map((value) => {
+                        const label = formContent.styleOptions.find((item) => item.value === value)?.label ?? value;
                         return (
-                          <CommandItem key={opt.value} onClick={() => toggleStyle(opt.value)}>
-                            <span
-                              className={`inline-flex h-4 w-4 items-center justify-center rounded-sm border border-border ${
-                                isSelected ? "bg-primary text-primary-foreground" : "bg-background"
-                              }`}
-                            >
-                              {isSelected ? <Check className="h-3 w-3" /> : null}
-                            </span>
-                            {opt.label}
-                          </CommandItem>
+                          <span
+                            key={value}
+                            className="inline-flex items-center justify-center rounded-[4px] border border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] bg-[var(--color-surface-strong)] px-2.5 py-1 text-[11px] leading-[1.35] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-secondary)]"
+                          >
+                            {label}
+                          </span>
                         );
-                      })}
-                    </CommandGroup>
-                  )}
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+                      })
+                    ) : (
+                      <span className="text-[var(--color-text-muted)] font-normal">Choose one or more</span>
+                    )}
+                  </span>
+                  <ChevronDown className="h-4 w-4 shrink-0 text-[var(--color-text-muted)]" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-[320px] p-0" align="start">
+                <Command>
+                  <CommandInput placeholder="Search styles..." value={styleSearch} onChange={(event) => setStyleSearch(event.target.value)} />
+                  <CommandList>
+                    {filteredStyleOptions.length === 0 ? (
+                      <CommandEmpty>No styles found.</CommandEmpty>
+                    ) : (
+                      <CommandGroup>
+                        {filteredStyleOptions.map((opt) => {
+                          const isSelected = styles.includes(opt.value);
+                          return (
+                            <CommandItem key={opt.value} onClick={() => toggleStyle(opt.value)}>
+                              <span
+                                className={`inline-flex h-4 w-4 items-center justify-center rounded-sm border border-border ${
+                                  isSelected ? "bg-primary text-primary-foreground" : "bg-background"
+                                }`}
+                              >
+                                {isSelected ? <Check className="h-3 w-3" /> : null}
+                              </span>
+                              {opt.label}
+                            </CommandItem>
+                          );
+                        })}
+                      </CommandGroup>
+                    )}
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
+          )}
         </div>
 
-        <div className="space-y-3">
-          <Label htmlFor="wow">What would make this unforgettable?</Label>
-          <Select value={wow} onValueChange={setWow}>
-            <SelectTrigger id="wow" className="w-full">
-              <SelectValue placeholder="Choose a highlight" />
-            </SelectTrigger>
-            <SelectContent>
-              {formContent.wowOptions.map((opt) => (
-                <SelectItem key={opt.value} value={opt.value}>
+        {!isStarter ? (
+          <div className="space-y-3">
+            <Label htmlFor="wow">What would make this unforgettable?</Label>
+            <Select value={wow} onValueChange={setWow}>
+              <SelectTrigger id="wow" className="w-full">
+                <SelectValue placeholder="Choose a highlight" />
+              </SelectTrigger>
+              <SelectContent>
+                {formContent.wowOptions.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        ) : null}
+
+        {!isStarter ? (
+          <div className="space-y-4">
+            <Label>How would you like the days to flow?</Label>
+            <ToggleGroup
+              type="single"
+              value={pace}
+              onValueChange={(v) => setPace(v || "")}
+              className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3"
+            >
+              {formContent.paceOptions.map((opt) => (
+                <ToggleGroupItem
+                  key={opt.value}
+                  value={opt.value}
+                  className="h-auto w-full rounded-[4px] border border-[rgba(0,0,0,0.08)] bg-white/50 px-3 py-3 text-[13px] leading-[1.4] font-medium text-[var(--color-text-secondary)] hover:bg-white data-[state=on]:border-[var(--color-brand)] data-[state=on]:bg-white data-[state=on]:text-[var(--color-brand)] data-[state=on]:shadow-sm transition-all"
+                  aria-label={opt.label}
+                >
                   {opt.label}
-                </SelectItem>
+                </ToggleGroupItem>
               ))}
-            </SelectContent>
-          </Select>
-        </div>
+            </ToggleGroup>
+          </div>
+        ) : null}
 
-        <div className="space-y-4">
-          <Label>How would you like the days to flow?</Label>
-          <ToggleGroup
-            type="single"
-            value={pace}
-            onValueChange={(v) => setPace(v || "")}
-            className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3"
-          >
-            {formContent.paceOptions.map((opt) => (
-              <ToggleGroupItem
-                key={opt.value}
-                value={opt.value}
-                className="h-auto w-full rounded-[4px] border border-[rgba(0,0,0,0.08)] bg-white/50 px-3 py-3 text-[13px] font-medium text-[var(--color-text-secondary)] hover:bg-white data-[state=on]:border-[var(--color-brand)] data-[state=on]:bg-white data-[state=on]:text-[var(--color-brand)] data-[state=on]:shadow-sm transition-all"
-                aria-label={opt.label}
-              >
-                {opt.label}
-              </ToggleGroupItem>
-            ))}
-          </ToggleGroup>
-        </div>
-
-        <div className="space-y-4 border-t border-[rgba(0,0,0,0.06)] pt-8 mt-2">
+        <div className={cn("border-t border-[rgba(0,0,0,0.06)]", isStarter ? "pt-5" : "mt-2 space-y-4 pt-8")}>
           <Button
             type="button"
             size="lg"
@@ -336,20 +381,21 @@ export function BriefIntakeCard({
             disabled={!canSubmitBrief}
             onClick={handleSubmitBrief}
           >
-            Begin Designing Your Journey
+            {isStarter ? "Start planning" : "Begin Designing Your Journey"}
           </Button>
-
-          <div className="flex flex-col items-center gap-2 pt-2">
-            <p className="text-[13px] text-[var(--color-text-muted)]">
-              Prefer a quick chat first?{" "}
-              <Link href="/book-a-call" className="font-medium text-[var(--color-brand)] hover:text-[var(--color-brand-hover)] underline underline-offset-4 transition-colors">
-                Book a call
-              </Link>
-            </p>
-            <p className="text-[12px] text-[var(--color-text-muted)]/80 text-center max-w-[30ch]">
-              No generic packages. No obligation. Just a thoughtful first response.
-            </p>
-          </div>
+          {!isStarter ? (
+            <div className="flex flex-col items-center gap-2 pt-2">
+              <p className="type-meta text-[var(--color-text-muted)]">
+                Prefer a quick chat first?{" "}
+                <Link href="/book-a-call" className="font-medium text-[var(--color-brand)] hover:text-[var(--color-brand-hover)] underline underline-offset-4 transition-colors">
+                  Book a call
+                </Link>
+              </p>
+              <p className="type-meta text-[var(--color-text-muted)]/80 text-center max-w-[30ch]">
+                No generic packages. No obligation. Just a thoughtful first response.
+              </p>
+            </div>
+          ) : null}
         </div>
       </CardContent>
     </Card>

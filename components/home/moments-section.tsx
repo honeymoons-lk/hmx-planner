@@ -31,7 +31,7 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
               tabIndex={0}
               className="group flex flex-col focus:outline-none"
             >
-              <div className="relative aspect-[3/4] overflow-hidden bg-[var(--color-bg-alt)] mb-6 md:mb-8">
+              <div className="relative aspect-[3/4] overflow-hidden bg-[var(--color-bg-alt)] mb-6 md:mb-7">
                 <img
                   src={proxiedImageUrl(panel.image)}
                   alt={panel.title}
@@ -42,15 +42,15 @@ export function MomentsSection({ id, eyebrow, heading, supporting, panels }: Mom
               </div>
               
               <div className="flex flex-col pr-4 md:pr-6">
-                <span className="type-eyebrow text-[10px] md:text-xs tracking-[0.2em] text-[var(--color-text-muted)] mb-3 md:mb-4">
+                <span className="type-eyebrow text-[var(--color-text-muted)] mb-3">
                   {panel.label}
                 </span>
                 
-                <h3 className="text-2xl md:text-[1.75rem] leading-[1.15] font-serif text-[var(--color-text)] mb-3 md:mb-4 transition-colors duration-500 ease-out group-hover:text-[var(--color-brand)] group-focus:text-[var(--color-brand)]">
+                <h3 className="type-subheading font-serif text-[var(--color-text)] mb-3 transition-colors duration-500 ease-out group-hover:text-[var(--color-brand)] group-focus:text-[var(--color-brand)]">
                   {panel.title}
                 </h3>
                 
-                <p className="type-body text-[15px] md:text-base text-[var(--color-text-secondary)] font-light leading-[1.8]">
+                <p className="type-body text-[var(--color-text-secondary)] font-light">
                   {panel.body}
                 </p>
               </div>

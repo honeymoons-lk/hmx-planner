@@ -54,23 +54,23 @@ function StayCategoryBlock({ category, layout }: { category: StayCategory; layou
 
       {/* Text Side */}
       <div className={`w-full flex flex-col ${layout.text}`}>
-        <span className="type-eyebrow text-[var(--color-brand)] mb-6 md:mb-8 block tracking-widest">
+        <span className="type-eyebrow text-[var(--color-brand)] mb-5 md:mb-6 block">
           {category.framingLine}
         </span>
         
-        <h3 className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] tracking-tight text-[var(--color-text)] mb-8 md:mb-10">
+        <h3 className="type-section font-serif tracking-tight text-[var(--color-text)] mb-6 md:mb-7">
           {category.title}
         </h3>
         
-        <p className="text-[1.05rem] md:text-[1.125rem] leading-[1.9] text-[var(--color-text-secondary)] font-light mb-16 md:mb-20 max-w-[38ch]">
+        <p className="type-body-lg text-[var(--color-text-secondary)] font-light mb-12 md:mb-14 max-w-[38ch]">
           {category.description}
         </p>
 
-        <div className="border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-8 md:pt-10">
-          <p className="type-eyebrow text-[var(--color-text-muted)] mb-6 md:mb-8">
+        <div className="border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-7 md:pt-8">
+          <p className="type-eyebrow text-[var(--color-text-muted)] mb-5 md:mb-6">
             Curated Examples
           </p>
-          <ul className="space-y-4 md:space-y-5">
+          <ul className="space-y-4">
             {category.properties.map((prop, idx) => {
               const isActive = idx === activeIndex;
               return (
@@ -89,10 +89,10 @@ function StayCategoryBlock({ category, layout }: { category: StayCategory; layou
                     <div className={`transition-opacity duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
                       isActive ? "opacity-100" : "opacity-40 group-hover/btn:opacity-70"
                     }`}>
-                      <span className="text-[15px] md:text-[16px] text-[var(--color-text)] font-medium block mb-1">
+                      <span className="type-ui-sm text-[var(--color-text)] block mb-1">
                         {prop.name}
                       </span>
-                      <span className="text-[13px] md:text-[14px] text-[var(--color-text-muted)] italic font-serif">
+                      <span className="type-meta text-[var(--color-text-muted)] italic font-serif">
                         — {prop.location}
                       </span>
                     </div>
@@ -103,7 +103,7 @@ function StayCategoryBlock({ category, layout }: { category: StayCategory; layou
           </ul>
         </div>
 
-        <p className="mt-12 md:mt-16 text-[14px] md:text-[15px] text-[var(--color-text-muted)] italic font-serif max-w-[38ch] leading-relaxed">
+        <p className="type-meta mt-10 md:mt-12 text-[var(--color-text-muted)] italic font-serif max-w-[38ch]">
           {category.reassuranceLine}
         </p>
       </div>
@@ -138,17 +138,17 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
   return (
     <section id={id} className="section-shell w-full bg-[var(--color-surface)] pt-32 md:pt-48 lg:pt-56 rounded-t-[2.5rem] md:rounded-t-[4rem]">
       <div className="page-shell">
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-12 lg:gap-16 mb-20 md:mb-28 lg:mb-36">
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-12 lg:gap-16 mb-16 md:mb-24 lg:mb-32">
           <div className="lg:w-[60%]">
-            <span className="type-eyebrow text-[var(--color-brand)] mb-6 md:mb-8 block tracking-widest">
+            <span className="type-eyebrow text-[var(--color-brand)] mb-5 md:mb-6 block">
               {eyebrow}
             </span>
-            <h2 className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] tracking-tight text-[var(--color-text)] max-w-[16ch]">
+            <h2 className="type-section font-serif tracking-tight text-[var(--color-text)] max-w-[16ch]">
               {heading}
             </h2>
           </div>
           <div className="lg:w-[32%] lg:pl-8 xl:pl-16 lg:pt-14">
-            <p className="text-[1.05rem] md:text-[1.125rem] leading-[1.9] text-[var(--color-text-secondary)] font-light max-w-[38ch]">
+            <p className="type-body-lg text-[var(--color-text-secondary)] font-light max-w-[38ch]">
               {supporting}
             </p>
           </div>
@@ -167,7 +167,7 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
         </div>
 
         <div className="mt-32 md:mt-48 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-12">
-          <p className="text-[14px] max-w-[52rem] text-[var(--color-text-muted)]">
+          <p className="type-meta max-w-[52rem] text-[var(--color-text-muted)]">
             {footerNote}
           </p>
         </div>

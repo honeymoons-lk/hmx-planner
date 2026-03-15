@@ -106,23 +106,23 @@
   --space-10: 96px;
   --space-11: 120px;
 
-  --type-hero-size: clamp(64px, 8vw, 96px);
-  --type-hero-line: 1;
-  --type-section-size: clamp(42px, 5.5vw, 64px);
-  --type-section-line: 1.05;
-  --type-subheading-size: clamp(28px, 3.5vw, 36px);
-  --type-subheading-line: 1.15;
+  --type-hero-size: clamp(52px, 5.5vw, 72px);
+  --type-hero-line: 0.92;
+  --type-section-size: clamp(42px, 4.8vw, 56px);
+  --type-section-line: 1.02;
+  --type-subheading-size: clamp(26px, 3vw, 32px);
+  --type-subheading-line: 1.1;
   --type-body-size: 16px;
-  --type-body-line: 1.7;
-  --type-body-lg-size: 18px;
-  --type-body-lg-line: 1.7;
+  --type-body-line: 1.66;
+  --type-body-lg-size: 17px;
+  --type-body-lg-line: 1.68;
   --type-ui-sm-size: 13px;
-  --type-ui-sm-line: 1.5;
+  --type-ui-sm-line: 1.4;
   --type-meta-size: 13px;
-  --type-meta-line: 1.6;
+  --type-meta-line: 1.5;
   --type-eyebrow-size: 11px;
   --type-eyebrow-line: 1.35;
-  --type-eyebrow-spacing: 0.22em;
+  --type-eyebrow-spacing: 0.18em;
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-strong: 600;
@@ -143,7 +143,7 @@
   --section-space-desktop: 160px;
   --section-space-tight-mobile: 80px;
   --section-space-tight-desktop: 120px;
-  --heading-body-gap: 18px;
+  --heading-body-gap: 14px;
   --card-padding: 32px;
 
   --brand-tint-1: #d9c7b8;
@@ -183,7 +183,7 @@
     @apply bg-background text-foreground;
     font-family: var(--font-body), "Inter", sans-serif;
     font-size: 16px;
-    line-height: 1.75;
+    line-height: 1.7;
     background-image:
       radial-gradient(circle at top left, rgba(204, 178, 139, 0.14), transparent 30%),
       radial-gradient(circle at top right, rgba(110, 44, 58, 0.08), transparent 26%);

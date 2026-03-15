@@ -52,21 +52,21 @@ export function StoriesSection({
               </div>
               
               <div className="flex flex-col flex-1">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-3">
                   <span className="type-eyebrow text-[var(--color-text-muted)]">
                     {story.duration}
                   </span>
                   <span className="h-[1px] w-6 bg-[var(--color-border-strong)]" />
-                  <span className="text-[13px] italic text-[var(--color-text-secondary)]">
+                  <span className="type-meta italic text-[var(--color-text-secondary)]">
                     {story.route}
                   </span>
                 </div>
 
-                <h3 className="type-subheading font-serif text-[var(--color-text)] mb-4">
+                <h3 className="type-subheading font-serif text-[var(--color-text)] mb-3">
                   {story.title}
                 </h3>
                 
-                <p className="type-body text-[var(--color-text-secondary)] font-light mb-8">
+                <p className="type-body text-[var(--color-text-secondary)] font-light mb-7">
                   {story.summary}
                 </p>
 

@@ -156,7 +156,7 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
       <div className="page-shell">
         <SectionHeader eyebrow={eyebrow} heading={heading} supporting={subcopy} className="max-w-3xl" />
 
-        <div className="mt-16 grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-24">
+        <div className="mt-14 grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-24 md:mt-16">
           {/* Left: Editorial Timeline */}
           <div className="relative">
             {/* Continuous fine line for the timeline */}
@@ -192,7 +192,7 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
                     </div>
 
                     {/* Step Header */}
-                    <div className="flex flex-wrap items-center gap-4 mb-4">
+                    <div className="flex flex-wrap items-center gap-4 mb-3">
                       <p className="type-eyebrow text-[var(--color-text-muted)]">
                         {step.detail.days}
                       </p>
@@ -202,7 +202,7 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
                       </p>
                     </div>
 
-                    <h3 className="type-subheading font-serif text-[var(--color-text)] mb-4">
+                    <h3 className="type-subheading font-serif text-[var(--color-text)] mb-3">
                       {step.detail.title}
                     </h3>
                     
@@ -223,7 +223,7 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
                     </div>
 
                     {/* Stay Cue - Typographic instead of boxed */}
-                    <div className="mt-8 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-5">
+                    <div className="mt-7 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-5 md:mt-8">
                       <div className="flex items-baseline gap-6">
                         <p className="type-eyebrow text-[var(--color-text-muted)] w-24 shrink-0">
                           Stay Cue
@@ -318,8 +318,8 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
           </aside>
         </div>
 
-        <div className="mt-20 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-8">
-          <p className="text-[14px] text-[var(--color-text-muted)] italic">{note}</p>
+        <div className="mt-16 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-8 md:mt-20">
+          <p className="type-meta text-[var(--color-text-muted)] italic">{note}</p>
         </div>
       </div>
     </section>

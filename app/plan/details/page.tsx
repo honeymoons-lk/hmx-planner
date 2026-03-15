@@ -63,6 +63,8 @@ export default function DetailsPage() {
   const draft = useMemo(() => readPlanningDraft(), []);
   const [budget, setBudget] = useState(draft.budget);
   const [occasion, setOccasion] = useState(draft.occasion);
+  const [pace, setPace] = useState(draft.pace);
+  const [wow, setWow] = useState(draft.wow);
   const [notes, setNotes] = useState(draft.notes);
 
   const canContinue = Boolean(budget && occasion);
@@ -197,6 +199,35 @@ export default function DetailsPage() {
               </div>
 
               <div className="space-y-3">
+                <Label htmlFor="pace">Preferred pace</Label>
+                <Select value={pace} onValueChange={setPace}>
+                  <SelectTrigger id="pace">
+                    <SelectValue placeholder="Choose the rhythm" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="relaxed">Slow &amp; romantic</SelectItem>
+                    <SelectItem value="balanced">A bit of both</SelectItem>
+                    <SelectItem value="packed">Make the most of it</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-3">
+                <Label htmlFor="wow">Anything you would especially love us to build in?</Label>
+                <Select value={wow} onValueChange={setWow}>
+                  <SelectTrigger id="wow">
+                    <SelectValue placeholder="Choose a highlight" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="private-dinner">Private cliffside dinner</SelectItem>
+                    <SelectItem value="safari">Sunrise safari experience</SelectItem>
+                    <SelectItem value="scenic-train">Scenic train through tea country</SelectItem>
+                    <SelectItem value="beach-villa">Secluded beach villa stay</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-3">
                 <Label htmlFor="notes">Anything that would make this feel personal?</Label>
                 <Textarea
                   id="notes"
@@ -212,7 +243,7 @@ export default function DetailsPage() {
                 </Button>
                 <Button
                   onClick={() => {
-                    writePlanningDraft({ budget, occasion, notes });
+                    writePlanningDraft({ budget, occasion, pace, wow, notes });
                     router.push("/plan/contact");
                   }}
                   disabled={!canContinue}
