@@ -101,10 +101,10 @@ export const homeContent = {
       {
         id: "beach-resorts",
         title: "Beach Resorts",
-        mood: "Where the itinerary slows down. Ocean breezes, quiet horizons, and a softer rhythm by the sea.",
-        whyWeUseIt: "We place these at the end of a journey—when the need to explore fades into a desire for uninterrupted time together.",
-        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=80",
-        alt: "Ocean-facing luxury beach resort atmosphere on Sri Lanka's southern coast",
+        mood: "The final exhale. Where the itinerary dissolves into salt air, shaded loungers, and the slow, heavy rhythm of the Indian Ocean.",
+        whyWeUseIt: "Placed deliberately at the end of a journey—when the urge to explore gives way to the need for total, uninterrupted stillness.",
+        image: "https://images.unsplash.com/photo-1582610116311-53205fc30bf3?auto=format&fit=crop&w=2200&q=80",
+        alt: "Minimalist luxury pool meeting the ocean horizon",
         properties: [
           {
             name: "Amanwella",
@@ -123,10 +123,10 @@ export const homeContent = {
       {
         id: "boutique-villas",
         title: "Boutique Villas",
-        mood: "Intimate, character-filled spaces that feel less like a hotel and more like a private retreat.",
-        whyWeUseIt: "Chosen when the journey calls for absolute privacy—allowing you to reset, linger over breakfast, and exist entirely on your own schedule.",
-        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2200&q=80",
-        alt: "Private boutique villa with tropical landscape and architectural character",
+        mood: "Walled gardens, heavy timber doors, and the profound quiet of a space that feels entirely yours.",
+        whyWeUseIt: "Chosen for days that require absolute privacy. A place to drop your bags, linger over late breakfasts, and exist entirely on your own schedule.",
+        image: "https://images.unsplash.com/photo-1600566753190-17f0baa2cb32?auto=format&fit=crop&w=2200&q=80",
+        alt: "Intimate tropical modernism villa architecture",
         properties: [
           {
             name: "Kahanda Kanda",
@@ -145,10 +145,10 @@ export const homeContent = {
       {
         id: "tea-estate-stays",
         title: "Tea Estates",
-        mood: "Cooler air, log fires, and misty mornings looking out over endless green valleys.",
-        whyWeUseIt: "A deliberate shift in atmosphere. We use the highlands to create a cinematic, reflective middle chapter before heading to the coast.",
-        image: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=2200&q=80",
-        alt: "Tea country bungalow with expansive misty hill views",
+        mood: "A dramatic shift in altitude. Crisp air, log fires, and the slow theater of morning mist rolling across the valleys.",
+        whyWeUseIt: "We use the highlands to break the rhythm of the tropics—introducing a cinematic, deeply reflective middle chapter to the journey.",
+        image: "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4c3?auto=format&fit=crop&w=2200&q=80",
+        alt: "Classic tea estate window framing misty mountain views",
         properties: [
           {
             name: "Ceylon Tea Trails",
@@ -167,10 +167,10 @@ export const homeContent = {
       {
         id: "heritage-stays",
         title: "Heritage Stays",
-        mood: "Storied walls, shaded courtyards, and architecture that grounds you in the island's past.",
-        whyWeUseIt: "Selected to give your journey texture and depth—placing you right inside the culture rather than observing it from a distance.",
-        image: "https://images.unsplash.com/photo-1535827841776-24afc1e255ac?auto=format&fit=crop&w=2200&q=80",
-        alt: "Historic courtyard setting in a restored heritage property",
+        mood: "Centuries-old stone, monsoon-washed courtyards, and the heavy, romantic atmosphere of another era.",
+        whyWeUseIt: "Selected to anchor your trip in a profound sense of place. You aren't just visiting the culture; you are sleeping inside it.",
+        image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=2200&q=80",
+        alt: "Refined heritage hotel architecture with warm colonial character",
         properties: [
           {
             name: "Galle Fort Hotel",

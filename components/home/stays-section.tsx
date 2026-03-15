@@ -50,11 +50,11 @@ function StayCategoryBlock({ category, layout }: { category: StayCategory; layou
 
       {/* Text Side */}
       <div className={`w-full flex flex-col ${layout.text}`}>
-        <h3 className="type-section font-serif tracking-tight text-[var(--color-text)] mb-6 md:mb-8">
+        <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight text-[var(--color-text)] mb-6 md:mb-8">
           {category.title}
         </h3>
         
-        <p className="type-body-lg text-[var(--color-text-secondary)] font-light mb-12 md:mb-16 max-w-[40ch]">
+        <p className="text-xl md:text-2xl lg:text-[1.65rem] leading-[1.4] text-[var(--color-text-secondary)] font-light tracking-tight mb-12 md:mb-16 max-w-[32ch]">
           {category.mood}
         </p>
 
@@ -62,18 +62,18 @@ function StayCategoryBlock({ category, layout }: { category: StayCategory; layou
           <p className="type-eyebrow text-[var(--color-text-muted)] mb-6 md:mb-8">
             A few places we return to
           </p>
-          <ul className="space-y-3 md:space-y-4">
+          <ul className="space-y-4 md:space-y-5">
             {category.properties.map((prop) => (
-              <li key={`${prop.name}-${prop.location}`} className="text-base md:text-lg">
-                <span className="text-[var(--color-text)]">{prop.name}</span>
-                <span className="text-[var(--color-text-muted)]">, {prop.location}</span>
+              <li key={`${prop.name}-${prop.location}`} className="text-lg md:text-xl flex items-baseline">
+                <span className="text-[var(--color-text)] tracking-wide">{prop.name}</span>
+                <span className="text-[var(--color-text-muted)] italic font-serif ml-3">— {prop.location}</span>
               </li>
             ))}
           </ul>
         </div>
 
         <div className="pt-8 md:pt-10 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)]">
-          <p className="text-base md:text-lg text-[var(--color-text-secondary)] leading-relaxed max-w-[40ch]">
+          <p className="text-lg md:text-xl text-[var(--color-text)] font-serif italic leading-relaxed max-w-[36ch]">
             {category.whyWeUseIt}
           </p>
         </div>
@@ -86,23 +86,23 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
   const layouts = [
     {
       container: "lg:flex-row lg:items-start",
-      image: "lg:w-[60%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4]",
-      text: "lg:w-[32%] lg:pl-8 xl:pl-16",
+      image: "lg:w-[55%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4]",
+      text: "lg:w-[38%] lg:pl-10 xl:pl-16 lg:pt-12",
     },
     {
       container: "lg:flex-row-reverse lg:items-start",
       image: "lg:w-[50%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[4/5]",
-      text: "lg:w-[40%] lg:pr-8 xl:pr-16",
+      text: "lg:w-[42%] lg:pr-10 xl:pr-16 lg:pt-24",
     },
     {
       container: "lg:flex-row lg:items-start",
-      image: "lg:w-[65%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[16/9]",
-      text: "lg:w-[28%] lg:pl-8 xl:pl-12",
+      image: "lg:w-[60%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[16/9]",
+      text: "lg:w-[35%] lg:pl-10 xl:pl-16 lg:pt-16",
     },
     {
       container: "lg:flex-row-reverse lg:items-start",
       image: "lg:w-[55%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4]",
-      text: "lg:w-[35%] lg:pr-8 xl:pr-16",
+      text: "lg:w-[38%] lg:pr-10 xl:pr-16 lg:pt-12",
     }
   ];
 
