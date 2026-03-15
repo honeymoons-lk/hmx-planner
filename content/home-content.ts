@@ -4,7 +4,7 @@ export const homeContent = {
     links: [
       { label: "Experiences", href: "#experiences" },
       { label: "The Journey", href: "#the-journey" },
-      { label: "Sample Journeys", href: "#sample-journeys" },
+      { label: "Journey Directions", href: "#journey-directions" },
       { label: "Our Approach", href: "#our-approach" },
     ],
     cta: { label: "Start Planning", href: "/plan/journey" },
@@ -301,41 +301,39 @@ export const homeContent = {
     ],
   },
   stories: {
-    id: "sample-journeys",
-    eyebrow: "SAMPLE JOURNEYS",
-    heading: "A few journey shapes couples often begin with.",
-    subcopy: "These are starting points, not fixed packages. We tailor the pacing, stays, and moments around the two of you.",
+    id: "journey-directions",
+    eyebrow: "JOURNEY DIRECTIONS",
+    heading: "Romantic journeys we often shape.",
+    subcopy: "These are illustrative directions, not fixed packages. Every journey is tailored around the couple, the season, and your preferred travel pace.",
+    cta: {
+      label: "Start Planning Your Journey",
+      href: "/plan/journey"
+    },
     caseStudies: [
       {
-        title: "Tea Hills to South Coast",
-        duration: "10 nights",
-        route: "Colombo → Tea Country → Tangalle",
-        mood: "Slow romance with a graceful beach finish",
-        stayStyle: "Estate bungalows + beachfront suites",
-        summary: "A softly paced honeymoon built around scenic rail, misty mornings, and a final stretch of sea-facing downtime.",
-        image:
-          "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=2200&q=80",
+        title: "The Slow Romance",
+        framingLine: "Tea country mornings and a graceful beach finish",
+        idealFor: "Couples who want to exhale immediately and minimize travel time.",
+        route: "Colombo → Hatton (Tea Country) → Tangalle (South Coast)",
+        whyWeShapeIt: "We design this route to start with complete stillness in the hills before gently transitioning to the coast. By skipping the busier cultural triangle, we keep the pace slow, the hotel changes minimal, and the focus entirely on privacy and downtime.",
+        image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=2200&q=80",
       },
       {
-        title: "Culture to Coast",
-        duration: "8 nights",
-        route: "Sigiriya → Kandy → Galle",
-        mood: "Ancient sites, boutique charm, and ocean evenings",
-        stayStyle: "Design-led villas + heritage stays",
-        summary: "Ideal for couples who want meaningful landmark moments without losing the calm, intimate feel of the trip.",
-        image:
-          "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=2200&q=80",
+        title: "The Grand Contrast",
+        framingLine: "Ancient culture, scenic rail, and coastal evenings",
+        idealFor: "Couples who want to experience Sri Lanka’s variety without feeling rushed.",
+        route: "Cultural Triangle → Kandy → Tea Country → South Coast",
+        whyWeShapeIt: "This journey balances iconic exploration with deep relaxation. We pace the cultural sites early in the trip when energy is high, use the scenic train as a restful transition, and ensure the final days are reserved exclusively for the beach.",
+        image: "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=2200&q=80",
       },
       {
-        title: "Safari and Villa Escape",
-        duration: "9 nights",
-        route: "Bentota → Yala → Weligama",
-        mood: "Private wildlife moments with a polished coastal close",
-        stayStyle: "Riverside villas + clifftop ocean suites",
-        summary: "For couples who want nature, privacy, and a stronger sense of occasion woven through the route.",
-        image:
-          "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=2200&q=80",
-      },
+        title: "The Mini-Moon Escape",
+        framingLine: "A short, seamless retreat with zero friction",
+        idealFor: "Anniversaries or post-wedding escapes where time is limited.",
+        route: "Galle Fort → Southern Coast",
+        whyWeShapeIt: "When time is short, we eliminate long drives. This route pairs the atmospheric streets of a heritage fort with a secluded beach villa nearby. It provides beautiful contrast—culture and coast—while keeping you within two hours of the airport.",
+        image: "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=2200&q=80",
+      }
     ],
   },
   approach: {
