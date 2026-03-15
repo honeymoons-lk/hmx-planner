@@ -53,6 +53,24 @@ export function HeroSection({ content }: HeroSectionProps) {
               </p>
             </div>
           </div>
+
+          <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-[color-mix(in_srgb,var(--color-light)_15%,transparent)] pt-6 md:mt-12">
+            <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_60%,var(--color-bg-alt))]">
+              {content.secondaryStrip.label}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {content.secondaryStrip.items.map((item, i) => (
+                <div key={item} className="flex items-center gap-3">
+                  <span className="type-ui-sm text-[color-mix(in_srgb,var(--color-light)_85%,var(--color-bg-alt))]">
+                    {item}
+                  </span>
+                  {i < content.secondaryStrip.items.length - 1 && (
+                    <span className="h-[3px] w-[3px] rounded-full bg-[color-mix(in_srgb,var(--color-light)_30%,transparent)]" />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         
         <div className="relative w-full lg:max-w-[400px] lg:justify-self-end lg:self-center">

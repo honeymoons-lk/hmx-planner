@@ -184,7 +184,7 @@ export function BriefIntakeCard({
             {isStarter ? "Takes ~30 seconds" : "Takes ~60 seconds"}
           </span>
         </div>
-        <CardTitle className={cn("font-serif tracking-tight text-[var(--color-text)]", isStarter ? "text-2xl" : "type-subheading")}>
+        <CardTitle className={cn("font-serif tracking-tight text-[var(--color-text)]", isStarter ? "text-[26px] leading-[1.1]" : "type-subheading")}>
           {resolvedTitle}
         </CardTitle>
         <CardDescription className={cn("font-light", isStarter ? "text-[14px] leading-relaxed text-[var(--color-text-muted)]" : "type-body text-[var(--color-text-secondary)]")}>
