@@ -23,7 +23,7 @@ function CommandInput({ className, ...props }: React.ComponentProps<"input">) {
       <input
         data-slot="command-input"
         className={cn(
-          "field-surface placeholder:text-muted-foreground h-10 w-full rounded-[var(--radius-input)] border border-input px-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/14",
+          "field-surface placeholder:text-muted-foreground h-10 w-full rounded-[var(--radius-input)] border border-input px-3 text-[15px] leading-[1.45] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/14",
           className,
         )}
         {...props}
@@ -46,7 +46,7 @@ function CommandEmpty({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="command-empty"
-      className={cn("px-2 py-3 text-sm text-muted-foreground", className)}
+      className={cn("px-2 py-3 text-[15px] leading-[1.45] text-muted-foreground", className)}
       {...props}
     />
   );
@@ -62,7 +62,7 @@ function CommandItem({ className, ...props }: React.ComponentProps<"button">) {
       type="button"
       data-slot="command-item"
       className={cn(
-        "hover:bg-[color-mix(in_srgb,var(--color-bg-alt)_86%,var(--color-surface))] hover:text-[var(--color-text)] focus-visible:bg-[color-mix(in_srgb,var(--color-bg-alt)_86%,var(--color-surface))] focus-visible:text-[var(--color-text)] flex w-full items-center gap-2 rounded-[14px] px-3 py-2 text-left text-sm text-[var(--color-text-secondary)] outline-none",
+        "hover:bg-[color-mix(in_srgb,var(--color-bg-alt)_86%,var(--color-surface))] hover:text-[var(--color-text)] focus-visible:bg-[color-mix(in_srgb,var(--color-bg-alt)_86%,var(--color-surface))] focus-visible:text-[var(--color-text)] flex w-full items-center gap-2 rounded-[14px] px-3 py-2 text-left text-[15px] leading-[1.45] text-[var(--color-text-secondary)] outline-none",
         className,
       )}
       {...props}

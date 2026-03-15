@@ -1,3 +1,5 @@
+"use client";
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SectionHeader } from "@/components/section-header";
 
@@ -27,11 +29,11 @@ export function WhySection({ id, eyebrow, heading, supporting, objections, closi
               supporting={supporting}
               className="mb-0 max-w-none"
             />
-            <div className="mt-8 h-[1px] w-12 bg-[var(--color-brand)]" aria-hidden="true" />
-            <p className="type-body-lg mt-8 max-w-[34ch] text-[var(--color-text-secondary)] font-light">
+            <div className="mt-7 h-[1px] w-12 bg-[var(--color-brand)]" aria-hidden="true" />
+            <p className="type-body-lg mt-7 max-w-[34ch] text-[var(--color-text-secondary)] font-light">
               Luna is built for couples who want the journey to feel personal and beautifully handled without having to piece everything together themselves.
             </p>
-            <p className="type-eyebrow mt-12 text-[var(--color-text-muted)]">
+            <p className="type-eyebrow mt-10 text-[var(--color-text-muted)]">
               {closing}
             </p>
           </div>

@@ -34,9 +34,9 @@ const wowLabels: Record<string, string> = {
 };
 
 const paceLabels: Record<string, string> = {
-  relaxed: "Slow & romantic",
+  relaxed: "Light & easy",
   balanced: "A bit of both",
-  packed: "Make the most of it",
+  packed: "Packed with highlights",
 };
 
 const budgetLabels: Record<string, string> = {
@@ -67,75 +67,77 @@ export default function ThankYouPage() {
   const [request, setRequest] = useState<PlanningDraft | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRequest(readSubmittedPlanningRequest() ?? readPlanningDraft());
   }, []);
 
   return (
     <>
       <PlanningHeader />
-      <main className="min-h-[calc(100vh-64px)] bg-background px-4 py-10 md:px-6 md:py-14">
-        <div className="mx-auto w-full max-w-5xl space-y-8">
-          <Card className="overflow-hidden border border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_93%,var(--color-bg))] shadow-sm">
-            <img
-              src={proxiedImageUrl(thankYouImage)}
-              alt="Sri Lanka coastline at dusk"
-              className="h-36 w-full object-cover object-center md:h-56"
-              loading="lazy"
-            />
-            <CardHeader className="space-y-4 px-8 pt-8 pb-6">
-              <CardTitle className="type-section font-serif">Your request is with us</CardTitle>
-              <CardDescription className="type-body max-w-[54ch] text-[var(--color-text-secondary)] font-light">
-                Thank you for sharing your plans. We’ll review everything personally and come back with
-                a tailored direction within 24–48 hours.
+      <main className="min-h-[calc(100vh-64px)] bg-[var(--color-bg)] px-4 py-8 md:px-6 md:py-16 lg:py-24">
+        <div className="mx-auto w-full max-w-5xl space-y-8 md:space-y-12">
+          <Card className="plan-step-card overflow-hidden">
+            <div className="relative h-32 md:h-48 lg:h-56 w-full">
+              <img
+                src={proxiedImageUrl(thankYouImage)}
+                alt="Sri Lanka coastline at dusk"
+                className="h-full w-full object-cover object-center"
+                loading="lazy"
+              />
+            </div>
+            <CardHeader className="px-5 pt-6 pb-6 md:px-10 md:pt-10">
+              <CardTitle className="type-subheading font-serif">Thank you. Your request is with us.</CardTitle>
+              <CardDescription className="type-body max-w-[54ch] text-[var(--color-text-muted)] font-light mt-2">
+                We will review your details and share a tailored direction within 48 hours.
               </CardDescription>
             </CardHeader>
           </Card>
 
-          <div className="grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
-            <Card className="border border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_94%,var(--color-bg))] shadow-sm">
-              <CardHeader className="px-8 pt-8 pb-6 border-b border-[rgba(0,0,0,0.06)]">
-                <CardTitle className="type-subheading font-serif">Here’s what we’re shaping for you</CardTitle>
+          <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
+            <Card className="plan-step-card">
+              <CardHeader className="px-5 pt-6 pb-5 border-b border-[rgba(0,0,0,0.06)] md:px-10 md:pt-10 md:pb-6">
+                <CardTitle className="type-subheading font-serif">Your journey summary</CardTitle>
               </CardHeader>
-              <CardContent className="px-8 py-8">
+              <CardContent className="px-5 pb-6 pt-6 md:px-10 md:pb-10 md:pt-8">
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">When</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Timing</p>
                     <p className="type-ui-sm text-foreground">{timeframeLabels[request?.timeframe || ""] || "Not provided"}</p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Dates</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Dates</p>
                     <p className="type-ui-sm text-foreground">
                       {request?.start && request?.end ? `${request.start} → ${request.end}` : "Not provided"}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Trip length</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Duration</p>
                     <p className="type-ui-sm text-foreground">{nightsLabel(request?.nights)}</p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Styles</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Experience</p>
                     <p className="type-ui-sm text-foreground">
                       {request?.styles?.length ? request.styles.map((style) => styleLabels[style] || style).join(", ") : "Not provided"}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Wow + vibe</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Highlights</p>
                     <p className="type-ui-sm text-foreground">
                       {[wowLabels[request?.wow || ""], paceLabels[request?.pace || ""]].filter(Boolean).join(" · ") || "Not provided"}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Comfort + occasion</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Comfort & Occasion</p>
                     <p className="type-ui-sm text-foreground">
                       {[budgetLabels[request?.budget || ""], occasionLabels[request?.occasion || ""]].filter(Boolean).join(" · ") || "Not provided"}
                     </p>
                   </div>
                   <div className="sm:col-span-2">
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Special notes</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Notes</p>
                     <p className="type-ui-sm text-foreground">{request?.notes?.trim() || "None shared yet"}</p>
                   </div>
                   <div className="sm:col-span-2">
-                    <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-1">Contact</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Contact</p>
                     <p className="type-ui-sm text-foreground">
                       {[request?.firstName, request?.email].filter(Boolean).join(" · ") || "Provided in your request"}
                     </p>
@@ -145,34 +147,34 @@ export default function ThankYouPage() {
             </Card>
 
             <div className="space-y-8">
-              <Card className="border border-[color-mix(in_srgb,var(--color-border)_88%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_94%,var(--color-bg))] shadow-sm">
-                <CardHeader className="px-8 pt-8 pb-6 border-b border-[rgba(0,0,0,0.06)]">
-                  <CardTitle className="type-subheading font-serif">What happens next</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6 px-8 py-8">
-                  <div>
-                    <p className="type-ui-sm text-foreground mb-1">1. Personal review</p>
-                    <p className="type-meta text-[var(--color-text-secondary)] font-light">We review your request with care, not automation.</p>
-                  </div>
-                  <div>
-                    <p className="type-ui-sm text-foreground mb-1">2. Tailored direction</p>
-                    <p className="type-meta text-[var(--color-text-secondary)] font-light">We shape options around your pace, priorities, and style.</p>
-                  </div>
-                  <div>
-                    <p className="type-ui-sm text-foreground mb-1">3. Concierge follow-up</p>
-                    <p className="type-meta text-[var(--color-text-secondary)] font-light">You’ll hear from us personally within 24–48 hours.</p>
-                  </div>
-                </CardContent>
+            <Card className="plan-step-card bg-[color-mix(in_srgb,var(--color-bg-alt)_40%,transparent)]">
+              <CardHeader className="px-5 pt-6 pb-5 border-b border-[rgba(0,0,0,0.06)] md:px-8 md:pt-8 md:pb-6">
+                <CardTitle className="type-subheading font-serif">Next steps</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6 px-5 pb-6 pt-6 md:px-8 md:pb-8 md:pt-8">
+                <div>
+                  <p className="type-ui-sm text-foreground mb-1">1. Personal review</p>
+                  <p className="type-meta text-[var(--color-text-secondary)] font-light">We review your request personally, without automation.</p>
+                </div>
+                <div>
+                  <p className="type-ui-sm text-foreground mb-1">2. Tailored direction</p>
+                  <p className="type-meta text-[var(--color-text-secondary)] font-light">We design options around your pace, priorities, and style.</p>
+                </div>
+                <div>
+                  <p className="type-ui-sm text-foreground mb-1">3. Concierge follow-up</p>
+                  <p className="type-meta text-[var(--color-text-secondary)] font-light">You’ll hear from us within 48 hours.</p>
+                </div>
+              </CardContent>
               </Card>
             </div>
           </div>
 
-          <div className="text-center mt-12">
-            <p className="type-body text-[var(--color-text-secondary)]">
-              Every proposal is shaped around your pace, priorities, and the kind of experience you want to remember.
+          <div className="flex flex-col items-center text-center mt-12 space-y-6">
+            <p className="type-body text-[var(--color-text-secondary)] max-w-[48ch]">
+              We look forward to designing something memorable for you.
             </p>
-            <Button asChild variant="outline" className="mt-6">
-              <Link href="/">Return to Luna Voyages</Link>
+            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+              <Link href="/">Return to homepage</Link>
             </Button>
           </div>
         </div>

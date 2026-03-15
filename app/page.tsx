@@ -54,6 +54,7 @@ export default function HomePage() {
         eyebrow={homeContent.stories.eyebrow}
         heading={homeContent.stories.heading}
         supporting={homeContent.stories.subcopy}
+        cta={homeContent.stories.cta}
         caseStudies={homeContent.stories.caseStudies}
       />
 
@@ -91,11 +92,7 @@ export default function HomePage() {
         secondary={homeContent.finalCta.secondary}
       />
 
-      <SiteFooter
-        note={homeContent.footer.note}
-        links={homeContent.footer.links}
-        copyright={homeContent.footer.copyright}
-      />
+      <SiteFooter />
     </main>
   );
 }

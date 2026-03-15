@@ -231,7 +231,7 @@ export default function RealHoneymoonsPage() {
         className="mx-auto w-full max-w-6xl px-4 py-[var(--section-space-mobile)] md:px-6 md:py-[var(--section-space-desktop)]"
       >
         <header className="max-w-3xl">
-          <p className="type-eyebrow text-muted-foreground">REAL HONEYMOONS</p>
+          <p className="type-eyebrow text-muted-foreground">Real honeymoons</p>
           <h1 className="type-section mt-4 font-serif tracking-tight">Journeys we have designed in detail</h1>
           <p className="type-body-lg mt-[var(--heading-body-gap)] text-[var(--color-text-secondary)]">
             Explore real route structures, pacing decisions, and the kinds of stays we match to each couple.
@@ -265,7 +265,7 @@ export default function RealHoneymoonsPage() {
                       }`}
                     />
 
-                    <p className="type-eyebrow text-[var(--color-text-muted)]">{stop.dayRange.toUpperCase()}</p>
+                    <p className="type-eyebrow text-[var(--color-text-muted)]">{stop.dayRange}</p>
                     <h2 className="mt-3 font-serif text-[clamp(28px,3.2vw,40px)] leading-[1.16] text-[var(--color-text)]">
                       {stop.title}
                     </h2>
@@ -367,11 +367,7 @@ export default function RealHoneymoonsPage() {
         secondary={homeContent.finalCta.secondary}
       />
 
-      <SiteFooter
-        note={homeContent.footer.note}
-        links={homeContent.footer.links}
-        copyright={homeContent.footer.copyright}
-      />
+      <SiteFooter />
     </main>
   );
 }

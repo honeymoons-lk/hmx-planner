@@ -1,22 +1,22 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
-import { SectionHeader } from "@/components/section-header";
+import { useState } from "react";
 import { proxiedImageUrl } from "@/lib/media";
+import { SectionHeader } from "@/components/section-header";
 
 type StayProperty = {
   name: string;
   location: string;
-  image: string;
-  alt: string;
+  image?: string;
 };
 
 type StayCategory = {
   id: string;
   title: string;
-  description: string;
-  framingLine: string;
-  reassuranceLine: string;
+  mood: string;
+  whyWeUseIt: string;
+  image: string;
+  alt: string;
   properties: readonly StayProperty[];
 };
 
@@ -29,139 +29,122 @@ type StaysSectionProps = {
   items: readonly StayCategory[];
 };
 
-export function StaysSection({ id, eyebrow, heading, supporting, footerNote, items }: StaysSectionProps) {
-  const tabsId = useId();
-  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
-  const [activePropertyIndex, setActivePropertyIndex] = useState(0);
-  const activeCategory = items[activeCategoryIndex];
-  const activeProperty = activeCategory?.properties[activePropertyIndex];
+type LayoutConfig = {
+  container: string;
+  image: string;
+  text: string;
+};
 
-  useEffect(() => {
-    setActivePropertyIndex(0);
-  }, [activeCategoryIndex]);
+function StayCategoryBlock({ category, layout }: { category: StayCategory; layout: LayoutConfig }) {
+  const [activeImage, setActiveImage] = useState(category.image);
 
   return (
-    <section id={id} className="section-shell w-full">
-      <div className="page-shell">
-        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="md:mb-20" />
-
-        <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start lg:gap-24">
-          {/* Left: Typographic Accordion */}
-          <div className="space-y-8 lg:space-y-12">
-            {items.map((category, index) => {
-              const isActive = index === activeCategoryIndex;
-              return (
-                <div key={category.id} className="group flex flex-col">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setActiveCategoryIndex(index);
-                      setActivePropertyIndex(0);
-                    }}
-                    className="text-left focus-visible:outline-none"
-                  >
-                    <h3
-                      className={`type-section font-serif tracking-tight transition-colors duration-500 ${
-                        isActive
-                          ? "text-[var(--color-text)]"
-                          : "text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
-                      }`}
-                    >
-                      {category.title}
-                    </h3>
-                  </button>
-
-                  <div
-                    className={`grid transition-all duration-500 ease-in-out ${
-                      isActive ? "grid-rows-[1fr] opacity-100 mt-6" : "grid-rows-[0fr] opacity-0 mt-0"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="type-body max-w-[44ch] text-[var(--color-text-secondary)] font-light">
-                        {category.description}
-                      </p>
-
-                      <div className="mt-10 mb-4">
-                        <p className="type-eyebrow text-[var(--color-text-muted)] mb-5">
-                          {category.framingLine}
-                        </p>
-                        <ul className="space-y-3">
-                          {category.properties.map((property, pIdx) => {
-                            const isPropActive = pIdx === activePropertyIndex;
-                            return (
-                              <li key={`${property.name}-${property.location}`}>
-                                <button
-                                  type="button"
-                                  onMouseEnter={() => setActivePropertyIndex(pIdx)}
-                                  onClick={() => setActivePropertyIndex(pIdx)}
-                                  className="group/prop flex items-center gap-4 text-left focus-visible:outline-none w-full py-1"
-                                >
-                                  <span
-                                    className={`h-[1px] transition-all duration-500 ease-out ${
-                                      isPropActive
-                                        ? "w-8 bg-[var(--color-brand)]"
-                                        : "w-0 bg-transparent group-hover/prop:w-4 group-hover/prop:bg-[var(--color-border-strong)]"
-                                    }`}
-                                  />
-                                  <span
-                                    className={`text-[16px] transition-colors duration-300 ${
-                                      isPropActive
-                                        ? "text-[var(--color-text)] font-medium"
-                                        : "text-[var(--color-text-secondary)] group-hover/prop:text-[var(--color-text)]"
-                                    }`}
-                                  >
-                                    {property.name}
-                                  </span>
-                                  <span className="text-[14px] text-[var(--color-text-muted)] italic font-serif">
-                                    — {property.location}
-                                  </span>
-                                </button>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                      <p className="mt-8 max-w-[46ch] text-[14px] text-[var(--color-text-muted)] italic font-serif">
-                        {category.reassuranceLine}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Right: Cinematic Image Frame */}
-          <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[4px] bg-[var(--color-bg-alt)]">
-              {activeProperty ? (
-                <img
-                  key={`${activeCategory.id}-${activeProperty.name}`}
-                  src={proxiedImageUrl(activeProperty.image)}
-                  alt={activeProperty.alt}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover animate-in fade-in duration-1000 ease-out"
-                />
-              ) : null}
-            </div>
-            <div className="mt-6 flex items-start justify-between gap-4 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-5">
-              <div>
-                <p className="type-subheading font-serif text-[var(--color-text)]">
-                  {activeProperty?.name}
-                </p>
-                <p className="mt-2 type-eyebrow text-[var(--color-text-muted)]">
-                  {activeProperty?.location}
-                </p>
-              </div>
-              <span className="type-eyebrow text-[var(--color-brand)] text-right max-w-[120px]">
-                {activeCategory.title}
-              </span>
-            </div>
+    <div className={`flex flex-col ${layout.container} justify-between gap-10 md:gap-16 lg:gap-0`}>
+      {/* Image Side */}
+      <div className={`w-[calc(100%+2rem)] -mx-4 md:w-full md:mx-0 ${layout.image}`}>
+        <div className="relative w-full h-full overflow-hidden bg-[var(--color-bg-alt)] md:rounded-[2px] group/image">
+          <div className="absolute inset-0 h-full w-full transition-transform duration-[2.5s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/image:scale-[1.03]">
+            <img
+              key={activeImage}
+              src={proxiedImageUrl(activeImage)}
+              alt={category.alt}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
           </div>
         </div>
+      </div>
 
-        <div className="mt-16 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-8 md:mt-24">
-          <p className="text-[14px] max-w-[52rem] text-[var(--color-text-muted)]">
+      {/* Text Side */}
+      <div className={`w-full flex flex-col ${layout.text}`}>
+        <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight text-[var(--color-text)] mb-6 md:mb-8">
+          {category.title}
+        </h3>
+        
+        <p className="text-xl md:text-2xl lg:text-[1.65rem] leading-[1.4] text-[var(--color-text-secondary)] font-light tracking-tight mb-12 md:mb-16 max-w-[32ch]">
+          {category.mood}
+        </p>
+
+        <div className="mb-12 md:mb-16">
+          <p className="type-eyebrow text-[var(--color-text-muted)] mb-6 md:mb-8">
+            A few places we return to
+          </p>
+          <ul className="space-y-4 md:space-y-5">
+            {category.properties.map((prop) => (
+              <li 
+                key={`${prop.name}-${prop.location}`} 
+                className="text-lg md:text-xl flex items-baseline cursor-pointer"
+                onClick={() => prop.image && setActiveImage(prop.image)}
+              >
+                <span className="text-[var(--color-text)] tracking-wide">{prop.name}</span>
+                <span className="text-[var(--color-text-muted)] italic font-serif ml-3">— {prop.location}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="pt-8 md:pt-10 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)]">
+          <p className="text-lg md:text-xl text-[var(--color-text)] font-serif italic leading-relaxed max-w-[36ch]">
+            {category.whyWeUseIt}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function StaysSection({ id, eyebrow, heading, supporting, footerNote, items }: StaysSectionProps) {
+  const layouts = [
+    {
+      container: "lg:flex-row lg:items-start",
+      image: "lg:w-[55%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4]",
+      text: "lg:w-[38%] lg:pl-10 xl:pl-16 lg:pt-12",
+    },
+    {
+      container: "lg:flex-row-reverse lg:items-start",
+      image: "lg:w-[50%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[4/5]",
+      text: "lg:w-[42%] lg:pr-10 xl:pr-16 lg:pt-24",
+    },
+    {
+      container: "lg:flex-row lg:items-start",
+      image: "lg:w-[60%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[16/9]",
+      text: "lg:w-[35%] lg:pl-10 xl:pl-16 lg:pt-16",
+    },
+    {
+      container: "lg:flex-row-reverse lg:items-start",
+      image: "lg:w-[55%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4]",
+      text: "lg:w-[38%] lg:pr-10 xl:pr-16 lg:pt-12",
+    }
+  ];
+
+  return (
+    <section id={id} className="section-shell w-full bg-[var(--color-surface)] pt-32 md:pt-48 lg:pt-56 rounded-t-[2.5rem] md:rounded-t-[4rem]">
+      <div className="page-shell">
+        <div className="border-b border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pb-8 mb-16 md:mb-24 lg:mb-32">
+          <SectionHeader
+            eyebrow={eyebrow}
+            heading={heading}
+            supporting={supporting}
+            className="mb-0 max-w-2xl"
+          />
+        </div>
+      </div>
+
+      <div className="w-full px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+        <div className="flex flex-col gap-24 md:gap-40 lg:gap-72 w-full">
+          {items.map((category, index) => (
+            <StayCategoryBlock 
+              key={category.id} 
+              category={category} 
+              layout={layouts[index % layouts.length]} 
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="page-shell mt-32 md:mt-48 pb-24 md:pb-32">
+        <div className="border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-12">
+          <p className="type-meta max-w-[52rem] text-[var(--color-text-muted)]">
             {footerNote}
           </p>
         </div>

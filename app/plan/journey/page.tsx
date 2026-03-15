@@ -10,32 +10,30 @@ export default function JourneyPage() {
   return (
     <>
       <PlanningHeader />
-      <main className="min-h-[calc(100vh-64px)] bg-[var(--color-bg)] px-4 py-16 md:px-6 md:py-24">
-        <div className="mx-auto w-full max-w-5xl space-y-12">
+      <main className="min-h-[calc(100vh-64px)] bg-[var(--color-bg)] px-4 py-8 md:px-6 md:py-16 lg:py-24">
+        <div className="mx-auto w-full max-w-5xl space-y-8 md:space-y-12">
           <ProgressIndicator stage={1} />
 
-          <section className="grid gap-8 lg:grid-cols-[minmax(0,40%)_minmax(0,60%)] lg:gap-12">
-            <article className="overflow-hidden rounded-[8px] bg-[var(--color-bg-alt)]">
-              <div className="relative">
-                <img
-                  src={proxiedImageUrl(journeyImage)}
-                  alt="Tea-country morning in Sri Lanka"
-                  className="aspect-[4/5] w-full object-cover object-center md:aspect-[3/4] lg:aspect-[4/5]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(28,23,21,0.42)_0%,rgba(28,23,21,0.10)_52%,rgba(28,23,21,0.02)_100%)]" />
-              </div>
-              <div className="space-y-3 px-6 py-8">
-                <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-text-muted)_88%,var(--color-text-secondary))]">
+          <section className="flex flex-col-reverse gap-8 lg:grid lg:grid-cols-[minmax(0,40%)_minmax(0,60%)] lg:gap-12">
+            <article className="plan-step-card relative flex flex-col justify-end overflow-hidden min-h-[240px] md:min-h-[400px] lg:min-h-[600px]">
+              <img
+                src={proxiedImageUrl(journeyImage)}
+                alt="Tea-country morning in Sri Lanka"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(28,23,21,0.7)_0%,rgba(28,23,21,0.2)_40%,rgba(28,23,21,0.02)_100%)]" />
+              <div className="relative z-10 space-y-2 p-6 md:space-y-3 md:p-8">
+                <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_88%,var(--color-bg-alt))]">
                   Luna Voyages
                 </p>
-                <p className="type-body text-[var(--color-text-secondary)] font-light">
-                  Begin your private planning file with a few thoughtful choices.
+                <p className="type-body text-[color-mix(in_srgb,var(--color-light)_95%,var(--color-bg-alt))] font-light max-w-[24ch]">
+                  Begin shaping your journey.
                 </p>
               </div>
             </article>
 
-            <BriefIntakeCard className="shadow-sm" />
+            <BriefIntakeCard />
           </section>
         </div>
       </main>

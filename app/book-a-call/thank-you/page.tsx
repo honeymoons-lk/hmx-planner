@@ -39,6 +39,7 @@ export default function BookACallThankYouPage() {
   const [request, setRequest] = useState<CallRequest | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRequest(readSubmittedCallRequest());
   }, []);
 
