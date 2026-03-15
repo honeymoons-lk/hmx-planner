@@ -174,7 +174,7 @@ export function BriefIntakeCard({
   };
 
   return (
-    <Card id={id} className={cn("bg-[rgba(252,248,244,0.94)] backdrop-blur-2xl rounded-[8px] border border-[rgba(255,255,255,0.6)] shadow-[0_40px_80px_rgba(14,11,10,0.15)]", className)}>
+    <Card id={id} className={cn("bg-[rgba(247,241,234,0.95)] backdrop-blur-md rounded-[8px] border border-[rgba(255,255,255,0.4)] shadow-[0_16px_40px_rgba(14,11,10,0.06)]", className)}>
       <CardHeader className={cn("px-8", isStarter ? "space-y-1.5 pt-7 pb-0" : "space-y-4 pt-9 pb-2")}>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="type-eyebrow text-[var(--color-brand)]">

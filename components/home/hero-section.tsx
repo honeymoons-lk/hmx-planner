@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import { BriefIntakeCard } from "@/components/brief-intake-card";
@@ -17,14 +18,40 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ content }: HeroSectionProps) {
+  const curatedImages = [
+    { src: content.backgroundImage, label: "Hill Country Escape" },
+    { src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=80", label: "South Coast Retreat" },
+    { src: "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=2200&q=80", label: "Wilderness Sundown" },
+    { src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2200&q=80", label: "Secluded Tropical Villa" }
+  ];
+
+  const [activeImage, setActiveImage] = useState(curatedImages[0]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * curatedImages.length);
+    setActiveImage(curatedImages[randomIndex]);
+    setMounted(true);
+  }, []);
+
   return (
     <section className="relative isolate overflow-hidden lg:h-[min(calc(100svh-var(--header-height)),820px)] lg:min-h-[700px]">
-      <img
-        src={content.backgroundImage}
-        alt="Luna Voyages hero background"
-        className="absolute inset-0 h-full w-full object-cover object-[54%_center]"
-        loading="eager"
-      />
+      <div className={`absolute inset-0 transition-opacity duration-1000 ${mounted ? "opacity-100" : "opacity-0"}`}>
+        <img
+          src={activeImage.src}
+          alt="Luna Voyages hero background"
+          className="absolute inset-0 h-full w-full object-cover object-[54%_center]"
+          loading="eager"
+        />
+      </div>
+      {!mounted && (
+        <img
+          src={curatedImages[0].src}
+          alt="Luna Voyages hero background"
+          className="absolute inset-0 h-full w-full object-cover object-[54%_center]"
+          loading="eager"
+        />
+      )}
       {/* Deepened the gradient for a more cinematic, moody feel that makes text pop without needing boxes */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(14,11,10,0.82)_0%,rgba(17,13,12,0.5)_45%,rgba(19,15,14,0.15)_100%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(28,23,21,0.1)_0%,rgba(28,23,21,0.5)_100%)]" />
