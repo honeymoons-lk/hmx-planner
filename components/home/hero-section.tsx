@@ -44,7 +44,7 @@ export function HeroSection({ content }: HeroSectionProps) {
             <h1 className="type-hero text-balance-pretty font-serif tracking-tight text-[var(--color-light)]">
               {content.heading}
             </h1>
-            <p className="type-body-lg max-w-[34ch] text-[color-mix(in_srgb,var(--color-light)_95%,var(--color-bg-alt))] font-light">
+            <p className="type-body-lg max-w-[34ch] text-white font-normal">
               {content.emotionSentence}
             </p>
             <div className="pt-2">
@@ -54,21 +54,24 @@ export function HeroSection({ content }: HeroSectionProps) {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-[color-mix(in_srgb,var(--color-light)_15%,transparent)] pt-6 md:mt-12">
-            <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_60%,var(--color-bg-alt))]">
-              {content.secondaryStrip.label}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {content.secondaryStrip.items.map((item, i) => (
-                <div key={item} className="flex items-center gap-3">
-                  <span className="type-ui-sm text-[color-mix(in_srgb,var(--color-light)_85%,var(--color-bg-alt))]">
-                    {item}
-                  </span>
-                  {i < content.secondaryStrip.items.length - 1 && (
-                    <span className="h-[3px] w-[3px] rounded-full bg-[color-mix(in_srgb,var(--color-light)_30%,transparent)]" />
-                  )}
-                </div>
-              ))}
+          <div className="mt-12 flex flex-col gap-3 md:mt-14">
+            <div className="h-[1px] w-8 bg-[color-mix(in_srgb,var(--color-light)_30%,transparent)]" />
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[color-mix(in_srgb,var(--color-light)_70%,transparent)]">
+                {content.secondaryStrip.label}
+              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                {content.secondaryStrip.items.map((item, i) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <span className="text-[13px] font-medium tracking-wide text-[color-mix(in_srgb,var(--color-light)_95%,transparent)]">
+                      {item}
+                    </span>
+                    {i < content.secondaryStrip.items.length - 1 && (
+                      <span className="text-[color-mix(in_srgb,var(--color-light)_40%,transparent)]">·</span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -79,15 +82,6 @@ export function HeroSection({ content }: HeroSectionProps) {
             mode="starter"
             className="w-full overflow-hidden"
           />
-          <p className="type-meta mt-4 text-center text-[color-mix(in_srgb,var(--color-light)_74%,var(--color-bg-alt))] lg:absolute lg:left-1/2 lg:top-full lg:mt-3 lg:w-max lg:-translate-x-1/2">
-            Prefer to talk first?{" "}
-            <Link
-              href="/book-a-call"
-              className="text-[color-mix(in_srgb,var(--color-light)_92%,var(--color-bg-alt))] underline underline-offset-4 transition-colors hover:text-white"
-            >
-              Book a call
-            </Link>
-          </p>
         </div>
       </div>
     </section>

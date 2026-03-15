@@ -175,7 +175,7 @@ export function BriefIntakeCard({
 
   return (
     <Card id={id} className={cn("bg-[rgba(252,248,244,0.94)] backdrop-blur-2xl rounded-[8px] border border-[rgba(255,255,255,0.6)] shadow-[0_40px_80px_rgba(14,11,10,0.15)]", className)}>
-      <CardHeader className={cn("px-8", isStarter ? "space-y-2 pt-8 pb-1" : "space-y-4 pt-9 pb-2")}>
+      <CardHeader className={cn("px-8", isStarter ? "space-y-1.5 pt-7 pb-0" : "space-y-4 pt-9 pb-2")}>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="type-eyebrow text-[var(--color-brand)]">
             {isStarter ? "Planning Starter" : "Personal Planning Brief"}
@@ -184,16 +184,16 @@ export function BriefIntakeCard({
             {isStarter ? "Takes ~30 seconds" : "Takes ~60 seconds"}
           </span>
         </div>
-        <CardTitle className={cn("font-serif tracking-tight text-[var(--color-text)]", isStarter ? "text-[26px] leading-[1.1]" : "type-subheading")}>
+        <CardTitle className={cn("font-serif tracking-tight text-[var(--color-text)]", isStarter ? "text-[24px] leading-[1.1]" : "type-subheading")}>
           {resolvedTitle}
         </CardTitle>
-        <CardDescription className={cn("font-light", isStarter ? "text-[14px] leading-relaxed text-[var(--color-text-muted)]" : "type-body text-[var(--color-text-secondary)]")}>
+        <CardDescription className={cn("font-light", isStarter ? "text-[13.5px] leading-relaxed text-[var(--color-text-muted)]" : "type-body text-[var(--color-text-secondary)]")}>
           {resolvedDescription}
         </CardDescription>
       </CardHeader>
 
-      <CardContent className={cn("px-8", isStarter ? "space-y-5 pt-3 pb-8" : "space-y-6 pt-6 pb-9")}>
-        <div className="space-y-3">
+      <CardContent className={cn("px-8", isStarter ? "space-y-4 pt-4 pb-7" : "space-y-6 pt-6 pb-9")}>
+        <div className={cn(isStarter ? "space-y-2" : "space-y-3")}>
           <Label htmlFor="timeframe">When would you like to travel?</Label>
           <Select value={timeframe} onValueChange={setTimeframe}>
             <SelectTrigger id="timeframe" className="w-full">
@@ -241,7 +241,7 @@ export function BriefIntakeCard({
             )}
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className={cn(isStarter ? "space-y-2" : "space-y-3")}>
             <Label htmlFor="nights">{isStarter ? "Stay length" : "Nights"}</Label>
             <Select value={nights} onValueChange={setNights}>
               <SelectTrigger id="nights" className="w-full">
@@ -258,7 +258,7 @@ export function BriefIntakeCard({
           </div>
         )}
 
-        <div className="space-y-3">
+        <div className={cn(isStarter ? "space-y-2" : "space-y-3")}>
           <Label>{isStarter ? "Experience type" : "What kind of experience are you picturing?"}</Label>
           {isStarter ? (
             <Select
@@ -373,7 +373,7 @@ export function BriefIntakeCard({
           </div>
         ) : null}
 
-        <div className={cn(isStarter ? "pt-2" : "mt-2 space-y-4 pt-4")}>
+        <div className={cn(isStarter ? "pt-1" : "mt-2 space-y-4 pt-4")}>
           <Button
             type="button"
             size="lg"
@@ -383,6 +383,16 @@ export function BriefIntakeCard({
           >
             {isStarter ? "Start planning" : "Begin Designing Your Journey"}
           </Button>
+          {isStarter && (
+            <div className="mt-3.5 flex justify-center">
+              <p className="text-[13px] text-[var(--color-text-muted)]">
+                Prefer to talk first?{" "}
+                <Link href="/book-a-call" className="font-medium text-[var(--color-brand)] underline underline-offset-4 transition-colors hover:text-[var(--color-brand-hover)]">
+                  Book a call
+                </Link>
+              </p>
+            </div>
+          )}
           {!isStarter ? (
             <div className="flex flex-col items-center gap-2 pt-2">
               <p className="type-meta text-[var(--color-text-muted)]">
