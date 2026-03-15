@@ -358,15 +358,4 @@ export const homeContent = {
     primary: "Start Planning",
     secondary: "Explore Our Approach",
   },
-  footer: {
-    note: "Concierge-crafted Sri Lanka honeymoons for modern couples.",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "FAQs", href: "/faqs" },
-      { label: "Contact", href: "/contact" },
-      { label: "Partner With Us", href: "/partner-with-us" },
-      { label: "Privacy", href: "/privacy" },
-    ],
-    copyright: "© 2026 LUNA VOYAGES",
-  },
 } as const;

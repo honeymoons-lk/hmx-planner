@@ -92,11 +92,7 @@ export default function HomePage() {
         secondary={homeContent.finalCta.secondary}
       />
 
-      <SiteFooter
-        note={homeContent.footer.note}
-        links={homeContent.footer.links}
-        copyright={homeContent.footer.copyright}
-      />
+      <SiteFooter />
     </main>
   );
 }
