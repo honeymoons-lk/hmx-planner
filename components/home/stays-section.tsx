@@ -1,22 +1,18 @@
-"use client";
-
-import { useState } from "react";
 import { proxiedImageUrl } from "@/lib/media";
 import { SectionHeader } from "@/components/section-header";
 
 type StayProperty = {
   name: string;
   location: string;
-  image: string;
-  alt: string;
 };
 
 type StayCategory = {
   id: string;
   title: string;
-  description: string;
-  framingLine: string;
-  reassuranceLine: string;
+  mood: string;
+  whyWeUseIt: string;
+  image: string;
+  alt: string;
   properties: readonly StayProperty[];
 };
 
@@ -36,83 +32,51 @@ type LayoutConfig = {
 };
 
 function StayCategoryBlock({ category, layout }: { category: StayCategory; layout: LayoutConfig }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-
   return (
     <div className={`flex flex-col ${layout.container} justify-between gap-10 md:gap-16 lg:gap-0`}>
       {/* Image Side */}
       <div className={`w-[calc(100%+2rem)] -mx-4 md:w-full md:mx-0 ${layout.image}`}>
         <div className="relative w-full h-full overflow-hidden bg-[var(--color-bg-alt)] md:rounded-[2px] group/image">
           <div className="absolute inset-0 h-full w-full transition-transform duration-[2.5s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/image:scale-[1.03]">
-            {category.properties.map((prop, idx) => (
-              <img
-                key={`${prop.name}-${idx}`}
-                src={proxiedImageUrl(prop.image)}
-                alt={prop.alt}
-                loading="lazy"
-                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-                  idx === activeIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-                }`}
-              />
-            ))}
+            <img
+              src={proxiedImageUrl(category.image)}
+              alt={category.alt}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
           </div>
         </div>
       </div>
 
       {/* Text Side */}
       <div className={`w-full flex flex-col ${layout.text}`}>
-        <span className="type-eyebrow text-[var(--color-brand)] mb-5 md:mb-6 block">
-          {category.framingLine}
-        </span>
-        
-        <h3 className="type-section font-serif tracking-tight text-[var(--color-text)] mb-6 md:mb-7">
+        <h3 className="type-section font-serif tracking-tight text-[var(--color-text)] mb-6 md:mb-8">
           {category.title}
         </h3>
         
-        <p className="type-body-lg text-[var(--color-text-secondary)] font-light mb-12 md:mb-14 max-w-[38ch]">
-          {category.description}
+        <p className="type-body-lg text-[var(--color-text-secondary)] font-light mb-12 md:mb-16 max-w-[40ch]">
+          {category.mood}
         </p>
 
-        <div className="border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-7 md:pt-8">
-          <p className="type-eyebrow text-[var(--color-text-muted)] mb-5 md:mb-6">
-            Curated Examples
+        <div className="mb-12 md:mb-16">
+          <p className="type-eyebrow text-[var(--color-text-muted)] mb-6 md:mb-8">
+            A few places we return to
           </p>
-          <ul className="space-y-4">
-            {category.properties.map((prop, idx) => {
-              const isActive = idx === activeIndex;
-              return (
-                <li key={`${prop.name}-${prop.location}`}>
-                  <button
-                    type="button"
-                    className="flex items-baseline gap-4 md:gap-5 group/btn w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--color-surface)] rounded-sm py-1"
-                    onMouseEnter={() => setActiveIndex(idx)}
-                    onFocus={() => setActiveIndex(idx)}
-                  >
-                    <span className={`h-[1px] flex-shrink-0 relative top-[-4px] md:top-[-5px] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-                      isActive 
-                        ? "w-6 md:w-8 bg-[var(--color-brand)]" 
-                        : "w-4 md:w-6 bg-[color-mix(in_srgb,var(--color-border-strong)_60%,transparent)] group-hover/btn:bg-[color-mix(in_srgb,var(--color-brand)_40%,transparent)] group-hover/btn:w-5 md:group-hover/btn:w-7"
-                    }`} />
-                    <div className={`transition-opacity duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-                      isActive ? "opacity-100" : "opacity-40 group-hover/btn:opacity-70"
-                    }`}>
-                      <span className="type-ui-sm text-[var(--color-text)] block mb-1">
-                        {prop.name}
-                      </span>
-                      <span className="type-meta text-[var(--color-text-muted)] italic font-serif">
-                        — {prop.location}
-                      </span>
-                    </div>
-                  </button>
-                </li>
-              );
-            })}
+          <ul className="space-y-3 md:space-y-4">
+            {category.properties.map((prop) => (
+              <li key={`${prop.name}-${prop.location}`} className="text-base md:text-lg">
+                <span className="text-[var(--color-text)]">{prop.name}</span>
+                <span className="text-[var(--color-text-muted)]">, {prop.location}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
-        <p className="type-meta mt-10 md:mt-12 text-[var(--color-text-muted)] italic font-serif max-w-[38ch]">
-          {category.reassuranceLine}
-        </p>
+        <div className="pt-8 md:pt-10 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)]">
+          <p className="text-base md:text-lg text-[var(--color-text-secondary)] leading-relaxed max-w-[40ch]">
+            {category.whyWeUseIt}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -121,22 +85,22 @@ function StayCategoryBlock({ category, layout }: { category: StayCategory; layou
 export function StaysSection({ id, eyebrow, heading, supporting, footerNote, items }: StaysSectionProps) {
   const layouts = [
     {
-      container: "lg:flex-row lg:items-center",
+      container: "lg:flex-row lg:items-start",
       image: "lg:w-[60%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4]",
       text: "lg:w-[32%] lg:pl-8 xl:pl-16",
     },
     {
-      container: "lg:flex-row-reverse lg:items-end",
+      container: "lg:flex-row-reverse lg:items-start",
       image: "lg:w-[50%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[4/5]",
-      text: "lg:w-[40%] lg:pr-8 xl:pr-16 lg:pb-32",
+      text: "lg:w-[40%] lg:pr-8 xl:pr-16",
     },
     {
       container: "lg:flex-row lg:items-start",
       image: "lg:w-[65%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[16/9]",
-      text: "lg:w-[28%] lg:pl-8 xl:pl-12 lg:pt-48",
+      text: "lg:w-[28%] lg:pl-8 xl:pl-12",
     },
     {
-      container: "lg:flex-row-reverse lg:items-center",
+      container: "lg:flex-row-reverse lg:items-start",
       image: "lg:w-[55%] aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4]",
       text: "lg:w-[35%] lg:pr-8 xl:pr-16",
     }
@@ -165,8 +129,10 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
             />
           ))}
         </div>
+      </div>
 
-        <div className="mt-32 md:mt-48 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-12">
+      <div className="page-shell mt-32 md:mt-48 pb-24 md:pb-32">
+        <div className="border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-12">
           <p className="type-meta max-w-[52rem] text-[var(--color-text-muted)]">
             {footerNote}
           </p>
