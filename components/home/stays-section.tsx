@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { proxiedImageUrl } from "@/lib/media";
+import { SectionHeader } from "@/components/section-header";
 
 type StayProperty = {
   name: string;
@@ -144,20 +145,13 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
   return (
     <section id={id} className="section-shell w-full bg-[var(--color-surface)] pt-32 md:pt-48 lg:pt-56 rounded-t-[2.5rem] md:rounded-t-[4rem]">
       <div className="page-shell">
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-12 lg:gap-16 mb-16 md:mb-24 lg:mb-32">
-          <div className="lg:w-[60%]">
-            <span className="type-eyebrow text-[var(--color-brand)] mb-5 md:mb-6 block">
-              {eyebrow}
-            </span>
-            <h2 className="type-section font-serif tracking-tight text-[var(--color-text)] max-w-[16ch]">
-              {heading}
-            </h2>
-          </div>
-          <div className="lg:w-[32%] lg:pl-8 xl:pl-16 lg:pt-14">
-            <p className="type-body-lg text-[var(--color-text-secondary)] font-light max-w-[38ch]">
-              {supporting}
-            </p>
-          </div>
+        <div className="border-b border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pb-8 mb-16 md:mb-24 lg:mb-32">
+          <SectionHeader
+            eyebrow={eyebrow}
+            heading={heading}
+            supporting={supporting}
+            className="mb-0 max-w-2xl"
+          />
         </div>
       </div>
 
