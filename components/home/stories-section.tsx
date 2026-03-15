@@ -47,11 +47,6 @@ export function StoriesSection({
                   loading="lazy"
                   className="h-full w-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
                 />
-                <div className="absolute left-4 top-4 flex gap-2">
-                  <Badge variant="glass">
-                    Direction {String(index + 1).padStart(2, "0")}
-                  </Badge>
-                </div>
               </div>
               
               <div className="flex flex-col flex-1">
