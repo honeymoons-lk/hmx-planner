@@ -175,7 +175,7 @@ export function BriefIntakeCard({
 
   return (
     <Card id={id} className={cn("bg-[rgba(252,248,244,0.94)] backdrop-blur-2xl rounded-[8px] border border-[rgba(255,255,255,0.6)] shadow-[0_40px_80px_rgba(14,11,10,0.15)]", className)}>
-      <CardHeader className={cn("border-b border-[rgba(0,0,0,0.06)] px-8", isStarter ? "space-y-2 pt-6 pb-5" : "space-y-4 pt-9 pb-7")}>
+      <CardHeader className={cn("px-8", isStarter ? "space-y-2 pt-8 pb-1" : "space-y-4 pt-9 pb-2")}>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="type-eyebrow text-[var(--color-brand)]">
             {isStarter ? "Planning Starter" : "Personal Planning Brief"}
@@ -192,7 +192,7 @@ export function BriefIntakeCard({
         </CardDescription>
       </CardHeader>
 
-      <CardContent className={cn("px-8", isStarter ? "space-y-5 py-6" : "space-y-6 py-8")}>
+      <CardContent className={cn("px-8", isStarter ? "space-y-5 pt-3 pb-8" : "space-y-6 pt-6 pb-9")}>
         <div className="space-y-3">
           <Label htmlFor="timeframe">When would you like to travel?</Label>
           <Select value={timeframe} onValueChange={setTimeframe}>
@@ -373,7 +373,7 @@ export function BriefIntakeCard({
           </div>
         ) : null}
 
-        <div className={cn("border-t border-[rgba(0,0,0,0.06)]", isStarter ? "pt-5" : "mt-2 space-y-4 pt-8")}>
+        <div className={cn(isStarter ? "pt-2" : "mt-2 space-y-4 pt-4")}>
           <Button
             type="button"
             size="lg"
