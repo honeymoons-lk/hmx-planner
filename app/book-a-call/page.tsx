@@ -286,7 +286,7 @@ export default function BookACallPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <Label htmlFor="call-notes">Notes (optional)</Label>
+                  <Label htmlFor="call-notes">Anything we should know before the call?</Label>
                   <Textarea
                     id="call-notes"
                     value={notes}
@@ -294,7 +294,7 @@ export default function BookACallPage() {
                       setNotes(event.target.value);
                       saveDraft({ notes: event.target.value });
                     }}
-                    placeholder="Anything helpful to know about your trip or what you’d like to discuss?"
+                    placeholder="e.g. We're thinking October, honeymoon, about 10 nights — still figuring out the details"
                   />
                 </div>
 

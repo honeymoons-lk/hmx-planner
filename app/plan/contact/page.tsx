@@ -220,7 +220,8 @@ export default function ContactPage() {
                       </Button>
                     </div>
                     <p className="type-ui-sm text-[var(--color-text-secondary)] sm:text-right">
-                      We review every request personally.
+                      Every request is read by us — not a bot, not a filter. You&apos;ll hear back
+                      within 48 hours.
                     </p>
                   </div>
                 </div>
