@@ -18,6 +18,9 @@ const routeGroups = [
       { href: "/style-guide", label: "Style Guide", note: "Brand and UI system reference." },
       { href: "/design-brief", label: "Design Brief", note: "Designer handoff and brand direction." },
       { href: "/sitemap", label: "Sitemap", note: "Human-readable route index." },
+      { href: "/privacy-policy", label: "Privacy Policy", note: "How we handle personal information." },
+      { href: "/terms", label: "Terms & Conditions", note: "Site and service terms." },
+      { href: "/partner-with-us", label: "Partner With Us", note: "B2B partner and collaboration information." },
     ],
   },
   {

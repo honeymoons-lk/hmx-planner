@@ -39,7 +39,7 @@ export function SiteFooter() {
               Thoughtfully designed from first idea to final detail.
             </p>
             <Link 
-              href="/start-planning"
+              href="/plan/journey"
               className="type-ui-sm font-medium inline-flex items-center gap-1.5 text-[var(--color-light)] transition-colors hover:text-[color-mix(in_srgb,var(--color-light)_70%,transparent)] focus-visible:outline-none focus-visible:ring-[4px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm"
             >
               Ready to begin? Start Planning <span aria-hidden="true">&rarr;</span>
@@ -54,13 +54,13 @@ export function SiteFooter() {
                 <Link href="/about" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">About</Link>
               </li>
               <li>
-                <Link href="/approach" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Our Approach</Link>
+                <Link href="#our-approach" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Our Approach</Link>
               </li>
               <li>
-                <Link href="/faqs" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">FAQs</Link>
+                <Link href="#faqs" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">FAQs</Link>
               </li>
               <li>
-                <Link href="/contact" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Contact</Link>
+                <Link href="/book-a-call" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Contact</Link>
               </li>
             </ul>
           </div>
@@ -70,7 +70,7 @@ export function SiteFooter() {
             <h3 className="type-ui-sm font-medium text-[var(--color-light)] mb-5 tracking-wide uppercase text-[0.85em]">Plan</h3>
             <ul className="space-y-3 type-ui-sm text-[color-mix(in_srgb,var(--color-light)_72%,var(--color-bg-alt))]">
               <li>
-                <Link href="/start-planning" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Start Planning</Link>
+                <Link href="/plan/journey" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Start Planning</Link>
               </li>
               <li>
                 <Link href="/book-a-call" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Book a Call</Link>
@@ -86,7 +86,7 @@ export function SiteFooter() {
             <h3 className="type-ui-sm font-medium text-[var(--color-light)] mb-5 tracking-wide uppercase text-[0.85em]">Information</h3>
             <ul className="space-y-3 type-ui-sm text-[color-mix(in_srgb,var(--color-light)_72%,var(--color-bg-alt))]">
               <li>
-                <Link href="/privacy" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Privacy Policy</Link>
+                <Link href="/privacy-policy" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Privacy Policy</Link>
               </li>
               <li>
                 <Link href="/terms" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Terms & Conditions</Link>
