@@ -173,9 +173,14 @@ export default function ThankYouPage() {
             <p className="type-body text-[var(--color-text-secondary)] max-w-[48ch]">
               We look forward to designing something memorable for you.
             </p>
-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-              <Link href="/">Return to homepage</Link>
-            </Button>
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+              <Button asChild size="lg" className="w-full sm:w-auto">
+                <Link href="/about">Meet the people behind your journey</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+                <Link href="/#journey-directions">Explore sample journeys</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </main>

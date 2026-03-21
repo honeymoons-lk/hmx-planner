@@ -136,9 +136,14 @@ export default function BookACallThankYouPage() {
           </div>
 
           <div className="space-y-4 text-center mt-12">
-            <Button asChild variant="outline">
-              <Link href="/">Return to Luna Voyages</Link>
-            </Button>
+            <div className="flex w-full flex-col gap-3 sm:mx-auto sm:w-fit sm:flex-row">
+              <Button asChild size="lg">
+                <Link href="/about">Meet the people behind your journey</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/#journey-directions">Explore sample journeys</Link>
+              </Button>
+            </div>
             <p className="type-ui-sm text-[var(--color-text-muted)]">
               Prefer to share your preferences first?{" "}
               <Link href="/plan/journey" className="text-[var(--color-brand)] underline underline-offset-4">
