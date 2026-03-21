@@ -129,7 +129,8 @@ export default function ContactPage() {
             <CardHeader className="px-5 pt-6 pb-5 border-b border-[rgba(0,0,0,0.06)] md:px-10 md:pt-10 md:pb-6">
               <CardTitle className="type-subheading font-serif">Your details</CardTitle>
               <CardDescription className="type-body text-[var(--color-text-muted)] font-light mt-2">
-                Share your details so we can send your tailored proposal.
+                Share your details so we can send your tailored proposal. <br />
+                Every request is read by us — not filtered by an algorithm. You'll hear back within 48 hours
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-8 px-5 pb-6 md:space-y-10 md:px-10 md:pb-10">
@@ -219,9 +220,6 @@ export default function ContactPage() {
                         {submitting ? "Sending your request..." : "Request proposal"}
                       </Button>
                     </div>
-                    <p className="type-ui-sm text-[var(--color-text-secondary)] sm:text-right">
-                    Every request is read by us — not filtered by an algorithm. <br /> You'll hear back within 48 hours
-                    </p>
                   </div>
                 </div>
 
