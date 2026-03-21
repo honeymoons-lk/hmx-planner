@@ -20,6 +20,8 @@ const sampleImages = {
     "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
   portraitOne:
     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=900&q=80",
+  portraitTwo:
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=900&q=80",
 } as const;
 
 const homeLinks = homeContent.header.links.map((link) => ({
@@ -143,27 +145,47 @@ export default function AboutPage() {
       {/* SECTION 3 — The founder note */}
       <section className="section-shell w-full">
         <div className="page-shell">
-          <div className="grid gap-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-24">
-            
-            <div className="order-2 lg:order-1">
+          <div className="mb-16 max-w-3xl">
+            <SectionHeader
+              eyebrow="THE PEOPLE BEHIND IT"
+              heading="Technology meets local knowledge."
+              supporting="We are a husband and wife team with deep entrepreneurial roots. Luna Voyages is what happens when two different worlds come together — a concierge service that is as carefully engineered as it is personally guided."
+              className="mb-0"
+            />
+          </div>
+
+          <div className="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
+            <article className="flex flex-col gap-6">
               <SamplePhotoFrame
                 src={sampleImages.portraitOne}
-                alt="Founder of Luna Voyages"
-                caption="Sample portrait — replace with your photo."
-                className="w-full max-w-md mx-auto lg:mx-0"
+                alt="Husband - IT & Systems"
+                className="w-full max-w-md"
               />
-            </div>
+              <div className="max-w-md">
+                <h3 className="type-subheading font-serif tracking-tight text-[var(--color-text)]">
+                  The Engineering
+                </h3>
+                <p className="type-body mt-3 text-[var(--color-text-secondary)] font-light">
+                  With a 20-year background in building digital products, my focus is on the architecture of your trip. I ensure our planning process is calm, our systems are flawless, and every logistical detail is seamlessly organized so you don&apos;t have to think about it.
+                </p>
+              </div>
+            </article>
 
-            <div className="order-1 lg:order-2 lg:sticky lg:top-[calc(var(--header-height)+40px)]">
-              <SectionHeader
-                eyebrow="THE PERSON BEHIND IT"
-                heading="Technology meets local knowledge."
-                supporting="I spent 20 years building digital products. My family spent 30 years building relationships across Sri Lanka's travel landscape. Luna Voyages is what happens when those two things come together — a concierge service that is as carefully engineered as it is personally guided."
-                className="mb-0 max-w-none"
+            <article className="flex flex-col gap-6 md:mt-24">
+              <SamplePhotoFrame
+                src={sampleImages.portraitTwo}
+                alt="Wife - Business & Relationships"
+                className="w-full max-w-md"
               />
-              <div className="mt-7 h-[1px] w-12 bg-[var(--color-brand)]" aria-hidden="true" />
-            </div>
-
+              <div className="max-w-md">
+                <h3 className="type-subheading font-serif tracking-tight text-[var(--color-text)]">
+                  The Local Access
+                </h3>
+                <p className="type-body mt-3 text-[var(--color-text-secondary)] font-light">
+                  My family spent 30 years building relationships across Sri Lanka&apos;s travel landscape. I bring that business intuition and local access to Luna Voyages, focusing on the on-ground experience, the hidden gems, and the personal touches that make a trip unrepeatable.
+                </p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
