@@ -10,16 +10,11 @@ export const metadata: Metadata = {
 
 const routeGroups = [
   {
-    title: "Main site",
-    description: "Primary public-facing pages and reference pages.",
+    title: "Main pages",
+    description: "Primary public-facing destinations on the site.",
     links: [
-      { href: "/", label: "Home", note: "Main landing page for Luna Voyages." },
-      { href: "/real-honeymoons", label: "Real Honeymoons", note: "Designed-journey proof page." },
-      { href: "/style-guide", label: "Style Guide", note: "Brand and UI system reference." },
-      { href: "/design-brief", label: "Design Brief", note: "Designer handoff and brand direction." },
-      { href: "/sitemap", label: "Sitemap", note: "Human-readable route index." },
-      { href: "/privacy-policy", label: "Privacy Policy", note: "How we handle personal information." },
-      { href: "/terms", label: "Terms & Conditions", note: "Site and service terms." },
+      { href: "/", label: "Homepage", note: "Main landing page for Luna Voyages." },
+      { href: "/about", label: "About", note: "Brand story, positioning, and company overview." },
       { href: "/partner-with-us", label: "Partner With Us", note: "B2B partner and collaboration information." },
     ],
   },
@@ -42,10 +37,14 @@ const routeGroups = [
     ],
   },
   {
-    title: "Utility",
-    description: "Non-page route currently exposed publicly.",
+    title: "Footer links",
+    description: "Additional shortcuts surfaced in the site footer.",
     links: [
-      { href: "/robots.txt", label: "robots.txt", note: "Current crawler instructions file." },
+      { href: "/#our-approach", label: "Our Approach", note: "Homepage section link from the footer." },
+      { href: "/#faqs", label: "FAQs", note: "Homepage FAQ section link from the footer." },
+      { href: "/privacy-policy", label: "Privacy Policy", note: "How we handle personal information." },
+      { href: "/terms", label: "Terms & Conditions", note: "Site and service terms." },
+      { href: "/sitemap", label: "Sitemap", note: "Human-readable route index for the current site." },
     ],
   },
 ];
@@ -61,8 +60,8 @@ export default function SitemapPage() {
             <p className="type-eyebrow mb-4 text-[var(--color-text-muted)]">Site map</p>
             <h1 className="type-hero max-w-[12ch] font-serif text-[var(--color-text)]">Every current page route.</h1>
             <p className="type-body mt-5 max-w-[68ch] text-[var(--color-text-secondary)]">
-              This is a human-readable route index for the current Luna Voyages site. It is intended as
-              a quick reference, not an XML sitemap.
+              This is a human-readable route index for the current Luna Voyages site, grouped around the
+              main journeys and footer destinations visitors can access.
             </p>
           </section>
 
