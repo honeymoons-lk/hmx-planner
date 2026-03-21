@@ -261,6 +261,10 @@ export default function BookACallPage() {
                       </Label>
                     ))}
                   </RadioGroup>
+                  <p className="type-ui-sm text-[var(--color-text-muted)]">
+                    Many of our couples find WhatsApp the easiest way to share
+                    ideas and stay in touch throughout planning.
+                  </p>
                 </div>
 
                 <div className="space-y-3">

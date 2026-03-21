@@ -206,6 +206,10 @@ export default function ContactPage() {
                       />
                       <Label htmlFor="whatsapp-optin">Contact me via WhatsApp</Label>
                     </div>
+                    <p className="type-ui-sm mt-2 pl-6 text-[var(--color-text-muted)]">
+                      Many of our couples find WhatsApp the easiest way to share
+                      ideas and stay in touch throughout planning.
+                    </p>
                   </div>
                 </div>
 
