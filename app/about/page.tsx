@@ -9,7 +9,7 @@ import { homeContent } from "@/content/home-content";
 export const metadata: Metadata = {
   title: "About | Luna Voyages",
   description:
-    "Meet the couple behind Luna Voyages — Sri Lanka honeymoon planners who care deeply about the quiet, unrepeatable moments.",
+    "Luna Voyages was founded by a technology leader with deep roots in Sri Lanka's travel industry — combining generations of local expertise with a modern approach to planning.",
 };
 
 /** Stock imagery for layout only; replace with your own photography. */
@@ -20,15 +20,7 @@ const sampleImages = {
     "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
   portraitOne:
     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=900&q=80",
-  portraitTwo:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=900&q=80",
 } as const;
-
-const expertiseParagraphs = [
-  "Sri Lanka's finest properties, guides, and experiences are not always visible from the outside. The relationships that unlock them — the right contact at the right boutique estate, the guide who knows the quiet path nobody else takes — are built over decades.",
-  "Between us, we bring decades of combined experience inside Sri Lanka's tourism ecosystem, including long-standing relationships with respected hospitality teams and the kind of on-the-ground judgment you only get from living and working here.",
-  "Luna Voyages exists so couples do not have to trade warmth and access for a modern planning experience. We built it the way we would want to be looked after — clear, thoughtful, and relentlessly personal.",
-] as const;
 
 const homeLinks = homeContent.header.links.map((link) => ({
   ...link,
@@ -77,14 +69,14 @@ export default function AboutPage() {
         cta={homeContent.header.cta}
       />
 
-      {/* Hero Section */}
+      {/* SECTION 1 — Page header */}
       <section className="w-full pt-[calc(var(--section-space-mobile)*1.5)] md:pt-[calc(var(--section-space-desktop)*1.2)] pb-12 md:pb-16">
         <div className="page-shell">
           <div className="max-w-3xl">
             <SectionHeader
               eyebrow="OUR STORY"
-              heading="A couple-led studio for honeymoons that feel unmistakably Sri Lanka."
-              supporting="We are two people who love this island — its light, its pace, and the way a well-timed stop can turn an ordinary afternoon into a memory you revisit for years. Luna Voyages is our answer to a simple question: what would it look like if honeymoon planning felt as caring as showing friends the places you actually go?"
+              heading="Built on decades of knowing Sri Lanka from the inside."
+              supporting="Luna Voyages was founded by a technology leader with deep roots in Sri Lanka's travel industry — combining generations of local expertise with a modern, detail-obsessed approach to planning."
               className="mb-0 [&_p.type-body-lg]:max-w-[54ch]"
             />
           </div>
@@ -102,22 +94,19 @@ export default function AboutPage() {
               decoding="async"
             />
           </figure>
-          <p className="type-meta mt-4 text-[var(--color-text-muted)]">
-            Sample photo — swap for a cinematic shot of your favorite Sri Lankan region.
-          </p>
         </div>
       </section>
 
-      {/* Why We Care & How We Work */}
+      {/* SECTION 2 — The expertise block */}
       <section className="section-shell w-full bg-[var(--color-bg-alt)] border-y border-[var(--color-border-strong)]">
         <div className="page-shell">
           <div className="grid gap-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-24">
             
             <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">
               <SectionHeader
-                eyebrow="WHY WE CARE"
-                heading="Because a honeymoon is not a generic holiday."
-                supporting="We have planned our own milestones here — and helped friends do the same. The difference is never only the hotel. It is the driver who waits without rushing you, the table that catches golden hour, and the room category that actually matches what you pictured when you said you wanted &quot;quiet luxury.&quot;"
+                eyebrow="WHY IT MATTERS"
+                heading="The kind of access that takes 30 years to build."
+                supporting=""
                 className="mb-0 max-w-none"
               />
               <div className="mt-7 h-[1px] w-12 bg-[var(--color-brand)]" aria-hidden="true" />
@@ -134,17 +123,16 @@ export default function AboutPage() {
                 />
               </figure>
               
-              <div className="max-w-[54ch]">
-                <h3 className="type-subheading font-serif tracking-tight text-[var(--color-text)] mb-6">
-                  The access that takes years to earn
-                </h3>
-                <div className="space-y-6">
-                  {expertiseParagraphs.map((paragraph, index) => (
-                    <p key={index} className="type-body text-[var(--color-text-secondary)] font-light">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
+              <div className="max-w-[54ch] space-y-6">
+                <p className="type-body text-[var(--color-text-secondary)] font-light">
+                  Sri Lanka&apos;s finest properties, guides, and experiences are not always visible from the outside. The relationships that unlock them — the right contact at the right boutique estate, the guide who knows the quiet path nobody else takes — are built over decades.
+                </p>
+                <p className="type-body text-[var(--color-text-secondary)] font-light">
+                  Our founding team brings over 30 years of combined experience inside Sri Lanka&apos;s tourism industry, including active partnerships with the Sri Lanka Tourism Board and long-standing relationships with the country&apos;s most respected hospitality groups.
+                </p>
+                <p className="type-body text-[var(--color-text-secondary)] font-light">
+                  Luna Voyages was built to make that access available to couples planning the most meaningful trip of their lives — delivered through a modern, seamless planning experience.
+                </p>
               </div>
             </div>
 
@@ -152,59 +140,35 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* The Two of Us */}
+      {/* SECTION 3 — The founder note */}
       <section className="section-shell w-full">
         <div className="page-shell">
-          <div className="grid gap-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-24">
-            <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">
+          <div className="grid gap-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-24">
+            
+            <div className="order-2 lg:order-1">
+              <SamplePhotoFrame
+                src={sampleImages.portraitOne}
+                alt="Founder of Luna Voyages"
+                caption="Sample portrait — replace with your photo."
+                className="w-full max-w-md mx-auto lg:mx-0"
+              />
+            </div>
+
+            <div className="order-1 lg:order-2 lg:sticky lg:top-[calc(var(--header-height)+40px)]">
               <SectionHeader
-                eyebrow="THE TWO OF US"
-                heading="Product craft meets island instinct."
-                supporting="One of us spent years building digital products with an eye for clarity and flow. The other grew up inside Sri Lanka's travel world — introductions, nuance, and knowing who to call when the plan needs a gentle reroute. Together, we are small on purpose: you work directly with the people who own the outcome."
+                eyebrow="THE PERSON BEHIND IT"
+                heading="Technology meets local knowledge."
+                supporting="I spent 20 years building digital products. My family spent 30 years building relationships across Sri Lanka's travel landscape. Luna Voyages is what happens when those two things come together — a concierge service that is as carefully engineered as it is personally guided."
                 className="mb-0 max-w-none"
               />
               <div className="mt-7 h-[1px] w-12 bg-[var(--color-brand)]" aria-hidden="true" />
             </div>
 
-            <div className="grid gap-10 sm:grid-cols-2">
-              <article className="flex flex-col gap-5">
-                <SamplePhotoFrame
-                  src={sampleImages.portraitOne}
-                  alt="Sample portrait placeholder for Luna Voyages founder"
-                  caption="Sample portrait — replace with your photo."
-                  className="w-full"
-                />
-                <div>
-                  <h3 className="type-subheading font-serif tracking-tight text-[var(--color-text)]">
-                    Partnerships &amp; on-island detail
-                  </h3>
-                  <p className="type-body mt-2 text-[var(--color-text-secondary)] font-light">
-                    Properties, guides, drivers, and the small requests that rarely fit neatly on a form — handled with the care of someone who treats your dates as real life, not a line item.
-                  </p>
-                </div>
-              </article>
-
-              <article className="flex flex-col gap-5 sm:mt-16">
-                <SamplePhotoFrame
-                  src={sampleImages.portraitTwo}
-                  alt="Sample portrait placeholder for Luna Voyages founder"
-                  caption="Sample portrait — replace with your photo."
-                  className="w-full"
-                />
-                <div>
-                  <h3 className="type-subheading font-serif tracking-tight text-[var(--color-text)]">
-                    Experience, systems &amp; your brief
-                  </h3>
-                  <p className="type-body mt-2 text-[var(--color-text-secondary)] font-light">
-                    A calm planning rhythm, thoughtful defaults, and the structure that keeps everything moving — so you can focus on the feeling of the trip, not the spreadsheet behind it.
-                  </p>
-                </div>
-              </article>
-            </div>
           </div>
         </div>
       </section>
 
+      {/* SECTION 4 — CTA */}
       <FinalCtaSection
         heading="Ready to plan your Sri Lanka honeymoon?"
         subcopy="Share your brief and we'll come back with tailored options within 48 hours."
