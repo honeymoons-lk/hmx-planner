@@ -54,10 +54,10 @@ export function SiteFooter() {
                 <Link href="/about" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">About</Link>
               </li>
               <li>
-                <Link href="#our-approach" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Our Approach</Link>
+                <Link href="/#our-approach" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Our Approach</Link>
               </li>
               <li>
-                <Link href="#faqs" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">FAQs</Link>
+                <Link href="/#faqs" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">FAQs</Link>
               </li>
               <li>
                 <Link href="/book-a-call" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Contact</Link>
