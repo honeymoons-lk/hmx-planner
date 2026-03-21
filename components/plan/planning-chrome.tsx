@@ -33,7 +33,7 @@ export function PlanningMicroFooter() {
           Back to home
         </Link>
         <nav aria-label="Planning footer links" className="flex items-center gap-4">
-          <Link href="/privacy" className="type-ui-sm text-muted-foreground transition-colors hover:text-foreground">
+          <Link href="/privacy-policy" className="type-ui-sm text-muted-foreground transition-colors hover:text-foreground">
             Privacy
           </Link>
           <Link href="/terms" className="type-ui-sm text-muted-foreground transition-colors hover:text-foreground">

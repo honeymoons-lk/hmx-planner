@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/home/hero-section";
 import { MomentsSection } from "@/components/home/moments-section";
 import { StaysSection } from "@/components/home/stays-section";
 import { PartnersSection } from "@/components/home/partners-section";
+import { PeopleSection } from "@/components/home/people-section";
 import { StoriesSection } from "@/components/home/stories-section";
 import { ApproachSection } from "@/components/home/approach-section";
 import { WhySection } from "@/components/home/why-section";
@@ -72,6 +73,14 @@ export default function HomePage() {
         heading={homeContent.partners.heading}
         supporting={homeContent.partners.subcopy}
         logos={homeContent.partners.logos}
+      />
+
+      <PeopleSection
+        id={homeContent.people.id}
+        eyebrow={homeContent.people.eyebrow}
+        heading={homeContent.people.heading}
+        body={homeContent.people.body}
+        link={homeContent.people.link}
       />
 
       <WhySection

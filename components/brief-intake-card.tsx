@@ -424,7 +424,11 @@ export function BriefIntakeCard({
             {isStarter ? "Start planning" : "Continue"}
           </Button>
           {isStarter && (
-            <div className="mt-3.5 flex justify-center">
+            <div className="mt-3.5 flex flex-col items-center gap-2">
+              <p className="text-[13px] text-[var(--color-text-muted)] text-center">
+                Every request is read by us personally. You&apos;ll hear back
+                within 48 hours.
+              </p>
               <p className="text-[13px] text-[var(--color-text-muted)]">
                 Prefer to talk first?{" "}
                 <Link href="/book-a-call" className="font-medium text-[var(--color-brand)] underline underline-offset-4 transition-colors hover:text-[var(--color-brand-hover)]">

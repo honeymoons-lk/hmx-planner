@@ -312,6 +312,16 @@ export const homeContent = {
       },
     ],
   },
+  people: {
+    id: "people",
+    eyebrow: "THE PEOPLE BEHIND IT",
+    heading: "30 years inside Sri Lanka's travel industry. Built into every journey we design.",
+    body: "Luna Voyages was founded on decades of on-the-ground relationships across Sri Lanka's finest properties, guides, and the Tourism Board itself. Not sourced from a database — built in person, over time.",
+    link: {
+      text: "Meet the team behind your journey",
+      href: "/about"
+    }
+  },
   why: {
     id: "why",
     eyebrow: "FAQ / REASSURANCE",
