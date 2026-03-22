@@ -161,8 +161,8 @@ export default function BookACallPage() {
               </div>
 
               <div className="border-t border-[var(--color-border-strong)] pt-6 space-y-2">
-                <h3 className="type-eyebrow text-[var(--color-text-muted)]">Why travellers trust Luna</h3>
-                <p className="text-[14px] md:text-[15px] leading-relaxed text-[var(--color-text-secondary)] font-light max-w-[42ch]">
+                <h3 className="type-eyebrow text-[var(--color-text)]">Why travellers trust Luna</h3>
+                <p className="text-[15px] md:text-[16px] leading-relaxed text-[var(--color-text-secondary)] max-w-[42ch]">
                   A new concierge brand, grounded in long-standing Sri Lanka hospitality relationships and personally curated journey design.
                 </p>
               </div>

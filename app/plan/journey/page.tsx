@@ -37,8 +37,8 @@ export default function JourneyPage() {
               <BriefIntakeCard />
               
               <div className="px-2 md:px-4 space-y-2">
-                <h3 className="type-eyebrow text-[var(--color-text-muted)]">Why travellers trust Luna</h3>
-                <p className="text-[14px] md:text-[15px] leading-relaxed text-[var(--color-text-secondary)] font-light max-w-[54ch]">
+                <h3 className="type-eyebrow text-[var(--color-text)]">Why travellers trust Luna</h3>
+                <p className="text-[15px] md:text-[16px] leading-relaxed text-[var(--color-text-secondary)] max-w-[54ch]">
                   A new concierge brand, grounded in long-standing Sri Lanka hospitality relationships and personally curated journey design.
                 </p>
               </div>
