@@ -130,7 +130,7 @@ export default function ContactPage() {
               <CardTitle className="type-subheading font-serif">Your details</CardTitle>
               <CardDescription className="type-body text-[var(--color-text-muted)] font-light mt-2">
                 Share your details so we can send your tailored proposal. <br />
-                Every request is read by us — not filtered by an algorithm. You'll hear back within 48 hours
+                Every request is read by us — not filtered by an algorithm. You'll hear from us within 48 hours.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-8 px-5 pb-6 md:space-y-10 md:px-10 md:pb-10">
@@ -227,53 +227,62 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <aside className="rounded-[var(--radius-card)] border border-[rgba(0,0,0,0.06)] bg-[color-mix(in_srgb,var(--color-bg-alt)_40%,transparent)] p-5 md:p-8">
-                  <p className="type-eyebrow mb-6 text-[var(--color-text-secondary)]">Your request</p>
-                  <div className="type-meta space-y-5">
-                    <div>
-                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Timing</p>
-                      <p className="type-ui-sm text-foreground">{timeframeLabels[draft.timeframe] || "-"}</p>
-                    </div>
+                <div className="flex flex-col gap-6 md:gap-8">
+                  <aside className="rounded-[var(--radius-card)] border border-[rgba(0,0,0,0.06)] bg-[color-mix(in_srgb,var(--color-bg-alt)_40%,transparent)] p-5 md:p-8">
+                    <p className="type-eyebrow mb-6 text-[var(--color-text-secondary)]">Your request</p>
+                    <div className="type-meta space-y-5">
+                      <div>
+                        <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Timing</p>
+                        <p className="type-ui-sm text-foreground">{timeframeLabels[draft.timeframe] || "-"}</p>
+                      </div>
 
-                    <div>
-                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Dates</p>
-                      <p className="type-ui-sm text-foreground">
-                        {draft.start && draft.end ? `${draft.start} → ${draft.end}` : "-"}
-                      </p>
-                    </div>
+                      <div>
+                        <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Dates</p>
+                        <p className="type-ui-sm text-foreground">
+                          {draft.start && draft.end ? `${draft.start} → ${draft.end}` : "-"}
+                        </p>
+                      </div>
 
-                    <div>
-                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Duration</p>
-                      <p className="type-ui-sm text-foreground">{nightsLabel(draft.nights)}</p>
-                    </div>
+                      <div>
+                        <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Duration</p>
+                        <p className="type-ui-sm text-foreground">{nightsLabel(draft.nights)}</p>
+                      </div>
 
-                    <div>
-                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Experience</p>
-                      <p className="type-ui-sm text-foreground">
-                        {draft.styles.map((style) => styleLabels[style] || style).join(", ") || "-"}
-                      </p>
-                    </div>
+                      <div>
+                        <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Experience</p>
+                        <p className="type-ui-sm text-foreground">
+                          {draft.styles.map((style) => styleLabels[style] || style).join(", ") || "-"}
+                        </p>
+                      </div>
 
-                    <div>
-                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Highlights</p>
-                      <p className="type-ui-sm text-foreground">
-                        {[wowLabels[draft.wow], paceLabels[draft.pace]].filter(Boolean).join(" · ") || "-"}
-                      </p>
-                    </div>
+                      <div>
+                        <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Highlights</p>
+                        <p className="type-ui-sm text-foreground">
+                          {[wowLabels[draft.wow], paceLabels[draft.pace]].filter(Boolean).join(" · ") || "-"}
+                        </p>
+                      </div>
 
-                    <div>
-                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Comfort & Occasion</p>
-                      <p className="type-ui-sm text-foreground">
-                        {[budgetLabels[draft.budget], occasionLabels[draft.occasion]].filter(Boolean).join(" · ") || "-"}
-                      </p>
-                    </div>
+                      <div>
+                        <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Comfort & Occasion</p>
+                        <p className="type-ui-sm text-foreground">
+                          {[budgetLabels[draft.budget], occasionLabels[draft.occasion]].filter(Boolean).join(" · ") || "-"}
+                        </p>
+                      </div>
 
-                    <div>
-                      <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Notes</p>
-                      <p className="type-ui-sm text-foreground">{draft.notes.trim() || "-"}</p>
+                      <div>
+                        <p className="type-eyebrow text-[var(--color-text-muted)] mb-1">Notes</p>
+                        <p className="type-ui-sm text-foreground">{draft.notes.trim() || "-"}</p>
+                      </div>
                     </div>
+                  </aside>
+
+                  <div className="px-1 space-y-2">
+                    <h3 className="type-eyebrow text-[var(--color-text)]">Why travellers trust Luna</h3>
+                    <p className="text-[15px] md:text-[16px] leading-relaxed text-[var(--color-text-secondary)]">
+                      A new concierge brand, grounded in long-standing Sri Lanka hospitality relationships and personally curated journey design.
+                    </p>
                   </div>
-                </aside>
+                </div>
               </div>
             </CardContent>
           </Card>

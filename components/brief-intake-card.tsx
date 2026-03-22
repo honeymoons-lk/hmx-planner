@@ -92,7 +92,7 @@ const formContent = {
     { value: "balanced", label: "A bit of both" },
     { value: "packed", label: "Packed with highlights" },
   ],
-  reassurance: "Takes about 60 seconds. We’ll reply personally within 24–48 hours.",
+  reassurance: "Takes about 60 seconds. You'll hear from us within 48 hours.",
 };
 
 export function BriefIntakeCard({
@@ -426,7 +426,7 @@ export function BriefIntakeCard({
           {isStarter && (
             <div className="mt-3.5 flex flex-col items-center gap-2">
               <p className="text-[13px] text-[var(--color-text-muted)] text-center">
-                Every request is read by us personally. You&apos;ll hear back
+                Every request is read by us personally. You&apos;ll hear from us
                 within 48 hours.
               </p>
               <p className="text-[13px] text-[var(--color-text-muted)]">
