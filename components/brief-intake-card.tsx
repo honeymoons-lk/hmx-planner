@@ -220,7 +220,7 @@ export function BriefIntakeCard({
             {isStarter ? "Planning Starter" : "Personal Planning Brief"}
           </span>
           <span className="type-meta text-[var(--color-text-muted)] italic">
-            {isStarter ? "Takes ~30 seconds" : "Takes ~60 seconds"}
+            {isStarter ? "Takes ~60 seconds" : "Takes ~60 seconds"}
           </span>
         </div>
         <CardTitle className={cn("font-serif tracking-tight text-[var(--color-text)]", isStarter ? "text-[24px] leading-[1.1]" : "type-subheading")}>
