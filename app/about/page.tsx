@@ -193,7 +193,7 @@ export default function AboutPage() {
       {/* SECTION 4 — CTA */}
       <FinalCtaSection
         heading="Ready to plan your Sri Lanka honeymoon?"
-        subcopy="Share your brief and we'll come back with tailored options within 48 hours."
+        subcopy="Share your brief and you'll hear from us within 48 hours."
         primary="Start Planning"
         secondary="Book a Call"
         primaryHref="/plan/journey"

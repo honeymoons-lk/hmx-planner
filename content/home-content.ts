@@ -339,6 +339,11 @@ export const homeContent = {
     subcopy: "Clear answers on how we work, what we handle, and why it matters.",
     objections: [
       {
+        question: "Luna Voyages is a new brand — why should I trust you with my trip?",
+        answer:
+          "Luna Voyages is a newly launched concierge brand, but the roots behind it are much deeper. Our work is shaped by long-standing Sri Lanka hospitality relationships, trusted local connections, and hands-on destination knowledge built over many years. Rather than selling pre-made packages, we design each journey personally and coordinate it with care from the first conversation through to arrival.",
+      },
+      {
         question: "Why use Luna instead of booking Sri Lanka ourselves?",
         answer:
           "Sri Lanka is stunning, but logistically complex. We remove the friction of piecing together routes, vetting boutique stays, and arranging reliable private transport—giving you the space to simply enjoy the journey.",
@@ -371,10 +376,10 @@ export const homeContent = {
     ],
     closing: "Designed around you. Managed by us.",
   },
-  finalCta: {
+    finalCta: {
     heading: "Ready to plan your Sri Lanka honeymoon?",
     subcopy:
-      "Share your brief and we’ll come back with tailored options within 24–48 hours.",
+      "Share your brief and you'll hear from us within 48 hours.",
     primary: "Start Planning",
     secondary: "Explore Our Approach",
   },
