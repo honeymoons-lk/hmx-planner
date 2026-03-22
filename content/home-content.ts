@@ -4,7 +4,7 @@ export const homeContent = {
     links: [
       { label: "Experiences", href: "#experiences" },
       { label: "The Journey", href: "#the-journey" },
-      { label: "Journey Directions", href: "#journey-directions" },
+      { label: "Sample Journeys", href: "#journey-directions" },
       { label: "Our Approach", href: "#our-approach" },
     ],
     cta: { label: "Start Planning", href: "/plan/journey" },
