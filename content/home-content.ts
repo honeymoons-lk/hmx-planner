@@ -322,13 +322,13 @@ export const homeContent = {
       },
     ],
   },
-  people: {
-    id: "people",
-    eyebrow: "THE PEOPLE BEHIND IT",
-    heading: "30 years inside Sri Lanka's travel industry. Built into every journey we design.",
-    body: "Luna Voyages was founded on decades of on-the-ground relationships across Sri Lanka's finest properties, guides, and the Tourism Board itself. Not sourced from a database — built in person, over time.",
+  philosophy: {
+    id: "philosophy",
+    eyebrow: "WHY LUNA EXISTS",
+    heading: "We believe a honeymoon should be an exhale, not an itinerary.",
+    body: "Most travel planning focuses on how much ground you can cover. We focus on the rhythm of your days. Luna Voyages exists to replace the standard, over-scheduled tourist circuit with something deliberately unhurried—where the transitions are invisible, the stays have soul, and the journey belongs entirely to you.",
     link: {
-      text: "Meet the team behind your journey",
+      text: "Read the Luna story",
       href: "/about"
     }
   },

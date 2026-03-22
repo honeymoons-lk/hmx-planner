@@ -6,7 +6,7 @@ import { TrustBridgeSection } from "@/components/home/trust-bridge-section";
 import { MomentsSection } from "@/components/home/moments-section";
 import { StaysSection } from "@/components/home/stays-section";
 import { PartnersSection } from "@/components/home/partners-section";
-import { PeopleSection } from "@/components/home/people-section";
+import { PhilosophySection } from "@/components/home/philosophy-section";
 import { StoriesSection } from "@/components/home/stories-section";
 import { ApproachSection } from "@/components/home/approach-section";
 import { WhySection } from "@/components/home/why-section";
@@ -83,12 +83,12 @@ export default function HomePage() {
         logos={homeContent.partners.logos}
       />
 
-      <PeopleSection
-        id={homeContent.people.id}
-        eyebrow={homeContent.people.eyebrow}
-        heading={homeContent.people.heading}
-        body={homeContent.people.body}
-        link={homeContent.people.link}
+      <PhilosophySection
+        id={homeContent.philosophy.id}
+        eyebrow={homeContent.philosophy.eyebrow}
+        heading={homeContent.philosophy.heading}
+        body={homeContent.philosophy.body}
+        link={homeContent.philosophy.link}
       />
 
       <WhySection

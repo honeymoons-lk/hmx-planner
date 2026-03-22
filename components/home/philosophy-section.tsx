@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/section-header";
 
-type PeopleSectionProps = {
+type PhilosophySectionProps = {
   id: string;
   eyebrow: string;
   heading: string;
@@ -13,7 +13,7 @@ type PeopleSectionProps = {
   };
 };
 
-export function PeopleSection({ id, eyebrow, heading, body, link }: PeopleSectionProps) {
+export function PhilosophySection({ id, eyebrow, heading, body, link }: PhilosophySectionProps) {
   return (
     <section id={id} className="section-shell-tight w-full bg-[var(--color-bg-alt)] border-y border-[var(--color-border-strong)]">
       <div className="page-shell">
