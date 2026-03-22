@@ -9,7 +9,7 @@ import { homeContent } from "@/content/home-content";
 export const metadata: Metadata = {
   title: "About | Luna Voyages",
   description:
-    "Luna Voyages was founded by a technology leader with deep roots in Sri Lanka's travel industry — combining generations of local expertise with a modern approach to planning.",
+    "Luna Voyages is a modern Sri Lanka travel concierge. While the brand is new, it is built on decades of hospitality relationships and trusted local connections.",
 };
 
 /** Stock imagery for layout only; replace with your own photography. */
@@ -77,9 +77,9 @@ export default function AboutPage() {
           <div className="max-w-3xl">
             <SectionHeader
               eyebrow="OUR STORY"
-              heading="Built on decades of knowing Sri Lanka from the inside."
-              supporting="Luna Voyages was founded by a technology leader with deep roots in Sri Lanka's travel industry — combining generations of local expertise with a modern, detail-obsessed approach to planning."
-              className="mb-0 [&_p.type-body-lg]:max-w-[54ch]"
+              heading="We’re a new name, not new to this world."
+              supporting="Luna Voyages was created as a modern Sri Lanka travel concierge for couples who want something more personal than a package and more thoughtful than a standard booking service. While the brand is new, the roots behind it run much deeper — shaped by decades of hospitality relationships, destination knowledge, and trusted local connections across Sri Lanka."
+              className="mb-0 [&_p.type-body-lg]:max-w-[65ch]"
             />
           </div>
         </div>

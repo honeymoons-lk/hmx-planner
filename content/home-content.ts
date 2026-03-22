@@ -40,6 +40,16 @@ export const homeContent = {
       items: ["Mini-moons", "Anniversary escapes", "Baby-moons"],
     },
   },
+  trustBridge: {
+    eyebrow: "Why travellers trust Luna",
+    heading: "A modern concierge brand, grounded in decades of Sri Lanka relationships",
+    subcopy: "Luna Voyages is a new travel concierge studio, built on long-standing Sri Lanka hospitality relationships, trusted local connections, and hands-on journey design shaped around each couple.",
+    proofPoints: [
+      "30+ years of Sri Lanka travel and hospitality relationships",
+      "Trusted access across hotels, villas, drivers, and local operators",
+      "Every journey designed personally, never pulled from a package template"
+    ]
+  },
   moments: {
     id: "experiences",
     eyebrow: "THE MOMENTS WE DESIGN",

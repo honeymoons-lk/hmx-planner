@@ -2,6 +2,7 @@ import { homeContent } from "@/content/home-content";
 import { FlowMapSketch } from "@/src/components/FlowMapSketch";
 import { HomeHeader } from "@/components/home/home-header";
 import { HeroSection } from "@/components/home/hero-section";
+import { TrustBridgeSection } from "@/components/home/trust-bridge-section";
 import { MomentsSection } from "@/components/home/moments-section";
 import { StaysSection } from "@/components/home/stays-section";
 import { PartnersSection } from "@/components/home/partners-section";
@@ -22,6 +23,13 @@ export default function HomePage() {
       />
 
       <HeroSection content={homeContent.hero} />
+
+      <TrustBridgeSection
+        eyebrow={homeContent.trustBridge.eyebrow}
+        heading={homeContent.trustBridge.heading}
+        subcopy={homeContent.trustBridge.subcopy}
+        proofPoints={homeContent.trustBridge.proofPoints}
+      />
 
       <MomentsSection
         id={homeContent.moments.id}
