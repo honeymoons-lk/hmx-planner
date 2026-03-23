@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 1058" role="img" aria-label="Sri Lanka outline">
+  <style>
+    :root {
+      --canvas: transparent;
+      --island-fill: none;
+      --outline: #000000;
+      --outline-width: 12;
+    }
+  </style>
+  <rect width="100%" height="100%" style="fill: var(--canvas);" />
+  <path
+    d="M126 24L62 57L70 80L155 83L209 116L212 125L207 130L153 135L129 159L117 260L81 291L67 450L24 484L71 717L55 828L129 1005L251 1033L402 972L531 912L587 751L534 570L455 465L438 380L406 366L413 348L303 171Z"
+    style="fill: var(--island-fill); stroke: var(--outline); stroke-width: var(--outline-width); stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke;"
+  />
+</svg>
