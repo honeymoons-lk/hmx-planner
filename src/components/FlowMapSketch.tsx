@@ -246,7 +246,7 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
 
           {/* Right: Floating Minimal Map */}
           <aside className="order-first lg:order-none lg:sticky lg:top-[calc(var(--header-height)+40px)] lg:self-start">
-            <div className="relative aspect-[4/5] min-h-[500px] w-full max-w-[500px] mx-auto lg:min-h-[700px]">
+            <div className="relative aspect-[4/5] min-h-[500px] w-full mx-auto lg:min-h-[700px]">
               {/* Removed the heavy background and border, making the map float */}
               <svg viewBox="0 0 420 620" className="h-full w-full drop-shadow-sm" role="img" aria-label="Sri Lanka route map">
                 {/* Island Base */}
