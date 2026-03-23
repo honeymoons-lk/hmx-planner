@@ -78,9 +78,9 @@ const itineraryDetails: Record<string, ItineraryDetail> = {
 };
 
 const markerPositions: Record<string, { x: number; y: number; labelX: number; labelY: number }> = {
-  colombo: { x: 173, y: 172, labelX: 108, labelY: 164 },
-  cultural: { x: 225, y: 250, labelX: 252, labelY: 242 },
-  tea: { x: 212, y: 372, labelX: 238, labelY: 368 },
+  colombo: { x: 126, y: 460, labelX: 64, labelY: 452 },
+  cultural: { x: 182, y: 245, labelX: 208, labelY: 237 },
+  tea: { x: 191, y: 329, labelX: 217, labelY: 325 },
   south: { x: 170, y: 500, labelX: 202, labelY: 492 },
 };
 
@@ -246,20 +246,22 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
 
           {/* Right: Floating Minimal Map */}
           <aside className="order-first lg:order-none lg:sticky lg:top-[calc(var(--header-height)+40px)] lg:self-start">
-            <div className="relative aspect-[4/5] min-h-[500px] w-full max-w-[500px] mx-auto lg:min-h-[700px]">
+            <div className="relative aspect-[4/5] min-h-[500px] w-full mx-auto lg:min-h-[700px]">
               {/* Removed the heavy background and border, making the map float */}
               <svg viewBox="0 0 420 620" className="h-full w-full drop-shadow-sm" role="img" aria-label="Sri Lanka route map">
                 {/* Island Base */}
                 <path
-                  d="M168 84C196 79 222 88 238 103C258 122 271 154 273 184C276 221 269 257 257 293C249 318 250 343 257 370C266 404 263 441 249 472C235 504 215 527 194 542C178 553 157 555 143 547C127 537 120 518 121 497C123 462 137 430 138 397C138 365 128 334 121 303C114 271 114 237 124 206C133 177 149 153 157 125C162 107 160 95 168 84Z"
+                  d="M94 45L63 61L67 72L108 73L134 89L135 93L133 97L107 99L95 111L90 159L72 174L65 252L44 268L67 382L59 436L95 521L154 535L228 506L291 476L318 398L292 310L254 259L245 218L230 211L233 202L179 116Z"
                   fill="color-mix(in srgb, var(--color-surface) 60%, transparent)"
                   stroke="color-mix(in srgb, var(--color-border-strong) 60%, transparent)"
-                  strokeWidth="1"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
 
                 {/* Route Line */}
                 <path
-                  d="M173 172Q198 204 225 250Q220 308 212 372Q190 438 170 500"
+                  d="M126 460C149 404 170 322 182 245C188 276 195 303 191 329C186 387 178 446 170 500"
                   fill="none"
                   stroke="var(--color-brand)"
                   strokeWidth="1.5"
