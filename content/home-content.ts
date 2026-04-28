@@ -3,19 +3,19 @@ export const homeContent = {
     brand: "LUNA VOYAGES",
     links: [
       { label: "Experiences", href: "#experiences" },
-      { label: "The Journey", href: "#the-journey" },
-      { label: "Sample Journeys", href: "#journey-directions" },
-      { label: "Our Approach", href: "#our-approach" },
+      { label: "Stays", href: "#stays" },
+      { label: "Journey", href: "#the-journey" },
+      { label: "About", href: "/about" },
     ],
     cta: { label: "Start Planning", href: "/plan/journey" },
   },
   hero: {
     kicker: "Sri Lanka Romantic Travel Concierge",
-    heading: "Your Sri Lanka romantic escape, handled end-to-end",
+    heading: "Private Sri Lanka journeys, designed for two.",
     backgroundImage: "/api/media/hero",
     emotionSentence:
-      "Tea hills at sunrise. Barefoot dinners by the sea. Quiet villas made just for two.",
-    emotionTagline: "Designed around you. Managed by us.",
+      "We design private romantic escapes across Sri Lanka — shaped around your pace, your style, and the moments you want to remember.",
+    emotionTagline: "Every request is personally reviewed. You’ll hear from us within 48 hours.",
     testimonials: [
       {
         quote:
@@ -42,8 +42,8 @@ export const homeContent = {
   },
   trustBridge: {
     eyebrow: "Why travellers trust Luna",
-    heading: "A modern concierge brand, grounded in decades of Sri Lanka relationships",
-    subcopy: "Luna Voyages is a new travel concierge studio, built on long-standing Sri Lanka hospitality relationships, trusted local connections, and hands-on journey design shaped around each couple.",
+    heading: "A modern concierge, grounded in trusted Sri Lanka relationships.",
+    subcopy: "Luna Voyages combines decades of on-ground relationships with deeply personal journey design for couples who value discretion, taste, and seamless execution.",
     proofPoints: [
       "30+ years of Sri Lanka travel and hospitality relationships",
       "Trusted access across hotels, villas, drivers, and local operators",
@@ -53,8 +53,8 @@ export const homeContent = {
   moments: {
     id: "experiences",
     eyebrow: "THE MOMENTS WE DESIGN",
-    heading: "The moments your honeymoon will be built around",
-    subcopy: "Carefully curated, never off-the-shelf",
+    heading: "Moments that stay with you.",
+    subcopy: "Image-first experiences, privately arranged around the rhythm of your journey.",
     panels: [
       {
         title: "PRIVATE BEACH DINNERS",
@@ -103,8 +103,8 @@ export const homeContent = {
   stays: {
     id: "stays",
     eyebrow: "THE KIND OF STAYS WE CURATE",
-    heading: "Places made for slow mornings and long evenings.",
-    subcopy: "We do not begin with a long list of hotels. Stays are chosen for privacy, atmosphere, character, and how they support the rhythm of your journey.",
+    heading: "Stays chosen for privacy, atmosphere, and soul.",
+    subcopy: "We do not begin with a long list of hotels. We curate a small, thoughtful set of properties matched to your route, your pace, and the feeling you want each stop to hold.",
     footerNote:
       "We match these to your dates, budget band, and honeymoon style - then handle the details.",
     items: [
@@ -242,13 +242,13 @@ export const homeContent = {
         caption: "Beach time, dinners, and downtime.",
       },
     ],
-    note: "We design the route first - then we match stays and moments to fit.",
+    note: "We design the route first — then match stays, transfers, guides, and private moments around it.",
   },
   partners: {
     id: "partners",
     eyebrow: "TRUSTED SRI LANKAN PARTNERS",
-    heading: "Hospitality names we trust with your experience.",
-    subcopy: "We are independent planners, but we regularly collaborate with Sri Lanka’s most respected hospitality brands when their properties are the perfect fit for your journey.",
+    heading: "Independent planning, connected to the right people on the ground.",
+    subcopy: "We remain independent in what we recommend, while working closely with trusted Sri Lankan partners when they are the right fit for your journey.",
     logos: [
       "Jetwing",
       "Cinnamon",
@@ -266,7 +266,7 @@ export const homeContent = {
     id: "journey-directions",
     eyebrow: "JOURNEY DIRECTIONS",
     heading: "Romantic journeys we often shape.",
-    subcopy: "These are illustrative journey directions, not off-the-shelf packages. Every journey is tailored around the couple, the season, and your preferred travel pace.",
+    subcopy: "Illustrative directions only — every journey is privately shaped around the couple, the season, and your preferred pace.",
     cta: {
       label: "Start Planning Your Journey",
       href: "/plan/journey"
@@ -302,7 +302,7 @@ export const homeContent = {
     id: "our-approach",
     eyebrow: "OUR APPROACH",
     heading: "A journey shaped around your pace, managed down to the details.",
-    subcopy: "We handle the complexity of Sri Lanka—from shaping the route to securing the bookings—so your only job is to arrive and exhale.",
+    subcopy: "You do not need to figure Sri Lanka out. We handle the complexity—from first route sketch to on-ground coordination.",
     steps: [
       {
         title: "Trip Shaping",
@@ -325,7 +325,7 @@ export const homeContent = {
   philosophy: {
     id: "philosophy",
     eyebrow: "WHY LUNA EXISTS",
-    heading: "We believe a honeymoon should be an exhale, not an itinerary.",
+    heading: "A honeymoon should feel like an exhale, not an itinerary.",
     body: "Most travel planning focuses on how much ground you can cover. We focus on the rhythm of your days. Luna Voyages exists to replace the standard, over-scheduled tourist circuit with something deliberately unhurried—where the transitions are invisible, the stays have soul, and the journey belongs entirely to you.",
     link: {
       text: "Read the Luna story",
@@ -335,7 +335,7 @@ export const homeContent = {
   why: {
     id: "why",
     eyebrow: "FAQ / REASSURANCE",
-    heading: "Questions couples often ask before we begin.",
+    heading: "Questions couples ask before we begin.",
     subcopy: "Clear answers on how we work, what we handle, and why it matters.",
     objections: [
       {
@@ -376,11 +376,11 @@ export const homeContent = {
     ],
     closing: "Designed around you. Managed by us.",
   },
-    finalCta: {
-    heading: "Ready to plan your Sri Lanka honeymoon?",
+  finalCta: {
+    heading: "Your Sri Lanka escape, privately designed.",
     subcopy:
-      "Share your brief and you'll hear from us within 48 hours.",
+      "Share your brief and we’ll shape the first version of your journey with care.",
     primary: "Start Planning",
-    secondary: "Explore Our Approach",
+    secondary: "Book a Private Call",
   },
 } as const;

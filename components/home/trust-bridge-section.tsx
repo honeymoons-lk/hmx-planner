@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils";
-
 type TrustBridgeSectionProps = {
   eyebrow: string;
   heading: string;
@@ -9,39 +7,27 @@ type TrustBridgeSectionProps = {
 
 export function TrustBridgeSection({ eyebrow, heading, subcopy, proofPoints }: TrustBridgeSectionProps) {
   return (
-    <section className="w-full py-16 md:py-24 bg-[var(--color-bg-alt)] border-b border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)]">
+    <section className="w-full border-b border-[color-mix(in_srgb,var(--color-border-strong)_42%,transparent)] bg-[var(--color-bg-alt)] py-18 md:py-24" data-header-tone="light">
       <div className="page-shell">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          
-          {/* Left Column: Context */}
-          <div className="lg:col-span-6 lg:col-start-1 xl:col-span-5 xl:col-start-2 flex flex-col space-y-6 md:space-y-8">
-            <div className="space-y-4">
-              <p className="type-eyebrow text-[var(--color-text-muted)] eyebrow-rule">
-                {eyebrow}
-              </p>
-              <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[var(--color-text)] text-balance leading-tight">
-                {heading}
-              </h2>
-            </div>
-            <p className="type-body-lg text-[var(--color-text-secondary)] font-light max-w-[42ch]">
-              {subcopy}
-            </p>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+          <div className="space-y-5">
+            <p className="type-eyebrow text-[var(--color-text-muted)] eyebrow-rule">{eyebrow}</p>
+            <h2 className="text-4xl font-serif leading-[1.04] tracking-tight text-[var(--color-text)] md:text-5xl">
+              {heading}
+            </h2>
+            <p className="type-body-lg max-w-[46ch] text-[var(--color-text-secondary)]">{subcopy}</p>
           </div>
 
-          {/* Right Column: Proof Points */}
-          <div className="lg:col-span-5 lg:col-start-8 xl:col-span-4 xl:col-start-8 flex flex-col justify-center space-y-6 md:space-y-8 lg:pt-2">
+          <div className="grid gap-6 md:grid-cols-3 md:gap-4 lg:grid-cols-1 lg:gap-0">
             {proofPoints.map((point, index) => (
-              <div key={index} className="flex items-start gap-4">
-                <span className="type-eyebrow text-[var(--color-brand)] mt-1 opacity-60">
-                  {(index + 1).toString().padStart(2, '0')}
-                </span>
-                <p className="type-body text-[var(--color-text)] font-light leading-relaxed">
-                  {point}
+              <article key={index} className="border-t border-[color-mix(in_srgb,var(--color-border-strong)_52%,transparent)] pt-5 lg:py-8">
+                <p className="font-serif text-[2.2rem] leading-none text-[var(--color-brand)] md:text-[2.6rem]">
+                  {index === 0 ? "30+" : `0${index + 1}`}
                 </p>
-              </div>
+                <p className="mt-3 type-body text-[var(--color-text)] font-light leading-relaxed">{point}</p>
+              </article>
             ))}
           </div>
-
         </div>
       </div>
     </section>

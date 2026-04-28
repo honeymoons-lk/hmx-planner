@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/section-header";
 import { proxiedImageUrl } from "@/lib/media";
@@ -34,11 +33,14 @@ export function StoriesSection({
   caseStudies,
 }: StoriesSectionProps) {
   return (
-    <section id={id} className="section-shell w-full">
+    <section id={id} className="section-shell w-full bg-[var(--color-bg)]" data-header-tone="light">
       <div className="page-shell">
         <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="mb-16 max-w-3xl" />
+        <p className="type-meta -mt-8 mb-12 text-[var(--color-text-muted)] italic">
+          Illustrative directions only — every journey is privately shaped.
+        </p>
         <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-3 xl:gap-16">
-          {caseStudies.map((story, index) => (
+          {caseStudies.map((story) => (
             <article key={story.title} className="group flex flex-col">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[4px] mb-8">
                 <img

@@ -19,7 +19,7 @@ type WhySectionProps = {
 
 export function WhySection({ id, eyebrow, heading, supporting, objections, closing }: WhySectionProps) {
   return (
-    <section id={id} className="section-shell w-full">
+    <section id={id} className="section-shell w-full bg-[var(--color-surface)]" data-header-tone="light">
       <div className="page-shell">
         <div className="grid gap-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-24">
           <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">

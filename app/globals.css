@@ -34,37 +34,37 @@
 }
 
 :root {
-  --background: #f7f1ea;
-  --foreground: #1d1816;
+  --background: #f8f3ee;
+  --foreground: #1c1715;
 
-  --card: #fcf8f4;
-  --card-foreground: #1d1816;
+  --card: #fcfaf8;
+  --card-foreground: #1c1715;
 
   --popover: #fdfaf7;
-  --popover-foreground: #1d1816;
+  --popover-foreground: #1c1715;
 
   --primary: #6e2c3a;
   --primary-foreground: #faf4ee;
 
-  --secondary: #efe2d6;
+  --secondary: #f1e7de;
   --secondary-foreground: #433833;
 
   --muted: #f1e7de;
-  --muted-foreground: #67584f;
+  --muted-foreground: #6b5d54;
 
-  --accent: #ccb28b;
-  --accent-foreground: #1d1816;
+  --accent: #c8a96a;
+  --accent-foreground: #1c1715;
 
-  --border: #e4d6c7;
-  --input: #e1d1c0;
+  --border: #e6d8cb;
+  --input: #e6d8cb;
   --ring: #6e2c3a;
 
   --destructive: #8b3a3a;
   --destructive-foreground: #faf4ee;
 
-  --color-bg: #f7f1ea;
-  --color-bg-alt: #efe4d8;
-  --color-surface: #fcf8f4;
+  --color-bg: #f8f3ee;
+  --color-bg-alt: #f1e7de;
+  --color-surface: #fcfaf8;
   --color-surface-strong: #fffdf9;
   --color-surface-muted: #f5ede4;
 
@@ -72,18 +72,18 @@
   --color-brand-hover: #5a2230;
   --color-brand-active: #471a25;
 
-  --color-text: #1d1816;
-  --color-text-secondary: #4b3f39;
-  --color-text-muted: #6c5d54;
+  --color-text: #1c1715;
+  --color-text-secondary: #4a403a;
+  --color-text-muted: #6b5d54;
 
-  --color-border: #e4d6c7;
-  --color-border-strong: #d7c5b4;
+  --color-border: #e6d8cb;
+  --color-border-strong: #d9c9bc;
 
-  --color-accent: #ccb28b;
+  --color-accent: #c8a96a;
 
-  --color-dark: #1d1816;
+  --color-dark: #171412;
   --color-light: #faf4ee;
-  --color-overlay: rgba(19, 15, 14, 0.42);
+  --color-overlay: rgba(23, 20, 18, 0.58);
 
   --color-success-text: #2f6a4f;
   --color-success-bg: #eaf4ee;
@@ -106,12 +106,12 @@
   --space-10: 96px;
   --space-11: 120px;
 
-  --type-hero-size: clamp(48px, 5vw, 68px);
-  --type-hero-line: 0.91;
-  --type-section-size: clamp(42px, 4.8vw, 56px);
-  --type-section-line: 1.02;
-  --type-subheading-size: clamp(26px, 3vw, 32px);
-  --type-subheading-line: 1.1;
+  --type-hero-size: clamp(52px, 6vw, 86px);
+  --type-hero-line: 0.94;
+  --type-section-size: clamp(44px, 5vw, 64px);
+  --type-section-line: 1.04;
+  --type-subheading-size: clamp(28px, 3.4vw, 40px);
+  --type-subheading-line: 1.08;
   --type-body-size: 16px;
   --type-body-line: 1.66;
   --type-body-lg-size: 17px;

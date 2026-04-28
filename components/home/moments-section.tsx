@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/section-header";
 import { proxiedImageUrl } from "@/lib/media";
 
@@ -13,49 +15,52 @@ type MomentsSectionProps = {
 
 export function MomentsSection({ id, eyebrow, heading, supporting, panels }: MomentsSectionProps) {
   return (
-    <section id={id} className="moments-section section-shell w-full pb-24 md:pb-32 lg:pb-40">
+    <section id={id} className="moments-section section-shell w-full bg-[#171412]" data-header-tone="dark">
       <div className="page-shell">
-        <div className="border-b border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pb-8 mb-12">
+        <div className="mb-12 border-b border-[color-mix(in_srgb,var(--color-light)_14%,transparent)] pb-8">
           <SectionHeader
             eyebrow={eyebrow}
             heading={heading}
             supporting={supporting}
-            className="mb-0 max-w-2xl"
+            className="mb-0 max-w-2xl [&_p]:text-[color-mix(in_srgb,var(--color-light)_72%,transparent)] [&_h2]:text-[var(--color-light)]"
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-16 md:gap-x-10 md:gap-y-20 lg:gap-x-16 lg:gap-y-28">
+        <div className="grid grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-3">
           {panels.map((panel, index) => (
             <article
               key={`${panel.title}-${index}`}
               tabIndex={0}
               className="group flex flex-col focus:outline-none"
             >
-              <div className="relative aspect-[3/4] overflow-hidden bg-[var(--color-bg-alt)] mb-6 md:mb-7">
+              <div className="relative mb-5 aspect-[4/5] overflow-hidden rounded-[4px] bg-[#211c19]">
                 <img
                   src={proxiedImageUrl(panel.image)}
                   alt={panel.title}
                   loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-[2.5s] ease-[cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none group-hover:scale-[1.03] group-focus:scale-[1.03]"
+                  className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-1000 ease-out motion-reduce:transition-none group-hover:scale-[1.03] group-focus:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-black/0 transition-colors duration-700 ease-in-out group-hover:bg-black/[0.03] group-focus:bg-black/[0.03]" />
+                <div className="absolute inset-0 bg-[rgba(23,20,18,0.35)] transition-colors duration-500 group-hover:bg-[rgba(23,20,18,0.18)] group-focus:bg-[rgba(23,20,18,0.18)]" />
               </div>
-              
-              <div className="flex flex-col pr-4 md:pr-6">
-                <span className="type-eyebrow text-[var(--color-text-muted)] mb-3">
-                  {panel.label}
-                </span>
-                
-                <h3 className="type-subheading font-serif text-[var(--color-text)] mb-3 transition-colors duration-500 ease-out group-hover:text-[var(--color-brand)] group-focus:text-[var(--color-brand)]">
-                  {panel.title}
-                </h3>
-                
-                <p className="type-body text-[var(--color-text-secondary)] font-light">
-                  {panel.body}
-                </p>
-              </div>
+
+              <span className="type-eyebrow mb-2 text-[color-mix(in_srgb,var(--color-light)_64%,transparent)]">
+                {panel.label}
+              </span>
+              <h3 className="mb-2 text-[2rem] font-serif leading-[1.02] tracking-tight text-[var(--color-light)] transition-colors duration-300 group-hover:text-[#c8a96a]">
+                {panel.title}
+              </h3>
+              <p className="type-body font-light text-[color-mix(in_srgb,var(--color-light)_78%,transparent)]">
+                {panel.body}
+              </p>
             </article>
           ))}
+        </div>
+
+        <div className="mt-14">
+          <Link href="#journey-directions" className="inline-flex items-center gap-2 text-sm text-[color-mix(in_srgb,var(--color-light)_78%,transparent)] transition-colors hover:text-[#c8a96a]">
+            Explore Experiences
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>

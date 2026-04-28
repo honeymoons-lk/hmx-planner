@@ -152,9 +152,12 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
   );
 
   return (
-    <section ref={sectionRef} id={id} className="section-shell w-full">
+    <section ref={sectionRef} id={id} className="section-shell w-full bg-[#1a1715]" data-header-tone="dark">
       <div className="page-shell">
-        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={subcopy} className="max-w-3xl" />
+        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={subcopy} className="max-w-3xl [&_p]:text-[color-mix(in_srgb,var(--color-light)_74%,transparent)] [&_h2]:text-[var(--color-light)]" />
+        <p className="type-meta mt-4 text-[color-mix(in_srgb,var(--color-light)_68%,transparent)]">
+          Colombo → Cultural Triangle → Tea Country → South Coast
+        </p>
 
         <div className="mt-14 grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-24 md:mt-16">
           {/* Left: Editorial Timeline */}
@@ -178,7 +181,7 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
                   >
                     {/* Timeline Dot */}
                     <div
-                      className={`absolute left-0 top-2 h-6 w-6 -translate-x-[5.5px] rounded-full border bg-[var(--color-bg)] transition-all duration-500 flex items-center justify-center ${
+                      className={`absolute left-0 top-2 h-6 w-6 -translate-x-[5.5px] rounded-full border bg-[#1a1715] transition-all duration-500 flex items-center justify-center ${
                         isActive
                           ? "border-[var(--color-brand)]"
                           : "border-[var(--color-border-strong)]"
@@ -193,20 +196,20 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
 
                     {/* Step Header */}
                     <div className="flex flex-wrap items-center gap-4 mb-3">
-                      <p className="type-eyebrow text-[var(--color-text-muted)]">
+                      <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_58%,transparent)]">
                         {step.detail.days}
                       </p>
                       <span className="h-[1px] w-8 bg-[color-mix(in_srgb,var(--color-border-strong)_60%,transparent)]" />
-                      <p className="type-ui-sm italic text-[var(--color-text-secondary)]">
+                      <p className="type-ui-sm italic text-[color-mix(in_srgb,var(--color-light)_70%,transparent)]">
                         {step.nights}
                       </p>
                     </div>
 
-                    <h3 className="type-subheading font-serif text-[var(--color-text)] mb-3">
+                    <h3 className="type-subheading font-serif text-[var(--color-light)] mb-3">
                       {step.detail.title}
                     </h3>
                     
-                    <p className="type-body text-[var(--color-text-secondary)] font-light max-w-[42ch]">
+                    <p className="type-body text-[color-mix(in_srgb,var(--color-light)_76%,transparent)] font-light max-w-[42ch]">
                       {step.detail.body}
                     </p>
 
@@ -223,16 +226,16 @@ export function FlowMapSketch({ id, eyebrow, heading, subcopy, steps, note }: Fl
                     </div>
 
                     {/* Stay Cue - Typographic instead of boxed */}
-                    <div className="mt-7 border-t border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pt-5 md:mt-8">
+                    <div className="mt-7 border-t border-[color-mix(in_srgb,var(--color-light)_20%,transparent)] pt-5 md:mt-8">
                       <div className="flex items-baseline gap-6">
-                        <p className="type-eyebrow text-[var(--color-text-muted)] w-24 shrink-0">
+                        <p className="type-eyebrow text-[color-mix(in_srgb,var(--color-light)_58%,transparent)] w-24 shrink-0">
                           Stay Cue
                         </p>
                         <div>
-                          <p className="type-ui-sm text-[var(--color-text)]">
+                          <p className="type-ui-sm text-[var(--color-light)]">
                             {step.detail.stayType}
                           </p>
-                          <p className="type-meta text-[var(--color-text-secondary)] italic mt-1">
+                          <p className="type-meta text-[color-mix(in_srgb,var(--color-light)_72%,transparent)] italic mt-1">
                             e.g. {step.detail.stayName} — {step.detail.stayNote}
                           </p>
                         </div>

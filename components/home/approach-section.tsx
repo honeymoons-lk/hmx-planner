@@ -20,7 +20,7 @@ export function ApproachSection({ id, eyebrow, heading, supporting, steps }: App
   const [activeApproachStep, setActiveApproachStep] = useState<number | null>(0);
 
   return (
-    <section id={id} className="section-shell w-full bg-[var(--color-bg-alt)]">
+    <section id={id} className="section-shell w-full bg-[var(--color-bg-alt)]" data-header-tone="light">
       <div className="page-shell">
         <div className="grid gap-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start lg:gap-24">
           <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">

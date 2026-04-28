@@ -154,11 +154,11 @@ export function BriefIntakeCard({
   const selectedNightsValue = timeframe === "pick-dates" ? (calculatedNights ? String(calculatedNights) : "") : nights;
   const selectedStyle = styles[0] ?? "";
   const resolvedTitle =
-    title ?? (isStarter ? "Start your honeymoon plan" : "Tell us about your journey");
+    title ?? (isStarter ? "Begin your private brief" : "Tell us about your journey");
   const resolvedDescription =
     description ??
     (isStarter
-      ? "A few quick choices to shape your route and stay style."
+      ? "A few thoughtful choices to shape your route and stay style."
       : "A few choices to help us shape your route and stay style.");
 
   const canSubmitBrief = useMemo(() => {
@@ -421,7 +421,7 @@ export function BriefIntakeCard({
             disabled={!canSubmitBrief}
             onClick={handleSubmitBrief}
           >
-            {isStarter ? "Start planning" : "Continue"}
+            {isStarter ? "Begin Your Private Brief" : "Continue"}
           </Button>
           {isStarter && (
             <div className="mt-3.5 flex flex-col items-center gap-2">

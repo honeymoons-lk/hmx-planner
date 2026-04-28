@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { proxiedImageUrl } from "@/lib/media";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/section-header";
 
 type StayProperty = {
@@ -118,7 +120,7 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
   ];
 
   return (
-    <section id={id} className="section-shell w-full bg-[var(--color-surface)] pt-32 md:pt-48 lg:pt-56 rounded-t-[2.5rem] md:rounded-t-[4rem]">
+    <section id={id} className="section-shell w-full bg-[var(--color-bg)] pt-28 md:pt-36 lg:pt-44" data-header-tone="light">
       <div className="page-shell">
         <div className="border-b border-[color-mix(in_srgb,var(--color-border-strong)_40%,transparent)] pb-8 mb-16 md:mb-24 lg:mb-32">
           <SectionHeader
@@ -147,6 +149,10 @@ export function StaysSection({ id, eyebrow, heading, supporting, footerNote, ite
           <p className="type-meta max-w-[52rem] text-[var(--color-text-muted)]">
             {footerNote}
           </p>
+          <Link href="/plan/journey" className="mt-6 inline-flex items-center gap-2 text-sm text-[var(--color-brand)] transition-colors hover:text-[var(--color-brand-hover)]">
+            Let Us Match Your Stay Style
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>

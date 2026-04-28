@@ -2,6 +2,7 @@ import { homeContent } from "@/content/home-content";
 import { FlowMapSketch } from "@/src/components/FlowMapSketch";
 import { HomeHeader } from "@/components/home/home-header";
 import { HeroSection } from "@/components/home/hero-section";
+import { PrivateBriefSection } from "@/components/home/private-brief-section";
 import { TrustBridgeSection } from "@/components/home/trust-bridge-section";
 import { MomentsSection } from "@/components/home/moments-section";
 import { StaysSection } from "@/components/home/stays-section";
@@ -23,6 +24,7 @@ export default function HomePage() {
       />
 
       <HeroSection content={homeContent.hero} />
+      <PrivateBriefSection />
 
       <TrustBridgeSection
         eyebrow={homeContent.trustBridge.eyebrow}

@@ -9,26 +9,24 @@ type PartnersSectionProps = {
 };
 
 export function PartnersSection({ id, eyebrow, heading, supporting, logos }: PartnersSectionProps) {
-  const marqueeLogos = [...logos, ...logos];
-
   return (
-    <section id={id} className="section-shell-tight w-full">
+    <section id={id} className="section-shell-tight w-full bg-[#171412]" data-header-tone="dark">
       <div className="page-shell">
-        <SectionHeader eyebrow={eyebrow} heading={heading} supporting={supporting} className="mb-12 max-w-3xl" />
-        <div className="group relative focus-within:[&_.marquee-track]:[animation-play-state:paused] hover:[&_.marquee-track]:[animation-play-state:paused]">
-          <div className="overflow-x-auto md:overflow-hidden border-y border-[var(--color-border-strong)] py-6">
-            <div className="marquee-track flex w-max gap-12 motion-safe:animate-[marquee-left_32s_linear_infinite] motion-reduce:animate-none">
-              {marqueeLogos.map((partner, index) => (
-                <div
-                  key={`${partner}-${index}`}
-                  className="type-eyebrow flex items-center justify-center text-center text-[var(--color-text-secondary)]"
-                  tabIndex={0}
-                >
-                  {partner}
-                </div>
-              ))}
+        <SectionHeader
+          eyebrow={eyebrow}
+          heading={heading}
+          supporting={supporting}
+          className="mb-10 max-w-3xl [&_p]:text-[color-mix(in_srgb,var(--color-light)_72%,transparent)] [&_h2]:text-[var(--color-light)]"
+        />
+        <div className="grid gap-3 border-y border-[color-mix(in_srgb,var(--color-light)_14%,transparent)] py-8 sm:grid-cols-2 lg:grid-cols-5">
+          {logos.map((partner) => (
+            <div
+              key={partner}
+              className="type-ui-sm text-center text-[color-mix(in_srgb,var(--color-light)_76%,transparent)]"
+            >
+              {partner}
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

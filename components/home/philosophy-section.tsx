@@ -15,7 +15,7 @@ type PhilosophySectionProps = {
 
 export function PhilosophySection({ id, eyebrow, heading, body, link }: PhilosophySectionProps) {
   return (
-    <section id={id} className="section-shell-tight w-full bg-[var(--color-bg-alt)] border-y border-[var(--color-border-strong)]">
+    <section id={id} className="section-shell-tight w-full bg-[var(--color-bg-alt)] border-y border-[var(--color-border-strong)]" data-header-tone="light">
       <div className="page-shell">
         <div className="max-w-3xl flex flex-col items-start">
           <SectionHeader
