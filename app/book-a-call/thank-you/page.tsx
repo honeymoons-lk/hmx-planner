@@ -141,7 +141,7 @@ export default function BookACallThankYouPage() {
                 <Link href="/about">Meet the people behind your journey</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href="/#journey-directions">Explore sample journeys</Link>
+                <Link href="/sri-lanka/itineraries">Explore Sri Lanka sample journeys</Link>
               </Button>
             </div>
             <p className="type-ui-sm text-[var(--color-text-muted)]">

@@ -2,20 +2,19 @@ export const homeContent = {
   header: {
     brand: "LUNA VOYAGES",
     links: [
-      { label: "Experiences", href: "#experiences" },
-      { label: "The Journey", href: "#the-journey" },
-      { label: "Sample Journeys", href: "#journey-directions" },
-      { label: "Our Approach", href: "#our-approach" },
+      { label: "Sri Lanka", href: "/sri-lanka" },
+      { label: "How It Works", href: "/#how-it-works" },
+      { label: "About", href: "/about" },
     ],
     cta: { label: "Start Planning", href: "/plan/journey" },
   },
   hero: {
     kicker: "Sri Lanka Romantic Travel Concierge",
-    heading: "Your Sri Lanka romantic escape, handled end-to-end",
+    heading: "Sri Lanka Honeymoons and Romantic Journeys",
     backgroundImage: "/api/media/hero",
     emotionSentence:
-      "Tea hills at sunrise. Barefoot dinners by the sea. Quiet villas made just for two.",
-    emotionTagline: "Designed around you. Managed by us.",
+      "From boutique beach stays to misty hill country escapes, we design personalised Sri Lanka journeys with private transfers, local coordination and on-ground support.",
+    emotionTagline: "Designed around you. Supported locally.",
     testimonials: [
       {
         quote:
@@ -36,8 +35,8 @@ export const homeContent = {
       },
     ],
     secondaryStrip: {
-      label: "Also designing romantic escapes for",
-      items: ["Mini-moons", "Anniversary escapes", "Baby-moons"],
+      label: "Designed for",
+      items: ["Honeymoons", "Anniversary escapes", "Private couple journeys"],
     },
   },
   trustBridge: {
@@ -380,7 +379,7 @@ export const homeContent = {
     heading: "Ready to plan your Sri Lanka honeymoon?",
     subcopy:
       "Share your brief and you'll hear from us within 48 hours.",
-    primary: "Start Planning",
-    secondary: "Explore Our Approach",
+    primary: "Plan My Sri Lanka Trip",
+    secondary: "View Sri Lanka Itinerary Ideas",
   },
 } as const;

@@ -6,7 +6,7 @@ import { LegalContentPage, LegalSection } from "@/components/legal-content-page"
 export const metadata: Metadata = {
   title: "Terms & Conditions | Luna Voyages",
   description:
-    "Terms governing use of the Luna Voyages website and our concierge travel planning services for Sri Lanka honeymoons and romantic escapes.",
+    "Terms governing use of the Luna Voyages website and our concierge travel planning services for honeymoons and romantic escapes.",
 };
 
 export default function TermsPage() {

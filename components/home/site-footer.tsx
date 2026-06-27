@@ -33,7 +33,7 @@ export function SiteFooter() {
               <span className="font-wordmark text-[0.92em] leading-none">LUNA VOYAGES</span>
             </Link>
             <p className="type-body text-[color-mix(in_srgb,var(--color-light)_90%,var(--color-bg-alt))] max-w-[22rem] mb-3">
-              Concierge-crafted Sri Lanka honeymoons and romantic escapes for modern couples.
+              Romantic journeys, honeymoons and private escapes planned with calm concierge care.
             </p>
             <p className="type-ui-sm text-[color-mix(in_srgb,var(--color-light)_60%,var(--color-bg-alt))] max-w-[20rem] mb-8">
               Thoughtfully designed from first idea to final detail.
@@ -51,13 +51,16 @@ export function SiteFooter() {
             <h3 className="type-ui-sm font-medium text-[var(--color-light)] mb-5 tracking-wide uppercase text-[0.85em]">Explore</h3>
             <ul className="space-y-3 type-ui-sm text-[color-mix(in_srgb,var(--color-light)_72%,var(--color-bg-alt))]">
               <li>
+                <Link href="/sri-lanka" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Sri Lanka</Link>
+              </li>
+              <li>
                 <Link href="/about" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">About</Link>
               </li>
               <li>
-                <Link href="/#our-approach" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Our Approach</Link>
+                <Link href="/#how-it-works" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">How It Works</Link>
               </li>
               <li>
-                <Link href="/#faqs" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">FAQs</Link>
+                <Link href="/sri-lanka/itineraries" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Itinerary Ideas</Link>
               </li>
               <li>
                 <Link href="/book-a-call" className="transition-colors hover:text-[var(--color-light)] focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-[color-mix(in_srgb,var(--color-light)_18%,transparent)] rounded-sm">Contact</Link>

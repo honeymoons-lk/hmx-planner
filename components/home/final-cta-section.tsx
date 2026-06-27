@@ -18,7 +18,7 @@ export function FinalCtaSection({
   primary,
   secondary,
   primaryHref = "/plan/journey",
-  secondaryHref = "/#our-approach",
+  secondaryHref = "/#how-it-works",
 }: FinalCtaSectionProps) {
   return (
     <section className="relative w-full overflow-hidden bg-[var(--color-brand)] py-24 md:py-32 mt-12">

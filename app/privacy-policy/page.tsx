@@ -19,8 +19,8 @@ export default function PrivacyPolicyPage() {
     >
       <LegalSection title="Who we are">
         <p>
-          Luna Voyages provides bespoke romantic travel planning in Sri Lanka. For privacy-related
-          questions, contact us through the channels listed on our{" "}
+          Luna Voyages provides bespoke romantic travel planning and concierge support. For
+          privacy-related questions, contact us through the channels listed on our{" "}
           <Link
             href="/book-a-call"
             className="text-[var(--color-brand)] underline decoration-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] underline-offset-4 transition-colors hover:text-[var(--color-brand-hover)]"

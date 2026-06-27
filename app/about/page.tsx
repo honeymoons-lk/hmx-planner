@@ -1,204 +1,123 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { HeartHandshake, Map, PlaneTakeoff } from "lucide-react";
 
-import { FinalCtaSection } from "@/components/home/final-cta-section";
 import { HomeHeader } from "@/components/home/home-header";
 import { SiteFooter } from "@/components/home/site-footer";
 import { SectionHeader } from "@/components/section-header";
+import { Button } from "@/components/ui/button";
 import { homeContent } from "@/content/home-content";
 
 export const metadata: Metadata = {
   title: "About | Luna Voyages",
   description:
-    "Luna Voyages is a modern Sri Lanka travel concierge. While the brand is new, it is built on decades of hospitality relationships and trusted local connections.",
+    "Luna Voyages is a romantic travel concierge for personalised honeymoons, anniversaries and private journeys with curated planning and local support.",
 };
 
-/** Stock imagery for layout only; replace with your own photography. */
-const sampleImages = {
-  heroDestination:
-    "https://images.unsplash.com/photo-1596395819057-e37f55a8516b?auto=format&fit=crop&w=2400&q=80",
-  coast:
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-  portraitOne:
-    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=900&q=80",
-  portraitTwo:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=900&q=80",
-} as const;
-
-const homeLinks = homeContent.header.links.map((link) => ({
-  ...link,
-  href: link.href.startsWith("#") ? `/${link.href}` : link.href,
-}));
-
-function SamplePhotoFrame({
-  src,
-  alt,
-  caption,
-  className,
-  priority,
-}: {
-  src: string;
-  alt: string;
-  caption?: string;
-  className?: string;
-  priority?: boolean;
-}) {
-  return (
-    <figure className={className}>
-      <div className="overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border-strong)_70%,transparent)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-panel)]">
-        <img
-          src={src}
-          alt={alt}
-          className="aspect-[4/5] h-full w-full object-cover sm:aspect-[5/6]"
-          loading={priority ? "eager" : "lazy"}
-          decoding="async"
-        />
-      </div>
-      {caption && (
-        <figcaption className="type-meta mt-3 text-[var(--color-text-muted)]">
-          {caption}
-        </figcaption>
-      )}
-    </figure>
-  );
-}
+const principles = [
+  {
+    title: "Personal before packaged",
+    body: "Every journey begins with the couple: the occasion, pace, travel style, and moments they want to remember.",
+    icon: HeartHandshake,
+  },
+  {
+    title: "Designed with restraint",
+    body: "We prefer routes that breathe, stays with atmosphere, and enough space for the trip to feel like yours.",
+    icon: Map,
+  },
+  {
+    title: "Supported locally",
+    body: "We only open destinations where local relationships and on-ground support can protect the experience.",
+    icon: PlaneTakeoff,
+  },
+] as const;
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[var(--color-bg)] text-foreground">
       <HomeHeader
         brand={homeContent.header.brand}
-        links={homeLinks}
+        links={homeContent.header.links}
         cta={homeContent.header.cta}
       />
 
-      {/* SECTION 1 — Page header */}
-      <section className="w-full pt-[calc(var(--section-space-mobile)*1.5)] md:pt-[calc(var(--section-space-desktop)*1.2)] pb-12 md:pb-16">
-        <div className="page-shell">
-          <div className="max-w-3xl">
+      <section className="section-shell w-full">
+        <div className="page-shell grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-end lg:gap-20">
+          <div>
             <SectionHeader
-              eyebrow="OUR STORY"
-              heading="We’re a new name, not new to this world."
-              supporting="Luna Voyages was created as a modern Sri Lanka travel concierge for couples who want something more personal than a package and more thoughtful than a standard booking service. While the brand is new, the roots behind it run much deeper — shaped by decades of hospitality relationships, destination knowledge, and trusted local connections across Sri Lanka."
-              className="mb-0 [&_p.type-body-lg]:max-w-[65ch]"
+              eyebrow="About Luna Voyages"
+              heading="Romantic travel, planned with care and restraint."
+              supporting="Luna Voyages designs thoughtful honeymoons, anniversaries and private couple journeys for travellers who want something more personal than a package and calmer than planning every detail alone."
+              className="mb-0"
             />
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg">
+                <Link href="/plan/journey">Start Planning Your Journey</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link href="/sri-lanka">Explore Sri Lanka</Link>
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="w-full pb-[var(--section-space-mobile)] md:pb-[var(--section-space-desktop)]">
-        <div className="page-shell">
-          <figure className="w-full overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border-strong)_70%,transparent)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-panel)]">
+          <figure className="overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border-strong)_70%,transparent)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-panel)]">
             <img
-              src={sampleImages.heroDestination}
-              alt="Cinematic Sri Lanka landscape"
-              className="aspect-[16/9] md:aspect-[21/9] w-full object-cover"
+              src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1800&q=80"
+              alt="Quiet romantic travel scene at sunset"
+              className="aspect-[4/3] w-full object-cover"
               loading="eager"
-              decoding="async"
             />
           </figure>
         </div>
       </section>
 
-      {/* SECTION 2 — The expertise block */}
-      <section className="section-shell w-full bg-[var(--color-bg-alt)] border-y border-[var(--color-border-strong)]">
+      <section className="section-shell-tight w-full bg-[var(--color-bg-alt)] border-y border-[var(--color-border-strong)]">
         <div className="page-shell">
-          <div className="grid gap-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-24">
-            
-            <div className="lg:sticky lg:top-[calc(var(--header-height)+40px)]">
-              <SectionHeader
-                eyebrow="WHY IT MATTERS"
-                heading="The kind of access that takes 30 years to build."
-                supporting=""
-                className="mb-0 max-w-none"
-              />
-              <div className="mt-7 h-[1px] w-12 bg-[var(--color-brand)]" aria-hidden="true" />
-            </div>
+          <div className="mb-12 max-w-3xl">
+            <p className="type-eyebrow eyebrow-rule text-[var(--color-text-muted)]">How we think</p>
+            <h2 className="type-section mt-5 font-serif text-[var(--color-text)]">
+              A concierge brand for slower, more meaningful travel.
+            </h2>
+          </div>
 
-            <div className="flex flex-col gap-12">
-              <figure className="w-full overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_srgb,var(--color-border-strong)_70%,transparent)] bg-[var(--color-surface-muted)] shadow-[var(--shadow-soft)]">
-                <img
-                  src={sampleImages.coast}
-                  alt="Calm tropical coastline at sunset"
-                  className="aspect-[4/3] md:aspect-[16/9] w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </figure>
-              
-              <div className="max-w-[54ch] space-y-6">
-                <p className="type-body text-[var(--color-text-secondary)] font-light">
-                  Sri Lanka&apos;s finest properties, guides, and experiences are not always visible from the outside. The relationships that unlock them — the right contact at the right boutique estate, the guide who knows the quiet path nobody else takes — are built over decades.
-                </p>
-                <p className="type-body text-[var(--color-text-secondary)] font-light">
-                  Our founding team brings over 30 years of combined experience inside Sri Lanka&apos;s tourism industry, including active partnerships with the Sri Lanka Tourism Board and long-standing relationships with the country&apos;s most respected hospitality groups.
-                </p>
-                <p className="type-body text-[var(--color-text-secondary)] font-light">
-                  Luna Voyages was built to make that access available to couples planning the most meaningful trip of their lives — delivered through a modern, seamless planning experience.
-                </p>
-              </div>
-            </div>
-
+          <div className="grid gap-4 md:grid-cols-3">
+            {principles.map((principle) => {
+              const Icon = principle.icon;
+              return (
+                <article
+                  key={principle.title}
+                  className="surface-outline bg-[color-mix(in_srgb,var(--color-surface)_94%,var(--color-bg))] p-6 shadow-[var(--shadow-soft)]"
+                >
+                  <Icon className="h-5 w-5 text-[var(--color-brand)]" />
+                  <h3 className="type-subheading mt-6 font-serif text-[var(--color-text)]">
+                    {principle.title}
+                  </h3>
+                  <p className="type-body mt-4 text-[var(--color-text-secondary)]">{principle.body}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* SECTION 3 — The founder note */}
       <section className="section-shell w-full">
-        <div className="page-shell">
-          <div className="mb-16 max-w-3xl">
-            <SectionHeader
-              eyebrow="THE PEOPLE BEHIND IT"
-              heading="Technology meets local knowledge."
-              supporting="We are a husband and wife team with deep entrepreneurial roots. Luna Voyages is what happens when two different worlds come together — a concierge service that is as carefully engineered as it is personally guided."
-              className="mb-0"
-            />
-          </div>
-
-          <div className="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
-            <article className="flex flex-col gap-6">
-              <SamplePhotoFrame
-                src={sampleImages.portraitOne}
-                alt="Husband - IT & Systems"
-                className="w-full max-w-md"
-              />
-              <div className="max-w-md">
-                <h3 className="type-subheading font-serif tracking-tight text-[var(--color-text)]">
-                  The Engineering
-                </h3>
-                <p className="type-body mt-3 text-[var(--color-text-secondary)] font-light">
-                  With a 20-year background in building digital products, my focus is on the architecture of your trip. I ensure our planning process is calm, our systems are flawless, and every logistical detail is seamlessly organized so you don&apos;t have to think about it.
-                </p>
-              </div>
-            </article>
-
-            <article className="flex flex-col gap-6 md:mt-24">
-              <SamplePhotoFrame
-                src={sampleImages.portraitTwo}
-                alt="Wife - Business & Relationships"
-                className="w-full max-w-md"
-              />
-              <div className="max-w-md">
-                <h3 className="type-subheading font-serif tracking-tight text-[var(--color-text)]">
-                  The Local Access
-                </h3>
-                <p className="type-body mt-3 text-[var(--color-text-secondary)] font-light">
-                  My family spent 30 years building relationships across Sri Lanka&apos;s travel landscape. I bring that business intuition and local access to Luna Voyages, focusing on the on-ground experience, the hidden gems, and the personal touches that make a trip unrepeatable.
-                </p>
-              </div>
-            </article>
-          </div>
+        <div className="page-shell max-w-4xl">
+          <p className="type-eyebrow eyebrow-rule text-[var(--color-text-muted)]">Current destination focus</p>
+          <h2 className="type-section mt-5 font-serif text-[var(--color-text)]">
+            Sri Lanka is where our destination work is active today.
+          </h2>
+          <p className="type-body-lg mt-5 max-w-[58ch] text-[var(--color-text-secondary)]">
+            More destinations may be added later, but only when there is enough local depth to support the
+            Luna Voyages standard. For now, Sri Lanka is the destination with live planning, local
+            coordination, and detailed journey design.
+          </p>
+          <Link
+            href="/sri-lanka/about"
+            className="type-ui-sm mt-7 inline-flex text-[var(--color-brand)] underline decoration-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] underline-offset-4 transition-colors hover:text-[var(--color-brand-hover)]"
+          >
+            Read about our Sri Lanka local support
+          </Link>
         </div>
       </section>
-
-      {/* SECTION 4 — CTA */}
-      <FinalCtaSection
-        heading="Ready to plan your Sri Lanka honeymoon?"
-        subcopy="Share your brief and you'll hear from us within 48 hours."
-        primary="Start Planning"
-        secondary="Book a Call"
-        primaryHref="/plan/journey"
-        secondaryHref="/book-a-call"
-      />
 
       <SiteFooter />
     </main>

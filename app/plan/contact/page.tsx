@@ -130,7 +130,7 @@ export default function ContactPage() {
               <CardTitle className="type-subheading font-serif">Your details</CardTitle>
               <CardDescription className="type-body text-[var(--color-text-muted)] font-light mt-2">
                 Share your details so we can send your tailored proposal. <br />
-                Every request is read by us — not filtered by an algorithm. You'll hear from us within 48 hours.
+                Every request is read by us — not filtered by an algorithm. You&apos;ll hear from us within 48 hours.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-8 px-5 pb-6 md:space-y-10 md:px-10 md:pb-10">

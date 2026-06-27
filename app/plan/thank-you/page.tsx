@@ -88,7 +88,7 @@ export default function ThankYouPage() {
             <CardHeader className="px-5 pt-6 pb-6 md:px-10 md:pt-10">
               <CardTitle className="type-subheading font-serif">Thank you. Your request is with us.</CardTitle>
               <CardDescription className="type-body max-w-[54ch] text-[var(--color-text-muted)] font-light mt-2">
-                We will review your details and share a tailored direction. You'll hear from us within 48 hours.
+                We will review your details and share a tailored direction. You&apos;ll hear from us within 48 hours.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -178,7 +178,7 @@ export default function ThankYouPage() {
                 <Link href="/about">Meet the people behind your journey</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <Link href="/#journey-directions">Explore sample journeys</Link>
+                <Link href="/sri-lanka/itineraries">Explore Sri Lanka sample journeys</Link>
               </Button>
             </div>
           </div>

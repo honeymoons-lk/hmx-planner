@@ -22,8 +22,10 @@ const wordmarkFont = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "Luna Voyages",
-  description: "Luxury romantic travel planning in Sri Lanka",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://lunavoyages.com"),
+  title: "Luna Voyages | Romantic Travel Concierge",
+  description:
+    "Luna Voyages creates personalised romantic journeys, honeymoons and private travel experiences with local support and curated planning.",
 };
 
 export default function RootLayout({

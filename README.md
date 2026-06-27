@@ -13,10 +13,16 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Current page routes
 
 - `/`
-- `/real-honeymoons`
+- `/sri-lanka`
+- `/sri-lanka/about`
+- `/sri-lanka/experiences`
+- `/sri-lanka/itineraries`
+- `/about`
+- `/partner-with-us`
 - `/style-guide`
 - `/design-brief`
 - `/sitemap`
+- `/sitemap.xml`
 - `/book-a-call`
 - `/book-a-call/thank-you`
 - `/plan/journey`

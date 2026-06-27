@@ -13,7 +13,11 @@ const routeGroups = [
     title: "Main pages",
     description: "Primary public-facing destinations on the site.",
     links: [
-      { href: "/", label: "Homepage", note: "Main landing page for Luna Voyages." },
+      { href: "/", label: "Homepage", note: "Brand landing page for Luna Voyages." },
+      { href: "/sri-lanka", label: "Sri Lanka", note: "Main destination landing page for Sri Lanka honeymoons and romantic travel." },
+      { href: "/sri-lanka/about", label: "Sri Lanka About", note: "Destination-specific local support and operating model." },
+      { href: "/sri-lanka/experiences", label: "Sri Lanka Experiences", note: "Romantic experiences and curated stay styles." },
+      { href: "/sri-lanka/itineraries", label: "Sri Lanka Itineraries", note: "Sample Sri Lanka journey directions and route ideas." },
       { href: "/about", label: "About", note: "Brand story, positioning, and company overview." },
       { href: "/partner-with-us", label: "Partner With Us", note: "B2B partner and collaboration information." },
     ],
@@ -40,8 +44,8 @@ const routeGroups = [
     title: "Footer links",
     description: "Additional shortcuts surfaced in the site footer.",
     links: [
-      { href: "/#our-approach", label: "Our Approach", note: "Homepage section link from the footer." },
-      { href: "/#faqs", label: "FAQs", note: "Homepage FAQ section link from the footer." },
+      { href: "/#how-it-works", label: "How It Works", note: "Brand homepage section explaining the planning service." },
+      { href: "/sri-lanka/itineraries", label: "Sri Lanka Itinerary Ideas", note: "Sample Sri Lanka journey directions." },
       { href: "/privacy-policy", label: "Privacy Policy", note: "How we handle personal information." },
       { href: "/terms", label: "Terms & Conditions", note: "Site and service terms." },
       { href: "/sitemap", label: "Sitemap", note: "Human-readable route index for the current site." },
